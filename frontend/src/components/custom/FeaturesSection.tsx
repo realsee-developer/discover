@@ -21,8 +21,8 @@ export function FeaturesSection({ data }: { data: IFeaturesSectionProps }) {
       <p className={styles.subtitle}>{subHeading}</p>
 
       <div className={styles.grid}>
-        {features.map((f: TFeature) => (
-          <div key={f.id} className={styles.card}>
+        {features.map((f: TFeature, idx: number) => (
+          <div key={`${f.id}-${idx}`} className={styles.card}>
             {f.icon && <div className={styles.iconWrap}>{f.icon}</div>}
             <div className={styles.cardTitle}>{f.heading}</div>
             <div className={styles.cardSub}>{f.subHeading}</div>

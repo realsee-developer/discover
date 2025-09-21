@@ -1,0 +1,36 @@
+---
+globs: frontend/**
+description: Next.js 前端开发约定与导航
+---
+# Next.js 前端规则（Realsee Discover）
+
+- 运行脚本在 [frontend/package.json](mdc:frontend/package.json) 中：
+  - `dev` -> `next dev`
+  - `build` -> `next build`
+  - `start` -> `next start`
+  - `lint` -> `biome check`
+
+## 目录与入口
+- App Router 根布局: [src/app/layout.tsx](mdc:frontend/src/app/layout.tsx)
+- 首页页面: [src/app/page.tsx](mdc:frontend/src/app/page.tsx)
+- 工具函数: [src/lib/utils.ts](mdc:frontend/src/lib/utils.ts)
+- UI 组件示例: [src/components/ui/button.tsx](mdc:frontend/src/components/ui/button.tsx)
+
+## 数据获取约定
+- 基础 URL 通过 `getStrapiURL()` 读取 `NEXT_PUBLIC_STRAPI_URL`（默认 `http://localhost:1337`）
+- 全局数据: `GET /api/global`（用于 `generateMetadata` 与布局）
+- 首页块数据: `GET /api/home-page?populate[blocks][populate]=*`
+
+## TypeScript 与路径别名
+- 别名 `@/*` 指向 `src/*`，见 [tsconfig.json](mdc:frontend/tsconfig.json)
+- Next 插件配置位于 `compilerOptions.plugins.name = "next"`
+
+## 风格与 Lint
+- 使用 Biome 作为格式化与 Lint：见 [biome.json](mdc:frontend/biome.json)
+- 建议：组织 imports（Biome assist: organizeImports）
+
+## 组件渲染约定
+- `HeroSection` 与 `FeaturesSection` 根据 `__component` 字段动态渲染，见 [src/app/page.tsx](mdc:frontend/src/app/page.tsx)
+
+## 运行时注意
+- 使用 App Router 的异步服务器组件，需要在请求中处理失败回退（示例见 `generateMetadata` 与 `getStrapiData`）。

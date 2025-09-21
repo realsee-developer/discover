@@ -11,9 +11,15 @@ export default async function AccountPage() {
   const me = jwt ? await getMeService(jwt) : null;
   const avatarUrl = getStrapiMedia(me?.avatar?.url ?? null);
 
-  // Bind server actions to match <form action> expected signature
-  const updateProfile = updateProfileAction.bind(null, initialProfileFormState);
-  const updateProfileImage = updateProfileImageAction.bind(null, initialProfileFormState);
+  async function updateProfile(formData: FormData) {
+    "use server";
+    await updateProfileAction(initialProfileFormState, formData);
+  }
+
+  async function updateProfileImage(formData: FormData) {
+    "use server";
+    await updateProfileImageAction(initialProfileFormState, formData);
+  }
 
   return (
     <div className="container mx-auto p-6 grid grid-cols-1 lg:grid-cols-5 gap-6">

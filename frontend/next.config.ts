@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
         hostname: "kind-love-9d69af7ecf.strapiapp.com",
         pathname: "/uploads/**/*",
       },
+      {
+        protocol: "https",
+        hostname: "kind-love-9d69af7ecf.media.strapiapp.com",
+        pathname: "/**/*",
+      },
     ],
   },
   experimental: {

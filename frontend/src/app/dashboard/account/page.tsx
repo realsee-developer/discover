@@ -11,11 +11,15 @@ export default async function AccountPage() {
   const me = jwt ? await getMeService(jwt) : null;
   const avatarUrl = getStrapiMedia(me?.avatar?.url ?? null);
 
+  // Bind server actions to match <form action> expected signature
+  const updateProfile = updateProfileAction.bind(null, initialProfileFormState);
+  const updateProfileImage = updateProfileImageAction.bind(null, initialProfileFormState);
+
   return (
     <div className="container mx-auto p-6 grid grid-cols-1 lg:grid-cols-5 gap-6">
       <section className="col-span-3 space-y-4">
         <h2 className="text-xl font-semibold">资料</h2>
-        <form action={updateProfileAction} className="space-y-3">
+        <form action={updateProfile} className="space-y-3">
           <input name="firstName" defaultValue={me?.firstName ?? ""} placeholder="名字" className="w-full border rounded p-2" />
           <input name="lastName" defaultValue={me?.lastName ?? ""} placeholder="姓氏" className="w-full border rounded p-2" />
           <textarea name="bio" defaultValue={me?.bio ?? ""} placeholder="个人简介" className="w-full border rounded p-2 h-28" />
@@ -32,7 +36,7 @@ export default async function AccountPage() {
             <span className="text-gray-400">无头像</span>
           )}
         </div>
-        <form action={updateProfileImageAction} className="space-y-3">
+        <form action={updateProfileImage} className="space-y-3">
           <input type="file" name="image" accept="image/jpeg,image/png,image/webp" className="w-full" />
           <SubmitButton>上传新头像</SubmitButton>
         </form>

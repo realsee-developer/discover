@@ -1,4 +1,4 @@
-import React from "react";
+ 
 
 export default function ContactPage() {
   return (
@@ -25,7 +25,7 @@ export default function ContactPage() {
             </div>
           </div>
           <div className="mt-6 flex gap-3">
-            <a href="https://home.realsee.ai/en/contact-us" target="_blank" className="btn btn-primary">Contact Sales</a>
+            <a href="https://home.realsee.ai/en/contact-us" target="_blank" rel="noopener" className="btn btn-primary">Contact Sales</a>
             <a href="/photographer" className="btn btn-outline">Join Community</a>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default function ContactPage() {
               <textarea className="textarea textarea-bordered sm:col-span-2" placeholder="Tell us about your project" rows={6}></textarea>
             </div>
             <div className="card-actions justify-end mt-2">
-              <button className="btn btn-primary">Submit</button>
+              <button type="button" className="btn btn-primary">Submit</button>
             </div>
           </div>
         </div>

@@ -1,33 +1,30 @@
 import { Icon } from "@iconify/react";
-type Card = { title: string; author: string; img: string; badge: { text: string; cls: string } };
+import { getVrs, resolvePublicAssetPath } from "@/data/db";
 
 export function TourGrid() {
-  const cards: Card[] = [
-    {
-      title: "Modern Apartment",
-      author: "Alex Chen",
-      badge: { text: "VR Ready", cls: "badge-primary" },
-      img: "https://images.unsplash.com/photo-1603072845032-7b5bd641a82a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=300&h=200",
-    },
-    {
-      title: "Cozy Cafe",
-      author: "Emma Wilson",
-      badge: { text: "360°", cls: "badge-secondary" },
-      img: "https://images.unsplash.com/photo-1691067987421-ce180bfcb90c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=300&h=200",
-    },
-    {
-      title: "Luxury Villa",
-      author: "David Park",
-      badge: { text: "4K", cls: "badge-accent" },
-      img: "https://images.unsplash.com/photo-1622015663319-e97e697503ee?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=300&h=200",
-    },
-    {
-      title: "Contemporary Art Gallery",
-      author: "Lisa Zhang",
-      badge: { text: "Interactive", cls: "badge-primary" },
-      img: "https://images.unsplash.com/photo-1574367157590-3454fe866961?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=300&h=200",
-    },
-  ];
+  const vrs = getVrs().slice(0, 12);
+  const getCategoryIcon = (category: string): string => {
+    const c = (category || "").toLowerCase();
+    if (c.includes("residential") || c.includes("house") || c.includes("home")) return "heroicons:home";
+    if (c.includes("industrial") || c.includes("factory")) return "heroicons:building-office-2";
+    if (c.includes("exhibition")) return "heroicons:photo";
+    if (c.includes("showroom")) return "heroicons:sparkles";
+    if (c.includes("museum")) return "heroicons:building-library";
+    if (c.includes("office")) return "heroicons:building-office";
+    if (c.includes("restaurant")) return "heroicons:building-storefront";
+    if (c.includes("studio")) return "heroicons:video-camera";
+    if (c.includes("church")) return "mdi:church";
+    if (c.includes("gym")) return "mdi:dumbbell";
+    if (c.includes("aerial")) return "heroicons:paper-airplane";
+    if (c.includes("outdoor") || c.includes("outside")) return "heroicons:globe-alt";
+    return "heroicons:tag";
+  };
+  const getDeviceIcon = (device: string): string => {
+    const d = (device || "").toLowerCase();
+    if (d.includes("galois") || d.includes("伽罗华")) return "mdi:laser-pointer"; // 激光扫描仪
+    if (d.includes("pano to 3d") || d.includes("panorama") || d.includes("全景")) return "mdi:panorama-variant"; // 全景转VR
+    return "heroicons:camera";
+  };
 
   return (
     <section className="tour-gallery-section bg-base-200 py-16">
@@ -39,24 +36,45 @@ export function TourGrid() {
           </a>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {cards.map((card) => (
-            <div key={card.title} className="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 tour-card cursor-pointer">
-              <figure className="relative">
-                <img src={card.img} alt={card.title} className="w-full h-48 object-cover" />
-                <div className="absolute top-2 right-2">
-                  <div className={`badge ${card.badge.cls}`}>{card.badge.text}</div>
+          {vrs.map((vr) => (
+            <a
+              key={vr.id}
+              href={vr.url}
+              target="_blank"
+              rel="noreferrer"
+              className="relative block overflow-hidden rounded-xl border border-base-300/40 bg-base-100/5 shadow-lg hover:shadow-2xl transition-all duration-300 group cursor-pointer"
+            >
+              <figure className="relative overflow-hidden m-0">
+                <img
+                  src={resolvePublicAssetPath(vr.assetCover || vr.cover) || vr.remoteCover || "/file.svg"}
+                  alt={vr.title || vr.id}
+                  className="w-full h-48 object-cover transform-gpu transition-transform duration-[5000ms] ease-out group-hover:scale-110 motion-reduce:transform-none"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-base-content/70 via-base-content/10 to-transparent" />
+                <div className="absolute top-3 left-3 flex items-center gap-2">
+                  {vr.shortCategory || vr.category ? (
+                    <span className="badge badge-primary badge-md text-primary-content border-0 shadow-sm shadow-primary/40 gap-1">
+                      <Icon icon={getCategoryIcon(vr.shortCategory || vr.category || "")} width={14} /> {vr.shortCategory || vr.category}
+                    </span>
+                  ) : null}
+                  {vr.device ? (
+                    <span className="badge badge-outline badge-md border-white/70 text-base-100/95 gap-1 bg-black/10">
+                      <Icon icon={getDeviceIcon(vr.device)} width={14} /> {vr.device}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <span className="badge badge-outline bg-black/40 text-white border-white/50 gap-1 backdrop-blur-sm">
+                    <Icon icon="heroicons:play" width={14} /> View
+                  </span>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 text-white">
+                  <h3 className="text-sm md:text-base font-semibold drop-shadow-md line-clamp-2">
+                    {vr.title || vr.id}
+                  </h3>
                 </div>
               </figure>
-              <div className="card-body p-4">
-                <h3 className="card-title text-lg">{card.title}</h3>
-                <p className="text-sm text-base-content/70">by {card.author}</p>
-                <div className="flex items-center gap-2 mt-2">
-                  <Icon className="text-warning" icon="heroicons:star-solid" width={16} />
-                  <span className="text-sm">4.8</span>
-                  <span className="text-sm text-base-content/50">(124 views)</span>
-                </div>
-              </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

@@ -1,0 +1,127 @@
+[
+  {
+    "id": "category:outdoor",
+    "type": "category",
+    "label": "Outdoor"
+  },
+  {
+    "id": "device:galois",
+    "type": "device",
+    "label": "Galois"
+  },
+  {
+    "id": "category:aerial",
+    "type": "category",
+    "label": "Aerial 3D"
+  },
+  {
+    "id": "device:pano-to-3d",
+    "type": "device",
+    "label": "Pano to 3D"
+  },
+  {
+    "id": "category:industrial",
+    "type": "category",
+    "label": "Industrial"
+  },
+  {
+    "id": "category:exhibition",
+    "type": "category",
+    "label": "Exhibition"
+  },
+  {
+    "id": "category:showroom",
+    "type": "category",
+    "label": "Showroom"
+  },
+  {
+    "id": "category:residential",
+    "type": "category",
+    "label": "Residential"
+  },
+  {
+    "id": "category:outside",
+    "type": "category",
+    "label": "Outside"
+  },
+  {
+    "id": "category:museum",
+    "type": "category",
+    "label": "Museum"
+  },
+  {
+    "id": "category:office",
+    "type": "category",
+    "label": "Office"
+  },
+  {
+    "id": "category:restaurant",
+    "type": "category",
+    "label": "Restaurant"
+  },
+  {
+    "id": "category:studio",
+    "type": "category",
+    "label": "Studio"
+  },
+  {
+    "id": "category:church",
+    "type": "category",
+    "label": "Church"
+  },
+  {
+    "id": "category:gym",
+    "type": "category",
+    "label": "Gym"
+  },
+  {
+    "id": "category:school",
+    "type": "category",
+    "label": "School"
+  },
+  {
+    "id": "category:village-hall",
+    "type": "category",
+    "label": "village hall"
+  },
+  {
+    "id": "category:tourism",
+    "type": "category",
+    "label": "Tourism"
+  },
+  {
+    "id": "category:hotel",
+    "type": "category",
+    "label": "Hotel"
+  },
+  {
+    "id": "category:clinic",
+    "type": "category",
+    "label": "Clinic"
+  },
+  {
+    "id": "category:retail",
+    "type": "category",
+    "label": "Retail"
+  },
+  {
+    "id": "category:construction",
+    "type": "category",
+    "label": "Construction"
+  },
+  {
+    "id": "category:exibition",
+    "type": "category",
+    "label": "Exibition"
+  },
+  {
+    "id": "category:car",
+    "type": "category",
+    "label": "Car"
+  },
+  {
+    "id": "category:campus",
+    "type": "category",
+    "label": "Campus"
+  }
+]

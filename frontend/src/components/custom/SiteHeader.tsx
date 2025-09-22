@@ -2,51 +2,79 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 
 export function SiteHeader() {
   const router = useRouter();
+  const [atTop, setAtTop] = useState(true);
 
-  const navigateTo = useCallback(
-    (path: string) => () => {
-      router.push(path);
-    },
-    [router]
-  );
+  // logo is not clickable anymore
 
   const performSearch = useCallback(() => {
     // TODO: 接入真实搜索页
     router.push("/search");
   }, [router]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      try {
+        setAtTop(window.scrollY <= 4);
+      } catch {}
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div data-section-id="common_header" data-section-type="common_header">
-      <header className="navbar bg-base-100 shadow-lg border-b border-base-300 h-16 px-6">
-        <div className="navbar-start">
-          <button
-            onClick={navigateTo("/")}
-            className="btn btn-ghost text-xl font-bold text-primary cursor-pointer"
-         >
-            <img
-              src="https://spark-builder.s3.cn-north-1.amazonaws.com.cn/image/2025/9/13/6f11aeea-72f1-47e6-9140-2e02da8483a6.png"
-              alt="Realsee Logo"
-              className="w-8 h-8 rounded"
-            />
+      <header
+        className={
+          `navbar h-16 px-6 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ` +
+          (atTop
+            ? "bg-transparent shadow-none border-b-0"
+            : "bg-base-100/90 backdrop-blur border-b border-base-300 shadow-lg")
+        }
+      >
+        <div className="navbar-start select-none">
+          <div className={`${atTop ? "text-base-100" : "text-primary"} flex items-center gap-3 text-xl font-bold`}>
+            <img src="/realsee-logo.jpeg" alt="Realsee Logo" className="w-8 h-8 rounded" />
             <span>Realsee Gallery</span>
-          </button>
+          </div>
         </div>
 
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-4">
             <li>
-              <Link href="/" className="hover:bg-base-200 smooth-transition">Discover</Link>
+              <Link
+                href="/"
+                className={`smooth-transition ${
+                  atTop ? "text-base-100/90 hover:text-base-100 hover:bg-transparent" : "hover:bg-base-200"
+                }`}
+              >
+                Discover
+              </Link>
             </li>
             <li>
-              <Link href="/search" className="hover:bg-base-200 smooth-transition">Browse Tours</Link>
+              <Link
+                href="/search"
+                className={`smooth-transition ${
+                  atTop ? "text-base-100/90 hover:text-base-100 hover:bg-transparent" : "hover:bg-base-200"
+                }`}
+              >
+                Browse Tours
+              </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:bg-base-200 smooth-transition">Join Community</Link>
+              <Link
+                href="/contact"
+                className={`smooth-transition ${
+                  atTop ? "text-base-100/90 hover:text-base-100 hover:bg-transparent" : "hover:bg-base-200"
+                }`}
+              >
+                Join Community
+              </Link>
             </li>
           </ul>
         </div>
@@ -57,19 +85,26 @@ export function SiteHeader() {
               <input
                 type="text"
                 placeholder="Search 3D tours..."
-                className="input input-bordered join-item w-64"
+                className={`input input-bordered join-item w-64 ${
+                  atTop
+                    ? "text-base-100 placeholder:text-base-100/70 bg-white/10 border-white/20 focus:border-white/40"
+                    : ""
+                }`}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") performSearch();
                 }}
               />
-              <button className="btn btn-ghost join-item" onClick={performSearch}>
+              <button
+                className={`btn btn-ghost join-item ${atTop ? "text-base-100 hover:bg-white/10" : ""}`}
+                onClick={performSearch}
+              >
                 <Icon icon="heroicons:magnifying-glass" width={20} />
               </button>
             </div>
           </div>
 
           <div className="dropdown dropdown-end lg:hidden">
-            <button tabIndex={0} className="btn btn-ghost btn-square">
+            <button tabIndex={0} className={`btn btn-ghost btn-square ${atTop ? "text-base-100 hover:bg-white/10" : ""}`}>
               <Icon icon="heroicons:bars-3" width={24} />
             </button>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-lg bg-base-100 rounded-box w-64 border border-base-300">
@@ -81,8 +116,8 @@ export function SiteHeader() {
         </div>
       </header>
       <style>{`
-        [data-section-id="common_header"] .navbar { position: sticky; top: 0; z-index: 40; backdrop-filter: blur(8px); }
-        [data-section-id="common_header"] .menu li > *:hover { background-color: var(--color-base-200); }
+        [data-section-id="common_header"] .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(8px); }
+        [data-section-id="common_header"] .menu li > *:hover { }
         [data-section-id="common_header"] .dropdown-content { box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
       `}</style>
     </div>

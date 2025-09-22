@@ -6,6 +6,8 @@
   "license": "UNLICENSED",
   "type": "commonjs",
   "scripts": {
+    "build:vr": "node ./build-vr-datasets.js",
+    "parse:photographers": "node ./parse-photographers.js",
     "convert": "node ./convert-data-to-json.js",
     "extract:carousel": "node ./extract-carousel.js",
     "tag:carousel": "node ./tag-carousel.js",

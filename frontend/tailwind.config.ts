@@ -1,15 +1,8 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
   content: ["./src/**/*.{ts,tsx}"],
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: ["business", "light"],
-    base: true,
-    utils: true,
-  },
-};
-
-export default config;
+  plugins: [],
+} satisfies Config;
 
 

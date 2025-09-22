@@ -1,788 +1,1042 @@
 [
   {
-    "Showcase Link": "https://realsee.ai/rnDDBMnR",
-    "空间类型标签": "Outdoor",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "rnDDBMnR",
+    "url": "https://realsee.ai/rnDDBMnR",
+    "category": "Outdoor",
+    "shortCategory": "outdoor",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/MELL8AE4",
-    "空间类型标签": "Aerial 3D",
-    "拍摄设备": "Pano to 3D",
-    "": ""
+    "id": "MELL8AE4",
+    "url": "https://realsee.ai/MELL8AE4",
+    "category": "Aerial 3D",
+    "shortCategory": "aerial",
+    "device": "Pano to 3D",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae44XdGW",
-    "空间类型标签": "Industrial",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Ae44XdGW",
+    "url": "https://realsee.ai/Ae44XdGW",
+    "category": "Industrial",
+    "shortCategory": "industrial",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/lq22lmqD",
-    "空间类型标签": "Industrial",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "lq22lmqD",
+    "url": "https://realsee.ai/lq22lmqD",
+    "category": "Industrial",
+    "shortCategory": "industrial",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/gL99yxrL",
-    "空间类型标签": "Industrial",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "gL99yxrL",
+    "url": "https://realsee.ai/gL99yxrL",
+    "category": "Industrial",
+    "shortCategory": "industrial",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/bbEExKYE",
-    "空间类型标签": "Industrial",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "bbEExKYE",
+    "url": "https://realsee.ai/bbEExKYE",
+    "category": "Industrial",
+    "shortCategory": "industrial",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/LNwwV3GK",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "LNwwV3GK",
+    "url": "https://realsee.ai/LNwwV3GK",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/lq22laKg",
-    "空间类型标签": "Showroom",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "lq22laKg",
+    "url": "https://realsee.ai/lq22laKg",
+    "category": "Showroom",
+    "shortCategory": "showroom",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/gL99yqnz",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "gL99yqnz",
+    "url": "https://realsee.ai/gL99yqnz",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/98OORY4z",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "98OORY4z",
+    "url": "https://realsee.ai/98OORY4z",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/exnnjzDk",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "exnnjzDk",
+    "url": "https://realsee.ai/exnnjzDk",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/xGWWRdgr",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "xGWWRdgr",
+    "url": "https://realsee.ai/xGWWRdgr",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ReZZgMOD",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ReZZgMOD",
+    "url": "https://realsee.ai/ReZZgMOD",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/lq22laKJ",
-    "空间类型标签": "Outdoor",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "lq22laKJ",
+    "url": "https://realsee.ai/lq22laKJ",
+    "category": "Outdoor",
+    "shortCategory": "outdoor",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/WgwwABrp",
-    "空间类型标签": "Museum",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "WgwwABrp",
+    "url": "https://realsee.ai/WgwwABrp",
+    "category": "Museum",
+    "shortCategory": "museum",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Y9vvxZvy",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Y9vvxZvy",
+    "url": "https://realsee.ai/Y9vvxZvy",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae44XBBg",
-    "空间类型标签": "Restaurant",
-    "拍摄设备": "Galois",
-    "": "",
+    "id": "Ae44XBBg",
+    "url": "https://realsee.ai/Ae44XBBg",
+    "category": "Restaurant",
+    "shortCategory": "restaurant",
+    "device": "Galois",
     "carousel": true
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae44Xx4r",
-    "空间类型标签": "Studio",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Ae44Xx4r",
+    "url": "https://realsee.ai/Ae44Xx4r",
+    "category": "Studio",
+    "shortCategory": "studio",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/GjVV2lEO",
-    "空间类型标签": "Aerial 3D",
-    "拍摄设备": "Pano to 3D",
-    "": "",
+    "id": "GjVV2lEO",
+    "url": "https://realsee.ai/GjVV2lEO",
+    "category": "Aerial 3D",
+    "shortCategory": "aerial",
+    "device": "Pano to 3D",
     "carousel": true
   },
   {
-    "Showcase Link": "https://realsee.ai/MELL8AAX",
-    "空间类型标签": "Restaurant",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "MELL8AAX",
+    "url": "https://realsee.ai/MELL8AAX",
+    "category": "Restaurant",
+    "shortCategory": "restaurant",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/v4OORaaL",
-    "空间类型标签": "Church",
-    "拍摄设备": "Galois",
-    "": "",
+    "id": "v4OORaaL",
+    "url": "https://realsee.ai/v4OORaaL",
+    "category": "Church",
+    "shortCategory": "church",
+    "device": "Galois",
     "carousel": true
   },
   {
-    "Showcase Link": "https://realsee.ai/3kYYW88M",
-    "空间类型标签": "Studio",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "3kYYW88M",
+    "url": "https://realsee.ai/3kYYW88M",
+    "category": "Studio",
+    "shortCategory": "studio",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/2VPPW4zP",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "2VPPW4zP",
+    "url": "https://realsee.ai/2VPPW4zP",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/6yDDWlYz",
-    "空间类型标签": "Gym",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "6yDDWlYz",
+    "url": "https://realsee.ai/6yDDWlYz",
+    "category": "Gym",
+    "shortCategory": "gym",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/7kyyNVV8",
-    "空间类型标签": "Gym",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "7kyyNVV8",
+    "url": "https://realsee.ai/7kyyNVV8",
+    "category": "Gym",
+    "shortCategory": "gym",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/N4eeOl9w",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "N4eeOl9w",
+    "url": "https://realsee.ai/N4eeOl9w",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/rnDDBMM3",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "rnDDBMM3",
+    "url": "https://realsee.ai/rnDDBMM3",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Y9vvxDDq",
-    "空间类型标签": "Campus",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Y9vvxDDq",
+    "url": "https://realsee.ai/Y9vvxDDq",
+    "category": "Campus",
+    "shortCategory": "campus",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/exnnjXXG",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "exnnjXXG",
+    "url": "https://realsee.ai/exnnjXXG",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ByNN9a8d",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ByNN9a8d",
+    "url": "https://realsee.ai/ByNN9a8d",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/GjVV2lNP",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "GjVV2lNP",
+    "url": "https://realsee.ai/GjVV2lNP",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/xGWWRrlr",
-    "空间类型标签": "Campus",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "xGWWRrlr",
+    "url": "https://realsee.ai/xGWWRrlr",
+    "category": "Campus",
+    "shortCategory": "campus",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/a9rrxlA9",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "a9rrxlA9",
+    "url": "https://realsee.ai/a9rrxlA9",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/qjMMwmjO",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "qjMMwmjO",
+    "url": "https://realsee.ai/qjMMwmjO",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/EOxx9AOD",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "EOxx9AOD",
+    "url": "https://realsee.ai/EOxx9AOD",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/z7RRAY7W",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "z7RRAY7W",
+    "url": "https://realsee.ai/z7RRAY7W",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/a9rrxl92",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "a9rrxl92",
+    "url": "https://realsee.ai/a9rrxl92",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/WgwwxZgR",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "WgwwxZgR",
+    "url": "https://realsee.ai/WgwwxZgR",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/kzaaL2z2",
-    "空间类型标签": "Hotel",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "kzaaL2z2",
+    "url": "https://realsee.ai/kzaaL2z2",
+    "category": "Hotel",
+    "shortCategory": "hotel",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ReZZg8ew",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ReZZg8ew",
+    "url": "https://realsee.ai/ReZZg8ew",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/2VPPW4Vj",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "2VPPW4Vj",
+    "url": "https://realsee.ai/2VPPW4Vj",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/xGWWRrGg",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "xGWWRrGg",
+    "url": "https://realsee.ai/xGWWRrGg",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/XN33xjNk",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "XN33xjNk",
+    "url": "https://realsee.ai/XN33xjNk",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/p8EEZ68z",
-    "空间类型标签": "Clinic",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "p8EEZ68z",
+    "url": "https://realsee.ai/p8EEZ68z",
+    "category": "Clinic",
+    "shortCategory": "clinic",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ReZZgYeV",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ReZZgYeV",
+    "url": "https://realsee.ai/ReZZgYeV",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/xGWWRYGB",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "xGWWRYGB",
+    "url": "https://realsee.ai/xGWWRYGB",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/6yDDWqyp",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "6yDDWqyp",
+    "url": "https://realsee.ai/6yDDWqyp",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/a9rrxK9V",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "a9rrxK9V",
+    "url": "https://realsee.ai/a9rrxK9V",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/d4XXR35y",
-    "空间类型标签": "Restaurant",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "d4XXR35y",
+    "url": "https://realsee.ai/d4XXR35y",
+    "category": "Restaurant",
+    "shortCategory": "restaurant",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/49kkWj9x",
-    "空间类型标签": "Restaurant",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "49kkWj9x",
+    "url": "https://realsee.ai/49kkWj9x",
+    "category": "Restaurant",
+    "shortCategory": "restaurant",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/v4OO9vk5",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "v4OO9vk5",
+    "url": "https://realsee.ai/v4OO9vk5",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/nMnngxO7",
-    "空间类型标签": "Aerial 3D",
-    "拍摄设备": "Pano to 3D",
-    "": ""
+    "id": "nMnngxO7",
+    "url": "https://realsee.ai/nMnngxO7",
+    "category": "Aerial 3D",
+    "shortCategory": "aerial",
+    "device": "Pano to 3D",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/wKJJWnKX",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "wKJJWnKX",
+    "url": "https://realsee.ai/wKJJWnKX",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/v4OO9d6A",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "v4OO9d6A",
+    "url": "https://realsee.ai/v4OO9d6A",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ByNN9Yyw",
-    "空间类型标签": "Aerial 3D",
-    "拍摄设备": "Pano to 3D",
-    "": ""
+    "id": "ByNN9Yyw",
+    "url": "https://realsee.ai/ByNN9Yyw",
+    "category": "Aerial 3D",
+    "shortCategory": "aerial",
+    "device": "Pano to 3D",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/DMLL2AMk",
-    "空间类型标签": "Aerial 3D",
-    "拍摄设备": "Pano to 3D",
-    "": ""
+    "id": "DMLL2AMk",
+    "url": "https://realsee.ai/DMLL2AMk",
+    "category": "Aerial 3D",
+    "shortCategory": "aerial",
+    "device": "Pano to 3D",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/VbOOJZbY",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "VbOOJZbY",
+    "url": "https://realsee.ai/VbOOJZbY",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/O3eeLx3k",
-    "空间类型标签": "Hotel",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "O3eeLx3k",
+    "url": "https://realsee.ai/O3eeLx3k",
+    "category": "Hotel",
+    "shortCategory": "hotel",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ZyKKxYy3",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ZyKKxYy3",
+    "url": "https://realsee.ai/ZyKKxYy3",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/JVLLDNV4",
-    "空间类型标签": "Construction",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "JVLLDNV4",
+    "url": "https://realsee.ai/JVLLDNV4",
+    "category": "Construction",
+    "shortCategory": "construction",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/gL99yrL4",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "gL99yrL4",
+    "url": "https://realsee.ai/gL99yrL4",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/p8EEaW6z",
-    "空间类型标签": "Construction",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "p8EEaW6z",
+    "url": "https://realsee.ai/p8EEaW6z",
+    "category": "Construction",
+    "shortCategory": "construction",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/O3eed4g4",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "O3eed4g4",
+    "url": "https://realsee.ai/O3eed4g4",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/z7RRKweW",
-    "空间类型标签": "Outdoor",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "z7RRKweW",
+    "url": "https://realsee.ai/z7RRKweW",
+    "category": "Outdoor",
+    "shortCategory": "outdoor",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/EOxxRjpD",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "EOxxRjpD",
+    "url": "https://realsee.ai/EOxxRjpD",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/5jLLg5vk",
-    "空间类型标签": "Car",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "5jLLg5vk",
+    "url": "https://realsee.ai/5jLLg5vk",
+    "category": "Car",
+    "shortCategory": "car",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/7kyyZWMk",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "7kyyZWMk",
+    "url": "https://realsee.ai/7kyyZWMk",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/qjMMPVbO",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "qjMMPVbO",
+    "url": "https://realsee.ai/qjMMPVbO",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/N4eeOlOz",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "N4eeOlOz",
+    "url": "https://realsee.ai/N4eeOlOz",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/49kkWjWG",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "49kkWjWG",
+    "url": "https://realsee.ai/49kkWjWG",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ZyKKxYxM",
-    "空间类型标签": "Clinic",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ZyKKxYxM",
+    "url": "https://realsee.ai/ZyKKxYxM",
+    "category": "Clinic",
+    "shortCategory": "clinic",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/wKJJWnWN",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "wKJJWnWN",
+    "url": "https://realsee.ai/wKJJWnWN",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/gL99yry2",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "gL99yry2",
+    "url": "https://realsee.ai/gL99yry2",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae44Rrdy",
-    "空间类型标签": "Museum",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Ae44Rrdy",
+    "url": "https://realsee.ai/Ae44Rrdy",
+    "category": "Museum",
+    "shortCategory": "museum",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/8VRR9e8a",
-    "空间类型标签": "Museum",
-    "拍摄设备": "Galois",
-    "": "",
+    "id": "8VRR9e8a",
+    "url": "https://realsee.ai/8VRR9e8a",
+    "category": "Museum",
+    "shortCategory": "museum",
+    "device": "Galois",
     "carousel": true
   },
   {
-    "Showcase Link": "https://realsee.ai/ybkk6mbp",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ybkk6mbp",
+    "url": "https://realsee.ai/ybkk6mbp",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/VbOOkJX4",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "VbOOkJX4",
+    "url": "https://realsee.ai/VbOOkJX4",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/jmxxX26b",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "jmxxX26b",
+    "url": "https://realsee.ai/jmxxX26b",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/qjMMXL8g",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "qjMMXL8g",
+    "url": "https://realsee.ai/qjMMXL8g",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/JVLLa6Ra",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "JVLLa6Ra",
+    "url": "https://realsee.ai/JVLLa6Ra",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae44p45P",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Ae44p45P",
+    "url": "https://realsee.ai/Ae44p45P",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/JVLLJLxa",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "JVLLJLxa",
+    "url": "https://realsee.ai/JVLLJLxa",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/49kkakmw",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "49kkakmw",
+    "url": "https://realsee.ai/49kkakmw",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ZyKKdKZe",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ZyKKdKZe",
+    "url": "https://realsee.ai/ZyKKdKZe",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/JVLLJLb4",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "JVLLJLb4",
+    "url": "https://realsee.ai/JVLLJLb4",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/v4OOR4qm",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": "",
+    "id": "v4OOR4qm",
+    "url": "https://realsee.ai/v4OOR4qm",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
     "carousel": true
   },
   {
-    "Showcase Link": "https://realsee.ai/EOxxR9Rn",
-    "空间类型标签": "Residential",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "EOxxR9Rn",
+    "url": "https://realsee.ai/EOxxR9Rn",
+    "category": "Residential",
+    "shortCategory": "residential",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/N4eexPaz",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "N4eexPaz",
+    "url": "https://realsee.ai/N4eexPaz",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae44RaGr",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Ae44RaGr",
+    "url": "https://realsee.ai/Ae44RaGr",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae448G4p",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Ae448G4p",
+    "url": "https://realsee.ai/Ae448G4p",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/jmxxX2Jx",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "jmxxX2Jx",
+    "url": "https://realsee.ai/jmxxX2Jx",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/rnDDXVDR",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "rnDDXVDR",
+    "url": "https://realsee.ai/rnDDXVDR",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/2VPPnGbP",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "2VPPnGbP",
+    "url": "https://realsee.ai/2VPPnGbP",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/LNwwklLm",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "LNwwklLm",
+    "url": "https://realsee.ai/LNwwklLm",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/wKJJP2qD",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "wKJJP2qD",
+    "url": "https://realsee.ai/wKJJP2qD",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/KlNNyMvp",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "KlNNyMvp",
+    "url": "https://realsee.ai/KlNNyMvp",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/jmxxR7qV",
-    "空间类型标签": "Retail",
-    "拍摄设备": "Galois",
-    "": "",
+    "id": "jmxxR7qV",
+    "url": "https://realsee.ai/jmxxR7qV",
+    "category": "Retail",
+    "shortCategory": "retail",
+    "device": "Galois",
     "carousel": true
   },
   {
-    "Showcase Link": "https://realsee.ai/49kkbqGG",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "49kkbqGG",
+    "url": "https://realsee.ai/49kkbqGG",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Y9vvAM35",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Y9vvAM35",
+    "url": "https://realsee.ai/Y9vvAM35",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/49kkb6Jw",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "49kkb6Jw",
+    "url": "https://realsee.ai/49kkb6Jw",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/lq22l2WJ",
-    "空间类型标签": "Office",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "lq22l2WJ",
+    "url": "https://realsee.ai/lq22l2WJ",
+    "category": "Office",
+    "shortCategory": "office",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/GjVV4EpB",
-    "空间类型标签": "Restaurant",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "GjVV4EpB",
+    "url": "https://realsee.ai/GjVV4EpB",
+    "category": "Restaurant",
+    "shortCategory": "restaurant",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/7kyy3Gy9",
-    "空间类型标签": "Restaurant",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "7kyy3Gy9",
+    "url": "https://realsee.ai/7kyy3Gy9",
+    "category": "Restaurant",
+    "shortCategory": "restaurant",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ZyKKW7JM",
-    "空间类型标签": "Restaurant",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ZyKKW7JM",
+    "url": "https://realsee.ai/ZyKKW7JM",
+    "category": "Restaurant",
+    "shortCategory": "restaurant",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/XN33WrZE",
-    "空间类型标签": "Industrial",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "XN33WrZE",
+    "url": "https://realsee.ai/XN33WrZE",
+    "category": "Industrial",
+    "shortCategory": "industrial",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/z7RRLZRO",
-    "空间类型标签": "Industrial",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "z7RRLZRO",
+    "url": "https://realsee.ai/z7RRLZRO",
+    "category": "Industrial",
+    "shortCategory": "industrial",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/KlNNy8Mv",
-    "空间类型标签": "Construction",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "KlNNy8Mv",
+    "url": "https://realsee.ai/KlNNy8Mv",
+    "category": "Construction",
+    "shortCategory": "construction",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/p8EEaW6z",
-    "空间类型标签": "Construction",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "p8EEaW6z",
+    "url": "https://realsee.ai/p8EEaW6z",
+    "category": "Construction",
+    "shortCategory": "construction",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/3kYYlzJn",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "3kYYlzJn",
+    "url": "https://realsee.ai/3kYYlzJn",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/6yDD4nGp",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "6yDD4nGp",
+    "url": "https://realsee.ai/6yDD4nGp",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/v4OO9blm",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "v4OO9blm",
+    "url": "https://realsee.ai/v4OO9blm",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/gL99RMqE",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "gL99RMqE",
+    "url": "https://realsee.ai/gL99RMqE",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ZyKKWl3e",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ZyKKWl3e",
+    "url": "https://realsee.ai/ZyKKWl3e",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/xGWWKjnm",
-    "空间类型标签": "Exhibition",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "xGWWKjnm",
+    "url": "https://realsee.ai/xGWWKjnm",
+    "category": "Exhibition",
+    "shortCategory": "exhibition",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/KlNNkd8V",
-    "空间类型标签": "Church",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "KlNNkd8V",
+    "url": "https://realsee.ai/KlNNkd8V",
+    "category": "Church",
+    "shortCategory": "church",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/2VPPLEG9",
-    "空间类型标签": "Hotel",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "2VPPLEG9",
+    "url": "https://realsee.ai/2VPPLEG9",
+    "category": "Hotel",
+    "shortCategory": "hotel",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ReZZWmkV",
-    "空间类型标签": "Hotel",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ReZZWmkV",
+    "url": "https://realsee.ai/ReZZWmkV",
+    "category": "Hotel",
+    "shortCategory": "hotel",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/lq22XE8x",
-    "空间类型标签": "Hotel",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "lq22XE8x",
+    "url": "https://realsee.ai/lq22XE8x",
+    "category": "Hotel",
+    "shortCategory": "hotel",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/7kyy3WYZ",
-    "空间类型标签": "Hotel",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "7kyy3WYZ",
+    "url": "https://realsee.ai/7kyy3WYZ",
+    "category": "Hotel",
+    "shortCategory": "hotel",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/a9rrRkMV",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "a9rrRkMV",
+    "url": "https://realsee.ai/a9rrRkMV",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/wKJJPgbN",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "wKJJPgbN",
+    "url": "https://realsee.ai/wKJJPgbN",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/ybkkOXeg",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "ybkkOXeg",
+    "url": "https://realsee.ai/ybkkOXeg",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/GjVVp6Pk",
-    "空间类型标签": "Aerial 3D",
-    "拍摄设备": "Pano to 3D",
-    "": ""
+    "id": "GjVVp6Pk",
+    "url": "https://realsee.ai/GjVVp6Pk",
+    "category": "Aerial 3D",
+    "shortCategory": "aerial",
+    "device": "Pano to 3D",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Y9vvAB5x",
-    "空间类型标签": "Outdoor",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Y9vvAB5x",
+    "url": "https://realsee.ai/Y9vvAB5x",
+    "category": "Outdoor",
+    "shortCategory": "outdoor",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/3kYYl6xd",
-    "空间类型标签": "Tourism",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "3kYYl6xd",
+    "url": "https://realsee.ai/3kYYl6xd",
+    "category": "Tourism",
+    "shortCategory": "tourism",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Y9vvRv4x",
-    "空间类型标签": "Outdoor",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Y9vvRv4x",
+    "url": "https://realsee.ai/Y9vvRv4x",
+    "category": "Outdoor",
+    "shortCategory": "outdoor",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/nMnngxxm",
-    "空间类型标签": "Outdoor",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "nMnngxxm",
+    "url": "https://realsee.ai/nMnngxxm",
+    "category": "Outdoor",
+    "shortCategory": "outdoor",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/xGWWK4gB",
-    "空间类型标签": "Campus",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "xGWWK4gB",
+    "url": "https://realsee.ai/xGWWK4gB",
+    "category": "Campus",
+    "shortCategory": "campus",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/Ae44R6kP",
-    "空间类型标签": "Campus",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "Ae44R6kP",
+    "url": "https://realsee.ai/Ae44R6kP",
+    "category": "Campus",
+    "shortCategory": "campus",
+    "device": "Galois",
+    "carousel": false
   },
   {
-    "Showcase Link": "https://realsee.ai/d4XXReNv",
-    "空间类型标签": "Gym",
-    "拍摄设备": "Galois",
-    "": ""
+    "id": "d4XXReNv",
+    "url": "https://realsee.ai/d4XXReNv",
+    "category": "Gym",
+    "shortCategory": "gym",
+    "device": "Galois",
+    "carousel": false
   }
 ]

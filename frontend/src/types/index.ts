@@ -138,3 +138,67 @@ export interface IFeaturesSectionProps {
   features: TFeature[];
 }
 
+export type TTour = {
+  id: string;
+  url: string;
+  category: string | null;
+  shortCategory: string;
+  device: string | null;
+  carousel?: boolean;
+  title?: string | null;
+  description?: string | null;
+  cover?: string | null;
+};
+
+export type TVr = {
+  id: string;
+  url: string;
+  category: string | null;
+  shortCategory: string;
+  device: string | null;
+  title?: string | null;
+  description?: string | null;
+  cover?: string | null;
+  assetCover?: string;
+  remoteCover?: string | null;
+  author?: number | null;
+};
+
+export type TVrDevice = {
+  id: string;
+  name: string;
+};
+
+export type TVrTag = {
+  id: string;
+  type: "category" | "device" | "misc";
+  label: string;
+};
+
+export type TVrTagMap = {
+  vrId: string;
+  tagId: string;
+};
+
+export type TPhotographer = {
+  id: number;
+  name: string;
+  shortBio?: string;
+  aboutTheCreator?: string;
+  Location?: string;
+  Website?: string;
+  email?: string;
+  CountryTag?: string;
+  CityTag?: string;
+  vrIds?: string[];
+};
+
+export type TCarouselEntry = {
+  vrId: string;
+  order?: number;
+  title?: string | null;
+  description?: string | null;
+  cover?: string | null;
+  imagePath?: string | null;
+  assetPath?: string | null;
+};

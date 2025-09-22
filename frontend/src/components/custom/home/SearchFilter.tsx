@@ -1,6 +1,8 @@
 import { Icon } from "@iconify/react";
+import { getVrTags } from "@/data/db";
 
 export function SearchFilter() {
+  const tags = getVrTags().filter((t) => t.type === "category");
   return (
     <section className="search-filter-section bg-base-100 py-16">
       <div className="container mx-auto px-6">
@@ -19,11 +21,9 @@ export function SearchFilter() {
         </div>
         <div className="flex flex-wrap justify-center gap-3">
           <button className="btn btn-outline btn-sm">All Categories</button>
-          <button className="btn btn-outline btn-sm"><Icon icon="heroicons:home" width={16} />Residential</button>
-          <button className="btn btn-outline btn-sm"><Icon icon="heroicons:building-office" width={16} />Commercial</button>
-          <button className="btn btn-outline btn-sm"><Icon icon="heroicons:building-storefront" width={16} />Hotel</button>
-          <button className="btn btn-outline btn-sm"><Icon icon="heroicons:building-library" width={16} />Restaurant</button>
-          <button className="btn btn-outline btn-sm"><Icon icon="heroicons:shopping-bag" width={16} />Retail</button>
+          {tags.map((t) => (
+            <button key={t.id} className="btn btn-outline btn-sm">{t.label}</button>
+          ))}
         </div>
       </div>
     </section>

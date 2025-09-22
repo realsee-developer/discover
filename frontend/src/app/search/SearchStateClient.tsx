@@ -1,19 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { getVrs, getVrTags, resolvePublicAssetPath } from "@/data/db";
 
-type Card = { id: number; title: string; author: string; img: string; cat: string; rating: number; views: number; time: number };
-
-const ALL: Card[] = Array.from({ length: 36 }).map((_, i) => ({
-  id: i + 1,
-  title: `Result ${i + 1}`,
-  author: i % 2 ? "Sarah Miller" : "Alex Chen",
-  img: "https://images.unsplash.com/photo-1603072845032-7b5bd641a82a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=300&h=200",
-  cat: ["Residential", "Commercial", "Hotel", "Restaurant", "Retail"][i % 5],
-  rating: 4.5 + ((i % 5) * 0.1),
-  views: 100 + i * 7,
-  time: Date.now() - i * 86400000,
-}));
+const ALL = getVrs();
+const CATEGORY_TAGS = getVrTags().filter((t) => t.type === "category");
 
 export function SearchStateClient() {
   const [query, setQuery] = useState("");
@@ -23,23 +14,19 @@ export function SearchStateClient() {
   const pageSize = 12;
 
   const filtered = useMemo(() => {
-    let list = ALL.filter((c) => (activeCat ? c.cat === activeCat : true));
+    let list = ALL.filter((v) => {
+      if (!activeCat) return true;
+      const cat = v.category || v.shortCategory;
+      return (cat || "").toLowerCase() === activeCat.toLowerCase();
+    });
     if (query.trim()) {
       const q = query.trim().toLowerCase();
-      list = list.filter((c) => c.title.toLowerCase().includes(q) || c.author.toLowerCase().includes(q));
+      list = list.filter((v) =>
+        (v.title || "").toLowerCase().includes(q) || (v.description || "").toLowerCase().includes(q),
+      );
     }
-    switch (sort) {
-      case "Newest":
-        list = list.slice().sort((a, b) => b.time - a.time);
-        break;
-      case "Views":
-        list = list.slice().sort((a, b) => b.views - a.views);
-        break;
-      case "Rating":
-        list = list.slice().sort((a, b) => b.rating - a.rating);
-        break;
-      default:
-        break;
+    if (sort === "Newest") {
+      list = list.slice().sort((a, b) => (b.id > a.id ? 1 : -1));
     }
     return list;
   }, [query, activeCat, sort]);
@@ -69,16 +56,25 @@ export function SearchStateClient() {
           </button>
         </div>
         <div className="flex flex-wrap gap-2">
-          {[null, "Residential", "Commercial", "Hotel", "Restaurant", "Retail"].map((c) => (
+          <button
+            className={`btn btn-sm ${activeCat === null ? "btn-primary" : "btn-outline"}`}
+            onClick={() => {
+              setPage(1);
+              setActiveCat(null);
+            }}
+          >
+            All
+          </button>
+          {CATEGORY_TAGS.map((t) => (
             <button
-              key={c ?? "all"}
-              className={`btn btn-sm ${activeCat === c ? "btn-primary" : "btn-outline"}`}
+              key={t.id}
+              className={`btn btn-sm ${activeCat === t.label ? "btn-primary" : "btn-outline"}`}
               onClick={() => {
                 setPage(1);
-                setActiveCat(c);
+                setActiveCat(t.label);
               }}
             >
-              {c ?? "All"}
+              {t.label}
             </button>
           ))}
         </div>
@@ -89,28 +85,24 @@ export function SearchStateClient() {
         <div className="flex items-center gap-2">
           <span className="text-sm">Sort by</span>
           <select className="select select-bordered select-sm" value={sort} onChange={(e) => setSort(e.target.value)}>
-            {['Relevance','Newest','Views','Rating'].map(s => (<option key={s}>{s}</option>))}
+            {['Relevance','Newest'].map(s => (<option key={s}>{s}</option>))}
           </select>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {paged.map((c) => (
-          <div key={c.id} className="card bg-base-100 shadow hover:shadow-xl tour-card">
+        {paged.map((v) => (
+          <div key={v.id} className="card bg-base-100 shadow hover:shadow-xl tour-card">
             <figure className="relative">
-              <img className="w-full h-48 object-cover" src={c.img} alt={c.title} />
+              <img className="w-full h-48 object-cover" src={resolvePublicAssetPath(v.assetCover || v.cover) || v.remoteCover || "/file.svg"} alt={v.title || v.id} />
               <div className="absolute top-2 right-2">
-                <div className="badge badge-primary">{c.cat}</div>
+                <div className="badge badge-primary">{v.shortCategory || v.category}</div>
               </div>
             </figure>
             <div className="card-body p-4">
-              <h3 className="card-title text-base">{c.title}</h3>
-              <p className="text-sm text-base-content/70">by {c.author}</p>
-              <div className="flex items-center gap-2 mt-2">
-                <span className="iconify text-warning" data-icon="heroicons:star-solid" data-width="16"></span>
-                <span className="text-sm">{c.rating.toFixed(1)}</span>
-                <span className="text-sm text-base-content/50">({c.views} views)</span>
-              </div>
+              <h3 className="card-title text-base">{v.title || v.id}</h3>
+              {v.device ? (<p className="text-sm text-base-content/70">Device: {v.device}</p>) : null}
+              
             </div>
           </div>
         ))}

@@ -168,12 +168,12 @@ export function Carousel() {
                       <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight drop-shadow-xl">{s.title}</h1>
                       <div className="mt-3 md:mt-4 flex items-center justify-center gap-2">
                         {s.category ? (
-                          <span className="badge badge-lg bg-primary/95 text-primary-content border-0 shadow-md shadow-primary/30 gap-1">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-primary/95 px-3 py-1.5 text-sm text-primary-content shadow-sm ring-1 ring-primary/40 backdrop-blur">
                             <Icon icon={getCategoryIcon(s.category)} width={16} /> {s.category}
                           </span>
                         ) : null}
                         {s.device ? (
-                          <span className="badge badge-lg badge-outline border-white/70 text-base-100/95 gap-1 bg-black/10">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-black/50 px-3 py-1.5 text-sm text-white shadow-sm backdrop-blur">
                             <Icon icon={getDeviceIcon(s.device)} width={16} /> {s.device}
                           </span>
                         ) : null}

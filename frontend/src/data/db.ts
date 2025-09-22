@@ -1,6 +1,6 @@
-import type { TCarouselEntry, TPhotographer, TVr, TVrTag, TVrTagMap, TVrDevice } from "@/types";
+import type { TCarouselEntry, TProfessional, TVr, TVrTag, TVrTagMap, TVrDevice } from "@/types";
 import vrJson from "@/data/vr.json";
-import photographersJson from "@/data/photographers.json";
+import professionalsJson from "@/data/professionals.json";
 import carouselsJson from "@/data/carousels.json";
 import vrTagsJson from "@/data/vr-tags.json";
 import vrDevicesJson from "@/data/vr-devices.json";
@@ -30,8 +30,12 @@ function buildVrIndex(): Map<string, TVr> {
   return map;
 }
 
-function loadPhotographers(): TPhotographer[] {
-  return photographersJson as unknown as TPhotographer[];
+function loadProfessionals(): TProfessional[] {
+  const arr = professionalsJson as unknown as TProfessional[];
+  return arr.map((p) => ({
+    ...p,
+    slug: p.slug || slugify(p.name),
+  }));
 }
 
 function loadCarousels(): TCarouselEntry[] {
@@ -128,8 +132,13 @@ export function getTourVrIds(): string[] {
   return loadVrs().map((t) => t.id);
 }
 
-export function getPhotographers(): TPhotographer[] {
-  return loadPhotographers();
+export function getProfessionals(): TProfessional[] {
+  return loadProfessionals();
+}
+
+export function getProfessionalBySlug(slug: string): TProfessional | undefined {
+  const list = loadProfessionals();
+  return list.find((p) => p.slug === slug || String(p.id) === slug);
 }
 
 export function getCarousels(): TCarouselEntry[] {

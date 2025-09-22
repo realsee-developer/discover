@@ -29,23 +29,11 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-async function getGlobal() {
-  const baseUrl = getStrapiURL();
-  try {
-    const res = await fetch(`${baseUrl}/api/global?populate=deep`);
-    if (!res.ok) throw new Error("Failed");
-    return await res.json();
-  } catch {
-    return null;
-  }
-}
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const _global = await getGlobal();
   return (
     <html lang="zh-CN" data-theme="business">
       <body
@@ -54,8 +42,6 @@ export default async function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
-
-        {/* 使用 npm 依赖：Iconify React 不需要全局 runtime，此处移除 */}
       </body>
     </html>
   );

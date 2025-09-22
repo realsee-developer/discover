@@ -1,7 +1,7 @@
 import React from "react";
 import { InteractionsClient } from "./InteractionsClient";
 
-export default function PhotographerProfile() {
+export default function ProfessionalProfile() {
   return (
     <main className="flex-1">
       {/* Hero */}
@@ -145,7 +145,7 @@ export default function PhotographerProfile() {
       <section className="py-16 bg-base-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">关于摄影师</h2>
+            <h2 className="text-4xl font-bold text-center mb-12">关于专业人士</h2>
             <div className="prose prose-lg max-w-none text-base-content">
               <p className="text-xl leading-relaxed mb-8">
                 Alex Smith是一位著名的建筑和室内摄影师，拥有超过8年的经验，通过创新的3D技术捕捉空间的精髓。
@@ -157,7 +157,7 @@ export default function PhotographerProfile() {
                 专注于豪华住宅物业、商业空间和酒店场所，Alex已建立了卓越声誉。
               </p>
               <p className="text-lg leading-relaxed">
-                当不在相机后面时，Alex热衷于指导新兴摄影师，探索虚拟现实的新技术。
+                当不在相机后面时，Alex热衷于指导新兴专业人士，探索虚拟现实的新技术。
               </p>
             </div>
           </div>
@@ -183,7 +183,7 @@ export default function PhotographerProfile() {
               </button>
             </div>
             <p className="text-sm text-base-content/60 mt-6">
-              或者正在寻找专业的3D导览服务？我们Realsee团队在这里帮助您找到满足您需求的完美摄影师。
+              或者正在寻找专业的3D导览服务？我们Realsee团队在这里帮助您找到满足您需求的完美专业人士。
             </p>
           </div>
         </div>

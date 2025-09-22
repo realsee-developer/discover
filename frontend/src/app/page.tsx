@@ -1,7 +1,7 @@
 import { Carousel } from "@/components/custom/home/Carousel";
 import { SearchFilter } from "@/components/custom/home/SearchFilter";
 import { TourGrid } from "@/components/custom/home/TourGrid";
-import { Photographers } from "@/components/custom/home/Photographers";
+import { Professionals } from "@/components/custom/home/Professionals";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
 
 export default async function Home() {
@@ -10,7 +10,7 @@ export default async function Home() {
       <Carousel />
       <SearchFilter />
       <TourGrid />
-      <Photographers />
+      <Professionals />
       <JoinCTA />
     </main>
   );

@@ -31,14 +31,14 @@ export function SiteHeader() {
     <div data-section-id="common_header" data-section-type="common_header">
       <header
         className={
-          `navbar h-16 px-6 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ` +
+          `navbar h-16 px-6 fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur ` +
           (atTop
-            ? "bg-transparent shadow-none border-b-0"
-            : "bg-base-100/90 backdrop-blur border-b border-base-300 shadow-lg")
+            ? "bg-base-100/70 border-b border-base-300/50 shadow-sm"
+            : "bg-base-100/90 border-b border-base-300 shadow-lg")
         }
       >
         <div className="navbar-start select-none">
-          <div className={`${atTop ? "text-base-100" : "text-primary"} flex items-center gap-3 text-xl font-bold`}>
+          <div className={`text-base-content flex items-center gap-3 text-xl font-bold`}>
             <img src="/realsee-logo.jpeg" alt="Realsee Logo" className="w-8 h-8 rounded" />
             <span>Realsee Gallery</span>
           </div>
@@ -49,9 +49,7 @@ export function SiteHeader() {
             <li>
               <Link
                 href="/"
-                className={`smooth-transition ${
-                  atTop ? "text-base-100/90 hover:text-base-100 hover:bg-transparent" : "hover:bg-base-200"
-                }`}
+                className="smooth-transition text-base-content/90 hover:text-primary"
               >
                 Discover
               </Link>
@@ -59,9 +57,7 @@ export function SiteHeader() {
             <li>
               <Link
                 href="/search"
-                className={`smooth-transition ${
-                  atTop ? "text-base-100/90 hover:text-base-100 hover:bg-transparent" : "hover:bg-base-200"
-                }`}
+                className="smooth-transition text-base-content/90 hover:text-primary"
               >
                 Browse Tours
               </Link>
@@ -69,9 +65,7 @@ export function SiteHeader() {
             <li>
               <Link
                 href="/contact"
-                className={`smooth-transition ${
-                  atTop ? "text-base-100/90 hover:text-base-100 hover:bg-transparent" : "hover:bg-base-200"
-                }`}
+                className="smooth-transition text-base-content/90 hover:text-primary"
               >
                 Join Community
               </Link>
@@ -85,17 +79,13 @@ export function SiteHeader() {
               <input
                 type="text"
                 placeholder="Search 3D tours..."
-                className={`input input-bordered join-item w-64 ${
-                  atTop
-                    ? "text-base-100 placeholder:text-base-100/70 bg-white/10 border-white/20 focus:border-white/40"
-                    : ""
-                }`}
+                className={`input input-bordered join-item w-64`}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") performSearch();
                 }}
               />
               <button
-                className={`btn btn-ghost join-item ${atTop ? "text-base-100 hover:bg-white/10" : ""}`}
+                className={`btn btn-ghost join-item text-base-content/70 hover:text-primary`}
                 onClick={performSearch}
               >
                 <Icon icon="heroicons:magnifying-glass" width={20} />
@@ -104,7 +94,7 @@ export function SiteHeader() {
           </div>
 
           <div className="dropdown dropdown-end lg:hidden">
-            <button tabIndex={0} className={`btn btn-ghost btn-square ${atTop ? "text-base-100 hover:bg-white/10" : ""}`}>
+            <button tabIndex={0} className={`btn btn-ghost btn-square`}>
               <Icon icon="heroicons:bars-3" width={24} />
             </button>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-lg bg-base-100 rounded-box w-64 border border-base-300">

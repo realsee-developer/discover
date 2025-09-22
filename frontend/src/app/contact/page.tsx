@@ -26,7 +26,7 @@ export default function ContactPage() {
           </div>
           <div className="mt-6 flex gap-3">
             <a href="https://home.realsee.ai/en/contact-us" target="_blank" rel="noopener" className="btn btn-primary">Contact Sales</a>
-            <a href="/photographer" className="btn btn-outline">Join Community</a>
+            <a href="/professional" className="btn btn-outline">Join Community</a>
           </div>
         </div>
 

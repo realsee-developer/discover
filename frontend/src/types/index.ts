@@ -180,9 +180,10 @@ export type TVrTagMap = {
   tagId: string;
 };
 
-export type TPhotographer = {
+export type TProfessional = {
   id: number;
   name: string;
+  slug?: string;
   shortBio?: string;
   aboutTheCreator?: string;
   Location?: string;
@@ -191,6 +192,7 @@ export type TPhotographer = {
   CountryTag?: string;
   CityTag?: string;
   vrIds?: string[];
+  youtubeId?: string;
 };
 
 export type TCarouselEntry = {

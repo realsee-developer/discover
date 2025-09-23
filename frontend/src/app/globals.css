@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @plugin "daisyui" {
   themes: business --default, light;
 }
@@ -44,9 +43,21 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Expose brand palette to Tailwind (text-brand-800 / bg-brand-800 etc.) */
+  --color-brand-50: var(--color-brand-50);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-300: var(--color-brand-300);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-800: var(--color-brand-800);
+  --color-brand-900: var(--color-brand-900);
 }
 
-::root {
+:root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -79,6 +90,18 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Realsee brand tokens (WCAG AAA compliant palette) */
+  --color-brand-50:  #F2F6FF;
+  --color-brand-100: #E6EEFF;
+  --color-brand-200: #CCD9FF;
+  --color-brand-300: #99B3FF;
+  --color-brand-400: #668CFF;
+  --color-brand-500: #3366FF; /* showcase only; not for small text or white-on-bg */
+  --color-brand-600: #2852D6;
+  --color-brand-700: #2247BF;
+  --color-brand-800: #1E40AF; /* primary AAA */
+  --color-brand-900: #172F82;
 }
 
 .dark {
@@ -113,6 +136,18 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Realsee brand tokens for dark theme (maintain AAA with white text) */
+  --color-brand-50:  #0B1533;
+  --color-brand-100: #0F1C47;
+  --color-brand-200: #12255F;
+  --color-brand-300: #16307A;
+  --color-brand-400: #193895;
+  --color-brand-500: #1B41B0;
+  --color-brand-600: #1C3A99;
+  --color-brand-700: #1B3384;
+  --color-brand-800: #172F82; /* white-on-bg AAA */
+  --color-brand-900: #0F235F;
 }
 
 @layer base {
@@ -122,11 +157,14 @@
   body {
     @apply bg-background text-foreground;
   }
+  a {
+    @apply text-brand-800 hover:underline underline-offset-2 focus:outline-brand-600;
+  }
 }
 
 /* Focus ring enhancement for buttons/inputs */
 .btn:focus-visible, .input:focus-visible, .select:focus-visible, .textarea:focus-visible {
-  outline: 2px solid color-mix(in oklab, var(--ring), transparent 40%);
+  outline: 2px solid var(--color-brand-600);
   outline-offset: 2px;
 }
 
@@ -145,8 +183,7 @@
 }
 .kenburns-soft { animation: kenburns-soft 7s ease-out forwards; will-change: transform; }
 
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.hide-scrollbar::-webkit-scrollbar { display: none; }
+
 
 /* Scroll hint mouse */
 .scroll-mouse { width: 22px; height: 34px; border: 2px solid rgba(255,255,255,.8); border-radius: 12px; position: relative; }
@@ -169,3 +206,70 @@ html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background: trans
 html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background-color: color-mix(in oklab, var(--ring), transparent 40%); border-radius: 9999px; border: 2px solid transparent; background-clip: content-box; }
 html:not(:hover)::-webkit-scrollbar-thumb, body:not(:hover)::-webkit-scrollbar-thumb { background-color: transparent; }
 html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background-color: color-mix(in oklab, var(--ring), transparent 20%); }
+
+/* DaisyUI primary mapping to brand palette (AAA) */
+.text-primary { color: var(--color-brand-800) !important; }
+.btn-primary { background-color: var(--color-brand-800); border-color: var(--color-brand-800); color: white; }
+.btn-primary:hover { background-color: var(--color-brand-900); border-color: var(--color-brand-900); }
+.badge-primary { background-color: var(--color-brand-800); border-color: var(--color-brand-800); color: white; }
+.link-primary, .link { color: var(--color-brand-800); }
+.btn-outline { border-color: var(--color-brand-800); color: var(--color-brand-800); }
+.btn-outline:hover { background-color: var(--color-brand-50); }
+
+/* DaisyUI theme variables (light) */
+:root[data-theme="light"] {
+  /* Primary */
+  --p: var(--color-brand-800);
+  --pc: oklch(0.985 0 0);
+  /* Secondary / Accent - slightly lighter than primary, white text */
+  --s: var(--color-brand-700);
+  --sc: oklch(0.985 0 0);
+  --a: var(--color-brand-600);
+  --ac: oklch(0.985 0 0);
+  /* Neutral used by daisyUI components (ensure high contrast with white text) */
+  --n: var(--color-brand-900);
+  --nc: oklch(0.985 0 0);
+  /* Base surfaces and content */
+  --b1: var(--background);
+  --b2: var(--color-brand-50);
+  --b3: var(--color-brand-100);
+  --bc: var(--foreground);
+  /* Status colors (choose AAA-friendly pairs) */
+  --in: oklch(0.62 0.19 240);
+  --inc: oklch(0.985 0 0);
+  --su: oklch(0.62 0.15 145);
+  --suc: oklch(0.985 0 0);
+  --wa: oklch(0.78 0.17 85);
+  --wac: oklch(0.205 0 0);
+  --er: oklch(0.6 0.22 25);
+  --erc: oklch(0.985 0 0);
+}
+
+/* DaisyUI theme variables (business/dark) */
+:root[data-theme="business"] {
+  /* Primary */
+  --p: var(--color-brand-800);
+  --pc: oklch(0.985 0 0);
+  /* Secondary / Accent */
+  --s: var(--color-brand-700);
+  --sc: oklch(0.985 0 0);
+  --a: var(--color-brand-600);
+  --ac: oklch(0.985 0 0);
+  /* Neutral - deep background with white content */
+  --n: var(--color-brand-900);
+  --nc: oklch(0.985 0 0);
+  /* Base surfaces and content for dark */
+  --b1: oklch(0.205 0 0);
+  --b2: oklch(0.169 0 0);
+  --b3: oklch(0.145 0 0);
+  --bc: oklch(0.985 0 0);
+  /* Status colors (dark-friendly) */
+  --in: oklch(0.7 0.15 240);
+  --inc: oklch(0.985 0 0);
+  --su: oklch(0.68 0.15 145);
+  --suc: oklch(0.985 0 0);
+  --wa: oklch(0.78 0.17 85);
+  --wac: oklch(0.205 0 0);
+  --er: oklch(0.7 0.2 25);
+  --erc: oklch(0.985 0 0);
+}

@@ -36,6 +36,7 @@ export function SiteHeader() {
             ? "bg-base-100/70 border-b border-base-300/50 shadow-sm"
             : "bg-base-100/90 border-b border-base-300 shadow-lg")
         }
+        suppressHydrationWarning
       >
         <div className="navbar-start select-none">
           <div className={`text-base-content flex items-center gap-3 text-xl font-bold`}>

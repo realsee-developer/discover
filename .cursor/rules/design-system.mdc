@@ -1,0 +1,136 @@
+---
+alwaysApply: true
+description: Realsee Discover 设计规范（品牌色 #3366FF，符合 WCAG AAA）
+---
+
+# Realsee Discover 设计规范（WCAG AAA）
+
+本规范约束在全站使用品牌色 `#3366FF` 时的可访问性与视觉一致性，目标达到 WCAG 2.2 AAA。
+
+参考文件：
+- Tailwind 配置：[frontend/tailwind.config.ts](mdc:frontend/tailwind.config.ts)
+- 全局样式变量：[frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
+- 前端工具函数：[frontend/src/lib/utils.ts](mdc:frontend/src/lib/utils.ts)
+
+## 标准与阈值
+- 文本（普通字号 < 18.66px）：对比度 ≥ 7:1（AAA）
+- 文本（大号文本 ≥ 24px 常规 或 ≥ 18.66px 粗体）：对比度 ≥ 4.5:1（AAA-大字）
+- 非文本界面构件（边框/图标/焦点环等）：对比度 ≥ 3:1（WCAG 1.4.11）
+- 焦点可见（2.4.7/2.4.11）：键盘可到达且始终可见，推荐 2px 外描边与 2px 偏移
+
+## 品牌色与可访问色板
+- 品牌基色（展示用，不直接用于正文小字号文本或白字按钮）：`brand-500 = #3366FF`
+- 可访问深色（建议用于：白底正文文本、小尺寸图标、按钮背景搭配白字）：
+  - `brand-600 = #2852D6`
+  - `brand-700 = #2247BF`
+  - `brand-800 = #1E40AF`（白字对比约 8.7:1，满足 AAA）
+  - `brand-900 = #172F82`
+- 浅色阶（背景、悬浮、强调填充）：
+  - `brand-50 = #F2F6FF`
+  - `brand-100 = #E6EEFF`
+  - `brand-200 = #CCD9FF`
+  - `brand-300 = #99B3FF`
+  - `brand-400 = #668CFF`
+
+约束：
+- 禁止在白底小字号正文使用 `#3366FF`（brand-500）作为文本颜色（仅达 AA，不达 AAA）。
+- 白字置于 `brand-500` 背景亦不达 AAA，仅可用于大号文本或改用 `brand-700/800/900` 作为背景。
+
+## 搭配矩阵（核心约束）
+- 白底正文（正文 14–16px）：`text-brand-800` 或 `text-brand-900`。
+- 白底标题（≥ 24px）：可用 `text-brand-700` 起；常规推荐 `text-brand-800`。
+- 链接：默认 `text-brand-800` + `underline-offset-2`；悬停增加 `underline`。
+- 主要按钮（Primary）：
+  - 背景：`bg-brand-800`，文字：`text-white`（AAA）
+  - Hover：`bg-brand-900`
+  - Focus：2px `outline-brand-600` + `outline-offset-2`（≥ 3:1）
+- 次要按钮（Secondary）：
+  - 边框：`border-brand-800`，文字：`text-brand-800`，背景：`bg-white`
+  - Hover：`bg-brand-50`
+- 提示/徽章：小字号文本请使用 `brand-800/900`；若需纯品牌底色，改用 `brand-800` 背景 + 白字。
+
+## 焦点与交互可见性
+- 焦点环：统一使用 2px `brand-600`，`outline-offset: 2px`；深色背景上可使用 `brand-300` 以维持 ≥ 3:1。
+- 错误/警示组件不得仅依赖颜色区分，需辅以图标或文本。
+- 禁用元素可降低对比，但如承载关键信息仍需 ≥ 4.5:1。
+
+## Token 与实现（CSS 变量 + Tailwind）
+在 `globals.css` 定义 CSS 变量（浅色主题举例）：
+
+```css
+:root {
+  --color-brand-50:  #F2F6FF;
+  --color-brand-100: #E6EEFF;
+  --color-brand-200: #CCD9FF;
+  --color-brand-300: #99B3FF;
+  --color-brand-400: #668CFF;
+  --color-brand-500: #3366FF; /* 品牌基色（展示） */
+  --color-brand-600: #2852D6;
+  --color-brand-700: #2247BF;
+  --color-brand-800: #1E40AF; /* AAA 主色 */
+  --color-brand-900: #172F82;
+}
+
+[data-theme="dark"] {
+  /* 深色模式建议：提高背景与组件间对比 */
+  --color-brand-50:  #0B1533;
+  --color-brand-100: #0F1C47;
+  --color-brand-200: #12255F;
+  --color-brand-300: #16307A;
+  --color-brand-400: #193895;
+  --color-brand-500: #1B41B0;
+  --color-brand-600: #1C3A99;
+  --color-brand-700: #1B3384;
+  --color-brand-800: #172F82; /* 与白字 AAA */
+  --color-brand-900: #0F235F;
+}
+```
+
+在 Tailwind 中映射为主题色（见 [frontend/tailwind.config.ts](mdc:frontend/tailwind.config.ts)）：
+
+```ts
+// tailwind.config.ts 片段
+export default {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50:  'var(--color-brand-50)',
+          100: 'var(--color-brand-100)',
+          200: 'var(--color-brand-200)',
+          300: 'var(--color-brand-300)',
+          400: 'var(--color-brand-400)',
+          500: 'var(--color-brand-500)',
+          600: 'var(--color-brand-600)',
+          700: 'var(--color-brand-700)',
+          800: 'var(--color-brand-800)',
+          900: 'var(--color-brand-900)'
+        }
+      }
+    }
+  }
+}
+```
+
+语义别名（建议）：
+- `--color-primary-text` = `var(--color-brand-800)`
+- `--color-primary-bg` = `var(--color-brand-800)`
+- `--color-link` = `var(--color-brand-800)`
+- `--color-focus-ring` = `var(--color-brand-600)`
+
+## 组件速用清单
+- 按钮（Primary）：`bg-brand-800 text-white hover:bg-brand-900 focus:outline-brand-600`
+- 按钮（Secondary）：`border border-brand-800 text-brand-800 hover:bg-brand-50`
+- 链接：`text-brand-800 hover:underline underline-offset-2 focus:outline-brand-600`
+- 徽章：`bg-brand-50 text-brand-900` 或 `bg-brand-800 text-white`
+- 图标/边框（白底）：使用 `brand-800` 以满足 3:1
+
+## 审核与自动化建议
+- 在 CI 中加入 a11y 检查（如 `eslint-plugin-jsx-a11y`、`@axe-core/react`）。
+- 提交前使用对比度插件/脚本校验（目标：普通文本 ≥ 7:1）。
+- 对任何新建组件的设计评审，附带对比度截图或数值。
+
+## 约束与解释
+- 品牌基色 `#3366FF` 主要用于大图形、插画、渐变点缀与大字号标题；小字号正文与按钮需使用更深阶以达 AAA。
+- 若视觉上必须使用较浅品牌底色，需增大字号到 AAA-大字阈值，或改为描边/填充而非文本承载信息。
+

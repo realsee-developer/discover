@@ -1,0 +1,33 @@
+---
+alwaysApply: true
+---
+# Realsee Discover 项目总览
+
+本项目包含 `backend`(Strapi CMS) 与 `frontend`(Next.js) 两个工作区，使用 Vercel 部署前端，Strapi 作为 CMS 提供 API。
+
+- **后端入口**: [backend/src/index.ts](mdc:backend/src/index.ts)
+- **后端配置**: [backend/config/server.ts](mdc:backend/config/server.ts), [backend/config/database.ts](mdc:backend/config/database.ts), [backend/config/api.ts](mdc:backend/config/api.ts), [backend/config/middlewares.ts](mdc:backend/config/middlewares.ts), [backend/config/plugins.ts](mdc:backend/config/plugins.ts)
+- **前端入口**: [frontend/src/app/layout.tsx](mdc:frontend/src/app/layout.tsx), [frontend/src/app/page.tsx](mdc:frontend/src/app/page.tsx)
+- **公共工具**: [frontend/src/lib/utils.ts](mdc:frontend/src/lib/utils.ts)
+
+## 运行脚本
+- **Strapi 开发**: 在 `backend` 目录执行 `npm run dev`（等价 `strapi develop`）
+- **Strapi 生产**: `npm run build` -> `npm start`
+- **Next.js 开发**: 在 `frontend` 目录执行 `npm run dev`
+- **Next.js 生产**: `npm run build` -> `npm start`
+
+## 环境变量与默认值
+- **前端**: `NEXT_PUBLIC_STRAPI_URL`（默认 `http://localhost:1337`），见 [utils.ts](mdc:frontend/src/lib/utils.ts)
+- **后端**: `HOST`, `PORT`, `APP_KEYS`, `DATABASE_CLIENT`, `DATABASE_*` 等，见 [server.ts](mdc:backend/config/server.ts) 与 [database.ts](mdc:backend/config/database.ts)
+
+## API 与内容模型
+- 公开读取的内容：`global` 单例与 `home-page`（在启动时通过 [src/index.ts](mdc:backend/src/index.ts) 自动确保 Public 权限与初始化数据）。
+- 前端通过 `fetch(STRAPI_URL + "/api/global")` 与 `fetch(STRAPI_URL + "/api/home-page?populate[blocks][populate]=*")` 获取数据。
+
+## 目录结构要点
+- Strapi 类型与组件定义位于 `backend/src/api/**` 与 `backend/src/components/**`。
+- Next.js App Router 位于 `frontend/src/app/**`，UI 组件在 `frontend/src/components/**`。
+
+## 代码风格
+- 前端使用 Biome 管理格式与 Lint，见 [frontend/biome.json](mdc:frontend/biome.json)。
+- TypeScript 路径别名：`@/* -> frontend/src/*`，见 [frontend/tsconfig.json](mdc:frontend/tsconfig.json)。

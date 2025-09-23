@@ -1,0 +1,38 @@
+---
+globs: backend/**
+description: Strapi 后端开发约定与导航
+---
+# Strapi 后端规则（Realsee Discover）
+
+- 运行脚本在 [backend/package.json](mdc:backend/package.json) 中：
+  - `dev` -> `strapi develop`
+  - `build` -> `strapi build`
+  - `start` -> `strapi start`
+
+## 配置
+- 服务器: [config/server.ts](mdc:backend/config/server.ts)
+- 数据库: [config/database.ts](mdc:backend/config/database.ts)
+- REST: [config/api.ts](mdc:backend/config/api.ts)
+- 中间件: [config/middlewares.ts](mdc:backend/config/middlewares.ts)
+- 插件: [config/plugins.ts](mdc:backend/config/plugins.ts)
+
+## 引导逻辑（种子与权限）
+- 查看 [src/index.ts](mdc:backend/src/index.ts)
+  - 启动时确保 Public 角色具有 `global.find` 与 `home-page.find` 权限
+  - 初始化 `home-page` 与 `global` 内容
+
+## 内容类型与组件
+- 内容类型：
+  - `api::global.global` -> [src/api/global/**](mdc:backend/src/api/global/content-types/global/schema.json)
+  - `api::home-page.home-page` -> [src/api/home-page/**](mdc:backend/src/api/home-page/content-types/home-page/schema.json)
+- 组件：见 [src/components/**](mdc:backend/src/components)
+
+## 约定与注意
+- 公开 API 读取默认开启计数与分页限制，见 [config/api.ts](mdc:backend/config/api.ts)
+- SQLite 默认文件：`.tmp/data.db`（可通过 `DATABASE_FILENAME` 调整）
+- Node 引擎: `>=18 <=22`
+
+## 常用环境变量
+- `HOST`, `PORT`, `APP_KEYS`
+- `DATABASE_CLIENT`（mysql | postgres | sqlite）及 `DATABASE_*`
+- 如部署 Postgres，可使用 `DATABASE_URL` 并配置 `DATABASE_SSL`

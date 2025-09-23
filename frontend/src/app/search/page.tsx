@@ -1,11 +1,20 @@
 import React from "react";
 import { SearchStateClient } from "./SearchStateClient";
 
-export default function SearchPage() {
+type SearchParams = Record<string, string | string[] | undefined>;
+
+export default async function SearchPage({ searchParams }: { searchParams?: Promise<SearchParams> }) {
+  const params = (await searchParams) as SearchParams | undefined;
+  const initialQuery =
+    typeof params?.q === "string"
+      ? params.q
+      : Array.isArray(params?.q)
+        ? params.q[0]
+        : "";
   return (
-    <main className="bg-base-100 min-h-screen">
+    <main className="bg-transparent min-h-screen">
       <section className="container mx-auto px-6 py-8">
-        <SearchStateClient />
+        <SearchStateClient initialQuery={initialQuery} />
       </section>
     </main>
   );

@@ -1,6 +1,4 @@
 "use client";
-
-import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
 import { getCarousels, getVrById, resolvePublicAssetPath } from "@/data/db";
 
@@ -99,7 +97,7 @@ export function Carousel() {
   };
 
   return (
-    <section className="hero min-h-[100svh] w-screen bg-base-200/0 p-0">
+    <section className="hero min-h-[100svh] w-screen bg-transparent p-0">
       <div className="hero-content p-0 w-full max-w-none">
         <div
           className="relative w-full overflow-hidden rounded-none shadow-none focus:outline-none"
@@ -159,34 +157,34 @@ export function Carousel() {
                   className={`absolute inset-0 bg-center bg-cover pointer-events-none ${!prefersReducedMotion.current ? "kenburns-soft" : ""}`}
                   style={{ backgroundImage: `url("${s.img}")` }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-base-content/70 via-base-content/20 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-b from-base-content/40 via-base-content/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(800px_400px_at_50%_-100px,rgba(56,189,248,0.16),transparent_60%)] pointer-events-none" />
+                <div className="absolute inset-0 mix-blend-screen pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:40px_40px]" />
                 {/* Immersive centered hero content with title and badges */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="px-4 md:px-10 w-full">
                     <div className="text-base-100 text-center mb-8 md:mb-16">
-                      <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight drop-shadow-xl">{s.title}</h1>
+                      <h1 className="text-3xl md:text-7xl font-extrabold tracking-tight drop-shadow-xl bg-clip-text text-transparent bg-[linear-gradient(90deg,oklch(0.92_0_0),oklch(0.72_0.17_210),oklch(0.68_0.16_260))]">{s.title}</h1>
                       <div className="mt-3 md:mt-4 flex items-center justify-center gap-2">
                         {s.category ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-primary/95 px-3 py-1.5 text-sm text-primary-content shadow-sm ring-1 ring-primary/40 backdrop-blur">
-                            <Icon icon={getCategoryIcon(s.category)} width={16} /> {s.category}
+                          <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-3 py-1.5 text-sm text-white ring-1 ring-white/20 backdrop-blur hover:shadow-neon-sm">
+                            <span aria-hidden="true">#</span> {s.category}
                           </span>
                         ) : null}
                         {s.device ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-black/50 px-3 py-1.5 text-sm text-white shadow-sm backdrop-blur">
-                            <Icon icon={getDeviceIcon(s.device)} width={16} /> {s.device}
+                          <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-3 py-1.5 text-sm text-white ring-1 ring-white/20 backdrop-blur hover:shadow-neon-sm">
+                            <span aria-hidden="true">◎</span> {s.device}
                           </span>
                         ) : null}
                       </div>
                       <div className="mt-5 md:mt-7 pointer-events-auto inline-flex">
                         <a
-                          className="btn btn-outline btn-lg rounded-full text-base-100 border-white/80 hover:border-white hover:bg-white/15 active:scale-[0.98] transition-transform backdrop-blur-sm gap-2 btn-wide"
+                          className="btn btn-lg gap-2 px-8 text-white border-white/60 bg-[oklch(0.26_0.06_250)] hover:bg-[oklch(0.3_0.06_250)] hover:shadow-neon-sm"
                           href={s.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label="立即进入 3D Tour"
                         >
-                          <Icon icon="heroicons:play" width={20} />
+                          <span aria-hidden="true">▶</span>
                           立即进入
                         </a>
                       </div>
@@ -205,17 +203,17 @@ export function Carousel() {
                 type="button"
                 aria-label="上一个"
                 onClick={prev}
-                className="btn btn-circle btn-sm md:btn-md btn-ghost absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-base-100 bg-base-100/10 hover:bg-base-100/20 border-white/20"
+                className="btn btn-circle btn-sm md:btn-md btn-ghost absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-base-100 bg-black/30 ring-1 ring-white/20 hover:bg-black/40"
               >
-                <span className="iconify" data-icon="heroicons:chevron-left-20-solid" data-width="20"></span>
+                <span aria-hidden="true">‹</span>
               </button>
               <button
                 type="button"
                 aria-label="下一个"
                 onClick={next}
-                className="btn btn-circle btn-sm md:btn-md btn-ghost absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-base-100 bg-base-100/10 hover:bg-base-100/20 border-white/20"
+                className="btn btn-circle btn-sm md:btn-md btn-ghost absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-base-100 bg-black/30 ring-1 ring-white/20 hover:bg-black/40"
               >
-                <span className="iconify" data-icon="heroicons:chevron-right-20-solid" data-width="20"></span>
+                <span aria-hidden="true">›</span>
               </button>
             </>
           ) : null}
@@ -225,10 +223,10 @@ export function Carousel() {
             <div className="scroll-mouse"></div>
           </div>
 
-          {/* Indicators: simple stable dots to avoid flicker */}
+          {/* Indicators */}
           {slides.length > 1 ? (
             <div className="absolute bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
-              <div className="px-2 py-1 rounded-full bg-white/10 backdrop-blur-md flex items-center gap-1.5 md:gap-2">
+              <div className="px-2 py-1 rounded-full bg-black/30 ring-1 ring-white/20 backdrop-blur-md flex items-center gap-1.5 md:gap-2">
                 {slides.map((_, i) => {
                   const isActive = i === current;
                   return (
@@ -238,7 +236,7 @@ export function Carousel() {
                       onClick={() => goTo(i)}
                       aria-label={`跳转到第 ${i + 1} 张`}
                       className={`relative overflow-hidden rounded-full h-1.5 md:h-2 transition-all duration-300 ${
-                        isActive ? "w-8 md:w-14 bg-white/30" : "w-2.5 md:w-3.5 bg-white/60 hover:bg-white/80"
+                        isActive ? "w-8 md:w-14 bg-white/30" : "w-2.5 md:w-3.5 bg-white/50 hover:bg-white/80"
                       }`}
                       style={{ ["--carousel-duration" as any]: `${DURATION_MS}ms` }}
                       aria-current={isActive}
@@ -246,7 +244,7 @@ export function Carousel() {
                       {isActive ? (
                         <span
                           key={`progress-${current}`}
-                          className={`absolute left-0 top-0 bottom-0 bg-white carousel-progress ${paused || prefersReducedMotion.current ? "paused" : ""}`}
+                          className={`absolute left-0 top-0 bottom-0 bg-[oklch(0.72_0.17_210)] carousel-progress ${paused || prefersReducedMotion.current ? "paused" : ""}`}
                           style={{ width: 0 as unknown as number, animationPlayState: paused ? "paused" : "running" }}
                         />
                       ) : null}

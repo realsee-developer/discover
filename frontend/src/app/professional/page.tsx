@@ -5,14 +5,16 @@ export default function ProfessionalProfile() {
   return (
     <main className="flex-1">
       {/* Hero */}
-      <section
-        className="hero min-h-96 relative"
-        style={{
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1592487111738-caa190fcb6e7?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=1920&h=600")',
-        }}
-      >
-        <div className="hero-overlay bg-base-300/70"></div>
+      <section className="hero min-h-96 relative">
+        <div className="absolute inset-0 -z-10">
+          <img
+            src="https://images.unsplash.com/photo-1592487111738-caa190fcb6e7?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&w=1920&h=600"
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-[radial-gradient(800px_400px_at_50%_-100px,rgba(56,189,248,0.16),transparent_60%)]" />
+          <div className="absolute inset-0 mix-blend-screen pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:40px_40px]" />
+        </div>
         <div className="hero-content text-center text-base-content">
           <div className="max-w-4xl">
             <div className="flex flex-col md:flex-row items-center gap-8">
@@ -20,7 +22,7 @@ export default function ProfessionalProfile() {
                 AS
               </div>
               <div className="flex-1 text-left">
-                <h1 className="text-5xl font-bold mb-2">Alex Smith</h1>
+                <h1 className="text-5xl font-bold mb-2 bg-clip-text text-transparent bg-[linear-gradient(90deg,oklch(0.92_0_0),oklch(0.72_0.17_210),oklch(0.68_0.16_260))]">Alex Smith</h1>
                 <p className="text-xl text-base-content/80 mb-4">建筑与室内摄影专家</p>
                 <div className="flex items-center gap-2 mb-4">
                   {[0, 1, 2, 3, 4].map((i) => (
@@ -60,19 +62,19 @@ export default function ProfessionalProfile() {
       </section>
 
       {/* Featured Video */}
-      <section className="py-16 bg-base-200">
+      <section className="py-16 bg-transparent">
         <div className="container mx-auto px-6">
           <div className="mb-12">
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100/80 border border-base-300/60 shadow-xl">
               <figure className="relative">
                 <img
                   src="https://spark-builder.s3.cn-north-1.amazonaws.com.cn/image/2025/9/13/f65e1d61-f090-4a43-8f82-9a5faff4e28d.png"
                   alt="幕后花絮"
                   className="w-full h-64 object-cover"
                 />
-                <div className="absolute bottom-4 right-4 bg-base-300/90 px-2 py-1 rounded text-sm">5:42</div>
+                <div className="absolute bottom-4 right-4 bg-black/50 ring-1 ring-white/20 backdrop-blur px-2 py-1 rounded text-sm text-white">5:42</div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <button className="btn btn-circle btn-lg btn-primary">
+                  <button className="btn btn-circle btn-lg bg-[oklch(0.26_0.06_250)] text-white hover:bg-[oklch(0.3_0.06_250)]">
                     <span className="iconify" data-icon="heroicons:play-solid" data-width="32"></span>
                   </button>
                 </div>
@@ -123,8 +125,8 @@ export default function ProfessionalProfile() {
                   <p className="text-sm text-base-content/70">{t.desc}</p>
                   <div className="flex justify-between items-center mt-4">
                     <div className="flex gap-2">
-                      <div className="badge badge-primary badge-sm">{t.cat}</div>
-                      <div className="badge badge-outline badge-sm">{t.loc}</div>
+                  <div className="inline-flex items-center gap-1 rounded-full bg-black/30 text-white px-2.5 py-1 ring-1 ring-white/20 backdrop-blur text-xs">{t.cat}</div>
+                      <div className="inline-flex items-center gap-1 rounded-full border border-base-300/60 px-2.5 py-1 text-xs">{t.loc}</div>
                     </div>
                     <span className="text-xs text-base-content/60">{t.time}</span>
                   </div>
@@ -132,8 +134,8 @@ export default function ProfessionalProfile() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-12">
-            <button className="btn btn-primary btn-lg">
+      <div className="text-center mt-12">
+            <button className="btn btn-lg bg-[oklch(0.26_0.06_250)] text-white hover:bg-[oklch(0.3_0.06_250)]">
               <span className="iconify" data-icon="heroicons:plus" data-width="20"></span>
               显示更多作品
             </button>
@@ -142,7 +144,7 @@ export default function ProfessionalProfile() {
       </section>
 
       {/* About */}
-      <section className="py-16 bg-base-100">
+      <section className="py-16 bg-transparent">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">关于专业人士</h2>
@@ -165,7 +167,7 @@ export default function ProfessionalProfile() {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-16 bg-base-200">
+      <section className="py-16 bg-transparent">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-4xl font-bold mb-6">有兴趣与Alex Smith合作吗？</h2>
@@ -173,11 +175,11 @@ export default function ProfessionalProfile() {
               准备用令人惊叹的3D导览展示您的空间？联系我们讨论您的项目，让您的愿景成为现实。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn btn-primary btn-lg">
+              <button className="btn btn-lg bg-[oklch(0.26_0.06_250)] text-white hover:bg-[oklch(0.3_0.06_250)]">
                 <span className="iconify" data-icon="heroicons:envelope" data-width="20"></span>
                 直接联系Alex
               </button>
-              <button className="btn btn-outline btn-lg">
+              <button className="btn btn-lg border-base-300/70 hover:border-[oklch(0.72_0.17_210)] hover:shadow-neon-sm">
                 <span className="iconify" data-icon="heroicons:building-office" data-width="20"></span>
                 联系Realsee
               </button>

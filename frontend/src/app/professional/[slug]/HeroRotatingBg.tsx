@@ -26,6 +26,8 @@ export function HeroRotatingBg({ images, interval = 7000 }: { images: string[]; 
           }`}
         />
       ))}
+      <div className="absolute inset-0 bg-[radial-gradient(900px_400px_at_50%_-120px,rgba(56,189,248,0.18),transparent_60%)]" />
+      <div className="absolute inset-0 mix-blend-screen pointer-events-none bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:40px_40px]" />
     </div>
   );
 }

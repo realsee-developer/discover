@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+"use client";
 import { getVrs, resolvePublicAssetPath } from "@/data/db";
 
 export function TourGrid() {
@@ -27,7 +27,7 @@ export function TourGrid() {
   };
 
   return (
-    <section className="tour-gallery-section relative overflow-hidden py-16 bg-gradient-to-b from-base-200 to-base-200/60">
+    <section className="tour-gallery-section relative overflow-hidden py-16 bg-transparent">
       <div className="container mx-auto px-6">
         <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
@@ -39,46 +39,44 @@ export function TourGrid() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/search" className="btn btn-primary shadow-md shadow-primary/20">
+            <a href="/search" className="btn px-6 bg-[oklch(0.26_0.06_250)] text-white hover:bg-[oklch(0.3_0.06_250)] hover:shadow-neon-sm">
               View All Tours
             </a>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-7">
           {vrs.map((vr) => (
             <a
               key={vr.id}
               href={vr.url}
               target="_blank"
               rel="noreferrer"
-              className="relative block overflow-hidden rounded-2xl border border-base-300/40 bg-base-100/40 shadow-lg ring-0 transition-all duration-300 group cursor-pointer hover:-translate-y-0.5 hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none"
+              className="relative block overflow-hidden rounded-3xl border border-base-300/60 bg-base-100/50 shadow-lg ring-0 transition-all duration-200 group cursor-pointer hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(56,189,248,0.2)] focus-visible:outline-none"
             >
               <figure className="relative m-0 overflow-hidden">
                 <img
                   src={resolvePublicAssetPath(vr.assetCover || vr.cover) || vr.remoteCover || "/file.svg"}
                   alt={vr.title || vr.id}
-                  className="h-48 w-full object-cover transition-transform duration-[5000ms] ease-out will-change-transform group-hover:scale-110 motion-reduce:transform-none"
+                  className="h-56 md:h-60 w-full object-cover transition-transform duration-[5000ms] ease-out will-change-transform group-hover:scale-110 motion-reduce:transform-none"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-base-content/80 via-base-content/10 to-transparent" />
                 <div className="absolute top-3 left-3 flex items-center gap-2">
                   {vr.shortCategory || vr.category ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-primary/95 px-3 py-1.5 text-sm text-primary-content shadow-sm ring-1 ring-primary/40 backdrop-blur">
-                      <Icon icon={getCategoryIcon(vr.shortCategory || vr.category || "")} width={16} /> {vr.shortCategory || vr.category}
+                    <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-3 py-1.5 text-sm text-white ring-1 ring-white/20 backdrop-blur hover:shadow-neon-sm">
+                      <span aria-hidden="true">#</span> {vr.shortCategory || vr.category}
                     </span>
                   ) : null}
                   {vr.device ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-black/50 px-3 py-1.5 text-sm text-white shadow-sm backdrop-blur">
-                      <Icon icon={getDeviceIcon(vr.device)} width={16} /> {vr.device}
+                    <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-3 py-1.5 text-sm text-white ring-1 ring-white/20 backdrop-blur hover:shadow-neon-sm">
+                      <span aria-hidden="true">◎</span> {vr.device}
                     </span>
                   ) : null}
                 </div>
                 <div className="pointer-events-none absolute bottom-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white ring-1 ring-white/40 backdrop-blur transition">
-                    <Icon icon="heroicons:play" width={16} />
-                  </span>
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white ring-1 ring-white/40 backdrop-blur transition" aria-hidden="true">▶</span>
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-3 pr-20 text-white md:p-4 md:pr-24">
-                  <h3 className="line-clamp-2 text-sm font-semibold drop-shadow-md md:text-base">
+                <div className="absolute inset-x-0 bottom-0 p-4 pr-24 text-white">
+                  <h3 className="line-clamp-2 text-base md:text-lg font-semibold drop-shadow-md">
                     {vr.title || vr.id}
                   </h3>
                 </div>

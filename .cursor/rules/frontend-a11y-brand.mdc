@@ -1,0 +1,30 @@
+---
+alwaysApply: true
+---
+## 前端可访问性与品牌规范（WCAG AAA + #3366ff）
+
+- 强制满足 WCAG 2.2 Level AAA 的核心要求：
+  - 对比度：文本/交互元素与背景的对比度≥7:1；小型图标与图形也要求≥7:1。
+  - 键盘可达：所有可交互组件可用键盘操作；焦点顺序与视觉顺序一致；焦点样式可见且不被移除。
+  - 动画与动效：尊重 `prefers-reduced-motion`；非必要动效在该偏好下应降级或禁用。
+  - 表单与状态：为输入/校验/错误/进度提供可感知的提示（视觉+ARIA）；错误信息明确并与字段关联。
+  - 语义结构：使用语义标签与 ARIA 但避免冗余；`alt` 文本完整描述；标题层级不跳级。
+  - 语言与可读性：中文界面设置 `lang="zh-CN"`；链接/按钮文本语义明确，不使用“点击这里”。
+
+- 品牌色使用规范：
+  - 主色为 `#3366ff`。在组件库与 Tailwind 变量中以 `--color-primary` 或主题 token 形式引用。
+  - 仅当与背景满足≥7:1对比度时可用于文本与图标；否则用于描边/阴影/按钮背景并提供白色文本。
+  - Hover/Active 状态使用同色系深/浅变体，保持对比度阈值。
+
+- 设计与实现落地建议：
+  - Tailwind 主题：在 `frontend/tailwind.config.ts` 与 `frontend/src/app/globals.css` 中确保 `--color-primary: #3366ff;`，并保证与背景的对比度达标。
+  - 组件：按钮、链接、输入、Badge、Tab、Toast、Dialog 等需要可见的 `:focus-visible` 样式，宽度≥2px，非纯色阴影。
+  - 图片与媒体：提供等价文本；背景图上叠加半透明遮罩确保文字对比度。
+  - 表格与卡片：行高≥1.5，触控目标高度≥44px。
+
+- 代码引用路径：
+  - Tailwind 配置见 [frontend/tailwind.config.ts](mdc:frontend/tailwind.config.ts)
+  - 全局样式见 [frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
+  - 入口布局见 [frontend/src/app/layout.tsx](mdc:frontend/src/app/layout.tsx)
+
+执行准则：新增/修改组件时，若无法满足 AAA，对应 PR 必须说明原因与权衡，并提供替代方案（例如增加可切换的高对比度模式）。

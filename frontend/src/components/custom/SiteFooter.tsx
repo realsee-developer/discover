@@ -263,56 +263,38 @@ export function SiteFooter() {
                       {
                         icon: "mdi:linkedin",
                         label: "LinkedIn",
-                        color: "text-[#0077B5]",
-                        hoverBg: "hover:bg-[#0077B5]/10",
-                        shadowColor: "hover:shadow-[#0077B5]/30",
                         link: "https://www.linkedin.com/company/realsee/",
                       },
                       {
                         icon: "mdi:youtube",
                         label: "YouTube",
-                        color: "text-[#FF0000]",
-                        hoverBg: "hover:bg-[#FF0000]/10",
-                        shadowColor: "hover:shadow-[#FF0000]/30",
                         link: "https://www.youtube.com/channel/UCARlm-6LYCRgjIu_R8LbD8Q",
                       },
                       {
                         icon: "simple-icons:x",
                         label: "X",
-                        color: "text-cyber-gray-100",
-                        hoverBg: "hover:bg-cyber-gray-100/10",
-                        shadowColor: "hover:shadow-cyber-gray-100/30",
                         link: "https://x.com/REALSEE_Moment",
                       },
                       {
                         icon: "mdi:reddit",
                         label: "Reddit",
-                        color: "text-[#FF4500]",
-                        hoverBg: "hover:bg-[#FF4500]/10",
-                        shadowColor: "hover:shadow-[#FF4500]/30",
                         link: "https://www.reddit.com/r/RealseeOfficial/",
                       },
                       {
                         icon: "mdi:whatsapp",
                         label: "WhatsApp",
-                        color: "text-[#25D366]",
-                        hoverBg: "hover:bg-[#25D366]/10",
-                        shadowColor: "hover:shadow-[#25D366]/30",
                         link: "#",
                       },
                       {
                         icon: "mdi:facebook",
                         label: "Facebook",
-                        color: "text-[#1877F2]",
-                        hoverBg: "hover:bg-[#1877F2]/10",
-                        shadowColor: "hover:shadow-[#1877F2]/30",
                         link: "https://www.facebook.com/RealseeVR/",
                       },
                     ].map((social) => (
                       <a
                         key={social.label}
                         aria-label={social.label}
-                        className={`p-3 rounded-xl ${social.color} ${social.hoverBg} border border-cyber-gray-600/30 hover:border-opacity-60 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg ${social.shadowColor} hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2`}
+                        className="p-3 rounded-xl text-cyber-gray-100 border border-cyber-gray-600/40 bg-cyber-gray-800/70 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan hover:shadow-md hover:shadow-cyber-brand-500/20 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
                         href={social.link}
                         target="_blank"
                         rel="noopener noreferrer"

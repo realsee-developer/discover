@@ -3,12 +3,7 @@
 import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
 import { getCarousels, getVrById, resolvePublicAssetPath } from "@/data/db";
-import {
-  getCategoryBadgeClass,
-  getDeviceBadgeClass,
-  getBadgeIcon,
-  DeviceIcon,
-} from "@/lib/badge-utils";
+import { CategoryBadge, DeviceBadge } from "@/components/custom/badges";
 
 export function Carousel() {
   const [current, setCurrent] = useState(0);
@@ -83,7 +78,7 @@ export function Carousel() {
   if (!slides.length) return null;
 
   return (
-    <section className="hero min-h-[100svh] w-screen bg-cyber-gray-900 p-0 relative overflow-hidden">
+    <section className="hero min-h-[calc(100svh-4rem)] sm:min-h-[calc(100svh-4.5rem)] w-screen bg-cyber-gray-900 p-0 relative overflow-hidden">
       {/* 赛博朋克背景渐变 */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyber-brand-500/10 via-transparent to-cyber-neon-cyan/5 pointer-events-none z-0" />
       {/* 网格背景 */}
@@ -173,31 +168,9 @@ export function Carousel() {
                           </span>
                         </h1>
 
-                        {/* Enhanced badges */}
                         <div className="mt-6 mb-8 flex items-center justify-center gap-3 flex-wrap">
-                          {s.category ? (
-                            <div
-                              className={`badge ${getCategoryBadgeClass(
-                                s.category
-                              )} badge-lg gap-2`}
-                            >
-                              <Icon
-                                icon={getBadgeIcon(s.category)}
-                                width={16}
-                              />
-                              <span className="font-medium">{s.category}</span>
-                            </div>
-                          ) : null}
-                          {s.device ? (
-                            <div
-                              className={`badge ${getDeviceBadgeClass(
-                                s.device
-                              )} badge-lg gap-2`}
-                            >
-                              <DeviceIcon device={s.device} width={16} />
-                              <span className="font-medium">{s.device}</span>
-                            </div>
-                          ) : null}
+                          <CategoryBadge category={s.category} size="lg" />
+                          <DeviceBadge device={s.device} size="lg" />
                         </div>
 
                         {/* 赛博朋克 CTA 按钮 */}
@@ -249,16 +222,16 @@ export function Carousel() {
           ) : null}
 
           {/* Enhanced Scroll hint */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-white/70 z-20 pointer-events-none">
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 text-white/70 z-20 pointer-events-none">
             <div className="scroll-mouse"></div>
             <p className="text-xs font-medium tracking-wider uppercase">
-              向下滚动
+              Scroll
             </p>
           </div>
 
           {/* Enhanced Indicators with modern design */}
           {slides.length > 1 ? (
-            <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 z-20">
+            <div className="absolute bottom-28 md:bottom-32 left-1/2 -translate-x-1/2 z-20">
               <div className="px-4 py-3 rounded-full bg-base-300/30 backdrop-blur-xl border border-primary/20 shadow-xl shadow-primary/20 flex items-center gap-2 md:gap-3">
                 {slides.map((_, i) => {
                   const isActive = i === current;

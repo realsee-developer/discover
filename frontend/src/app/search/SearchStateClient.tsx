@@ -1,16 +1,22 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { getVrs, getVrTags, getDevices, resolvePublicAssetPath } from "@/data/db";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { getCategoryBadgeClass, getDeviceBadgeClass, getBadgeIcon, DeviceIcon } from "@/lib/badge-utils";
+import {
+  getDevices,
+  getVrTags,
+  getVrs,
+  resolvePublicAssetPath,
+} from "@/data/db";
+import { CategoryBadge, DeviceBadge } from "@/components/custom/badges";
+import { DeviceIcon } from "@/lib/badge-utils";
+import { JoinCTA } from "@/components/custom/home/JoinCTA";
 
 const ALL_VRS = getVrs();
 const CATEGORY_TAGS = getVrTags().filter((t) => t.type === "category");
-const DEVICE_TAGS = getVrTags().filter((t) => t.type === "device");
 const DEVICES = getDevices();
 
 interface SearchFilters {
@@ -18,7 +24,7 @@ interface SearchFilters {
   category: string | null;
   device: string | null;
   sort: string;
-  view: 'grid' | 'list';
+  view: "grid" | "list";
 }
 
 export function SearchStateClient() {
@@ -28,7 +34,7 @@ export function SearchStateClient() {
     category: null,
     device: null,
     sort: "relevance",
-    view: 'grid'
+    view: "grid",
   });
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,47 +43,44 @@ export function SearchStateClient() {
 
   // Initialize URL parameters
   useEffect(() => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
-      query: searchParams.get('q') || '',
-      category: searchParams.get('category') || null,
-      device: searchParams.get('device') || null,
-      sort: searchParams.get('sort') || 'relevance'
+      query: searchParams.get("q") || "",
+      category: searchParams.get("category") || null,
+      device: searchParams.get("device") || null,
+      sort: searchParams.get("sort") || "relevance",
     }));
   }, [searchParams]);
 
   // Filter and sort logic
   const filteredResults = useMemo(() => {
-    setIsLoading(true);
-    
     let results = ALL_VRS.filter((vr) => {
-      // Category filter
       if (filters.category) {
-        const category = vr.category || vr.shortCategory || '';
+        const category = vr.category || vr.shortCategory || "";
         if (!category.toLowerCase().includes(filters.category.toLowerCase())) {
           return false;
         }
       }
 
-      // Device filter
       if (filters.device) {
-        const device = vr.device || '';
+        const device = vr.device || "";
         if (!device.toLowerCase().includes(filters.device.toLowerCase())) {
           return false;
         }
       }
 
-      // Text search
       if (filters.query.trim()) {
         const query = filters.query.toLowerCase();
         const searchableText = [
-          vr.title || '',
-          vr.description || '',
-          vr.category || '',
-          vr.shortCategory || '',
-          vr.device || ''
-        ].join(' ').toLowerCase();
-        
+          vr.title || "",
+          vr.description || "",
+          vr.category || "",
+          vr.shortCategory || "",
+          vr.device || "",
+        ]
+          .join(" ")
+          .toLowerCase();
+
         if (!searchableText.includes(query)) {
           return false;
         }
@@ -86,31 +89,44 @@ export function SearchStateClient() {
       return true;
     });
 
-    // Sorting
     switch (filters.sort) {
-      case 'newest':
+      case "newest":
         results.sort((a, b) => (b.id > a.id ? 1 : -1));
         break;
-      case 'title':
-        results.sort((a, b) => (a.title || a.id).localeCompare(b.title || b.id));
+      case "title":
+        results.sort((a, b) =>
+          (a.title || a.id).localeCompare(b.title || b.id)
+        );
         break;
-      case 'category':
-        results.sort((a, b) => (a.category || '').localeCompare(b.category || ''));
+      case "category":
+        results.sort((a, b) =>
+          (a.category || "").localeCompare(b.category || "")
+        );
         break;
       default:
-        // relevance - keep original order or implement relevance scoring
         break;
     }
 
-    setTimeout(() => setIsLoading(false), 200);
     return results;
   }, [filters]);
 
-  const totalPages = Math.max(1, Math.ceil(filteredResults.length / pageSize));
-  const paginatedResults = filteredResults.slice((page - 1) * pageSize, page * pageSize);
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 180);
+    return () => clearTimeout(timer);
+  }, [filters]);
 
-  const updateFilter = (key: keyof SearchFilters, value: any) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+  const totalPages = Math.max(1, Math.ceil(filteredResults.length / pageSize));
+  const paginatedResults = filteredResults.slice(
+    (page - 1) * pageSize,
+    page * pageSize
+  );
+
+  const updateFilter = <K extends keyof SearchFilters>(
+    key: K,
+    value: SearchFilters[K]
+  ) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
     setPage(1);
   };
 
@@ -120,7 +136,7 @@ export function SearchStateClient() {
       category: null,
       device: null,
       sort: "relevance",
-      view: filters.view
+      view: filters.view,
     });
     setPage(1);
   };
@@ -133,339 +149,454 @@ export function SearchStateClient() {
     return count;
   };
 
-
   return (
-    <div className="min-h-screen bg-base-200">
-      {/* Simple Hero Section */}
-      <div className="bg-gradient-to-b from-base-100 to-base-200 py-12 border-b">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-base-content mb-4">
-              Discover VR Tours
+    <div className="relative min-h-screen bg-cyber-gray-900 pb-24">
+      <section className="relative overflow-hidden border-b border-cyber-gray-800 pt-28 pb-24">
+        <div className="absolute inset-0">
+          <div className="cyber-grid absolute inset-0 opacity-10" />
+          <div className="absolute left-1/2 top-[-15%] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-cyber-brand-500/25 blur-3xl" />
+          <div className="absolute left-16 top-24 h-72 w-72 rounded-full bg-cyber-neon-cyan/20 blur-[140px]" />
+          <div className="absolute right-24 bottom-[-10%] h-80 w-80 rounded-full bg-cyber-neon-magenta/15 blur-[170px]" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyber-gray-700 bg-cyber-gray-800/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-cyber-gray-300 shadow-cyber-brand-500/20">
+            <Icon
+              icon="heroicons:sparkles"
+              width={16}
+              className="text-cyber-brand-200"
+            />
+            <span>Immersive Search</span>
+          </div>
+
+          <div className="mt-6 max-w-3xl">
+            <h1 className="text-4xl font-bold text-cyber-gray-100 md:text-5xl">
+              Discover VR tours curated for professionals
             </h1>
-            <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
-              Explore immersive 3D worlds and virtual reality experiences
+            <p className="mt-4 text-base text-cyber-gray-300 md:text-lg">
+              Search across our continuously expanding library of high-fidelity
+              3D experiences, filter by industry-ready devices, and surface the
+              right scene for every pitch.
             </p>
           </div>
 
-          {/* Search Bar */}
-          <div className="max-w-3xl mx-auto mb-8">
-            <div className="join w-full shadow-lg">
-              <div className="join-item flex items-center bg-base-100 px-4">
-                <Icon icon="heroicons:magnifying-glass" width={20} className="text-base-content/60" />
+          <div className="mt-12">
+            <div className="cyber-card-neon flex flex-col gap-4 rounded-3xl border border-cyber-gray-600 bg-cyber-gray-900/85 p-4 shadow-cyber-brand-500/20 sm:p-6 md:flex-row md:items-center">
+              <div className="flex flex-1 items-center gap-4 rounded-2xl border border-cyber-gray-700 bg-cyber-gray-900/70 px-4 py-3">
+                <Icon
+                  icon="heroicons:magnifying-glass"
+                  width={22}
+                  className="text-cyber-brand-200"
+                />
+                <input
+                  className="cyber-focus w-full bg-transparent text-base text-cyber-gray-100 placeholder:text-cyber-gray-500 focus:outline-none md:text-lg"
+                  placeholder="Search tours, locations, or creators"
+                  value={filters.query}
+                  onChange={(e) => updateFilter("query", e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setPage(1);
+                    }
+                  }}
+                  aria-label="Search VR tours"
+                />
               </div>
-              <input
-                className="join-item input input-lg w-full bg-base-100 focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="Search VR tours, experiences..."
-                value={filters.query}
-                onChange={(e) => updateFilter('query', e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") setPage(1);
-                }}
-              />
-              <button 
-                className="join-item btn btn-primary btn-lg"
-                onClick={() => setPage(1)}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-
-          {/* Filter Bar */}
-          <div className="bg-base-100 rounded-lg shadow-md p-6">
-            <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center justify-between">
-              {/* Filters */}
-              <div className="flex flex-col md:flex-row gap-4 flex-1">
-                {/* Categories */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-medium flex items-center gap-2">
-                      <Icon icon="heroicons:tag" width={16} />
-                      Category
-                    </span>
-                  </label>
-                  <select
-                    className="select select-bordered select-sm"
-                    value={filters.category || ''}
-                    onChange={(e) => updateFilter('category', e.target.value || null)}
-                  >
-                    <option value="">All Categories</option>
-                    {CATEGORY_TAGS.map((tag) => (
-                      <option key={tag.id} value={tag.label}>{tag.label}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Devices */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-medium flex items-center gap-2">
-                      <Icon icon="heroicons:device-phone-mobile" width={16} />
-                      Device
-                    </span>
-                  </label>
-                  <select
-                    className="select select-bordered select-sm"
-                    value={filters.device || ''}
-                    onChange={(e) => updateFilter('device', e.target.value || null)}
-                  >
-                    <option value="">All Devices</option>
-                    {DEVICES.map((device) => (
-                      <option key={device.id} value={device.name}>{device.name}</option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Sort */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-medium">Sort by</span>
-                  </label>
-                  <select
-                    className="select select-bordered select-sm"
-                    value={filters.sort}
-                    onChange={(e) => updateFilter('sort', e.target.value)}
-                  >
-                    <option value="relevance">Relevance</option>
-                    <option value="newest">Newest First</option>
-                    <option value="title">Title (A-Z)</option>
-                    <option value="category">Category</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* View Controls & Clear */}
-              <div className="flex items-center gap-3">
-                {getActiveFilterCount() > 0 && (
-                  <button
-                    className="btn btn-ghost btn-sm"
-                    onClick={clearAllFilters}
-                  >
-                    <Icon icon="heroicons:x-mark" width={16} />
-                    Clear ({getActiveFilterCount()})
-                  </button>
-                )}
-
-                <div className="join">
-                  <button
-                    className={`join-item btn btn-sm ${
-                      filters.view === 'grid' 
-                        ? 'btn-primary' 
-                        : 'btn-ghost'
-                    }`}
-                    onClick={() => updateFilter('view', 'grid')}
-                    aria-label="Grid View"
-                  >
-                    <Icon icon="heroicons:squares-2x2" width={18} />
-                  </button>
-                  <button
-                    className={`join-item btn btn-sm ${
-                      filters.view === 'list'
-                        ? 'btn-primary'
-                        : 'btn-ghost'
-                    }`}
-                    onClick={() => updateFilter('view', 'list')}
-                    aria-label="List View"
-                  >
-                    <Icon icon="heroicons:list-bullet" width={18} />
-                  </button>
-                </div>
+              <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-end md:w-auto">
+                <button
+                  type="button"
+                  className="cyber-btn-primary cyber-focus h-12 w-full rounded-xl px-8 text-sm font-semibold uppercase tracking-[0.2em] sm:w-auto"
+                  onClick={() => setPage(1)}
+                >
+                  Search
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-6 py-8">
-        {/* Results Stats */}
-        <div className="flex items-center justify-between mb-6">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 pt-16">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            {isLoading ? (
-              <div className="flex items-center gap-3">
-                <span className="loading loading-spinner loading-sm"></span>
-                <span className="text-base-content/70">Searching...</span>
-              </div>
-            ) : (
-              <p className="text-base-content/70">
-                Found <strong className="text-primary">{filteredResults.length}</strong> VR experiences
-              </p>
-            )}
+            <h2 className="text-3xl font-semibold text-cyber-gray-100">
+              Search results
+            </h2>
+            <p className="mt-2 text-sm text-cyber-gray-400">
+              {isLoading
+                ? "Calculating matches..."
+                : `Showing ${filteredResults.length.toLocaleString()} immersive experiences from the Realsee library.`}
+            </p>
           </div>
-        </div>
-
-        {/* Results */}
-        {isLoading ? (
-          <div className={`grid gap-6 ${
-            filters.view === 'grid'
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-              : 'grid-cols-1'
-          }`}>
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="card bg-base-100 shadow-lg animate-pulse">
-                <div className="h-48 bg-base-300 rounded-t-lg"></div>
-                <div className="card-body">
-                  <div className="h-4 bg-base-300 rounded w-3/4 mb-2"></div>
-                  <div className="h-3 bg-base-300 rounded w-1/2"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : filteredResults.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="max-w-lg mx-auto">
-              <div className="text-6xl mb-6">🔍</div>
-              <h3 className="text-2xl font-bold text-base-content mb-4">
-                No VR Tours Found
-              </h3>
-              <p className="text-base-content/70 mb-8">
-                Try different keywords or clear your filters to see more results
-              </p>
+          <div className="flex flex-wrap items-center gap-3">
+            {getActiveFilterCount() > 0 && (
               <button
-                className="btn btn-primary"
+                type="button"
+                className="cyber-focus inline-flex items-center gap-2 rounded-xl border border-cyber-gray-700 bg-cyber-gray-900/80 px-4 py-2 text-sm font-medium text-cyber-gray-200 transition-colors duration-300 hover:border-cyber-brand-400/70 hover:text-cyber-brand-200"
                 onClick={clearAllFilters}
               >
-                <Icon icon="heroicons:arrow-path" width={20} />
-                Clear Filters
+                <Icon icon="heroicons:x-mark" width={18} />
+                Clear Filters ({getActiveFilterCount()})
               </button>
-            </div>
+            )}
           </div>
-        ) : (
-          <>
-            <div className={`grid gap-6 ${
-              filters.view === 'grid'
-                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                : 'grid-cols-1'
-            }`}>
-              {paginatedResults.map((vr) => (
-                <Link
-                  key={vr.id}
-                  href={vr.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`tour-card card bg-base-100 group cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 ${
-                    filters.view === 'list' ? 'card-side' : ''
-                  }`}
-                >
-                  <figure className="relative overflow-hidden">
-                    <Image
-                      src={(() => {
-                        const localSrc = resolvePublicAssetPath(vr.assetCover || vr.cover);
-                        const remoteSrc = vr.remoteCover;
-                        const fallback = "/placeholder.jpg";
-                        return localSrc || remoteSrc || fallback;
-                      })()}
-                      alt={vr.title || vr.id}
-                      width={640}
-                      height={384}
-                      className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
-                        filters.view === 'list' ? 'w-64 h-48' : 'h-48 w-full'
-                      }`}
-                    />
-                    
-                    {/* Category Badge */}
-                    <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
-                      {vr.shortCategory || vr.category ? (
-                        <div className={`badge ${getCategoryBadgeClass(vr.shortCategory || vr.category || "")} badge-sm gap-1`}>
-                          <Icon icon={getBadgeIcon(vr.shortCategory || vr.category || "")} width={12} />
-                          <span>{vr.shortCategory || vr.category}</span>
-                        </div>
-                      ) : null}
-                    </div>
-                    
-                    {/* Device Badge */}
-                    {vr.device ? (
-                      <div className="absolute top-3 right-3">
-                        <div className={`badge ${getDeviceBadgeClass(vr.device)} badge-sm gap-1.5`}>
-                          <DeviceIcon device={vr.device} width={14} />
-                          <span className="font-medium text-xs">{vr.device}</span>
-                        </div>
-                      </div>
-                    ) : null}
+        </div>
 
-                    {/* Title Overlay for Grid View */}
-                    {filters.view === 'grid' && (
-                      <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
-                        <h3 className="text-white font-bold text-lg line-clamp-2 drop-shadow-lg">
-                          {vr.title || vr.id}
-                        </h3>
-                      </div>
-                    )}
-                  </figure>
-                  
-                  {/* Card Body for List View */}
-                  {filters.view === 'list' && (
-                    <div className="card-body">
-                      <h3 className="card-title text-base-content line-clamp-2">
-                        {vr.title || vr.id}
-                      </h3>
-                      {vr.description && (
-                        <p className="text-base-content/70 text-sm line-clamp-3">
-                          {vr.description}
-                        </p>
-                      )}
-                      <div className="card-actions justify-end">
-                        <div className="badge badge-ghost">VR Experience</div>
-                      </div>
-                    </div>
-                  )}
-                </Link>
+        <div
+          className={`mt-10 grid grid-cols-1 gap-4 rounded-2xl border border-cyber-gray-700 bg-cyber-gray-900/80 p-6 shadow-cyber-brand-500/10 transition-all duration-300 ${
+            showFilters ? "" : "hidden lg:grid"
+          } lg:grid-cols-3`}
+        >
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.25em] text-cyber-gray-400">
+              Category
+            </label>
+            <select
+              className="cyber-focus h-12 rounded-xl border border-cyber-gray-700 bg-cyber-gray-900/90 px-4 text-sm text-cyber-gray-100"
+              value={filters.category || ""}
+              onChange={(e) => updateFilter("category", e.target.value || null)}
+            >
+              <option value="">All categories</option>
+              {CATEGORY_TAGS.map((tag) => (
+                <option key={tag.id} value={tag.label}>
+                  {tag.label}
+                </option>
               ))}
-            </div>
+            </select>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.25em] text-cyber-gray-400">
+              Device
+            </label>
+            <select
+              className="cyber-focus h-12 rounded-xl border border-cyber-gray-700 bg-cyber-gray-900/90 px-4 text-sm text-cyber-gray-100"
+              value={filters.device || ""}
+              onChange={(e) => updateFilter("device", e.target.value || null)}
+            >
+              <option value="">All devices</option>
+              {DEVICES.map((device) => (
+                <option key={device.id} value={device.name}>
+                  {device.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-xs font-semibold uppercase tracking-[0.25em] text-cyber-gray-400">
+              Sort by
+            </label>
+            <select
+              className="cyber-focus h-12 rounded-xl border border-cyber-gray-700 bg-cyber-gray-900/90 px-4 text-sm text-cyber-gray-100"
+              value={filters.sort}
+              onChange={(e) => updateFilter("sort", e.target.value)}
+            >
+              <option value="relevance">Relevance</option>
+              <option value="newest">Newest first</option>
+              <option value="title">Title (A-Z)</option>
+              <option value="category">Category</option>
+            </select>
+          </div>
+        </div>
 
-            {/* Simple Pagination */}
-            {totalPages > 1 && (
-              <div className="flex justify-center mt-12">
-                <div className="join">
-                  <button
-                    className={`join-item btn ${page === 1 ? 'btn-disabled' : 'btn-outline'}`}
-                    disabled={page === 1}
-                    onClick={() => setPage(p => Math.max(1, p - 1))}
-                  >
-                    <Icon icon="heroicons:chevron-left" width={20} />
-                    Previous
-                  </button>
-                  
-                  {Array.from({ length: Math.min(totalPages, 5) }).map((_, i) => {
-                    let pageNum;
-                    if (totalPages <= 5) {
-                      pageNum = i + 1;
-                    } else if (page <= 3) {
-                      pageNum = i + 1;
-                    } else if (page >= totalPages - 2) {
-                      pageNum = totalPages - 4 + i;
-                    } else {
-                      pageNum = page - 2 + i;
-                    }
-
-                    return (
-                      <button
-                        key={pageNum}
-                        className={`join-item btn ${
-                          page === pageNum ? 'btn-primary' : 'btn-outline'
-                        }`}
-                        onClick={() => setPage(pageNum)}
-                      >
-                        {pageNum}
-                      </button>
-                    );
-                  })}
-                  
-                  <button
-                    className={`join-item btn ${page === totalPages ? 'btn-disabled' : 'btn-outline'}`}
-                    disabled={page === totalPages}
-                    onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-                  >
-                    Next
-                    <Icon icon="heroicons:chevron-right" width={20} />
-                  </button>
-                </div>
+        {getActiveFilterCount() > 0 && (
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {filters.query.trim() && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/60 bg-cyber-brand-500/15 px-4 py-1.5 text-sm text-cyber-brand-100">
+                <Icon icon="heroicons:magnifying-glass" width={16} />
+                <span className="font-medium">{filters.query}</span>
+                <button
+                  type="button"
+                  className="cyber-focus text-cyber-brand-200 transition-colors duration-200 hover:text-cyber-brand-100"
+                  onClick={() => updateFilter("query", "")}
+                  aria-label="Remove query filter"
+                >
+                  <Icon icon="heroicons:x-mark" width={16} />
+                </button>
               </div>
             )}
-          </>
+            {filters.category && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/60 bg-cyber-brand-500/10 px-4 py-1.5 text-sm text-cyber-brand-100">
+                <Icon icon="heroicons:tag" width={16} />
+                <span className="font-medium">{filters.category}</span>
+                <button
+                  type="button"
+                  className="cyber-focus text-cyber-brand-200 transition-colors duration-200 hover:text-cyber-brand-100"
+                  onClick={() => updateFilter("category", null)}
+                  aria-label="Remove category filter"
+                >
+                  <Icon icon="heroicons:x-mark" width={16} />
+                </button>
+              </div>
+            )}
+            {filters.device && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/60 bg-cyber-brand-500/10 px-4 py-1.5 text-sm text-cyber-brand-100">
+                <Icon icon="heroicons:device-phone-mobile" width={16} />
+                <span className="font-medium">{filters.device}</span>
+                <button
+                  type="button"
+                  className="cyber-focus text-cyber-brand-200 transition-colors duration-200 hover:text-cyber-brand-100"
+                  onClick={() => updateFilter("device", null)}
+                  aria-label="Remove device filter"
+                >
+                  <Icon icon="heroicons:x-mark" width={16} />
+                </button>
+              </div>
+            )}
+          </div>
         )}
-      </div>
+
+        <div className="mt-12">
+          {isLoading ? (
+            <div
+              className={`grid gap-6 ${
+                filters.view === "grid"
+                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  : "grid-cols-1"
+              }`}
+            >
+              {Array.from({ length: filters.view === "grid" ? 8 : 6 }).map(
+                (_, index) => (
+                  <div
+                    key={`skeleton-${index}`}
+                    className="cyber-card h-full overflow-hidden rounded-3xl border border-cyber-gray-700 bg-cyber-gray-900/80 p-0 animate-pulse"
+                  >
+                    <div className="h-48 w-full bg-cyber-gray-800/80" />
+                    <div className="space-y-3 p-6">
+                      <div className="h-4 w-3/4 rounded-full bg-cyber-gray-800/80" />
+                      <div className="h-3 w-1/2 rounded-full bg-cyber-gray-800/80" />
+                      <div className="h-3 w-2/3 rounded-full bg-cyber-gray-800/80" />
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          ) : filteredResults.length === 0 ? (
+            <div className="mx-auto max-w-2xl rounded-3xl border border-cyber-gray-700 bg-cyber-gray-900/80 p-12 text-center shadow-cyber-brand-500/10">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-cyber-brand-400/40 bg-cyber-brand-500/15 text-3xl">
+                <span role="img" aria-label="Search">
+                  🔍
+                </span>
+              </div>
+              <h3 className="mt-6 text-2xl font-semibold text-cyber-gray-100">
+                No VR tours matched your filters
+              </h3>
+              <p className="mt-3 text-sm text-cyber-gray-400">
+                Try broadening your keywords, removing a device constraint, or
+                exploring all categories to surface more experiences.
+              </p>
+              <button
+                type="button"
+                className="cyber-btn-primary cyber-focus mt-8 rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em]"
+                onClick={clearAllFilters}
+              >
+                Reset Filters
+              </button>
+            </div>
+          ) : (
+            <>
+              <div
+                className={`grid gap-6 ${
+                  filters.view === "grid"
+                    ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                    : "grid-cols-1"
+                }`}
+              >
+                {paginatedResults.map((vr, index) => {
+                  const imageSrc = (() => {
+                    const localSrc = resolvePublicAssetPath(
+                      vr.assetCover || vr.cover
+                    );
+                    const remoteSrc = vr.remoteCover;
+                    const fallback = "/placeholder.jpg";
+                    return localSrc || remoteSrc || fallback;
+                  })();
+
+                  if (filters.view === "list") {
+                    return (
+                      <Link
+                        key={vr.id}
+                        href={vr.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="tour-card group relative flex flex-col gap-6 rounded-3xl border border-cyber-gray-600 bg-cyber-gray-900/80 p-6 shadow-lg shadow-cyber-brand-500/15 transition-all duration-500 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900 sm:flex-row"
+                      >
+                        <figure className="relative h-48 w-full overflow-hidden rounded-2xl border border-cyber-gray-700 bg-cyber-gray-800/70 shadow-cyber-brand-500/10 sm:w-72">
+                          <Image
+                            src={imageSrc}
+                            alt={vr.title || vr.id}
+                            width={640}
+                            height={384}
+                            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            priority={index < 4}
+                          />
+
+                          {(vr.shortCategory || vr.category) && (
+                            <div className="absolute left-4 top-4 flex max-w-[calc(100%-5rem)] items-center gap-2">
+                              <CategoryBadge
+                                category={vr.shortCategory || vr.category}
+                                size="sm"
+                              />
+                            </div>
+                          )}
+
+                          {vr.device && (
+                            <div className="absolute right-4 top-4">
+                              <DeviceBadge device={vr.device} size="sm" />
+                            </div>
+                          )}
+                        </figure>
+
+                        <div className="flex flex-1 flex-col justify-between gap-4">
+                          <div>
+                            <div className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/50 bg-cyber-brand-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyber-brand-200">
+                              <span>VR Experience</span>
+                            </div>
+                            <h3 className="mt-3 text-2xl font-semibold text-cyber-gray-100">
+                              {vr.title || vr.id}
+                            </h3>
+                            {vr.description && (
+                              <p className="mt-2 text-sm text-cyber-gray-300 line-clamp-3">
+                                {vr.description}
+                              </p>
+                            )}
+                          </div>
+
+                          <div className="flex flex-wrap items-center gap-3 text-xs text-cyber-gray-400">
+                            {vr.shortCategory && (
+                              <span className="inline-flex items-center gap-1 rounded-full border border-cyber-gray-700 bg-cyber-gray-800/80 px-3 py-1">
+                                <Icon
+                                  icon="heroicons:hashtag"
+                                  width={14}
+                                  className="text-cyber-brand-200"
+                                />
+                                {vr.shortCategory}
+                              </span>
+                            )}
+                            {vr.device && (
+                              <span className="inline-flex items-center gap-1 rounded-full border border-cyber-gray-700 bg-cyber-gray-800/80 px-3 py-1">
+                                <DeviceIcon device={vr.device} width={14} />
+                                {vr.device}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      key={vr.id}
+                      href={vr.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
+                    >
+                      <figure className="relative overflow-hidden">
+                        <Image
+                          src={imageSrc}
+                          alt={vr.title || vr.id}
+                          width={640}
+                          height={384}
+                          className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          priority={index < 4}
+                        />
+
+                        {(vr.shortCategory || vr.category) && (
+                          <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
+                            <CategoryBadge
+                              category={vr.shortCategory || vr.category}
+                              size="sm"
+                            />
+                          </div>
+                        )}
+
+                        {vr.device && (
+                          <div className="absolute top-3 right-3">
+                            <DeviceBadge device={vr.device} size="sm" />
+                          </div>
+                        )}
+                      </figure>
+
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-cyber-gray-900 via-cyber-gray-900/70 to-transparent p-4">
+                        <h3 className="text-cyber-gray-100 text-lg font-semibold leading-snug line-clamp-2">
+                          {vr.title || vr.id}
+                        </h3>
+                        {vr.description && (
+                          <p className="mt-2 text-sm text-cyber-gray-300 line-clamp-2">
+                            {vr.description}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {totalPages > 1 && (
+                <div className="mt-12 flex justify-center">
+                  <div className="flex items-center gap-2 rounded-full border border-cyber-gray-700 bg-cyber-gray-900/80 px-2 py-2">
+                    <button
+                      type="button"
+                      className="cyber-focus inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-cyber-gray-300 transition-colors duration-300 hover:text-cyber-brand-200 disabled:cursor-not-allowed disabled:text-cyber-gray-600"
+                      onClick={() =>
+                        setPage((current) => Math.max(1, current - 1))
+                      }
+                      disabled={page === 1}
+                    >
+                      <Icon icon="heroicons:chevron-left" width={18} />
+                      Previous
+                    </button>
+                    {Array.from({ length: Math.min(totalPages, 5) }).map(
+                      (_, i) => {
+                        let pageNum = i + 1;
+                        if (totalPages > 5) {
+                          if (page <= 3) {
+                            pageNum = i + 1;
+                          } else if (page >= totalPages - 2) {
+                            pageNum = totalPages - 4 + i;
+                          } else {
+                            pageNum = page - 2 + i;
+                          }
+                        }
+
+                        return (
+                          <button
+                            key={pageNum}
+                            type="button"
+                            className={`cyber-focus inline-flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-colors duration-300 ${
+                              page === pageNum
+                                ? "bg-cyber-brand-500/20 text-cyber-brand-100"
+                                : "text-cyber-gray-300 hover:text-cyber-brand-200"
+                            }`}
+                            onClick={() => setPage(pageNum)}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      }
+                    )}
+                    <button
+                      type="button"
+                      className="cyber-focus inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-cyber-gray-300 transition-colors duration-300 hover:text-cyber-brand-200 disabled:cursor-not-allowed disabled:text-cyber-gray-600"
+                      onClick={() =>
+                        setPage((current) => Math.min(totalPages, current + 1))
+                      }
+                      disabled={page === totalPages}
+                    >
+                      Next
+                      <Icon icon="heroicons:chevron-right" width={18} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+
+      <section className="relative z-10 border-t border-cyber-gray-800 bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/95 to-cyber-gray-800">
+        <JoinCTA variant="creator" />
+      </section>
     </div>
   );
 }

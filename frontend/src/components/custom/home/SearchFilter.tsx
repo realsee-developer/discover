@@ -1,9 +1,10 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { getVrTags } from "@/data/db";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { getVrTags } from "@/data/db";
+import { CategoryBadge } from "@/components/custom/badges";
 
 export function SearchFilter() {
   const router = useRouter();
@@ -11,15 +12,15 @@ export function SearchFilter() {
 
   const tags = getVrTags().filter((t) => t.type === "category");
 
-  // 根据标签类别获取对应的图标
+  // Map tag labels to the corresponding icon
   const getCategoryIcon = (label: string) => {
     const iconMap: Record<string, string> = {
-      // 空间类型
+      // Space types
       "Outdoor": "heroicons:map",
       "Aerial 3D": "heroicons:paper-airplane", 
       "Industrial": "heroicons:cog-6-tooth",
       "Exhibition": "heroicons:photo",
-      "Exibition": "heroicons:photo", // 拼写错误的版本
+      "Exibition": "heroicons:photo", // misspelled variant
       "Showroom": "heroicons:building-storefront",
       "Residential": "heroicons:home",
       "Outside": "heroicons:globe-alt",
@@ -59,119 +60,92 @@ export function SearchFilter() {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-base-300 via-base-200 to-primary/10 py-20 overflow-hidden">
-      {/* Background patterns - similar to Footer */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_80%,_oklch(var(--p)/_0.15),_transparent_50%),radial-gradient(circle_at_80%_20%,_oklch(var(--s)/_0.08),_transparent_50%)]"></div>
-      <div className="absolute inset-0 cyber-grid opacity-15"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_oklch(var(--p)/_0.05),_transparent_70%)]"></div>
-
-      {/* Subtle animated elements */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl cyber-gentle-pulse"></div>
-      <div
-        className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/8 rounded-full blur-2xl cyber-gentle-pulse"
-        style={{ animationDelay: "1s" }}
-      ></div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/95 to-cyber-gray-800 py-24">
+      <div className="absolute inset-0 -z-10">
+        <div className="cyber-grid absolute inset-0 opacity-10" />
+        <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 bg-cyber-brand-500/25 blur-3xl" />
+        <div className="absolute left-[12%] top-32 h-72 w-72 bg-cyber-neon-cyan/15 blur-[120px]" />
+        <div className="absolute right-[10%] top-48 h-80 w-80 bg-cyber-brand-500/20 blur-[120px]" />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Title section */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm text-primary px-4 py-2 rounded-full text-sm font-medium mb-6 border border-primary/30 cyber-glow-text">
-            <Icon icon="heroicons:sparkles" width={16} />
-            <span>Explore Amazing</span>
+        <div className="mx-auto max-w-5xl rounded-3xl border border-cyber-gray-600 bg-cyber-gray-800/90 p-10 shadow-cyber-brand-500/10 backdrop-blur-2xl md:p-14">
+          <div className="text-center">
+            <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-white shadow-lg shadow-cyber-brand-500/30">
+              <Icon icon="heroicons:sparkles" width={16} className="text-white" />
+              <span>Search The Library</span>
+            </div>
+            <h2 className="mt-5 text-3xl font-bold text-cyber-gray-100 md:text-4xl">
+              Discover your next immersive experience
+            </h2>
+            <p className="mt-4 text-base text-cyber-gray-200 md:text-lg">
+              Explore thousands of Realsee 3D spaces and narrow results by scene, device, or keyword.
+            </p>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-base-content mb-6 tracking-tight font-display">
-            Discover Your Perfect
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent cyber-subtle-text ml-3">
-              3D Space
-            </span>
-          </h2>
-          <p className="text-lg md:text-xl text-base-content/70 max-w-3xl mx-auto leading-relaxed">
-            Find inspiration in thousands of immersive 3D virtual tours and
-            spatial experiences
-          </p>
-        </div>
 
-        {/* Search box */}
-        <div className="flex justify-center mb-12">
-          <div className="w-full max-w-3xl">
-            <div className="join w-full shadow-xl cyber-subtle-box">
-              <input
-                type="text"
-                placeholder="Search 3D spaces, locations, styles..."
-                className="cyber-input join-item flex-1 h-16 text-lg pl-6 pr-4"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={handleKeyPress}
-              />
-              <button
-                className="cyber-btn-primary join-item h-16 px-8 text-lg font-semibold"
-                onClick={handleSearch}
-              >
-                <Icon icon="heroicons:magnifying-glass" width={24} />
-                <span className="hidden sm:inline">Search</span>
-              </button>
+          <div className="mt-10 flex justify-center">
+            <div className="w-full max-w-3xl rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/80 shadow-inner shadow-cyber-brand-500/10">
+              <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:gap-0">
+                <div className="flex flex-1 items-center gap-3 rounded-xl bg-cyber-gray-900/60 px-4 py-3 text-cyber-gray-200">
+                  <Icon icon="heroicons:magnifying-glass" width={22} className="text-cyber-brand-200" />
+                  <input
+                    type="text"
+                    placeholder="Search tours, locations or creators"
+                    className="flex-1 bg-transparent text-base text-cyber-gray-100 placeholder:text-cyber-gray-400 focus:outline-none"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onKeyPress={handleKeyPress}
+                  />
+                </div>
+                <button
+                  className="cyber-btn-primary h-12 w-full rounded-xl text-sm font-semibold uppercase tracking-[0.2em] shadow-cyber-brand-500/30 hover:shadow-cyber-brand-500/40 sm:w-auto sm:min-w-[160px]"
+                  onClick={handleSearch}
+                >
+                  Search
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Category filter - Marquee style */}
-        <div className="relative overflow-hidden mb-8">
-          {/* Gradient masks for smooth edges */}
-          <div className="absolute left-0 top-0 z-10 w-32 h-full bg-gradient-to-r from-base-200 via-base-200/80 to-transparent pointer-events-none"></div>
-          <div className="absolute right-0 top-0 z-10 w-32 h-full bg-gradient-to-l from-base-200 via-base-200/80 to-transparent pointer-events-none"></div>
-          
-          {/* Marquee container */}
-          <div className="flex animate-marquee hover:[animation-play-state:paused] gap-4 py-4">
-            {/* First set of tags */}
-            {tags.map((tag) => (
+          <div className="mt-12">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3 text-sm text-cyber-gray-200">
+                <Icon icon="heroicons:swatch" width={16} className="text-cyber-brand-200" />
+                <span>Popular Categories</span>
+              </div>
               <button
-                key={tag.id}
-                className="flex-shrink-0 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-base-200/60 text-base-content/70 border border-base-300/50 hover:bg-primary/10 hover:text-primary hover:border-primary/20 hover:scale-105 hover:shadow-lg cyber-glow-text whitespace-nowrap"
-                onClick={() => {
-                  const params = new URLSearchParams();
-                  params.set("category", tag.label);
-                  router.push(`/search?${params.toString()}`);
-                }}
+                type="button"
+                className="text-xs font-semibold uppercase tracking-[0.3em] text-cyber-brand-200 hover:text-cyber-neon-cyan transition-colors"
+                onClick={() => router.push("/search")}
               >
-                <span className="flex items-center gap-2">
-                  <Icon 
-                    icon={getCategoryIcon(tag.label)} 
-                    width={16} 
-                    className="text-primary/60"
-                  />
-                  {tag.label}
-                </span>
+                View all
               </button>
-            ))}
-            
-            {/* Duplicate set for seamless loop */}
-            {tags.map((tag) => (
-              <button
-                key={`${tag.id}-duplicate`}
-                className="flex-shrink-0 px-6 py-3 rounded-xl font-medium transition-all duration-300 bg-base-200/60 text-base-content/70 border border-base-300/50 hover:bg-primary/10 hover:text-primary hover:border-primary/20 hover:scale-105 hover:shadow-lg cyber-glow-text whitespace-nowrap"
-                onClick={() => {
-                  const params = new URLSearchParams();
-                  params.set("category", tag.label);
-                  router.push(`/search?${params.toString()}`);
-                }}
-              >
-                <span className="flex items-center gap-2">
-                  <Icon 
-                    icon={getCategoryIcon(tag.label)} 
-                    width={16} 
-                    className="text-primary/60"
-                  />
-                  {tag.label}
-                </span>
-              </button>
-            ))}
-          </div>
-          
-          {/* Category hint */}
-          <div className="text-center mt-4">
-            <div className="inline-flex items-center gap-2 text-sm text-base-content/50 bg-base-200/30 px-3 py-1 rounded-full backdrop-blur-sm border border-base-300/30">
-              <Icon icon="heroicons:cursor-arrow-rays" width={14} />
-              <span>Click any category to explore</span>
+            </div>
+
+            <div className="relative mt-6 overflow-hidden">
+              <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-cyber-gray-800 via-cyber-gray-800/70 to-transparent pointer-events-none" />
+              <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-cyber-gray-800 via-cyber-gray-800/70 to-transparent pointer-events-none" />
+
+              <div className="flex animate-marquee hover:[animation-play-state:paused] gap-4 py-4">
+                {[...tags, ...tags].map((tag, index) => (
+                  <button
+                    key={`${tag.id}-${index}`}
+                    className="group flex-shrink-0"
+                    onClick={() => {
+                      const params = new URLSearchParams();
+                      params.set("category", tag.label);
+                      router.push(`/search?${params.toString()}`);
+                    }}
+                  >
+                    <CategoryBadge category={tag.label} size="md" />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-cyber-gray-600/60 bg-cyber-gray-900/70 px-3 py-1 text-xs text-cyber-gray-300">
+              <Icon icon="heroicons:cursor-arrow-rays" width={14} className="text-cyber-brand-200" />
+              <span>Select a category to jump to its results</span>
             </div>
           </div>
         </div>

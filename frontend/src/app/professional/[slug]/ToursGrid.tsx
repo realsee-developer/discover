@@ -1,13 +1,14 @@
 "use client";
 
-import { Icon } from "@iconify/react";
+import Image from "next/image";
 import { useState } from "react";
+import { Icon } from "@iconify/react";
+import { CategoryBadge } from "@/components/custom/badges";
 import { DeviceIcon } from "@/lib/badge-utils";
 
 export type TourCardData = {
   id: string;
   title: string;
-  description: string;
   url: string;
   shortCategory?: string;
   device?: string;
@@ -49,56 +50,34 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
             target="_blank"
             rel="noreferrer"
             style={{ animationDelay: `${index * 80}ms` }}
-            className="group relative block rounded-2xl border border-cyber-brand-400/15 bg-cyber-gray-900/70 shadow-lg shadow-cyber-brand-500/10 transition-all duration-500 hover:-translate-y-1 hover:border-cyber-brand-300/40 hover:shadow-[0_35px_70px_-35px_rgba(15,23,42,0.8)]"
+            className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
           >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img
+            <figure className="relative overflow-hidden">
+              <Image
                 src={tour.cover}
                 alt={tour.title}
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                width={640}
+                height={384}
+                className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
-              {tour.shortCategory ? (
-                <div className="absolute left-3 top-3">
-                  <div className="badge badge-primary badge-sm gap-1">
-                    {tour.categoryIcon ? (
-                      <Icon icon={tour.categoryIcon} width={12} />
-                    ) : null}
-                    <span>{tour.shortCategory}</span>
-                  </div>
-                </div>
-              ) : null}
+
+              <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
+                {tour.shortCategory ? (
+                  <CategoryBadge category={tour.shortCategory} size="sm" />
+                ) : null}
+              </div>
+
               {tour.device ? (
-                <div className="absolute right-3 top-3">
-                  <div className="badge badge-neutral badge-sm gap-1.5">
-                    <DeviceIcon device={tour.device} width={14} />
-                    <span className="text-[0.65rem] font-medium uppercase tracking-wide">
-                      {tour.device}
-                    </span>
-                  </div>
+                <div className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-cyber-gray-900/80 shadow-lg shadow-black/30">
+                  <DeviceIcon device={tour.device} width={18} className="text-cyber-gray-100" />
                 </div>
               ) : null}
-              <div className="pointer-events-none absolute bottom-3 right-3 translate-y-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyber-brand-600 text-white shadow-lg shadow-cyber-brand-500/30">
-                  <Icon icon="heroicons:play" width={16} className="ml-0.5" />
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-1 flex-col gap-4 p-6">
-              <div>
-                <h3 className="text-lg font-semibold text-white transition-colors duration-200 group-hover:text-cyber-brand-100">
-                  {tour.title}
-                </h3>
-              </div>
-              <p className="text-sm leading-relaxed text-cyber-gray-300">
-                {tour.description}
-              </p>
-              <div className="mt-auto flex items-center justify-between border-t border-cyber-brand-400/10 pt-3 text-xs text-cyber-gray-400">
-                <div className="flex items-center gap-2">
-                  <Icon icon="heroicons:eye" width={14} />
-                  <span>3D Virtual Tour</span>
-                </div>
-                <span>View Experience</span>
-              </div>
+            </figure>
+
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-cyber-gray-900 via-cyber-gray-900/70 to-transparent p-4">
+              <h3 className="text-cyber-gray-100 text-lg font-semibold leading-snug line-clamp-2">
+                {tour.title}
+              </h3>
             </div>
           </a>
         ))}

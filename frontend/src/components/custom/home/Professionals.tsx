@@ -1,118 +1,118 @@
+import { Icon } from "@iconify/react";
 import Image from "next/image";
+import type { CSSProperties } from "react";
+
 import { getProfessionals } from "@/data/db";
+
+const DESKTOP_CARD_WIDTH = 260;
+const DESKTOP_GAP = 32;
+const DESKTOP_SPEED = 160;
 
 export function Professionals() {
   const availableIds = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  
-  // 按 tours 数量排序（从多到少）
+
   const list = getProfessionals()
     .filter((p) => availableIds.has(p.id))
     .sort((a, b) => (b.vrIds || []).length - (a.vrIds || []).length)
     .slice(0, 10);
 
-  // 动态速度计算
-  const cardWidth = 384; // w-96 = 384px 桌面端
-  const cardWidthMobile = 300; // 移动端宽度
-  const cardGap = 64;    // gap-16 = 64px
-  
-  // 桌面端总宽度
-  const cardTotalWidth = cardWidth + cardGap; // 448px per card
-  const totalWidth = cardTotalWidth * list.length; // 一组内容的总宽度
-  
-  // 移动端总宽度
-  const cardTotalWidthMobile = cardWidthMobile + cardGap; // 364px per card  
-  const totalWidthMobile = cardTotalWidthMobile * list.length;
-  
-  // 每秒移动像素数（可根据需要调整，数值越大速度越快）
-  const pixelsPerSecond = 150; // 推荐范围：80-200，提高到150让速度更合适
-  const animationDuration = totalWidth / pixelsPerSecond;
-  const mobileAnimationDuration = totalWidthMobile / pixelsPerSecond;
+  const desktopTotal = list.length * (DESKTOP_CARD_WIDTH + DESKTOP_GAP);
+
+  const marqueeStyle: CSSProperties = {
+    maskImage:
+      "linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)",
+    WebkitMaskImage:
+      "linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)",
+    ["--marquee-duration" as string]: `${desktopTotal / DESKTOP_SPEED}s`,
+  };
 
   return (
-    <section className="featured-professionals-section relative overflow-hidden bg-gradient-to-b from-base-100 to-base-200/40 py-32">
+    <section className="relative overflow-visible bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/95 to-cyber-gray-800 py-28">
+      <div className="absolute inset-0 -z-10">
+        <div className="cyber-grid absolute inset-0 opacity-10" />
+        <div className="absolute left-[10%] top-12 h-80 w-80 rounded-full bg-cyber-brand-500/18 blur-[140px]" />
+        <div className="absolute right-[15%] bottom-0 h-72 w-72 rounded-full bg-cyber-neon-cyan/18 blur-[150px]" />
+      </div>
+
       <div className="container mx-auto px-6">
-        <div className="mb-20 flex flex-col items-center text-center">
-          <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-base-content md:text-6xl">
+        <div className="mb-16 flex flex-col items-center text-center">
+          <div className="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-lg shadow-cyber-brand-500/30">
+            <span>Trusted Creators</span>
+          </div>
+          <h2 className="mt-6 text-3xl font-bold tracking-tight text-cyber-gray-100 md:text-5xl">
             Realsee Galois Professionals
           </h2>
-          <p className="mt-6 max-w-4xl text-lg text-base-content/70 md:text-xl">
-            Discover a curated network of creators pushing the boundaries of spatial capture.
+          <p className="mt-4 max-w-3xl text-base text-cyber-gray-300 md:text-lg">
+            Explore a global roster of certified creators delivering premium spatial capture, 3D storytelling, and immersive experiences.
           </p>
         </div>
-        
-        {/* 跑马灯容器 - 移除overflow-hidden，用mask实现渐变效果 */}
-        <div className="relative py-16">
-          {/* 使用CSS mask实现左右渐变效果，不影响阴影 */}
-          <div 
-            className="professionals-marquee py-16 -my-16" 
-            style={{
-              maskImage: 'linear-gradient(to right, transparent, black 8rem, black calc(100% - 8rem), transparent)',
-              WebkitMaskImage: 'linear-gradient(to right, transparent, black 8rem, black calc(100% - 8rem), transparent)',
-              '--marquee-duration': `${animationDuration}s`,
-              '--marquee-duration-mobile': `${mobileAnimationDuration}s`
-            } as React.CSSProperties}
-          >
-            <div className="professionals-track flex gap-16 animate-marquee-dynamic">
-              {/* 第一组内容 */}
-              {list.map((p) => (
-                <a
-                  key={p.id}
-                  href={`/professional/${p.slug ?? p.id}`}
-                  className="group block cursor-pointer rounded-3xl border border-base-300/40 bg-base-100/80 p-6 pt-12 pb-8 text-center shadow-lg ring-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none flex-shrink-0 w-96"
-                  aria-label={`Open ${p.name}`}
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="relative mb-8 isolate">
-                      <div className="pointer-events-none absolute -inset-8 z-0 rounded-[50px] bg-gradient-to-br from-primary/30 to-accent/30 opacity-70 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-                      <div className="avatar relative z-10">
-                        <div className="h-40 w-40 overflow-hidden rounded-3xl border-2 border-white/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.06]">
-                          <Image
-                            src={`/professional/${p.id}.jpg`}
-                            alt={p.name}
-                            width={160}
-                            height={160}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
+
+        {/* Mobile grid */}
+        <div className="grid grid-cols-1 gap-6 md:hidden">
+          {list.map((p) => (
+            <a
+              key={`grid-${p.id}`}
+              href={`/professional/${p.slug ?? p.id}`}
+              className="group relative flex flex-col items-center rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/20 transition-transform duration-500 hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25"
+              aria-label={`Open ${p.name}`}
+            >
+              <div className="relative mb-6 h-24 w-24 overflow-hidden rounded-2xl border border-white/40 bg-cyber-gray-800 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-[1.05]">
+                <Image
+                  src={`/professional/${p.id}.jpg`}
+                  alt={p.name}
+                  width={144}
+                  height={144}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              </div>
+              <h3 className="text-base font-semibold text-cyber-gray-100">{p.name}</h3>
+              {p.Location ? (
+                <div className="mt-2 flex max-w-full items-center justify-center gap-1 text-sm text-cyber-gray-300">
+                  <Icon icon="heroicons:map-pin" width={16} className="text-cyber-brand-600" />
+                  <span>{p.Location}</span>
+                </div>
+              ) : null}
+            </a>
+          ))}
+        </div>
+
+        {/* Desktop marquee */}
+        <div className="relative hidden pb-12 md:block">
+          <div className="professionals-marquee" style={marqueeStyle}>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-cyber-gray-900 via-cyber-gray-900/40 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-cyber-gray-900 via-cyber-gray-900/40 to-transparent" />
+            <div className="relative flex overflow-visible">
+              <div className="professionals-track flex gap-6 animate-marquee-dynamic px-10">
+                {[...list, ...list].map((p, index) => (
+                  <a
+                    key={`${p.id}-${index}`}
+                    href={`/professional/${p.slug ?? p.id}`}
+                    className="group relative flex w-[220px] flex-shrink-0 transform-gpu flex-col items-center rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/25 transition-transform duration-500 hover:scale-[1.06] hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/30 xl:w-[260px]"
+                    aria-label={`Open ${p.name}`}
+                  >
+                    <div className="relative mb-6 h-24 w-24 overflow-hidden rounded-2xl border border-white/40 bg-cyber-gray-800 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-[1.05]">
+                      <Image
+                        src={`/professional/${p.id}.jpg`}
+                        alt={p.name}
+                        width={144}
+                        height={144}
+                        className="h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     </div>
-                    <h3 className="mb-3 text-xl font-bold text-base-content tracking-wide">{p.name}</h3>
-                    {p.shortBio ? (
-                      <p className="line-clamp-3 text-sm text-base-content/70 leading-relaxed">{p.shortBio}</p>
-                    ) : null}
-                  </div>
-                </a>
-              ))}
-              {/* 第二组内容（用于无缝循环） */}
-              {list.map((p) => (
-                <a
-                  key={`duplicate-${p.id}`}
-                  href={`/professional/${p.slug ?? p.id}`}
-                  className="group block cursor-pointer rounded-3xl border border-base-300/40 bg-base-100/80 p-6 pt-12 pb-8 text-center shadow-lg ring-0 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none flex-shrink-0 w-96"
-                  aria-label={`Open ${p.name}`}
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="relative mb-8 isolate">
-                      <div className="pointer-events-none absolute -inset-8 z-0 rounded-[50px] bg-gradient-to-br from-primary/30 to-accent/30 opacity-70 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-                      <div className="avatar relative z-10">
-                        <div className="h-40 w-40 overflow-hidden rounded-3xl border-2 border-white/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.06]">
-                          <Image
-                            src={`/professional/${p.id}.jpg`}
-                            alt={p.name}
-                            width={160}
-                            height={160}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
+
+                    <div className="space-y-3">
+                      <h3 className="text-base font-semibold text-cyber-gray-100">{p.name}</h3>
+                      {p.Location ? (
+                        <p className="text-xs text-cyber-gray-400 md:text-sm">
+                          {p.Location}
+                        </p>
+                      ) : null}
                     </div>
-                    <h3 className="mb-3 text-xl font-bold text-base-content tracking-wide">{p.name}</h3>
-                    {p.shortBio ? (
-                      <p className="line-clamp-3 text-sm text-base-content/70 leading-relaxed">{p.shortBio}</p>
-                    ) : null}
-                  </div>
-                </a>
-              ))}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

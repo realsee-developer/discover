@@ -14,10 +14,11 @@ hsl(220, 100%, 60%)
 ```
 
 请改用：
+
 - CSS 变量：`var(--color-brand-800)` 等（参见 [design-system.mdc](mdc:.cursor/rules/design-system.mdc) 的 Token 定义）
 - Tailwind 颜色：`text-brand-800` / `bg-brand-800` / `border-brand-800` 等（参见 [frontend/tailwind.config.ts](mdc:frontend/tailwind.config.ts)）
 
 说明：
+
 - `brand-500 (#3366FF)` 不满足白字 AAA 与小字号正文 AAA，请使用 `brand-800/900`。
 - 如确需使用品牌基色，需满足 AAA-大字阈值或仅作装饰性非文本用途。
-

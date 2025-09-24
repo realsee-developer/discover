@@ -279,12 +279,12 @@
 }
 
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 55s linear infinite;
 }
 
 /* 动态速度的跑马灯动画 */
 .animate-marquee-dynamic {
-  animation: marquee var(--marquee-duration, 40s) linear infinite;
+  animation: marquee var(--marquee-duration, 55s) linear infinite;
 }
 
 /* Pause marquee on hover */
@@ -300,7 +300,7 @@
 
 /* Enhanced hover effects for marquee items - updated for new design */
 .professionals-track a:hover {
-  transform: translateY(-8px) scale(1.03);
+  transform: scale(1.03);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 

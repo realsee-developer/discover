@@ -1,37 +1,51 @@
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { getVrs, resolvePublicAssetPath } from "@/data/db";
-import { getCategoryBadgeClass, getDeviceBadgeClass, getBadgeIcon, DeviceIcon } from "@/lib/badge-utils";
+import { CategoryBadge } from "@/components/custom/badges";
+import { DeviceIcon } from "@/lib/badge-utils";
 
 export function TourGrid() {
   const vrs = getVrs().slice(0, 12);
 
   return (
-    <section className="tour-gallery-section relative overflow-hidden py-16 bg-gradient-to-b from-base-200 to-base-200/60">
-      <div className="container mx-auto px-6">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <section className="tour-gallery-section relative overflow-hidden bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/96 to-cyber-gray-800 py-20">
+      <div className="absolute inset-0 -z-10">
+        <div className="cyber-grid h-full w-full opacity-10" />
+        <div className="absolute left-[8%] top-24 h-72 w-72 rounded-full bg-cyber-brand-500/15 blur-[120px]" />
+        <div className="absolute right-[12%] top-0 h-80 w-80 rounded-full bg-cyber-neon-cyan/15 blur-[140px]" />
+      </div>
+      <div className="relative z-10 container mx-auto px-6">
+        <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-base-content md:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white shadow-lg shadow-cyber-brand-500/30">
+              <Icon icon="heroicons:bolt" width={16} className="text-white" />
+              <span>Featured Library</span>
+            </div>
+            <h2 className="mt-5 text-3xl font-bold tracking-tight text-cyber-gray-100 md:text-4xl">
               Explore More 3D Tours
             </h2>
-            <p className="mt-2 max-w-2xl text-base text-base-content/70">
-              Dive into a hand‑picked collection of interactive spaces across categories and devices.
+            <p className="mt-3 max-w-2xl text-base text-cyber-gray-200">
+              Dive into a hand-picked collection of immersive spaces curated across industries, devices, and creators.
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/search" className="btn btn-primary shadow-md shadow-primary/20">
+            <a
+              href="/search"
+              className="cyber-btn-primary inline-flex items-center gap-2 px-8 py-3 text-sm font-semibold uppercase tracking-[0.25em]"
+            >
               View All Tours
+              <Icon icon="heroicons:arrow-right" width={16} />
             </a>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {vrs.map((vr) => (
             <a
               key={vr.id}
               href={vr.url}
               target="_blank"
               rel="noreferrer"
-              className="tour-card card bg-base-100 group cursor-pointer"
+              className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
             >
               <figure className="relative overflow-hidden">
                 <Image
@@ -46,32 +60,20 @@ export function TourGrid() {
                   height={384}
                   className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                
-                {/* 左上角的分类徽章 */}
+
                 <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
-                  {vr.shortCategory || vr.category ? (
-                    <div className={`badge ${getCategoryBadgeClass(vr.shortCategory || vr.category || "")} badge-sm gap-1`}>
-                      <Icon icon={getBadgeIcon(vr.shortCategory || vr.category || "")} width={12} />
-                      <span>{vr.shortCategory || vr.category}</span>
-                    </div>
-                  ) : null}
+                  <CategoryBadge category={vr.shortCategory || vr.category} size="sm" />
                 </div>
-                
-                {/* 右上角的设备信息 */}
+
                 {vr.device ? (
-                  <div className="absolute top-3 right-3">
-                    <div className={`badge ${getDeviceBadgeClass(vr.device)} badge-sm gap-1.5`}>
-                      <DeviceIcon device={vr.device} width={14} />
-                      <span className="font-medium text-xs">{vr.device}</span>
-                    </div>
+                  <div className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-cyber-gray-900/80 shadow-lg shadow-black/30">
+                    <DeviceIcon device={vr.device} width={18} className="text-cyber-gray-100" />
                   </div>
                 ) : null}
-
               </figure>
-              
-              {/* 标题覆盖层 */}
-              <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/70 via-black/40 to-transparent">
-                <h3 className="text-white font-bold text-lg line-clamp-2 drop-shadow-lg">
+
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-cyber-gray-900 via-cyber-gray-900/70 to-transparent p-4">
+                <h3 className="text-cyber-gray-100 text-lg font-semibold leading-snug line-clamp-2">
                   {vr.title || vr.id}
                 </h3>
               </div>

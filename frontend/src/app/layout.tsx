@@ -1,7 +1,5 @@
-import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
-import { getStrapiURL } from "@/lib/utils";
 import { SiteHeader } from "../components/custom/SiteHeader";
 import { SiteFooter } from "../components/custom/SiteFooter";
 
@@ -26,20 +24,6 @@ const orbitron = Orbitron({
   display: "swap",
   weight: ["400", "700", "900"],
 });
-
-export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = getStrapiURL();
-  try {
-    const res = await fetch(`${baseUrl}/api/global`);
-    if (!res.ok) throw new Error("Failed to fetch metadata");
-    const json = await res.json();
-    const title = json?.data?.title ?? "Discover";
-    const description = json?.data?.description ?? "Discover App";
-    return { title, description } satisfies Metadata;
-  } catch {
-    return { title: "Discover", description: "Discover App" };
-  }
-}
 
 export default async function RootLayout({
   children,

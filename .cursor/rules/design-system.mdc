@@ -1,339 +1,82 @@
 ---
 alwaysApply: true
-description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符合 WCAG 2.2 AA）
+description: Realsee Discover 赛博朋克前端设计执行清单（品牌色 #3366FF，符合 WCAG 2.2 AA）
 ---
 
-# Realsee Discover 赛博朋克设计规范（WCAG 2.2 AA）
+# Realsee Discover 前端设计与可访问性规则
 
-本规范定义了以赛博朋克美学为核心，品牌色 `#3366FF` 为基础的设计系统，确保满足 WCAG 2.2 AA 可访问性标准。
+> 目标：确保所有页面模块在深色赛博朋克主题下保持风格一致、文本可读、交互可辨。
 
 参考文件：
 
-- 全局样式变量：[frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
-
-## 可访问性标准（WCAG 2.2 AA）
-
-- **普通文本**（< 18px）：对比度 ≥ 4.5:1
-- **大文本**（≥ 18px 粗体 或 ≥ 24px 常规）：对比度 ≥ 3:1
-- **非文本元素**（按钮、边框、焦点指示器）：对比度 ≥ 3:1
-- **焦点可见性**：2px 外描边 + 2px 偏移，确保键盘导航可见
-
-## 赛博朋克色彩系统
-
-### 核心品牌色 (#3366FF)
-
-```css
---cyber-brand-primary: #3366FF; /* 核心蓝色 */
-```
-
-### 赛博朋克配色板
-
-```css
-/* 霓虹色系 */
---cyber-neon-cyan: #00FFFF;      /* 霓虹青色 */
---cyber-neon-magenta: #FF00FF;   /* 霓虹品红 */
---cyber-neon-green: #00FF41;     /* 矩阵绿 */
---cyber-electric-blue: #0099FF;  /* 电光蓝 */
---cyber-plasma-purple: #8A2BE2;  /* 等离子紫 */
-
-/* 品牌蓝色阶 */
---cyber-brand-50:  #0a0f1a;     /* 深空背景 */
---cyber-brand-100: #0f1929;     /* 暗色面板 */
---cyber-brand-200: #1a2844;     /* 中性背景 */
---cyber-brand-300: #2d4a7a;     /* 边框/分割线 */
---cyber-brand-400: #4d73cc;     /* 悬浮状态 */
---cyber-brand-500: #3366FF;     /* 主品牌色 */
---cyber-brand-600: #5577ff;     /* 亮色变体 */
---cyber-brand-700: #7799ff;     /* 高亮 */
---cyber-brand-800: #99bbff;     /* 超亮 */
---cyber-brand-900: #bbddff;     /* 发光效果 */
-
-/* 灰度系统 */
---cyber-gray-900: #0a0a0a;      /* 最深背景 */
---cyber-gray-800: #1a1a1a;      /* 主背景 */
---cyber-gray-700: #2a2a2a;      /* 卡片背景 */
---cyber-gray-600: #404040;      /* 边框 */
---cyber-gray-500: #666666;      /* 次要文本 */
---cyber-gray-400: #999999;      /* 占位符 */
---cyber-gray-300: #cccccc;      /* 主要文本 */
---cyber-gray-200: #e6e6e6;      /* 高亮文本 */
---cyber-gray-100: #f5f5f5;      /* 纯白 */
-```
-
-## 赛博朋克设计原则
-
-### 1. 暗色为主的配色方案
-
-- **主背景**：`bg-cyber-gray-900` (#0a0a0a)
-- **卡片/面板**：`bg-cyber-gray-800` (#1a1a1a) 或 `bg-cyber-gray-700` (#2a2a2a)
-- **边框**：`border-cyber-gray-600` (#404040)
-
-### 2. 霓虹发光效果
-
-使用 CSS `box-shadow` 和 `text-shadow` 实现：
-
-```css
-/* 霓虹按钮 */
-.cyber-neon-button {
-  box-shadow: 
-    0 0 5px currentColor,
-    0 0 10px currentColor,
-    0 0 15px currentColor,
-    0 0 20px currentColor;
-}
-
-/* 霓虹文本 */
-.cyber-neon-text {
-  text-shadow:
-    0 0 5px currentColor,
-    0 0 10px currentColor,
-    0 0 15px currentColor;
-}
-```
-
-### 3. 渐变与光效
-
-- **主要渐变**：`bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan`
-- **背景渐变**：`bg-gradient-to-br from-cyber-gray-900 to-cyber-brand-50`
-- **边框渐变**：`border-gradient` 使用品牌色到霓虹色
-
-### 4. 几何线条与网格
-
-- 使用细线条 (1px) 构建科技感网格
-- 对角线、六边形等几何形状装饰
-- 数字化风格的分割线
-
-## 组件设计规范
-
-### 按钮系统
-
-```css
-/* 主要按钮 - 霓虹风格 */
-.btn-primary {
-  @apply bg-cyber-brand-500 text-white px-6 py-3;
-  @apply border border-cyber-brand-500;
-  @apply hover:bg-transparent hover:text-cyber-brand-500;
-  @apply transition-all duration-300;
-  box-shadow: 0 0 10px rgba(51, 102, 255, 0.3);
-}
-
-.btn-primary:hover {
-  box-shadow: 
-    0 0 5px #3366FF,
-    0 0 10px #3366FF,
-    0 0 15px #3366FF;
-}
-
-/* 次要按钮 - 轮廓风格 */
-.btn-secondary {
-  @apply bg-transparent text-cyber-gray-300;
-  @apply border border-cyber-gray-600;
-  @apply hover:border-cyber-brand-500 hover:text-cyber-brand-500;
-  @apply transition-all duration-300;
-}
-
-/* 危险按钮 - 霓虹红 */
-.btn-danger {
-  @apply bg-red-600 text-white;
-  @apply hover:bg-transparent hover:text-red-400;
-  @apply border border-red-600 hover:border-red-400;
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
-}
-```
-
-### 输入框系统
-
-```css
-.cyber-input {
-  @apply bg-cyber-gray-800 text-cyber-gray-200;
-  @apply border border-cyber-gray-600;
-  @apply focus:border-cyber-brand-500 focus:ring-1 focus:ring-cyber-brand-500;
-  @apply transition-all duration-300;
-}
-
-.cyber-input:focus {
-  box-shadow: 0 0 5px rgba(51, 102, 255, 0.5);
-}
-```
-
-### 卡片系统
-
-```css
-.cyber-card {
-  @apply bg-cyber-gray-800 border border-cyber-gray-600;
-  @apply rounded-lg p-6;
-  @apply hover:border-cyber-brand-500;
-  @apply transition-all duration-300;
-}
-
-.cyber-card-neon {
-  @apply cyber-card;
-  box-shadow: 
-    0 0 10px rgba(51, 102, 255, 0.1),
-    inset 0 0 10px rgba(51, 102, 255, 0.05);
-}
-```
-
-### 导航与链接
-
-```css
-.cyber-nav-link {
-  @apply text-cyber-gray-300 hover:text-cyber-brand-500;
-  @apply transition-colors duration-300;
-  @apply relative;
-}
-
-.cyber-nav-link::after {
-  content: '';
-  @apply absolute bottom-0 left-0 w-0 h-0.5;
-  @apply bg-cyber-brand-500 transition-all duration-300;
-}
-
-.cyber-nav-link:hover::after {
-  @apply w-full;
-  box-shadow: 0 0 5px #3366FF;
-}
-```
-
-## 文本层次系统
-
-### 标题
-
-- **H1**: `text-4xl font-bold text-cyber-gray-100` + 霓虹效果
-- **H2**: `text-3xl font-semibold text-cyber-gray-200`
-- **H3**: `text-2xl font-medium text-cyber-brand-500`
-- **H4**: `text-xl font-medium text-cyber-gray-300`
-
-### 正文
-
-- **主要文本**: `text-cyber-gray-300` (满足AA标准对比度4.7:1)
-- **次要文本**: `text-cyber-gray-500`
-- **标注文本**: `text-cyber-gray-400`
-
-### 特殊文本
-
-- **强调文本**: `text-cyber-brand-500` + 霓虹效果
-- **代码文本**: `font-mono text-cyber-neon-green bg-cyber-gray-800`
-- **链接文本**: `text-cyber-brand-500 hover:text-cyber-brand-600`
-
-## 动画与交互
-
-### 过渡效果
-
-```css
-.cyber-transition {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.cyber-glow-animate {
-  animation: cyberGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes cyberGlow {
-  from { box-shadow: 0 0 5px currentColor; }
-  to { box-shadow: 0 0 20px currentColor; }
-}
-```
-
-### 悬浮效果
-
-- 卡片悬浮：轻微上升 + 边框发光
-- 按钮悬浮：背景透明化 + 边框发光
-- 文本悬浮：颜色渐变 + 文本发光
-
-## 布局规范
-
-### 间距系统（基于8px网格）
-
-```css
---space-1: 0.25rem;  /* 4px */
---space-2: 0.5rem;   /* 8px */
---space-3: 0.75rem;  /* 12px */
---space-4: 1rem;     /* 16px */
---space-6: 1.5rem;   /* 24px */
---space-8: 2rem;     /* 32px */
---space-12: 3rem;    /* 48px */
---space-16: 4rem;    /* 64px */
-```
-
-### 圆角系统
-
-```css
---radius-sm: 0.25rem;  /* 小圆角 */
---radius-md: 0.5rem;   /* 中圆角 */
---radius-lg: 0.75rem;  /* 大圆角 */
---radius-xl: 1rem;     /* 超大圆角 */
-```
-
-## 特效与装饰
-
-### 背景图案
-
-- 网格纹理：细线条网格覆盖
-- 电路板图案：科技感线条
-- 像素点阵：数字化背景
-
-### 分割线与边框
-
-- 渐变分割线：从透明到品牌色
-- 动画边框：流动的光效边框  
-- 虚线边框：科技感虚线样式
-
-## 可访问性实现
-
-### 焦点指示器
-
-```css
-.cyber-focus {
-  @apply focus:outline-none focus:ring-2 focus:ring-cyber-brand-500;
-  @apply focus:ring-offset-2 focus:ring-offset-cyber-gray-900;
-}
-```
-
-### 高对比模式
-
-```css
-@media (prefers-contrast: high) {
-  .cyber-text { @apply text-white; }
-  .cyber-bg { @apply bg-black; }
-  .cyber-border { @apply border-white; }
-}
-```
-
-### 减少动画选项
-
-```css
-@media (prefers-reduced-motion: reduce) {
-  .cyber-glow-animate { animation: none; }
-  .cyber-transition { transition: none; }
-}
-```
-
-## 组件库速查
-
-### 常用类名组合
-
-```css
-/* 霓虹卡片 */
-.cyber-neon-card: "bg-cyber-gray-800 border border-cyber-brand-500 rounded-lg p-6 shadow-lg shadow-cyber-brand-500/20"
-
-/* 主要按钮 */
-.cyber-btn-primary: "bg-cyber-brand-500 text-white px-6 py-3 rounded-md hover:bg-transparent hover:text-cyber-brand-500 border border-cyber-brand-500 transition-all duration-300"
-
-/* 输入框 */
-.cyber-input: "bg-cyber-gray-800 text-cyber-gray-200 border border-cyber-gray-600 rounded-md px-4 py-2 focus:border-cyber-brand-500 focus:ring-1 focus:ring-cyber-brand-500"
-
-/* 霓虹文本 */
-.cyber-neon-text: "text-cyber-brand-500 font-semibold" + text-shadow CSS
-```
-
-## 实施检查清单
-
-- [ ] 所有文本元素满足WCAG 2.2 AA对比度要求
-- [ ] 焦点指示器在所有交互元素上可见  
-- [ ] 颜色不是传达信息的唯一手段
-- [ ] 支持键盘导航
-- [ ] 动画效果遵守用户偏好设置
-- [ ] 高对比模式下保持可用性
-- [ ] 霓虹效果不影响可读性
-- [ ] 在各种屏幕尺寸下保持设计一致性
+- 全局变量与设计令牌：[frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
+- Tailwind + daisyUI 执行规范：[.cursor/rules/frontend-tailwind-daisyui.mdc](mdc:.cursor/rules/frontend-tailwind-daisyui.mdc)
+- Next.js 页面结构约定：[.cursor/rules/frontend-next.mdc](mdc:.cursor/rules/frontend-next.mdc)
+- UI 组件库入口：[frontend/src/components](mdc:frontend/src/components)
+
+## 一、设计基础原则
+
+- **统一令牌**：颜色、阴影、圆角、间距、字体权重必须引用 `globals.css` 中的 `--cyber-*` 变量或 Tailwind 预设；禁止直接写十六进制或 rgba。
+- **模块复用**：优先调用 `frontend/src/components/ui` 与 `frontend/src/components/custom` 中的卡片、按钮、标签等组件；若需新样式，先扩展组件后复用，不在页面内散写。
+- **视觉层级**：背景层（`cyber-gray-900/800`）→ 容器层（卡片、面板）→ 内容层（文本、图像）→ 强调层（霓虹着色、动态边框）。不得在同层级混用多个发光效果。
+- **主题一致性**：霓虹强调色限制为 `brand`、`neon-cyan`、`neon-magenta` 三类；单页面最多使用两种强调色，优先品牌蓝。
+- **动态克制**：动画、渐变用于吸引注意，必须与交互状态对应（如悬浮、选中），不可用于静态文本块。
+
+## 二、色彩与背景
+
+- **背景梯度**：整页背景仅可使用 `bg-cyber-gray-900` 或 `bg-gradient-to-br from-cyber-gray-900 to-cyber-brand-50`，禁止局部自定义渐变。
+- **卡片层**：
+  - 默认：`bg-cyber-gray-800 border border-cyber-gray-600 shadow-none`。
+  - 强调：可附加 `shadow-cyber-brand-500/20` 或 `border-cyber-brand-500`，但不可同时叠加多重发光。
+- **状态色**：成功、警告、错误使用 Tailwind 语义色并加 `opacity-90`，保持 ≥3:1 对比度。
+- **禁用色**：`text-cyber-gray-500` 配合 `bg-cyber-gray-800/70`，同时降低发光与动画。
+
+## 三、文本排版与可读性
+
+- **字体层级**：
+  - H1 `text-4xl font-bold text-cyber-gray-100`，带轻微霓虹 `text-shadow: 0 0 12px var(--cyber-brand-500)`。
+  - H2 `text-3xl font-semibold text-cyber-gray-200`。
+  - H3 `text-2xl font-medium text-cyber-brand-500`。
+  - 正文 `text-base text-cyber-gray-300 leading-relaxed`。
+- **对比校验**：所有正文与背景对比度 ≥4.5:1；在卡片内测试 `cyber-gray-300` 对 `cyber-gray-800` 即可达标。
+- **多列文本**：限制列宽 ≤ `max-w-3xl`，段间距使用 `space-y-4`，避免整段发光或渐变。
+- **强调手段**：优先使用字体权重、分隔线；如需彩色强调，搭配 `cyber-neon-text` 并确保不与正文混淆。
+
+## 四、组件与模块规范
+
+- **按钮**：
+  - `Button` 组件（`frontend/src/components/ui/button.tsx`）是唯一入口。变体通过 `variant="primary|secondary|ghost|danger"` 切换，不允许页面内自定义 class。
+  - 悬浮状态统一 `hover:bg-transparent hover:text-cyber-brand-500 border border-current shadow-cyber-brand-500/40`。
+- **卡片**：
+  - 使用 `cyber-card`/`cyber-card-neon` 组合；模块头部、正文、操作区按 `space-y-4`、`grid` 布局。
+  - 图文混排时，图片需加 `rounded-lg border border-cyber-gray-600`，并限制发光为 `shadow-cyber-brand-500/10`。
+- **表单输入**：依赖 `cyber-input` 与 `Label` 组件（`frontend/src/components/ui/input.tsx` 等）；焦点状态必须包含 `focus:ring-2 focus:ring-offset-2`。
+- **标签/徽章**：使用 `Badge` 组件（`frontend/src/components/ui/badge.tsx`），颜色限定 `primary` 或 `outline`。
+- **图标**：统一使用 `lucide-react`，尺寸设为 `h-5 w-5`，颜色继承文本。
+
+## 五、跨页面一致性
+
+- 每个页面需包含：页面标题区（标题+副标题）、核心内容区（卡片或区块）、辅助信息区（CTA 或二级信息）。布局顺序一致。
+- 首页、列表页、详情页共享 `SiteHeader`、`SiteFooter` 等布局组件，禁止在单页重写导航或页脚结构。
+- 若新增模块类型（如时间轴、统计卡），需先在 `frontend/src/components/custom` 或 `frontend/src/components/modules` 下创建可复用组件并更新 Storybook/MDX 文档。
+- 页面网格：桌面端使用 `max-w-7xl mx-auto px-8`，移动端 `px-4`；列布局遵循 `grid-cols-1 lg:grid-cols-12` 模式，内容列宽建议 `lg:col-span-8`，侧栏 `lg:col-span-4`。
+
+## 六、交互与动效
+
+- **焦点指示**：所有交互元素必须带 `.cyber-focus`，确保 2px 外描边 + 2px 偏移。
+- **悬浮/选中**：采用 `cyber-glow-animate` 时，动画时长 ≤2s，`prefers-reduced-motion` 下需禁用。
+- **滚动效果**：视差、渐入等动效需通过 Intersection Observer 封装，默认关闭并提供 `data-animate="none"` 以便禁用。
+
+## 七、测试与验收
+
+- **对比度检查**：在设计评审或 PR 自检中通过 Lighthouse 或 Axe 扩展验证关键视图。
+- **响应式检查**：最小宽度 320px、断点 768px/1024px/1440px 必须手动确认布局无断裂。
+- **组件快照**：新增或更新视觉组件需补充 Playwright/Storybook 视觉快照截图链接在 PR 描述。
+- **验收清单**：
+  - 页面背景、卡片、文本均使用统一令牌
+  - 文本对比度符合 WCAG 2.2 AA
+  - 模块使用标准组件且布局一致
+  - 交互状态、焦点可见
+  - 动画遵循用户偏好
+
+完成以上检查后方可合并。

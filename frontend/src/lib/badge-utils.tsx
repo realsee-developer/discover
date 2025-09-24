@@ -7,35 +7,6 @@ import { Icon } from "@iconify/react";
 import { GaloisIcon } from "@/components/custom/GaloisIcon";
 import { PanoTo3DIcon } from "@/components/custom/PanoTo3DIcon";
 
-export function getCategoryBadgeClass(category: string): string {
-  const normalizedCategory = (category || "").toLowerCase();
-  
-  // Semantic category colors
-  if (normalizedCategory.includes("residential") || normalizedCategory.includes("house") || normalizedCategory.includes("home")) {
-    return "badge-category-residential";
-  }
-  if (normalizedCategory.includes("office") || normalizedCategory.includes("workplace")) {
-    return "badge-category-office";
-  }
-  if (normalizedCategory.includes("retail") || normalizedCategory.includes("store") || normalizedCategory.includes("shop")) {
-    return "badge-category-retail";
-  }
-  if (normalizedCategory.includes("industrial") || normalizedCategory.includes("factory") || normalizedCategory.includes("warehouse")) {
-    return "badge-category-industrial";
-  }
-  if (normalizedCategory.includes("exhibition") || normalizedCategory.includes("museum") || normalizedCategory.includes("gallery")) {
-    return "badge-category-exhibition";
-  }
-  
-  // Default to primary badge for other categories
-  return "badge-primary";
-}
-
-export function getDeviceBadgeClass(device: string): string {
-  // All devices use the same dark glass style for consistency
-  return "badge-device";
-}
-
 export function getBadgeIcon(category: string): string {
   const c = (category || "").toLowerCase();
   if (c.includes("residential") || c.includes("house") || c.includes("home")) return "heroicons:home";

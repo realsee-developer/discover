@@ -193,6 +193,13 @@ export type TProfessional = {
   CityTag?: string;
   vrIds?: string[];
   youtubeId?: string;
+  linkedin?: string;
+  instagram?: string;
+  facebook?: string;
+  youtube?: string;
+  vimeo?: string;
+  blogArticle?: string;
+  behindScenesVideo?: string;
 };
 
 export type TCarouselEntry = {

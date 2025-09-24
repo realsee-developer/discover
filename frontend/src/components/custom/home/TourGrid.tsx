@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { getVrs, resolvePublicAssetPath } from "@/data/db";
 import { getCategoryBadgeClass, getDeviceBadgeClass, getBadgeIcon, DeviceIcon } from "@/lib/badge-utils";
@@ -33,9 +34,16 @@ export function TourGrid() {
               className="tour-card card bg-base-100 group cursor-pointer"
             >
               <figure className="relative overflow-hidden">
-                <img
-                  src={resolvePublicAssetPath(vr.assetCover || vr.cover) || vr.remoteCover || "/placeholder.jpg"}
+                <Image
+                  src={(() => {
+                    const localSrc = resolvePublicAssetPath(vr.assetCover || vr.cover);
+                    const remoteSrc = vr.remoteCover;
+                    const fallback = "/placeholder.jpg";
+                    return localSrc || remoteSrc || fallback;
+                  })()}
                   alt={vr.title || vr.id}
+                  width={640}
+                  height={384}
                   className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 

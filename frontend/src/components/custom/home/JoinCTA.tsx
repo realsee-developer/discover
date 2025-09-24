@@ -1,14 +1,18 @@
 "use client";
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 
 export function JoinCTA() {
   return (
     <section className="join-community-section relative overflow-hidden bg-gradient-to-b from-primary/20 via-accent/15 to-base-100 py-32">
       <div className="absolute inset-0 -z-20">
-        <img
+        <Image
           src="/bg/creator-hero.jpeg"
           alt=""
-          className="h-full w-full object-cover"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-base-100/80 via-base-100/60 to-base-100/95" />
       </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 
 export function SiteFooter() {
@@ -44,10 +45,13 @@ export function SiteFooter() {
               <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="relative group">
                   <div className="absolute -inset-2 bg-gradient-to-r from-cyber-brand-500/30 via-cyber-neon-cyan/20 to-cyber-brand-500/30 rounded-3xl blur-md group-hover:blur-lg transition-all duration-500"></div>
-                  <img
+                  <Image
                     src="/realsee-logo.jpeg"
                     alt="Realsee Logo"
+                    width={64}
+                    height={64}
                     className="relative w-16 h-16 rounded-2xl shadow-2xl ring-2 ring-cyber-brand-500/50 group-hover:ring-cyber-neon-cyan/70 transition-all duration-500"
+                    priority
                   />
                   <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-br from-cyber-brand-500 to-cyber-neon-cyan rounded-full border-2 border-cyber-gray-900 shadow-lg shadow-cyber-neon-cyan/50"></div>
                 </div>

@@ -8,11 +8,11 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 本规范定义了以赛博朋克美学为核心，品牌色 `#3366FF` 为基础的设计系统，确保满足 WCAG 2.2 AA 可访问性标准。
 
 参考文件：
-- Tailwind 配置：[frontend/tailwind.config.js](mdc:frontend/tailwind.config.js)
+
 - 全局样式变量：[frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
-- 前端工具函数：[frontend/src/lib/utils.ts](mdc:frontend/src/lib/utils.ts)
 
 ## 可访问性标准（WCAG 2.2 AA）
+
 - **普通文本**（< 18px）：对比度 ≥ 4.5:1
 - **大文本**（≥ 18px 粗体 或 ≥ 24px 常规）：对比度 ≥ 3:1
 - **非文本元素**（按钮、边框、焦点指示器）：对比度 ≥ 3:1
@@ -21,11 +21,13 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 赛博朋克色彩系统
 
 ### 核心品牌色 (#3366FF)
+
 ```css
 --cyber-brand-primary: #3366FF; /* 核心蓝色 */
 ```
 
 ### 赛博朋克配色板
+
 ```css
 /* 霓虹色系 */
 --cyber-neon-cyan: #00FFFF;      /* 霓虹青色 */
@@ -61,12 +63,15 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 赛博朋克设计原则
 
 ### 1. 暗色为主的配色方案
+
 - **主背景**：`bg-cyber-gray-900` (#0a0a0a)
 - **卡片/面板**：`bg-cyber-gray-800` (#1a1a1a) 或 `bg-cyber-gray-700` (#2a2a2a)
 - **边框**：`border-cyber-gray-600` (#404040)
 
 ### 2. 霓虹发光效果
+
 使用 CSS `box-shadow` 和 `text-shadow` 实现：
+
 ```css
 /* 霓虹按钮 */
 .cyber-neon-button {
@@ -87,11 +92,13 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 3. 渐变与光效
+
 - **主要渐变**：`bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan`
 - **背景渐变**：`bg-gradient-to-br from-cyber-gray-900 to-cyber-brand-50`
 - **边框渐变**：`border-gradient` 使用品牌色到霓虹色
 
 ### 4. 几何线条与网格
+
 - 使用细线条 (1px) 构建科技感网格
 - 对角线、六边形等几何形状装饰
 - 数字化风格的分割线
@@ -99,6 +106,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 组件设计规范
 
 ### 按钮系统
+
 ```css
 /* 主要按钮 - 霓虹风格 */
 .btn-primary {
@@ -134,6 +142,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 输入框系统
+
 ```css
 .cyber-input {
   @apply bg-cyber-gray-800 text-cyber-gray-200;
@@ -148,6 +157,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 卡片系统
+
 ```css
 .cyber-card {
   @apply bg-cyber-gray-800 border border-cyber-gray-600;
@@ -165,6 +175,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 导航与链接
+
 ```css
 .cyber-nav-link {
   @apply text-cyber-gray-300 hover:text-cyber-brand-500;
@@ -187,17 +198,20 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 文本层次系统
 
 ### 标题
+
 - **H1**: `text-4xl font-bold text-cyber-gray-100` + 霓虹效果
 - **H2**: `text-3xl font-semibold text-cyber-gray-200`
 - **H3**: `text-2xl font-medium text-cyber-brand-500`
 - **H4**: `text-xl font-medium text-cyber-gray-300`
 
 ### 正文
+
 - **主要文本**: `text-cyber-gray-300` (满足AA标准对比度4.7:1)
-- **次要文本**: `text-cyber-gray-500` 
+- **次要文本**: `text-cyber-gray-500`
 - **标注文本**: `text-cyber-gray-400`
 
 ### 特殊文本
+
 - **强调文本**: `text-cyber-brand-500` + 霓虹效果
 - **代码文本**: `font-mono text-cyber-neon-green bg-cyber-gray-800`
 - **链接文本**: `text-cyber-brand-500 hover:text-cyber-brand-600`
@@ -205,6 +219,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 动画与交互
 
 ### 过渡效果
+
 ```css
 .cyber-transition {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -221,6 +236,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 悬浮效果
+
 - 卡片悬浮：轻微上升 + 边框发光
 - 按钮悬浮：背景透明化 + 边框发光
 - 文本悬浮：颜色渐变 + 文本发光
@@ -228,6 +244,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 布局规范
 
 ### 间距系统（基于8px网格）
+
 ```css
 --space-1: 0.25rem;  /* 4px */
 --space-2: 0.5rem;   /* 8px */
@@ -240,6 +257,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 圆角系统
+
 ```css
 --radius-sm: 0.25rem;  /* 小圆角 */
 --radius-md: 0.5rem;   /* 中圆角 */
@@ -250,11 +268,13 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 特效与装饰
 
 ### 背景图案
+
 - 网格纹理：细线条网格覆盖
 - 电路板图案：科技感线条
 - 像素点阵：数字化背景
 
 ### 分割线与边框
+
 - 渐变分割线：从透明到品牌色
 - 动画边框：流动的光效边框  
 - 虚线边框：科技感虚线样式
@@ -262,6 +282,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 可访问性实现
 
 ### 焦点指示器
+
 ```css
 .cyber-focus {
   @apply focus:outline-none focus:ring-2 focus:ring-cyber-brand-500;
@@ -270,6 +291,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 高对比模式
+
 ```css
 @media (prefers-contrast: high) {
   .cyber-text { @apply text-white; }
@@ -279,6 +301,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ```
 
 ### 减少动画选项
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   .cyber-glow-animate { animation: none; }
@@ -289,6 +312,7 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 ## 组件库速查
 
 ### 常用类名组合
+
 ```css
 /* 霓虹卡片 */
 .cyber-neon-card: "bg-cyber-gray-800 border border-cyber-brand-500 rounded-lg p-6 shadow-lg shadow-cyber-brand-500/20"
@@ -313,4 +337,3 @@ description: Realsee Discover 赛博朋克设计规范（品牌色 #3366FF，符
 - [ ] 高对比模式下保持可用性
 - [ ] 霓虹效果不影响可读性
 - [ ] 在各种屏幕尺寸下保持设计一致性
-

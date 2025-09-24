@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getProfessionals } from "@/data/db";
 
 export function Professionals() {
@@ -65,9 +66,11 @@ export function Professionals() {
                       <div className="pointer-events-none absolute -inset-8 z-0 rounded-[50px] bg-gradient-to-br from-primary/30 to-accent/30 opacity-70 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
                       <div className="avatar relative z-10">
                         <div className="h-40 w-40 overflow-hidden rounded-3xl border-2 border-white/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.06]">
-                          <img
+                          <Image
                             src={`/professional/${p.id}.jpg`}
                             alt={p.name}
+                            width={160}
+                            height={160}
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -93,9 +96,11 @@ export function Professionals() {
                       <div className="pointer-events-none absolute -inset-8 z-0 rounded-[50px] bg-gradient-to-br from-primary/30 to-accent/30 opacity-70 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
                       <div className="avatar relative z-10">
                         <div className="h-40 w-40 overflow-hidden rounded-3xl border-2 border-white/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.06]">
-                          <img
+                          <Image
                             src={`/professional/${p.id}.jpg`}
                             alt={p.name}
+                            width={160}
+                            height={160}
                             className="w-full h-full object-cover"
                           />
                         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
@@ -35,12 +36,15 @@ export function SiteHeader() {
             <div className="flex items-center gap-3 select-none">
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-cyber-brand-500/20 via-cyber-neon-cyan/10 to-cyber-brand-500/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-300"></div>
-                <img
+                <Image
                   src="/realsee-logo.jpeg"
                   alt="Realsee Logo"
+                  width={40}
+                  height={40}
                   className="relative w-10 h-10 rounded-xl shadow-lg ring-2 ring-cyber-brand-500/40 group-hover:ring-cyber-neon-cyan/60 transition-all duration-300"
+                  priority
                 />
-                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-gradient-to-br from-cyber-brand-500 to-cyber-neon-cyan rounded-full border-2 border-white/20 shadow-sm shadow-cyber-neon-cyan/50"></div>
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-gradient-to-br from-cyber-brand-500 to-cyber-neon-cyan rounded-full border-2 border-cyber-gray-900 shadow-lg shadow-cyber-neon-cyan/50"></div>
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold font-display bg-gradient-to-r from-cyber-brand-600 via-cyber-neon-cyan to-cyber-brand-600 bg-clip-text text-transparent">
@@ -79,21 +83,11 @@ export function SiteHeader() {
 
             {/* Actions */}
             <div className="flex items-center gap-4">
-              {/* CTA Button - Desktop */}
-              <div className="hidden md:block">
-                <Link
-                  href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center"
-                  className="cyber-btn-primary px-4 py-2.5 text-white font-medium rounded-xl transition-all duration-300 shadow-lg shadow-cyber-brand-500/30 hover:shadow-xl hover:shadow-cyber-brand-500/50 focus:outline-none focus:ring-2 focus:ring-cyber-brand-500 focus:ring-offset-2 focus:ring-offset-base-100"
-                >
-                  Get Started
-                </Link>
-              </div>
-
               {/* Mobile Menu Button */}
               <div className="lg:hidden">
                 <div className="dropdown dropdown-end">
-                  <button 
-                    tabIndex={0} 
+                  <button
+                    tabIndex={0}
                     className="p-2.5 rounded-xl bg-cyber-gray-700/80 hover:bg-cyber-brand-500/20 text-white hover:text-cyber-brand-600 transition-all duration-300 border border-cyber-gray-600/60 hover:border-cyber-brand-500 shadow-lg shadow-cyber-brand-500/10"
                   >
                     <Icon icon="heroicons:bars-3" width={20} />
@@ -103,32 +97,33 @@ export function SiteHeader() {
                     className="menu dropdown-content mt-3 z-50 p-3 shadow-2xl bg-cyber-gray-800/95 backdrop-blur-md rounded-2xl w-72 border border-cyber-gray-600/60 shadow-cyber-brand-500/20"
                   >
                     <li>
-                      <Link href="/" className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300">
+                      <Link
+                        href="/"
+                        className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300"
+                      >
                         <Icon icon="heroicons:home" width={18} />
                         Discover
                       </Link>
                     </li>
                     <li>
-                      <Link href="/search" className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300">
+                      <Link
+                        href="/search"
+                        className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300"
+                      >
                         <Icon icon="heroicons:magnifying-glass" width={18} />
                         Browse Tours
                       </Link>
                     </li>
                     <li>
-                      <Link href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center" className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300">
+                      <Link
+                        href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center"
+                        className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300"
+                      >
                         <Icon icon="heroicons:user-group" width={18} />
                         Join Community
                       </Link>
                     </li>
                     <div className="cyber-divider mx-2 my-2"></div>
-                    <li className="p-2">
-                      <Link
-                        href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center"
-                        className="cyber-btn-primary w-full text-center px-4 py-2.5 text-white font-medium rounded-xl transition-all duration-300 shadow-lg shadow-cyber-brand-500/30"
-                      >
-                        Get Started
-                      </Link>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -136,7 +131,7 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
-      
+
       <style>{`
         [data-section-id="common_header"] header {
           backdrop-filter: blur(12px) saturate(150%);

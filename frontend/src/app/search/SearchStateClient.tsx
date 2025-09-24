@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
+import Image from "next/image";
 import { getVrs, getVrTags, getDevices, resolvePublicAssetPath } from "@/data/db";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
@@ -348,9 +349,16 @@ export function SearchStateClient() {
                   }`}
                 >
                   <figure className="relative overflow-hidden">
-                    <img
-                      src={resolvePublicAssetPath(vr.assetCover || vr.cover) || vr.remoteCover || "/placeholder.jpg"}
+                    <Image
+                      src={(() => {
+                        const localSrc = resolvePublicAssetPath(vr.assetCover || vr.cover);
+                        const remoteSrc = vr.remoteCover;
+                        const fallback = "/placeholder.jpg";
+                        return localSrc || remoteSrc || fallback;
+                      })()}
                       alt={vr.title || vr.id}
+                      width={640}
+                      height={384}
                       className={`object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
                         filters.view === 'list' ? 'w-64 h-48' : 'h-48 w-full'
                       }`}

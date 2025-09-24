@@ -1,55 +1,125 @@
 "use client";
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 
-export function JoinCTA() {
+const creatorHighlights = [
+  {
+    icon: "heroicons:users",
+    label: "Global Creator Network",
+    description: "Co-create with spatial storytellers across 60+ countries in real time.",
+  },
+  {
+    icon: "heroicons:camera",
+    label: "Professional Capture Stack",
+    description: "Ship immersive 3D stories with the Galois rig and panoramic toolkit.",
+  },
+  {
+    icon: "heroicons:currency-dollar",
+    label: "Diverse Revenue Streams",
+    description: "Unlock brand collaborations, tailored projects, and distribution royalties.",
+  },
+];
+
+const contactHighlights = [
+  {
+    icon: "heroicons:rocket-launch",
+    label: "Strategic Project Scoping",
+    description: "Realsee partners capture requirements and align budgets before introductions.",
+  },
+  {
+    icon: "heroicons:shield-check",
+    label: "Verified Professional Network",
+    description: "Only certified creators receive the brief to ensure quality and reliability.",
+  },
+  {
+    icon: "heroicons:chat-bubble-left-right",
+    label: "Hands-on Support",
+    description: "Our collaboration team coordinates timelines, assets, and delivery milestones.",
+  },
+];
+
+type JoinCTAVariant = "creator" | "contact";
+
+interface JoinCTAProps {
+  variant?: JoinCTAVariant;
+  professionalName?: string;
+}
+
+export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps) {
+  const isContact = variant === "contact";
+  const heading = isContact
+    ? professionalName
+      ? `Collaborate with ${professionalName}`
+      : "Connect with Realsee Creators"
+    : "Become a Realsee Certified Creator";
+  const description = isContact
+    ? "Submit a collaboration brief and our Realsee team will introduce you to the best-fit certified creators, manage project onboarding, and ensure delivery quality end to end."
+    : "Connect with premium projects and forward-thinking brands while your spatial work gains visibility, revenue, and technical support. We provide the end-to-end toolchain, creator training, and business matchmaking to help you scale faster.";
+  const highlights = isContact ? contactHighlights : creatorHighlights;
+  const ctaLabel = isContact ? "Contact via Realsee" : "Join the Creator Center";
+  const badgeLabel = isContact ? "Project Collaboration" : "Realsee Creator Program";
+  const baseHref = "https://home.realsee.ai/en/contact-us-join-realsee-creators-center";
+
   return (
-    <section className="join-community-section relative overflow-hidden bg-gradient-to-b from-primary/15 via-accent/10 to-base-100 py-24">
-      <div className="absolute inset-0 -z-20">
-        <img src="/bg/creator-hero.jpeg" alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-base-100/70 via-base-100/50 to-base-100" />
+    <section className="join-community-section relative overflow-hidden bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/95 to-cyber-gray-800 py-24">
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/bg/creator-hero.jpeg"
+          alt=""
+          fill
+          className="object-cover opacity-40"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cyber-gray-900/80 via-cyber-gray-900/90 to-cyber-gray-900" />
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/25 blur-3xl" />
-        <div className="absolute left-[15%] top-24 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
-        <div className="absolute right-[12%] top-40 h-80 w-80 rounded-full bg-secondary/20 blur-3xl" />
+
+      <div className="pointer-events-none absolute inset-0 -z-5">
+        <div className="absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-cyber-brand-500/25 blur-3xl" />
+        <div className="absolute left-[12%] top-32 h-72 w-72 rounded-full bg-cyber-neon-cyan/15 blur-[120px]" />
+        <div className="absolute right-[10%] top-48 h-80 w-80 rounded-full bg-cyber-brand-500/20 blur-[120px]" />
       </div>
+
       <div className="container mx-auto px-6">
-        <div className="mx-auto max-w-4xl rounded-3xl border border-base-300/40 bg-base-100/90 p-10 text-center shadow-xl backdrop-blur md:p-14">
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-base-content md:text-6xl">
-            Become a Realsee Creator
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-base text-base-content/70 md:text-xl">
-            Turn your spatial capture passion into opportunities. Publish stunning tours, collaborate with brands, and get discovered by clients worldwide.
-          </p>
-          <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-3">
-            <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1.5 text-sm text-primary ring-1 ring-primary/20">
-              <Icon icon="heroicons:users" width={16} /> Global Community
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-accent/10 px-3 py-1.5 text-sm text-accent ring-1 ring-accent/20">
-              <Icon icon="heroicons:camera" width={16} /> Pro‑grade Tools
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-secondary/10 px-3 py-1.5 text-sm text-secondary ring-1 ring-secondary/20">
-              <Icon icon="heroicons:currency-dollar" width={16} /> Monetization
-            </span>
+        <div className="mx-auto max-w-5xl rounded-3xl border border-cyber-gray-700 bg-cyber-gray-800/90 p-10 text-center shadow-none backdrop-blur-xl md:p-16">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/30 bg-cyber-brand-500/10 px-5 py-2 text-sm font-semibold text-cyber-brand-400">
+            <Icon icon="heroicons:sparkles" width={16} className="text-cyber-neon-cyan" />
+            <span>{badgeLabel}</span>
           </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a href="/contact" className="btn btn-primary btn-lg px-10 shadow-lg shadow-primary/20">
-              <Icon icon="heroicons:rocket-launch" width={20} /> Join Creator Center
+
+          <h2 className="mt-6 text-4xl font-bold tracking-tight text-cyber-gray-100 md:text-5xl">
+            {heading}
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-base text-cyber-gray-300 md:text-lg">
+            {description}
+          </p>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {highlights.map((item) => (
+              <div
+                key={item.label}
+                className="cyber-card h-full border-cyber-gray-600/70 bg-cyber-gray-800/80 p-6 text-left transition-transform duration-300 hover:-translate-y-1 hover:border-cyber-brand-400 hover:bg-cyber-gray-800/90"
+              >
+                <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-cyber-brand-500/15 p-3 text-cyber-neon-cyan">
+                  <Icon icon={item.icon} width={20} />
+                </div>
+                <h3 className="text-lg font-semibold text-cyber-gray-100">{item.label}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-cyber-gray-400">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 flex flex-wrap justify-center gap-4">
+            <a
+              href={baseHref}
+              className="cyber-btn-primary cyber-focus cyber-gentle-pulse inline-flex items-center gap-3 rounded-full px-12 py-4 text-lg font-semibold text-white shadow-cyber-brand-500/40 transition-transform duration-300 hover:scale-[1.05] hover:shadow-cyber-brand-500/50 active:scale-95"
+            >
+              <Icon icon="heroicons:rocket-launch" width={20} />
+              <span>{ctaLabel}</span>
             </a>
           </div>
         </div>
       </div>
-      {/* Scoped visual effects for animated gradient chips */}
-      <style jsx>{`
-        .gradient-animate { background-size: 200% 200%; animation: gradientShift 6s ease infinite; }
-        @keyframes gradientShift { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
-        .chip-shine { position: relative; overflow: hidden; }
-        .chip-shine::after { content: ""; position: absolute; inset: -1px; background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0) 35%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 65%, transparent 100%); transform: translateX(-150%); transition: transform 0.8s ease; pointer-events: none; }
-        .chip-shine:hover::after, .chip-shine:focus-visible::after { transform: translateX(150%); }
-        @media (prefers-reduced-motion: reduce) { .gradient-animate { animation: none } .chip-shine::after { display: none } }
-      `}</style>
     </section>
   );
 }
-
-

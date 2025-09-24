@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+# Frontend Language Guide
+
+- The public-facing site is English-only. When adding or editing UI copy under `frontend/`, stick to English strings.
+- Avoid introducing Simplified Chinese (or other non-English languages) in new code, data fixtures, or component text unless explicitly required for localization.
+- Keep developer comments and commit messages in English for consistency with the codebase.

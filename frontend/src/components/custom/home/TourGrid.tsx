@@ -1,88 +1,82 @@
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { getVrs, resolvePublicAssetPath } from "@/data/db";
+import { CategoryBadge } from "@/components/custom/badges";
+import { DeviceIcon } from "@/lib/badge-utils";
 
 export function TourGrid() {
   const vrs = getVrs().slice(0, 12);
-  const getCategoryIcon = (category: string): string => {
-    const c = (category || "").toLowerCase();
-    if (c.includes("residential") || c.includes("house") || c.includes("home")) return "heroicons:home";
-    if (c.includes("industrial") || c.includes("factory")) return "heroicons:building-office-2";
-    if (c.includes("exhibition")) return "heroicons:photo";
-    if (c.includes("showroom")) return "heroicons:sparkles";
-    if (c.includes("museum")) return "heroicons:building-library";
-    if (c.includes("office")) return "heroicons:building-office";
-    if (c.includes("restaurant")) return "heroicons:building-storefront";
-    if (c.includes("studio")) return "heroicons:video-camera";
-    if (c.includes("church")) return "mdi:church";
-    if (c.includes("gym")) return "mdi:dumbbell";
-    if (c.includes("aerial")) return "heroicons:paper-airplane";
-    if (c.includes("outdoor") || c.includes("outside")) return "heroicons:globe-alt";
-    return "heroicons:tag";
-  };
-  const getDeviceIcon = (device: string): string => {
-    const d = (device || "").toLowerCase();
-    if (d.includes("galois") || d.includes("伽罗华")) return "mdi:laser-pointer"; // 激光扫描仪
-    if (d.includes("pano to 3d") || d.includes("panorama") || d.includes("全景")) return "mdi:panorama-variant"; // 全景转VR
-    return "heroicons:camera";
-  };
 
   return (
-    <section className="tour-gallery-section relative overflow-hidden py-16 bg-gradient-to-b from-base-200 to-base-200/60">
-      <div className="container mx-auto px-6">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <section className="tour-gallery-section relative overflow-hidden bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/96 to-cyber-gray-800 py-20">
+      <div className="absolute inset-0 -z-10">
+        <div className="cyber-grid h-full w-full opacity-10" />
+        <div className="absolute left-[8%] top-24 h-72 w-72 rounded-full bg-cyber-brand-500/15 blur-[120px]" />
+        <div className="absolute right-[12%] top-0 h-80 w-80 rounded-full bg-cyber-neon-cyan/15 blur-[140px]" />
+      </div>
+      <div className="relative z-10 container mx-auto px-6">
+        <div className="mb-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-base-content md:text-4xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-white shadow-lg shadow-cyber-brand-500/30">
+              <Icon icon="heroicons:bolt" width={16} className="text-white" />
+              <span>Featured Library</span>
+            </div>
+            <h2 className="mt-5 text-3xl font-bold tracking-tight text-cyber-gray-100 md:text-4xl">
               Explore More 3D Tours
             </h2>
-            <p className="mt-2 max-w-2xl text-base text-base-content/70">
-              Dive into a hand‑picked collection of interactive spaces across categories and devices.
+            <p className="mt-3 max-w-2xl text-base text-cyber-gray-200">
+              Dive into a hand-picked collection of immersive spaces curated across industries, devices, and creators.
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <a href="/search" className="btn btn-primary shadow-md shadow-primary/20">
+            <a
+              href="/search"
+              className="cyber-btn-primary inline-flex items-center gap-2 px-8 py-3 text-sm font-semibold uppercase tracking-[0.25em]"
+            >
               View All Tours
+              <Icon icon="heroicons:arrow-right" width={16} />
             </a>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {vrs.map((vr) => (
             <a
               key={vr.id}
               href={vr.url}
               target="_blank"
               rel="noreferrer"
-              className="relative block overflow-hidden rounded-2xl border border-base-300/40 bg-base-100/40 shadow-lg ring-0 transition-all duration-300 group cursor-pointer hover:-translate-y-0.5 hover:shadow-2xl focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:outline-none"
+              className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
             >
-              <figure className="relative m-0 overflow-hidden">
-                <img
-                  src={resolvePublicAssetPath(vr.assetCover || vr.cover) || vr.remoteCover || "/file.svg"}
+              <figure className="relative overflow-hidden">
+                <Image
+                  src={(() => {
+                    const localSrc = resolvePublicAssetPath(vr.assetCover || vr.cover);
+                    const remoteSrc = vr.remoteCover;
+                    const fallback = "/placeholder.jpg";
+                    return localSrc || remoteSrc || fallback;
+                  })()}
                   alt={vr.title || vr.id}
-                  className="h-48 w-full object-cover transition-transform duration-[5000ms] ease-out will-change-transform group-hover:scale-110 motion-reduce:transform-none"
+                  width={640}
+                  height={384}
+                  className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-base-content/80 via-base-content/10 to-transparent" />
-                <div className="absolute top-3 left-3 flex items-center gap-2">
-                  {vr.shortCategory || vr.category ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-primary/95 px-3 py-1.5 text-sm text-primary-content shadow-sm ring-1 ring-primary/40 backdrop-blur">
-                      <Icon icon={getCategoryIcon(vr.shortCategory || vr.category || "")} width={16} /> {vr.shortCategory || vr.category}
-                    </span>
-                  ) : null}
-                  {vr.device ? (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-black/50 px-3 py-1.5 text-sm text-white shadow-sm backdrop-blur">
-                      <Icon icon={getDeviceIcon(vr.device)} width={16} /> {vr.device}
-                    </span>
-                  ) : null}
+
+                <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
+                  <CategoryBadge category={vr.shortCategory || vr.category} size="sm" />
                 </div>
-                <div className="pointer-events-none absolute bottom-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white ring-1 ring-white/40 backdrop-blur transition">
-                    <Icon icon="heroicons:play" width={16} />
-                  </span>
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-3 pr-20 text-white md:p-4 md:pr-24">
-                  <h3 className="line-clamp-2 text-sm font-semibold drop-shadow-md md:text-base">
-                    {vr.title || vr.id}
-                  </h3>
-                </div>
+
+                {vr.device ? (
+                  <div className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-cyber-gray-900/80 shadow-lg shadow-black/30">
+                    <DeviceIcon device={vr.device} width={18} className="text-cyber-gray-100" />
+                  </div>
+                ) : null}
               </figure>
+
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-cyber-gray-900 via-cyber-gray-900/70 to-transparent p-4">
+                <h3 className="text-cyber-gray-100 text-lg font-semibold leading-snug line-clamp-2">
+                  {vr.title || vr.id}
+                </h3>
+              </div>
             </a>
           ))}
         </div>

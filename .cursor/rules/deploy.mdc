@@ -4,6 +4,7 @@ description: 部署与环境变量说明（Vercel + Strapi）
 # 部署与环境变量（Realsee Discover）
 
 ## 环境变量一览（多环境）
+
 - 前端（Next.js）
   - 显式覆盖：`NEXT_PUBLIC_STRAPI_URL`
   - 按环境：
@@ -18,6 +19,7 @@ description: 部署与环境变量说明（Vercel + Strapi）
   - 其他 `DATABASE_*`：`DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`, `DATABASE_SSL`, `DATABASE_SCHEMA` 等
 
 ## 本地开发
+
 1. 启动 Strapi（`backend/`）
    - `npm run dev`
    - 默认运行在 `http://localhost:1337`
@@ -27,6 +29,7 @@ description: 部署与环境变量说明（Vercel + Strapi）
    - `npm run dev`
 
 ## 生产与预览部署
+
 - 前端部署在 Vercel：
   - Vercel 会提供 `VERCEL_ENV`（`development` | `preview` | `production`）
   - 建议配置：
@@ -40,10 +43,12 @@ description: 部署与环境变量说明（Vercel + Strapi）
   - 生产启动：`strapi build && strapi start`
 
 ## 权限与初始化
+
 - Strapi 在启动时会通过 [backend/src/index.ts](mdc:backend/src/index.ts) 自动：
   - 确保 Public 角色可读取 `global` 与 `home-page`
   - 初始化 `global` 与 `home-page` 的最小数据
 
 ## 常见问题
+
 - 如果前端页面标题/描述为默认值，确认当前环境对应的 `NEXT_PUBLIC_STRAPI_URL_*` 或覆盖变量已正确配置
 - 如果首页模块不显示，确认 `home-page` 已发布且 `blocks` 填充，且 Public 权限已开启读取

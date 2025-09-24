@@ -1,0 +1,81 @@
+---
+description: 前端使用 TailwindCSS v4 + daisyUI + 赛博朋克设计系统规则
+globs: frontend/src/**/*.tsx,frontend/src/**/*.ts,frontend/src/**/*.css
+---
+
+# TailwindCSS v4 + daisyUI 执行规范
+
+## 总览
+
+- 全局样式源于 `frontend/src/app/globals.css`
+- 主题、组件需符合 [.cursor/rules/design-system.mdc](mdc:.cursor/rules/design-system.mdc)
+- Next.js 页面结构约定见 [.cursor/rules/frontend-next.mdc](mdc:.cursor/rules/frontend-next.mdc)
+- 禁止硬编码品牌色，遵循 [.cursor/rules/no-hardcoded-brand-color.mdc](mdc:.cursor/rules/no-hardcoded-brand-color.mdc)
+
+## 基础配置
+
+- **Tailwind v4**：使用 `@import "tailwindcss"` + `@plugin "daisyui"`
+- **主题定义**：通过 `@theme inline` 声明 `realsee-dark` 令牌；所有颜色引用 `--cyber-*`
+- **daisyUI**：保留默认组件，按需扩展样式类（`cyber-*` 系列）
+- **构建工具**：Tailwind v4 无需独立配置文件，所有设置集中在 `globals.css`
+
+## 设计令牌
+
+- **品牌色阶**：`--cyber-brand-50 ~ 900`
+- **霓虹色系**：`--cyber-neon-cyan`、`--cyber-neon-magenta` 等
+- **灰度系统**：`--cyber-gray-900 ~ 100`
+- **间距/圆角**：沿用 8px 网格与 `--radius-*`
+
+```css
+/* 示例：在组件中引用设计令牌 */
+className="bg-cyber-gray-800 text-cyber-gray-200 border border-cyber-gray-600"
+```
+
+## 组件类名约定
+
+- **按钮**：`Button` 组件（`frontend/src/components/ui/button.tsx`）+ `variant` 属性；补充类如 `cyber-btn-primary`
+- **输入框**：`cyber-input` + daisyUI `input`（参考 `frontend/src/components/ui/input.tsx`）
+- **卡片**：`cyber-card` / `cyber-card-neon`（可在 `frontend/src/components/custom` 示例中复用）
+- **导航**：`cyber-nav-link` 提供悬浮下划线，与 `SiteHeader` 统一
+- **徽章**：优先 `Badge` 组件（`frontend/src/components/ui/badge.tsx`），利用 `badge-*` 变体
+
+```tsx
+<button className="btn cyber-btn-primary">操作</button>
+```
+
+## 布局与响应式
+
+- **容器**：`max-w-7xl mx-auto px-8`（移动端 `px-4`）
+- **栅格**：`grid grid-cols-1 lg:grid-cols-12`，主内容 `lg:col-span-8`
+- **断点**：`sm 640 / md 768 / lg 1024 / xl 1280 / 2xl 1536`
+- **类名顺序**：`布局 → 尺寸 → 外观 → 交互 → 响应式`
+
+## 动效规范
+
+- **悬浮**：`hover:bg-transparent hover:text-cyber-brand-500` + `shadow-cyber-brand-500/40`
+- **发光类**：`cyber-glow-animate`，需兼容 `prefers-reduced-motion`
+- **文本发光**：`cyber-neon-text` 仅用于强调
+- **滚动动画**：通过封装组件 + `data-animate` 控制，同时保证默认关闭
+
+## 可访问性与性能
+
+- **对比度**：文本 ≥4.5:1；组件 ≥3:1
+- **焦点样式**：统一 `cyber-focus`
+- **可访问性检查**：Lighthouse/Axe；响应式覆盖 320–1440px
+- **性能**：Tailwind 类按需使用；图片使用 Next/Image + 占位符
+
+## 开发流程清单
+
+1. 引用设计令牌和复用组件
+2. 验证 Tailwind 类顺序、断点与布局
+3. 检查交互、焦点、动画动效
+4. 使用 Biome 格式化，执行 `npm run lint`
+5. 在 PR 中附可访问性与响应式验证结论
+
+## 参考文件
+
+- `frontend/src/app/globals.css`
+- `frontend/src/components/ui/button.tsx`
+- `frontend/src/components/ui/input.tsx`
+- `frontend/src/components/custom/**`
+- `.cursor/rules/design-system.mdc` / `frontend-next.mdc` / `project-overview.mdc`

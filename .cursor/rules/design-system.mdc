@@ -1,0 +1,82 @@
+---
+alwaysApply: true
+description: Realsee Discover 赛博朋克前端设计执行清单（品牌色 #3366FF，符合 WCAG 2.2 AA）
+---
+
+# Realsee Discover 前端设计与可访问性规则
+
+> 目标：确保所有页面模块在深色赛博朋克主题下保持风格一致、文本可读、交互可辨。
+
+参考文件：
+
+- 全局变量与设计令牌：[frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
+- Tailwind + daisyUI 执行规范：[.cursor/rules/frontend-tailwind-daisyui.mdc](mdc:.cursor/rules/frontend-tailwind-daisyui.mdc)
+- Next.js 页面结构约定：[.cursor/rules/frontend-next.mdc](mdc:.cursor/rules/frontend-next.mdc)
+- UI 组件库入口：[frontend/src/components](mdc:frontend/src/components)
+
+## 一、设计基础原则
+
+- **统一令牌**：颜色、阴影、圆角、间距、字体权重必须引用 `globals.css` 中的 `--cyber-*` 变量或 Tailwind 预设；禁止直接写十六进制或 rgba。
+- **模块复用**：优先调用 `frontend/src/components/ui` 与 `frontend/src/components/custom` 中的卡片、按钮、标签等组件；若需新样式，先扩展组件后复用，不在页面内散写。
+- **视觉层级**：背景层（`cyber-gray-900/800`）→ 容器层（卡片、面板）→ 内容层（文本、图像）→ 强调层（霓虹着色、动态边框）。不得在同层级混用多个发光效果。
+- **主题一致性**：霓虹强调色限制为 `brand`、`neon-cyan`、`neon-magenta` 三类；单页面最多使用两种强调色，优先品牌蓝。
+- **动态克制**：动画、渐变用于吸引注意，必须与交互状态对应（如悬浮、选中），不可用于静态文本块。
+
+## 二、色彩与背景
+
+- **背景梯度**：整页背景仅可使用 `bg-cyber-gray-900` 或 `bg-gradient-to-br from-cyber-gray-900 to-cyber-brand-50`，禁止局部自定义渐变。
+- **卡片层**：
+  - 默认：`bg-cyber-gray-800 border border-cyber-gray-600 shadow-none`。
+  - 强调：可附加 `shadow-cyber-brand-500/20` 或 `border-cyber-brand-500`，但不可同时叠加多重发光。
+- **状态色**：成功、警告、错误使用 Tailwind 语义色并加 `opacity-90`，保持 ≥3:1 对比度。
+- **禁用色**：`text-cyber-gray-500` 配合 `bg-cyber-gray-800/70`，同时降低发光与动画。
+
+## 三、文本排版与可读性
+
+- **字体层级**：
+  - H1 `text-4xl font-bold text-cyber-gray-100`，带轻微霓虹 `text-shadow: 0 0 12px var(--cyber-brand-500)`。
+  - H2 `text-3xl font-semibold text-cyber-gray-200`。
+  - H3 `text-2xl font-medium text-cyber-brand-500`。
+  - 正文 `text-base text-cyber-gray-300 leading-relaxed`。
+- **对比校验**：所有正文与背景对比度 ≥4.5:1；在卡片内测试 `cyber-gray-300` 对 `cyber-gray-800` 即可达标。
+- **多列文本**：限制列宽 ≤ `max-w-3xl`，段间距使用 `space-y-4`，避免整段发光或渐变。
+- **强调手段**：优先使用字体权重、分隔线；如需彩色强调，搭配 `cyber-neon-text` 并确保不与正文混淆。
+
+## 四、组件与模块规范
+
+- **按钮**：
+  - `Button` 组件（`frontend/src/components/ui/button.tsx`）是唯一入口。变体通过 `variant="primary|secondary|ghost|danger"` 切换，不允许页面内自定义 class。
+  - 悬浮状态统一 `hover:bg-transparent hover:text-cyber-brand-500 border border-current shadow-cyber-brand-500/40`。
+- **卡片**：
+  - 使用 `cyber-card`/`cyber-card-neon` 组合；模块头部、正文、操作区按 `space-y-4`、`grid` 布局。
+  - 图文混排时，图片需加 `rounded-lg border border-cyber-gray-600`，并限制发光为 `shadow-cyber-brand-500/10`。
+- **表单输入**：依赖 `cyber-input` 与 `Label` 组件（`frontend/src/components/ui/input.tsx` 等）；焦点状态必须包含 `focus:ring-2 focus:ring-offset-2`。
+- **标签/徽章**：使用 `Badge` 组件（`frontend/src/components/ui/badge.tsx`），颜色限定 `primary` 或 `outline`。
+- **图标**：统一使用 `lucide-react`，尺寸设为 `h-5 w-5`，颜色继承文本。
+
+## 五、跨页面一致性
+
+- 每个页面需包含：页面标题区（标题+副标题）、核心内容区（卡片或区块）、辅助信息区（CTA 或二级信息）。布局顺序一致。
+- 首页、列表页、详情页共享 `SiteHeader`、`SiteFooter` 等布局组件，禁止在单页重写导航或页脚结构。
+- 若新增模块类型（如时间轴、统计卡），需先在 `frontend/src/components/custom` 或 `frontend/src/components/modules` 下创建可复用组件并更新 Storybook/MDX 文档。
+- 页面网格：桌面端使用 `max-w-7xl mx-auto px-8`，移动端 `px-4`；列布局遵循 `grid-cols-1 lg:grid-cols-12` 模式，内容列宽建议 `lg:col-span-8`，侧栏 `lg:col-span-4`。
+
+## 六、交互与动效
+
+- **焦点指示**：所有交互元素必须带 `.cyber-focus`，确保 2px 外描边 + 2px 偏移。
+- **悬浮/选中**：采用 `cyber-glow-animate` 时，动画时长 ≤2s，`prefers-reduced-motion` 下需禁用。
+- **滚动效果**：视差、渐入等动效需通过 Intersection Observer 封装，默认关闭并提供 `data-animate="none"` 以便禁用。
+
+## 七、测试与验收
+
+- **对比度检查**：在设计评审或 PR 自检中通过 Lighthouse 或 Axe 扩展验证关键视图。
+- **响应式检查**：最小宽度 320px、断点 768px/1024px/1440px 必须手动确认布局无断裂。
+- **组件快照**：新增或更新视觉组件需补充 Playwright/Storybook 视觉快照截图链接在 PR 描述。
+- **验收清单**：
+  - 页面背景、卡片、文本均使用统一令牌
+  - 文本对比度符合 WCAG 2.2 AA
+  - 模块使用标准组件且布局一致
+  - 交互状态、焦点可见
+  - 动画遵循用户偏好
+
+完成以上检查后方可合并。

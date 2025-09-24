@@ -1,60 +1,84 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: business --default, light;
+@plugin "daisyui";
+
+/* Tailwind CSS v4 主题配置 */
+@theme {
+  /* 字体配置 - Google Fonts */
+  --font-family-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-family-mono: var(--font-jetbrains-mono), 'Fira Code', 'Consolas', monospace;
+  --font-family-display: var(--font-orbitron), system-ui, sans-serif;
+  
+  /* 赛博朋克色彩系统 */
+  --color-cyber-brand-50: #0a0f1a;
+  --color-cyber-brand-100: #0f1929; 
+  --color-cyber-brand-200: #1a2844;
+  --color-cyber-brand-300: #2d4a7a;
+  --color-cyber-brand-400: #4d73cc;
+  --color-cyber-brand-500: #3366FF;
+  --color-cyber-brand-600: #5577ff;
+  --color-cyber-brand-700: #7799ff;
+  --color-cyber-brand-800: #99bbff;
+  --color-cyber-brand-900: #bbddff;
+  
+  /* 霓虹色系 */
+  --color-cyber-neon-cyan: #00FFFF;
+  --color-cyber-neon-magenta: #FF00FF;
+  --color-cyber-neon-green: #00FF41;
+  --color-cyber-electric-blue: #0099FF;
+  --color-cyber-plasma-purple: #8A2BE2;
+  
+  /* 灰度系统 */
+  --color-cyber-gray-900: #0a0a0a;
+  --color-cyber-gray-800: #1a1a1a;
+  --color-cyber-gray-700: #2a2a2a;
+  --color-cyber-gray-600: #404040;
+  --color-cyber-gray-500: #666666;
+  --color-cyber-gray-400: #999999;
+  --color-cyber-gray-300: #cccccc;
+  --color-cyber-gray-200: #e6e6e6;
+  --color-cyber-gray-100: #f5f5f5;
+  
+  /* 动画配置 */
+  --animate-cyber-glow: cyber-glow 2s ease-in-out infinite alternate;
+  --animate-neon-flicker: neon-flicker 1.5s ease-in-out infinite alternate;
+  
+  /* 字体工具类 */
+  --font-display: var(--font-orbitron), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-code: var(--font-jetbrains-mono), 'Fira Code', monospace;
 }
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-
-  /* Expose brand palette to Tailwind (text-brand-800 / bg-brand-800 etc.) */
-  --color-brand-50: var(--color-brand-50);
-  --color-brand-100: var(--color-brand-100);
-  --color-brand-200: var(--color-brand-200);
-  --color-brand-300: var(--color-brand-300);
-  --color-brand-400: var(--color-brand-400);
-  --color-brand-500: var(--color-brand-500);
-  --color-brand-600: var(--color-brand-600);
-  --color-brand-700: var(--color-brand-700);
-  --color-brand-800: var(--color-brand-800);
-  --color-brand-900: var(--color-brand-900);
+/* daisyUI 赛博朋克主题配置 */
+[data-theme="cyberpunk"], :root {
+  --p: 216 100% 50%;     /* primary: #3366FF */
+  --pc: 0 0% 100%;       /* primary-content: white */
+  --s: 180 100% 50%;     /* secondary: #00FFFF (cyan) */
+  --sc: 0 0% 4%;         /* secondary-content: dark */
+  --a: 300 100% 50%;     /* accent: #FF00FF (magenta) */
+  --ac: 0 0% 100%;       /* accent-content: white */
+  --n: 0 0% 4%;          /* neutral: #0a0a0a */
+  --nc: 0 0% 95%;        /* neutral-content: #f2f2f2 */
+  --b1: 0 0% 10%;        /* base-100: #1a1a1a */
+  --b2: 0 0% 16%;        /* base-200: #2a2a2a */
+  --b3: 0 0% 25%;        /* base-300: #404040 */
+  --bc: 0 0% 95%;        /* base-content: #f2f2f2 */
+  --in: 209 100% 50%;    /* info: #0099FF */
+  --inc: 0 0% 100%;      /* info-content: white */
+  --su: 141 84% 50%;     /* success: #00FF41 */
+  --suc: 0 0% 4%;        /* success-content: dark */
+  --wa: 36 100% 50%;     /* warning: #FF9500 */
+  --wac: 0 0% 4%;        /* warning-content: dark */
+  --er: 3 100% 67%;      /* error: #FF5861 */
+  --erc: 0 0% 100%;      /* error-content: white */
+  --rounded-box: 1rem;
+  --rounded-btn: 0.5rem;
+  --rounded-badge: 1.9rem;
+  --animation-btn: 0.25s;
+  --animation-input: 0.2s;
+  --btn-focus-scale: 0.95;
+  --border-btn: 1px;
+  --tab-border: 1px;
+  --tab-radius: 0.5rem;
 }
 
 :root {
@@ -91,17 +115,40 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* Realsee brand tokens (WCAG AAA compliant palette) */
-  --color-brand-50:  #F2F6FF;
-  --color-brand-100: #E6EEFF;
-  --color-brand-200: #CCD9FF;
-  --color-brand-300: #99B3FF;
-  --color-brand-400: #668CFF;
-  --color-brand-500: #3366FF; /* showcase only; not for small text or white-on-bg */
-  --color-brand-600: #2852D6;
-  --color-brand-700: #2247BF;
-  --color-brand-800: #1E40AF; /* primary AAA */
-  --color-brand-900: #172F82;
+  /* 赛博朋克色彩系统 (WCAG 2.2 AA 兼容) */
+  
+  /* 核心品牌色 (#3366FF) */
+  --cyber-brand-primary: #3366FF;
+  
+  /* 霓虹色系 */
+  --cyber-neon-cyan: #00FFFF;      /* 霓虹青色 */
+  --cyber-neon-magenta: #FF00FF;   /* 霓虹品红 */
+  --cyber-neon-green: #00FF41;     /* 矩阵绿 */
+  --cyber-electric-blue: #0099FF;  /* 电光蓝 */
+  --cyber-plasma-purple: #8A2BE2;  /* 等离子紫 */
+  
+  /* 品牌蓝色阶 */
+  --cyber-brand-50:  #0a0f1a;     /* 深空背景 */
+  --cyber-brand-100: #0f1929;     /* 暗色面板 */
+  --cyber-brand-200: #1a2844;     /* 中性背景 */
+  --cyber-brand-300: #2d4a7a;     /* 边框/分割线 */
+  --cyber-brand-400: #4d73cc;     /* 悬浮状态 */
+  --cyber-brand-500: #3366FF;     /* 主品牌色 */
+  --cyber-brand-600: #5577ff;     /* 亮色变体 */
+  --cyber-brand-700: #7799ff;     /* 高亮 */
+  --cyber-brand-800: #99bbff;     /* 超亮 */
+  --cyber-brand-900: #bbddff;     /* 发光效果 */
+  
+  /* 灰度系统 */
+  --cyber-gray-900: #0a0a0a;      /* 最深背景 */
+  --cyber-gray-800: #1a1a1a;      /* 主背景 */
+  --cyber-gray-700: #2a2a2a;      /* 卡片背景 */
+  --cyber-gray-600: #404040;      /* 边框 */
+  --cyber-gray-500: #666666;      /* 次要文本 */
+  --cyber-gray-400: #999999;      /* 占位符 */
+  --cyber-gray-300: #cccccc;      /* 主要文本 */
+  --cyber-gray-200: #e6e6e6;      /* 高亮文本 */
+  --cyber-gray-100: #f5f5f5;      /* 纯白 */
 }
 
 .dark {
@@ -151,18 +198,48 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+  /* Main content wrapper to accommodate fixed header */
+  .main-content-wrapper {
+    @apply pt-16; /* Header height */
   }
-  body {
-    @apply bg-background text-foreground;
+
+  /* Ensure smooth scrolling and proper spacing */
+  main {
+    @apply min-h-screen;
   }
+  
   a {
-    @apply text-brand-800 hover:underline underline-offset-2 focus:outline-brand-600;
+    @apply text-primary transition-colors duration-200 ease-out;
+  }
+  
+  a:hover {
+    @apply text-primary opacity-80;
+  }
+  
+  a:focus-visible {
+    @apply outline-2 outline-primary outline-offset-2 rounded-sm;
+  }
+  
+  /* 为需要特殊样式的链接提供类名 */
+  .link-underline {
+    @apply underline-offset-2 hover:underline;
+  }
+  
+  .link-gradient-underline {
+    @apply relative transition-colors duration-200;
+  }
+  
+  .link-gradient-underline::after {
+    @apply absolute inset-x-0 -bottom-0.5 h-0.5 bg-primary scale-x-0 transition-transform duration-200 origin-center;
+    content: '';
+  }
+  
+  .link-gradient-underline:hover::after {
+    @apply scale-x-100;
   }
 }
 
-/* Focus ring enhancement for buttons/inputs */
+/* Enhanced focus styles for accessibility */
 .btn:focus-visible, .input:focus-visible, .select:focus-visible, .textarea:focus-visible {
   outline: 2px solid var(--color-brand-600);
   outline-offset: 2px;
@@ -195,6 +272,718 @@
 .carousel-progress { animation: carousel-progress-fill var(--carousel-duration, 5000ms) linear forwards; }
 .carousel-progress.paused { animation-play-state: paused; }
 
+/* Professionals marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* 动态速度的跑马灯动画 */
+.animate-marquee-dynamic {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+/* Pause marquee on hover */
+.professionals-marquee:hover .animate-marquee,
+.professionals-marquee:hover .animate-marquee-dynamic {
+  animation-play-state: paused;
+}
+
+/* Smooth transitions for marquee items */
+.professionals-track a {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced hover effects for marquee items - updated for new design */
+.professionals-track a:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Professional cards enhanced styling */
+.professionals-track a {
+  backdrop-filter: blur(8px);
+  will-change: transform;
+}
+
+.professionals-track a:hover .avatar > div {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive marquee speed */
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+  
+  .animate-marquee-dynamic {
+    animation: marquee var(--marquee-duration-mobile, 25s) linear infinite;
+  }
+  
+  .professionals-track a {
+    width: 300px !important;
+    padding: 1rem 1.5rem 1.5rem 1.5rem !important; /* 顶部留更多空间 */
+  }
+  
+  .professionals-track a .avatar > div {
+    height: 8rem !important;
+    width: 8rem !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .professionals-track a .avatar > div {
+    height: 10rem !important;
+    width: 10rem !important;
+  }
+}
+
+/* Line clamp support for professionals bio */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Enhanced HERO section styles */
+.hero-title-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, rgba(255, 255, 255, 0.8) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* HERO responsive text scaling */
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.1;
+  }
+  .hero .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero h1 {
+    font-size: clamp(3rem, 10vw, 5rem);
+    line-height: 1.1;
+  }
+}
+
+/* Enhanced scroll mouse animation */
+.scroll-mouse {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.scroll-mouse::after {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* HERO button enhancements */
+.hero .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation button focus states */
+.hero .btn-circle:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* Backdrop blur support check */
+@supports not (backdrop-filter: blur(12px)) {
+  .backdrop-blur-xl {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .backdrop-blur-md {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .backdrop-blur-sm {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Enhanced Search Components Styles */
+
+/* Search suggestions animation */
+.search-suggestions {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search filter section enhancements */
+.search-filter-section {
+  position: relative;
+}
+
+.search-filter-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  opacity: 0.3;
+}
+
+/* Search result cards hover effects */
+.search-result-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.search-result-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(var(--color-primary), 0.1);
+}
+
+/* Enhanced line clamp for search results */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Loading skeleton animation */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* Search filter mobile optimizations */
+@media (max-width: 768px) {
+  .search-filter-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    background-color: var(--color-base-100);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  }
+  
+  .search-filter-mobile.open {
+    transform: translateX(0);
+  }
+}
+
+/* Search input enhancements */
+.search-input-enhanced {
+  transition: all 0.2s ease;
+  box-shadow: 0 0 0 0 rgba(var(--color-primary), 0);
+}
+
+.search-input-enhanced:focus {
+  box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
+  border-color: var(--color-primary);
+}
+
+/* Search result grid responsive improvements */
+.search-results-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+@media (max-width: 640px) {
+  .search-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Search badge improvements */
+.search-badge {
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+
+.search-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Search pagination enhancements */
+.search-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.search-pagination .btn {
+  min-width: 2.5rem;
+}
+
+@media (max-width: 480px) {
+  .search-pagination .btn {
+    min-width: 2rem;
+    padding: 0.375rem 0.5rem;
+  }
+}
+
+/* Unified Tour Card Styles */
+.tour-card {
+  --tour-card-border-radius: 1rem;
+  --tour-card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --tour-card-shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --tour-card-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  aspect-ratio: 4/3;
+  border-radius: var(--tour-card-border-radius);
+  box-shadow: var(--tour-card-shadow);
+  transition: var(--tour-card-transition);
+  transform-origin: center center;
+  overflow: hidden;
+}
+
+.tour-card:hover {
+  box-shadow: var(--tour-card-shadow-hover);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.tour-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Tour card image optimizations */
+.tour-card figure {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-base-200);
+}
+
+.tour-card figure img {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.tour-card:hover figure img {
+  transform: scale(1.05);
+}
+
+/* Enhanced Badge System */
+
+/* Base badge styles */
+.badge {
+  --badge-border-radius: 9999px;
+  --badge-font-weight: 500;
+  --badge-font-size: 0.75rem;
+  --badge-padding-x: 0.75rem;
+  --badge-padding-y: 0.375rem;
+  --badge-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  border-radius: var(--badge-border-radius);
+  font-weight: var(--badge-font-weight);
+  font-size: var(--badge-font-size);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
+  transition: var(--badge-transition);
+  backdrop-filter: blur(8px);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Primary badge - Modern gradient style */
+.badge-primary {
+  background: linear-gradient(135deg, var(--color-brand-600) 0%, var(--color-brand-700) 100%);
+  color: white;
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.badge-primary:hover::before {
+  left: 100%;
+}
+
+.badge-primary:hover {
+  background: linear-gradient(135deg, var(--color-brand-700) 0%, var(--color-brand-800) 100%);
+  box-shadow: 
+    0 4px 12px rgba(var(--color-brand-700), 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.24),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  transform: translateY(-1px);
+}
+
+/* Outline badge - Glass morphism style */
+.badge-outline {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: var(--color-base-content);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(12px);
+}
+
+.badge-outline:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Secondary badge - Soft accent style */
+.badge-secondary {
+  background: linear-gradient(135deg, var(--color-brand-100) 0%, var(--color-brand-50) 100%);
+  color: var(--color-brand-800);
+  border: 1px solid var(--color-brand-200);
+  box-shadow: 0 1px 3px rgba(var(--color-brand-500), 0.1);
+}
+
+.badge-secondary:hover {
+  background: linear-gradient(135deg, var(--color-brand-200) 0%, var(--color-brand-100) 100%);
+  border-color: var(--color-brand-300);
+  transform: translateY(-1px);
+}
+
+/* Success badge */
+.badge-success {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  box-shadow: 
+    0 1px 3px rgba(16, 185, 129, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Warning badge */
+.badge-warning {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: white;
+  box-shadow: 
+    0 1px 3px rgba(245, 158, 11, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Info badge */
+.badge-info {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  color: white;
+  box-shadow: 
+    0 1px 3px rgba(59, 130, 246, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+/* Badge sizes */
+.badge-xs {
+  --badge-font-size: 0.65rem;
+  --badge-padding-x: 0.5rem;
+  --badge-padding-y: 0.25rem;
+}
+
+.badge-sm {
+  --badge-font-size: 0.7rem;
+  --badge-padding-x: 0.625rem;
+  --badge-padding-y: 0.3125rem;
+}
+
+.badge-lg {
+  --badge-font-size: 0.875rem;
+  --badge-padding-x: 1rem;
+  --badge-padding-y: 0.5rem;
+}
+
+/* Special category badges with semantic colors */
+.badge-category-residential {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: white;
+}
+
+.badge-category-office {
+  background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+  color: white;
+}
+
+.badge-category-retail {
+  background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+  color: white;
+}
+
+.badge-category-industrial {
+  background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+  color: white;
+}
+
+.badge-category-exhibition {
+  background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+  color: white;
+}
+
+/* Device badges */
+.badge-device {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.badge-device:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Enhanced device badge sizing */
+.badge-sm.badge-device {
+  font-size: 0.75rem;
+  padding: 0.375rem 0.75rem;
+  min-height: 1.75rem;
+  font-weight: 600;
+}
+
+.badge-lg.badge-device {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  min-height: 2.25rem;
+  font-weight: 600;
+}
+
+/* Responsive badge adjustments */
+@media (max-width: 768px) {
+  .badge {
+    --badge-font-size: 0.65rem;
+    --badge-padding-x: 0.5rem;
+    --badge-padding-y: 0.25rem;
+  }
+  
+  .badge-lg {
+    --badge-font-size: 0.75rem;
+    --badge-padding-x: 0.75rem;
+    --badge-padding-y: 0.375rem;
+  }
+}
+
+/* Remove old tour card badge styles since we're using the new system */
+.tour-card .badge {
+  /* Inherits from new badge system above */
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .badge-primary {
+    background: var(--color-brand-900);
+    border: 1px solid var(--color-brand-700);
+  }
+  
+  .badge-outline {
+    background: white;
+    border: 2px solid var(--color-base-content);
+    color: var(--color-base-content);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .badge {
+    transition: none;
+  }
+  
+  .badge-primary::before {
+    display: none;
+  }
+  
+  .badge:hover {
+    transform: none;
+  }
+}
+
+/* Tour card with full image coverage */
+.tour-card figure {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.tour-card figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tour-card:hover figure img {
+  transform: scale(1.05);
+}
+
+/* Tour card title overlay */
+.tour-card .absolute {
+  pointer-events: none;
+}
+
+.tour-card h3 {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.tour-card:hover h3 {
+  transform: translateY(-2px);
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+
+
+/* Tour card responsive adjustments */
+@media (max-width: 768px) {
+  .tour-card {
+    --tour-card-border-radius: 0.75rem;
+    aspect-ratio: 4/3;
+  }
+  
+  .tour-card .badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .tour-card h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Tour card list view (for search page) */
+.tour-card.card-side {
+  flex-direction: row;
+  aspect-ratio: auto;
+  min-height: 10rem;
+}
+
+.tour-card.card-side figure {
+  flex-shrink: 0;
+  width: 12rem;
+  aspect-ratio: 4/3;
+  height: auto;
+}
+
+.tour-card.card-side .card-body {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .tour-card.card-side {
+    flex-direction: column;
+    aspect-ratio: 4/3;
+    min-height: auto;
+  }
+  
+  .tour-card.card-side figure {
+    width: 100%;
+    aspect-ratio: 4/3;
+    height: auto;
+  }
+  
+  .tour-card.card-side .card-body {
+    padding: 1rem;
+  }
+}
+
+/* Tour card loading state */
+.tour-card.loading {
+  pointer-events: none;
+}
+
+.tour-card.loading figure {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.tour-card.loading .card-body > * {
+  background: #f0f0f0;
+  border-radius: 0.25rem;
+  color: transparent;
+}
+
+/* Accessibility improvements */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .tour-card {
+    border: 2px solid var(--color-base-content);
+  }
+  
+  .tour-card .badge {
+    border: 1px solid var(--color-base-content);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .tour-card,
+  .tour-card figure img {
+    transition: none;
+    animation: none;
+  }
+  
+  .tour-card:hover {
+    transform: none;
+  }
+  
+  .tour-card:hover figure img {
+    transform: none;
+  }
+}
+
 /* Global scrollbars: hide horizontal; vertical is subtle and auto-shown on hover */
 html, body { overflow-x: clip; overscroll-behavior-x: none; scrollbar-gutter: stable; }
 /* Firefox: 默认细滚动条透明，悬停时着色（作用于 html 与 body） */
@@ -207,14 +996,14 @@ html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background-color:
 html:not(:hover)::-webkit-scrollbar-thumb, body:not(:hover)::-webkit-scrollbar-thumb { background-color: transparent; }
 html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background-color: color-mix(in oklab, var(--ring), transparent 20%); }
 
-/* DaisyUI primary mapping to brand palette (AAA) */
-.text-primary { color: var(--color-brand-800) !important; }
-.btn-primary { background-color: var(--color-brand-800); border-color: var(--color-brand-800); color: white; }
-.btn-primary:hover { background-color: var(--color-brand-900); border-color: var(--color-brand-900); }
-.badge-primary { background-color: var(--color-brand-800); border-color: var(--color-brand-800); color: white; }
-.link-primary, .link { color: var(--color-brand-800); }
-.btn-outline { border-color: var(--color-brand-800); color: var(--color-brand-800); }
-.btn-outline:hover { background-color: var(--color-brand-50); }
+/* Enhanced accessibility and brand consistency */
+.link-primary, .link { 
+  color: var(--color-brand-800);
+  transition: color 0.2s ease;
+}
+.link-primary:hover, .link:hover {
+  color: var(--color-brand-900);
+}
 
 /* DaisyUI theme variables (light) */
 :root[data-theme="light"] {
@@ -273,3 +1062,356 @@ html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { backg
   --er: oklch(0.7 0.2 25);
   --erc: oklch(0.985 0 0);
 }
+
+/* Custom Realsee themes for optimal brand experience */
+:root[data-theme="realsee-light"] {
+  /* Primary - using brand-800 for AAA compliance */
+  --p: 30.4 77.2% 220; /* oklch equivalent of #1E40AF */
+  --pc: 98.5 0 0; /* white text */
+  /* Secondary */
+  --s: 34.7 58.4% 220; /* brand-700 #2247BF */
+  --sc: 98.5 0 0;
+  /* Accent */
+  --a: 42.5 49.8% 220; /* brand-600 #2852D6 */
+  --ac: 98.5 0 0;
+  /* Neutral */
+  --n: 23.1 100% 220; /* brand-900 #172F82 */
+  --nc: 98.5 0 0;
+  /* Base - clean whites and light brand tints */
+  --b1: 100 0 0; /* pure white */
+  --b2: 97.2 33.3% 220; /* brand-50 #F2F6FF */
+  --b3: 94.7 66.7% 220; /* brand-100 #E6EEFF */
+  --bc: 14.5 0 0; /* dark gray text */
+  /* Status colors optimized for accessibility */
+  --in: 62 19% 240; /* info blue */
+  --inc: 98.5 0 0;
+  --su: 62 15% 145; /* success green */
+  --suc: 98.5 0 0;
+  --wa: 78 17% 85; /* warning amber */
+  --wac: 20.5 0 0;
+  --er: 60 22% 25; /* error red */
+  --erc: 98.5 0 0;
+}
+
+:root[data-theme="realsee-dark"] {
+  /* Primary - adjusted for dark theme */
+  --p: 30.4 77.2% 220; /* keeping brand-800 for consistency */
+  --pc: 98.5 0 0;
+  /* Secondary */
+  --s: 34.7 58.4% 220;
+  --sc: 98.5 0 0;
+  /* Accent */
+  --a: 42.5 49.8% 220;
+  --ac: 98.5 0 0;
+  /* Neutral */
+  --n: 23.1 100% 220;
+  --nc: 98.5 0 0;
+  /* Base - dark backgrounds with subtle brand hints */
+  --b1: 14.5 0 0; /* dark base */
+  --b2: 16.9 0 0; /* slightly lighter */
+  --b3: 20.5 0 0; /* card backgrounds */
+  --bc: 98.5 0 0; /* light text */
+  /* Status colors for dark theme */
+  --in: 70 15% 240;
+  --inc: 98.5 0 0;
+  --su: 68 15% 145;
+  --suc: 98.5 0 0;
+  --wa: 78 17% 85;
+  --wac: 20.5 0 0;
+  --er: 70 20% 25;
+  --erc: 98.5 0 0;
+}
+
+@layer components {
+  /* =======================
+     赛博朋克设计组件样式
+     ======================= */
+
+  /* 赛博朋克霓虹按钮系统 */
+  .cyber-btn-primary {
+    @apply btn btn-primary;
+    box-shadow: 0 0 10px rgba(51, 102, 255, 0.3);
+  }
+
+  .cyber-btn-primary:hover {
+    box-shadow: 
+      0 0 5px rgb(51 102 255),
+      0 0 10px rgb(51 102 255),
+      0 0 15px rgb(51 102 255);
+  }
+
+  .cyber-btn-secondary {
+    @apply btn btn-outline btn-secondary;
+  }
+
+  .cyber-btn-danger {
+    @apply btn btn-error;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+
+  /* 赛博朋克输入框系统 */
+  .cyber-input {
+    @apply input bg-base-200 text-base-content border border-base-300;
+    @apply focus:border-primary focus:ring-1 focus:ring-primary;
+    @apply transition-all duration-300;
+  }
+
+  .cyber-input:focus {
+    box-shadow: 0 0 5px rgba(51, 102, 255, 0.5);
+  }
+
+  /* 赛博朋克卡片系统 */
+  .cyber-card {
+    @apply bg-base-200 border border-base-300 rounded-lg p-4;
+    @apply hover:border-primary;
+    @apply transition-all duration-300;
+  }
+
+  .cyber-card-neon {
+    @apply bg-base-200 border border-base-300 rounded-lg p-4;
+    @apply hover:border-primary;
+    @apply transition-all duration-300;
+    box-shadow: 
+      0 0 10px rgba(51, 102, 255, 0.1),
+      inset 0 0 10px rgba(51, 102, 255, 0.05);
+  }
+}
+
+@layer utilities {
+  /* 径向渐变工具类 */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  /* 赛博朋克导航链接 */
+  .cyber-nav-link {
+    @apply text-base-content hover:text-primary;
+    @apply transition-colors duration-300;
+    @apply relative;
+  }
+
+  .cyber-nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5;
+    @apply bg-primary transition-all duration-300;
+  }
+
+  .cyber-nav-link:hover::after {
+    @apply w-full;
+    box-shadow: 0 0 5px rgb(51 102 255);
+  }
+
+  /* 赛博朋克霓虹文本效果 - 柔和版本 */
+  .cyber-neon-text {
+    @apply text-primary;
+    text-shadow:
+      0 0 3px rgba(51, 102, 255, 0.4),
+      0 0 6px rgba(51, 102, 255, 0.2);
+  }
+
+  .cyber-neon-text-cyan {
+    @apply text-secondary;
+    text-shadow:
+      0 0 3px rgba(0, 255, 255, 0.4),
+      0 0 6px rgba(0, 255, 255, 0.2);
+  }
+
+  .cyber-neon-text-magenta {
+    @apply text-accent;
+    text-shadow:
+      0 0 3px rgba(255, 0, 255, 0.4),
+      0 0 6px rgba(255, 0, 255, 0.2);
+  }
+
+  /* 更温和的发光文本选项 */
+  .cyber-glow-text {
+    @apply text-primary;
+    text-shadow:
+      0 0 2px rgba(51, 102, 255, 0.3);
+  }
+
+  .cyber-subtle-text {
+    @apply text-primary;
+    filter: drop-shadow(0 0 2px rgba(51, 102, 255, 0.2));
+  }
+
+  /* 赛博朋克发光盒子 - 柔和版本 */
+  .cyber-glow-box {
+    box-shadow: 
+      0 0 4px rgba(51, 102, 255, 0.3),
+      0 0 8px rgba(51, 102, 255, 0.1);
+  }
+
+  /* 温和的发光盒子 */
+  .cyber-subtle-box {
+    box-shadow: 
+      0 0 2px rgba(51, 102, 255, 0.2);
+  }
+
+  /* 赛博朋克渐变背景 */
+  .cyber-gradient-bg {
+    background: linear-gradient(135deg, oklch(var(--n)) 0%, oklch(var(--b2)) 100%);
+  }
+
+  .cyber-gradient-primary {
+    background: linear-gradient(135deg, oklch(var(--p)) 0%, oklch(var(--s)) 100%);
+  }
+
+  /* 赛博朋克动画效果 - 柔和版本 */
+  .cyber-pulse {
+    animation: cyber-glow 3s ease-in-out infinite alternate;
+  }
+
+  .cyber-gentle-pulse {
+    animation: gentle-glow 4s ease-in-out infinite alternate;
+  }
+
+  .cyber-flicker {
+    animation: neon-flicker 2s ease-in-out infinite alternate;
+  }
+
+  /* 赛博朋克网格背景 */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(51, 102, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(51, 102, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* 赛博朋克分割线 */
+  .cyber-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg, 
+      transparent, 
+      oklch(var(--p)), 
+      transparent
+    );
+    box-shadow: 0 0 10px rgba(51, 102, 255, 0.3);
+  }
+
+  /* 赛博朋克焦点指示器 */
+  .cyber-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary;
+    @apply focus:ring-offset-2 focus:ring-offset-base-100;
+  }
+
+  /* 字体工具类 */
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .font-code {
+    font-family: var(--font-code);
+  }
+}
+
+/* 赛博朋克动画关键帧 */
+@keyframes cyber-glow {
+  from { 
+    text-shadow:
+      0 0 3px rgba(51, 102, 255, 0.4),
+      0 0 6px rgba(51, 102, 255, 0.2);
+  }
+  to { 
+    text-shadow:
+      0 0 4px rgba(51, 102, 255, 0.6),
+      0 0 8px rgba(51, 102, 255, 0.3);
+  }
+}
+
+@keyframes gentle-glow {
+  from { 
+    opacity: 0.8;
+    filter: drop-shadow(0 0 2px rgba(51, 102, 255, 0.2));
+  }
+  to { 
+    opacity: 1;
+    filter: drop-shadow(0 0 3px rgba(51, 102, 255, 0.3));
+  }
+}
+
+@keyframes neon-flicker {
+  0%, 100% { 
+    opacity: 1;
+    text-shadow:
+      0 0 3px rgba(51, 102, 255, 0.4),
+      0 0 6px rgba(51, 102, 255, 0.2);
+  }
+  50% { 
+    opacity: 0.9;
+    text-shadow:
+      0 0 2px rgba(51, 102, 255, 0.3),
+      0 0 4px rgba(51, 102, 255, 0.1);
+  }
+}
+
+/* 高对比模式适配 */
+@media (prefers-contrast: high) {
+  .cyber-text { @apply text-white; }
+  .cyber-bg { @apply bg-black; }
+  .cyber-border { @apply border-white; }
+}
+
+/* Enhanced VR Search Page Animations */
+@keyframes animate-gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 400% 400%;
+  animation: animate-gradient-x 6s ease infinite;
+}
+
+@keyframes cyber-grid {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+/* Enhanced VR card effects */
+.vr-tour-card {
+  animation: fadeInUp 0.6s ease-out both;
+  animation-delay: var(--animation-delay, 0s);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Search loading enhancements */
+@keyframes border-loading {
+  0% { border-color: var(--cyber-brand-500); }
+  50% { border-color: var(--cyber-neon-cyan); }
+  100% { border-color: var(--cyber-brand-500); }
+}
+
+/* 减少动画选项 */
+@media (prefers-reduced-motion: reduce) {
+  .cyber-pulse { animation: none; }
+  .cyber-gentle-pulse { animation: none; }
+  .cyber-flicker { animation: none; }
+  .cyber-transition { transition: none; }
+  .animate-gradient-x { animation: none; }
+  .vr-tour-card { animation: none; }
+}
+

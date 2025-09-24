@@ -1,20 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 
 export function SiteHeader() {
-  const router = useRouter();
   const [atTop, setAtTop] = useState(true);
-
-  // logo is not clickable anymore
-
-  const performSearch = useCallback(() => {
-    // TODO: 接入真实搜索页
-    router.push("/search");
-  }, [router]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -31,88 +22,138 @@ export function SiteHeader() {
     <div data-section-id="common_header" data-section-type="common_header">
       <header
         className={
-          `navbar h-16 px-6 fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur ` +
+          `fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md backdrop-saturate-150 ` +
           (atTop
-            ? "bg-base-100/70 border-b border-base-300/50 shadow-sm"
-            : "bg-base-100/90 border-b border-base-300 shadow-lg")
+            ? "bg-cyber-gray-800/90 border-b border-cyber-brand-300/50 shadow-sm shadow-cyber-brand-500/25"
+            : "bg-cyber-gray-800/98 border-b border-cyber-brand-300/70 shadow-xl shadow-cyber-brand-500/40")
         }
         suppressHydrationWarning
       >
-        <div className="navbar-start select-none">
-          <div className={`text-base-content flex items-center gap-3 text-xl font-bold`}>
-            <img src="/realsee-logo.jpeg" alt="Realsee Logo" className="w-8 h-8 rounded" />
-            <span>Realsee Gallery</span>
-          </div>
-        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo & Brand */}
+            <div className="flex items-center gap-3 select-none">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyber-brand-500/20 via-cyber-neon-cyan/10 to-cyber-brand-500/20 rounded-2xl blur-sm group-hover:blur-md transition-all duration-300"></div>
+                <img
+                  src="/realsee-logo.jpeg"
+                  alt="Realsee Logo"
+                  className="relative w-10 h-10 rounded-xl shadow-lg ring-2 ring-cyber-brand-500/40 group-hover:ring-cyber-neon-cyan/60 transition-all duration-300"
+                />
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-gradient-to-br from-cyber-brand-500 to-cyber-neon-cyan rounded-full border-2 border-white/20 shadow-sm shadow-cyber-neon-cyan/50"></div>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold font-display bg-gradient-to-r from-cyber-brand-600 via-cyber-neon-cyan to-cyber-brand-600 bg-clip-text text-transparent">
+                  Realsee
+                </span>
+                <span className="text-xs text-cyber-brand-600 font-semibold -mt-1 hidden sm:block tracking-wider uppercase">
+                  Discover
+                </span>
+              </div>
+            </div>
 
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-4">
-            <li>
+            {/* Navigation - Desktop */}
+            <nav className="hidden lg:flex items-center space-x-8">
               <Link
                 href="/"
-                className="smooth-transition text-base-content/90 hover:text-primary"
+                className="relative text-white hover:text-cyber-brand-600 font-medium transition-colors duration-300 group cyber-nav-link"
               >
                 Discover
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center shadow-sm shadow-cyber-brand-500/50"></span>
               </Link>
-            </li>
-            <li>
               <Link
                 href="/search"
-                className="smooth-transition text-base-content/90 hover:text-primary"
+                className="relative text-white hover:text-cyber-brand-600 font-medium transition-colors duration-300 group cyber-nav-link"
               >
                 Browse Tours
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center shadow-cyber-brand-500/50"></span>
               </Link>
-            </li>
-            <li>
               <Link
-                href="/contact"
-                className="smooth-transition text-base-content/90 hover:text-primary"
+                href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center"
+                className="relative text-white hover:text-cyber-brand-600 font-medium transition-colors duration-300 group cyber-nav-link"
               >
                 Join Community
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center shadow-sm shadow-cyber-brand-500/50"></span>
               </Link>
-            </li>
-          </ul>
-        </div>
+            </nav>
 
-        <div className="navbar-end gap-3">
-          <div className="form-control hidden sm:block">
-            <div className="join">
-              <input
-                type="text"
-                placeholder="Search 3D tours..."
-                className={`input input-bordered join-item w-64`}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") performSearch();
-                }}
-              />
-              <button
-                className={`btn btn-ghost join-item text-base-content/70 hover:text-primary`}
-                onClick={performSearch}
-              >
-                <Icon icon="heroicons:magnifying-glass" width={20} />
-              </button>
+            {/* Actions */}
+            <div className="flex items-center gap-4">
+              {/* CTA Button - Desktop */}
+              <div className="hidden md:block">
+                <Link
+                  href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center"
+                  className="cyber-btn-primary px-4 py-2.5 text-white font-medium rounded-xl transition-all duration-300 shadow-lg shadow-cyber-brand-500/30 hover:shadow-xl hover:shadow-cyber-brand-500/50 focus:outline-none focus:ring-2 focus:ring-cyber-brand-500 focus:ring-offset-2 focus:ring-offset-base-100"
+                >
+                  Get Started
+                </Link>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <div className="lg:hidden">
+                <div className="dropdown dropdown-end">
+                  <button 
+                    tabIndex={0} 
+                    className="p-2.5 rounded-xl bg-cyber-gray-700/80 hover:bg-cyber-brand-500/20 text-white hover:text-cyber-brand-600 transition-all duration-300 border border-cyber-gray-600/60 hover:border-cyber-brand-500 shadow-lg shadow-cyber-brand-500/10"
+                  >
+                    <Icon icon="heroicons:bars-3" width={20} />
+                  </button>
+                  <ul
+                    tabIndex={0}
+                    className="menu dropdown-content mt-3 z-50 p-3 shadow-2xl bg-cyber-gray-800/95 backdrop-blur-md rounded-2xl w-72 border border-cyber-gray-600/60 shadow-cyber-brand-500/20"
+                  >
+                    <li>
+                      <Link href="/" className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300">
+                        <Icon icon="heroicons:home" width={18} />
+                        Discover
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/search" className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300">
+                        <Icon icon="heroicons:magnifying-glass" width={18} />
+                        Browse Tours
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center" className="text-white hover:text-cyber-brand-600 hover:bg-cyber-brand-500/10 rounded-xl font-medium transition-all duration-300">
+                        <Icon icon="heroicons:user-group" width={18} />
+                        Join Community
+                      </Link>
+                    </li>
+                    <div className="cyber-divider mx-2 my-2"></div>
+                    <li className="p-2">
+                      <Link
+                        href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center"
+                        className="cyber-btn-primary w-full text-center px-4 py-2.5 text-white font-medium rounded-xl transition-all duration-300 shadow-lg shadow-cyber-brand-500/30"
+                      >
+                        Get Started
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="dropdown dropdown-end lg:hidden">
-            <button tabIndex={0} className={`btn btn-ghost btn-square`}>
-              <Icon icon="heroicons:bars-3" width={24} />
-            </button>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-lg bg-base-100 rounded-box w-64 border border-base-300">
-              <li><Link href="/">Discover</Link></li>
-              <li><Link href="/search">Browse Tours</Link></li>
-              <li><Link href="/contact">Join Community</Link></li>
-            </ul>
           </div>
         </div>
       </header>
+      
       <style>{`
-        [data-section-id="common_header"] .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(8px); }
-        [data-section-id="common_header"] .menu li > *:hover { }
-        [data-section-id="common_header"] .dropdown-content { box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        [data-section-id="common_header"] header {
+          backdrop-filter: blur(12px) saturate(150%);
+        }
+        
+        [data-section-id="common_header"] .dropdown-content {
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          backdrop-filter: blur(12px) saturate(150%);
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+          [data-section-id="common_header"] * {
+            transition-duration: 0.01ms !important;
+          }
+        }
       `}</style>
     </div>
   );
 }
-
-

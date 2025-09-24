@@ -3,11 +3,17 @@
 import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
 import { getCarousels, getVrById, resolvePublicAssetPath } from "@/data/db";
+import {
+  getCategoryBadgeClass,
+  getDeviceBadgeClass,
+  getBadgeIcon,
+  DeviceIcon,
+} from "@/lib/badge-utils";
 
 export function Carousel() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
-  const timer = useRef<number | null>(null);
+  const timer = useRef<NodeJS.Timeout | null>(null);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const prefersReducedMotion = useRef<boolean>(false);
   const previous = useRef(0);
@@ -29,24 +35,26 @@ export function Carousel() {
       return { title: title || "", img, url, category, device };
     })
     .filter(Boolean) as {
-      title: string;
-      img?: string;
-      url: string;
-      category: string;
-      device: string;
-    }[];
+    title: string;
+    img?: string;
+    url: string;
+    category: string;
+    device: string;
+  }[];
 
   useEffect(() => {
     // Respect reduced motion preference
-    try {
-      const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-      prefersReducedMotion.current = mql.matches;
-    } catch {}
+    if (typeof window !== "undefined") {
+      try {
+        const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+        prefersReducedMotion.current = mql.matches;
+      } catch {}
+    }
 
     const start = () => {
-      if (timer.current) window.clearInterval(timer.current);
+      if (timer.current) clearInterval(timer.current);
       if (!prefersReducedMotion.current && slides.length > 1) {
-        timer.current = window.setInterval(() => {
+        timer.current = setInterval(() => {
           setCurrent((c) => {
             previous.current = c;
             return (c + 1) % slides.length;
@@ -58,7 +66,7 @@ export function Carousel() {
 
     start();
     return () => {
-      if (timer.current) window.clearInterval(timer.current);
+      if (timer.current) clearInterval(timer.current);
     };
   }, [slides.length]);
 
@@ -74,54 +82,42 @@ export function Carousel() {
 
   if (!slides.length) return null;
 
-  const getCategoryIcon = (category: string): string => {
-    const c = (category || "").toLowerCase();
-    if (c.includes("residential") || c.includes("house") || c.includes("home")) return "heroicons:home";
-    if (c.includes("industrial") || c.includes("factory")) return "heroicons:building-office-2";
-    if (c.includes("exhibition")) return "heroicons:photo";
-    if (c.includes("showroom")) return "heroicons:sparkles";
-    if (c.includes("museum")) return "heroicons:building-library";
-    if (c.includes("office")) return "heroicons:building-office";
-    if (c.includes("restaurant")) return "heroicons:building-storefront";
-    if (c.includes("studio")) return "heroicons:video-camera";
-    if (c.includes("church")) return "mdi:church";
-    if (c.includes("gym")) return "mdi:dumbbell";
-    if (c.includes("aerial")) return "heroicons:paper-airplane";
-    if (c.includes("outdoor") || c.includes("outside")) return "heroicons:globe-alt";
-    return "heroicons:tag";
-  };
-
-  const getDeviceIcon = (device: string): string => {
-    const d = (device || "").toLowerCase();
-    if (d.includes("galois") || d.includes("伽罗华")) return "mdi:laser-pointer"; // 激光扫描仪
-    if (d.includes("pano to 3d") || d.includes("panorama") || d.includes("全景")) return "mdi:panorama-variant"; // 全景转VR
-    return "heroicons:camera";
-  };
-
   return (
-    <section className="hero min-h-[100svh] w-screen bg-base-200/0 p-0">
-      <div className="hero-content p-0 w-full max-w-none">
+    <section className="hero min-h-[100svh] w-screen bg-cyber-gray-900 p-0 relative overflow-hidden">
+      {/* 赛博朋克背景渐变 */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyber-brand-500/10 via-transparent to-cyber-neon-cyan/5 pointer-events-none z-0" />
+      {/* 网格背景 */}
+      <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none z-0" />
+
+      <div className="hero-content p-0 w-full max-w-none relative z-10">
         <div
-          className="relative w-full overflow-hidden rounded-none shadow-none focus:outline-none"
+          className="relative w-full overflow-hidden rounded-none shadow-none focus:outline-none focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
           tabIndex={0}
+          role="region"
+          aria-label="Featured 3D Tours Carousel"
           onKeyDown={(e) => {
             if (e.key === "ArrowLeft") prev();
             if (e.key === "ArrowRight") next();
+            if (e.key === "Home") goTo(0);
+            if (e.key === "End") goTo(slides.length - 1);
           }}
           onMouseEnter={() => {
-            if (timer.current) window.clearInterval(timer.current);
+            if (timer.current) clearInterval(timer.current);
             setPaused(true);
           }}
           onMouseLeave={() => {
             if (!prefersReducedMotion.current && slides.length > 1) {
-              timer.current = window.setInterval(() => setCurrent((c) => (c + 1) % slides.length), DURATION_MS);
+              timer.current = setInterval(
+                () => setCurrent((c) => (c + 1) % slides.length),
+                DURATION_MS
+              );
               setPaused(false);
             }
           }}
           onTouchStart={(e) => {
             const t = e.touches[0];
             touchStart.current = { x: t.clientX, y: t.clientY };
-            if (timer.current) window.clearInterval(timer.current);
+            if (timer.current) clearInterval(timer.current);
             setPaused(true);
           }}
           onTouchEnd={(e) => {
@@ -136,7 +132,10 @@ export function Carousel() {
               else next();
             }
             if (!prefersReducedMotion.current && slides.length > 1) {
-              timer.current = window.setInterval(() => setCurrent((c) => (c + 1) % slides.length), DURATION_MS);
+              timer.current = setInterval(
+                () => setCurrent((c) => (c + 1) % slides.length),
+                DURATION_MS
+              );
               setPaused(false);
             }
           }}
@@ -148,87 +147,119 @@ export function Carousel() {
               return (
                 <div
                   key={`${s.title}-${i}`}
-                  className={`absolute inset-0 ${isVisible ? "block" : "hidden"} transition-opacity duration-700 ease-out ${
+                  className={`absolute inset-0 ${
+                    isVisible ? "block" : "hidden"
+                  } transition-opacity duration-700 ease-out ${
                     i === current ? "opacity-100 z-10" : "opacity-0 z-0"
                   }`}
-                aria-hidden={i !== current}
-                aria-label={s.title}
-                role="group"
+                  aria-hidden={i !== current}
+                  aria-label={s.title}
+                  role="group"
                 >
-                <div
-                  className={`absolute inset-0 bg-center bg-cover pointer-events-none ${!prefersReducedMotion.current ? "kenburns-soft" : ""}`}
-                  style={{ backgroundImage: `url("${s.img}")` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-base-content/70 via-base-content/20 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-b from-base-content/40 via-base-content/10 to-transparent pointer-events-none" />
-                {/* Immersive centered hero content with title and badges */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="px-4 md:px-10 w-full">
-                    <div className="text-base-100 text-center mb-8 md:mb-16">
-                      <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight drop-shadow-xl">{s.title}</h1>
-                      <div className="mt-3 md:mt-4 flex items-center justify-center gap-2">
-                        {s.category ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-primary/95 px-3 py-1.5 text-sm text-primary-content shadow-sm ring-1 ring-primary/40 backdrop-blur">
-                            <Icon icon={getCategoryIcon(s.category)} width={16} /> {s.category}
+                  <div
+                    className={`absolute inset-0 bg-center bg-cover pointer-events-none ${
+                      !prefersReducedMotion.current ? "kenburns-soft" : ""
+                    }`}
+                    style={{ backgroundImage: `url("${s.img}")` }}
+                  />
+                  {/* Immersive centered hero content with enhanced design */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="px-6 md:px-12 w-full max-w-6xl">
+                      <div className="text-white text-center">
+                        {/* Main Title */}
+                        <h1 className="text-4xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6">
+                          <span className="bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent drop-shadow-2xl">
+                            {s.title}
                           </span>
-                        ) : null}
-                        {s.device ? (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-black/50 px-3 py-1.5 text-sm text-white shadow-sm backdrop-blur">
-                            <Icon icon={getDeviceIcon(s.device)} width={16} /> {s.device}
-                          </span>
-                        ) : null}
-                      </div>
-                      <div className="mt-5 md:mt-7 pointer-events-auto inline-flex">
-                        <a
-                          className="btn btn-outline btn-lg rounded-full text-base-100 border-white/80 hover:border-white hover:bg-white/15 active:scale-[0.98] transition-transform backdrop-blur-sm gap-2 btn-wide"
-                          href={s.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label="立即进入 3D Tour"
-                        >
-                          <Icon icon="heroicons:play" width={20} />
-                          立即进入
-                        </a>
+                        </h1>
+
+                        {/* Enhanced badges */}
+                        <div className="mt-6 mb-8 flex items-center justify-center gap-3 flex-wrap">
+                          {s.category ? (
+                            <div
+                              className={`badge ${getCategoryBadgeClass(
+                                s.category
+                              )} badge-lg gap-2`}
+                            >
+                              <Icon
+                                icon={getBadgeIcon(s.category)}
+                                width={16}
+                              />
+                              <span className="font-medium">{s.category}</span>
+                            </div>
+                          ) : null}
+                          {s.device ? (
+                            <div
+                              className={`badge ${getDeviceBadgeClass(
+                                s.device
+                              )} badge-lg gap-2`}
+                            >
+                              <DeviceIcon device={s.device} width={16} />
+                              <span className="font-medium">{s.device}</span>
+                            </div>
+                          ) : null}
+                        </div>
+
+                        {/* 赛博朋克 CTA 按钮 */}
+                        <div className="mt-8 pointer-events-auto">
+                          <a
+                            className="cyber-btn-primary btn-lg px-10 py-4 rounded-full text-lg font-semibold shadow-2xl shadow-primary/50 hover:shadow-cyber-neon-lg hover:scale-105 active:scale-95 transition-all duration-300 backdrop-blur-sm gap-3 cyber-gentle-pulse font-display"
+                            href={s.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Explore ${s.title} 3D Virtual Tour`}
+                          >
+                            <Icon icon="heroicons:play-circle" width={24} />
+                            <span>Explore Now</span>
+                          </a>
+                        </div>
+
+                        {/* Additional description */}
+                        <p className="mt-6 text-white/80 text-base md:text-lg max-w-2xl mx-auto">
+                          Immersive 3D virtual experience - Explore every detail of real spaces
+                        </p>
                       </div>
                     </div>
                   </div>
-                </div>
                 </div>
               );
             })}
           </div>
 
-          {/* Controls */}
+          {/* Enhanced Navigation Controls */}
           {slides.length > 1 ? (
             <>
               <button
                 type="button"
-                aria-label="上一个"
+                aria-label="Previous slide"
                 onClick={prev}
-                className="btn btn-circle btn-sm md:btn-md btn-ghost absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-base-100 bg-base-100/10 hover:bg-base-100/20 border-white/20"
+                className="btn btn-circle btn-lg btn-ghost absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white bg-base-300/20 border-primary/30 hover:bg-base-300/40 hover:border-primary/70 hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-md shadow-lg shadow-primary/20 cyber-glow-box"
               >
-                <span className="iconify" data-icon="heroicons:chevron-left-20-solid" data-width="20"></span>
+                <Icon icon="heroicons:chevron-left" width={24} />
               </button>
               <button
                 type="button"
-                aria-label="下一个"
+                aria-label="Next slide"
                 onClick={next}
-                className="btn btn-circle btn-sm md:btn-md btn-ghost absolute right-3 md:right-6 top-1/2 -translate-y-1/2 text-base-100 bg-base-100/10 hover:bg-base-100/20 border-white/20"
+                className="btn btn-circle btn-lg btn-ghost absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white bg-base-300/20 border-primary/30 hover:bg-base-300/40 hover:border-primary/70 hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-md shadow-lg shadow-primary/20 cyber-glow-box"
               >
-                <span className="iconify" data-icon="heroicons:chevron-right-20-solid" data-width="20"></span>
+                <Icon icon="heroicons:chevron-right" width={24} />
               </button>
             </>
           ) : null}
 
-          {/* Scroll hint */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex items-center gap-3 text-base-100/90 z-20 pointer-events-none">
+          {/* Enhanced Scroll hint */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-white/70 z-20 pointer-events-none">
             <div className="scroll-mouse"></div>
+            <p className="text-xs font-medium tracking-wider uppercase">
+              向下滚动
+            </p>
           </div>
 
-          {/* Indicators: simple stable dots to avoid flicker */}
+          {/* Enhanced Indicators with modern design */}
           {slides.length > 1 ? (
-            <div className="absolute bottom-24 md:bottom-28 left-1/2 -translate-x-1/2 z-20">
-              <div className="px-2 py-1 rounded-full bg-white/10 backdrop-blur-md flex items-center gap-1.5 md:gap-2">
+            <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 z-20">
+              <div className="px-4 py-3 rounded-full bg-base-300/30 backdrop-blur-xl border border-primary/20 shadow-xl shadow-primary/20 flex items-center gap-2 md:gap-3">
                 {slides.map((_, i) => {
                   const isActive = i === current;
                   return (
@@ -236,18 +267,29 @@ export function Carousel() {
                       key={i}
                       type="button"
                       onClick={() => goTo(i)}
-                      aria-label={`跳转到第 ${i + 1} 张`}
-                      className={`relative overflow-hidden rounded-full h-1.5 md:h-2 transition-all duration-300 ${
-                        isActive ? "w-8 md:w-14 bg-white/30" : "w-2.5 md:w-3.5 bg-white/60 hover:bg-white/80"
+                      aria-label={`Go to slide ${i + 1}`}
+                      className={`relative overflow-hidden rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
+                        isActive
+                          ? "h-2 md:h-2.5 w-8 md:w-16 bg-primary shadow-lg shadow-primary/50 cyber-glow-box"
+                          : "h-2 md:h-2.5 w-2 md:w-2.5 bg-base-content/50 hover:bg-primary/60"
                       }`}
-                      style={{ ["--carousel-duration" as any]: `${DURATION_MS}ms` }}
+                      style={{
+                        ["--carousel-duration" as any]: `${DURATION_MS}ms`,
+                      }}
                       aria-current={isActive}
                     >
                       {isActive ? (
                         <span
                           key={`progress-${current}`}
-                          className={`absolute left-0 top-0 bottom-0 bg-white carousel-progress ${paused || prefersReducedMotion.current ? "paused" : ""}`}
-                          style={{ width: 0 as unknown as number, animationPlayState: paused ? "paused" : "running" }}
+                          className={`absolute left-0 top-0 bottom-0 bg-white/90 carousel-progress ${
+                            paused || prefersReducedMotion.current
+                              ? "paused"
+                              : ""
+                          }`}
+                          style={{
+                            width: 0 as unknown as number,
+                            animationPlayState: paused ? "paused" : "running",
+                          }}
                         />
                       ) : null}
                     </button>
@@ -261,5 +303,3 @@ export function Carousel() {
     </section>
   );
 }
-
-

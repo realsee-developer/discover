@@ -1,0 +1,262 @@
+---
+description: 前端使用 TailwindCSS v4 + daisyUI + 赛博朋克设计系统规则
+globs: frontend/src/**/*.tsx,frontend/src/**/*.ts,frontend/src/**/*.css
+---
+
+# Frontend TailwindCSS v4 + daisyUI + 赛博朋克设计系统规则
+
+## 技术栈配置
+
+### TailwindCSS v4 配置
+- **配置文件**: [frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
+- **引入方式**: `@import "tailwindcss"` + `@plugin "daisyui"`
+- **主题定义**: 使用 `@theme inline {}` 语法定义颜色和变量
+- **无需额外配置文件**: TailwindCSS v4 使用 CSS 原生配置
+
+### daisyUI 集成
+- **版本**: daisyUI v5.1.14
+- **引入**: `@plugin "daisyui"` 在 globals.css 中
+- **主题**: 自定义 `realsee-light` 和 `realsee-dark` 主题
+- **组件**: 使用 daisyUI 预制组件 + 自定义赛博朋克样式
+
+## 赛博朋克设计系统
+
+### 核心色彩体系
+
+#### 品牌色阶 (cyber-brand-*)
+```css
+--cyber-brand-50:  #0a0f1a;     /* 深空背景 */
+--cyber-brand-100: #0f1929;     /* 暗色面板 */
+--cyber-brand-200: #1a2844;     /* 中性背景 */
+--cyber-brand-300: #2d4a7a;     /* 边框/分割线 */
+--cyber-brand-400: #4d73cc;     /* 悬浮状态 */
+--cyber-brand-500: #3366FF;     /* 主品牌色 */
+--cyber-brand-600: #5577ff;     /* 亮色变体 */
+--cyber-brand-700: #7799ff;     /* 高亮 */
+--cyber-brand-800: #99bbff;     /* 超亮 */
+--cyber-brand-900: #bbddff;     /* 发光效果 */
+```
+
+#### 霓虹色系 (cyber-neon-*)
+```css
+--cyber-neon-cyan: #00FFFF;      /* 霓虹青色 */
+--cyber-neon-magenta: #FF00FF;   /* 霓虹品红 */
+--cyber-neon-green: #00FF41;     /* 矩阵绿 */
+--cyber-electric-blue: #0099FF;  /* 电光蓝 */
+--cyber-plasma-purple: #8A2BE2;  /* 等离子紫 */
+```
+
+#### 灰度系统 (cyber-gray-*)
+```css
+--cyber-gray-900: #0a0a0a;      /* 最深背景 */
+--cyber-gray-800: #1a1a1a;      /* 主背景 */
+--cyber-gray-700: #2a2a2a;      /* 卡片背景 */
+--cyber-gray-600: #404040;      /* 边框 */
+--cyber-gray-500: #666666;      /* 次要文本 */
+--cyber-gray-400: #999999;      /* 占位符 */
+--cyber-gray-300: #cccccc;      /* 主要文本 */
+--cyber-gray-200: #e6e6e6;      /* 高亮文本 */
+--cyber-gray-100: #f5f5f5;      /* 纯白 */
+```
+
+### 自定义组件类名约定
+
+#### 按钮系统
+- **主要按钮**: `cyber-btn-primary` - 带霓虹发光效果
+- **次要按钮**: `cyber-btn-secondary` - 轮廓风格
+- **危险按钮**: `cyber-btn-danger` - 霓虹红色
+- **与 daisyUI 结合**: `btn cyber-btn-primary` 等
+
+#### 输入框系统
+- **基础输入框**: `cyber-input` - 赛博朋克风格
+- **焦点效果**: 自动添加发光边框
+- **与 daisyUI 结合**: `input cyber-input` 等
+
+#### 卡片系统
+- **基础卡片**: `cyber-card` - 暗色背景 + 悬浮效果
+- **霓虹卡片**: `cyber-card-neon` - 带发光边框
+- **与 daisyUI 结合**: `card cyber-card` 等
+
+#### 导航链接
+- **基础链接**: `cyber-nav-link` - 悬浮发光下划线
+- **渐变链接**: 使用 `link-gradient-underline` 类
+
+## daisyUI 组件使用约定
+
+### 常用组件组合
+
+#### 搜索框组合
+```tsx
+<div className="join w-full shadow-xl">
+  <input 
+    className="cyber-input join-item w-full h-16" 
+    type="text" 
+    placeholder="搜索..." 
+  />
+  <button className="cyber-btn-primary join-item h-16">
+    搜索
+  </button>
+</div>
+```
+
+#### 卡片组合
+```tsx
+<div className="card cyber-card">
+  <figure>
+    <img src="..." alt="..." />
+  </figure>
+  <div className="card-body">
+    <h2 className="card-title text-cyber-gray-200">标题</h2>
+    <p className="text-cyber-gray-400">描述</p>
+    <div className="card-actions justify-end">
+      <button className="cyber-btn-primary">操作</button>
+    </div>
+  </div>
+</div>
+```
+
+#### 徽章系统
+- **主要徽章**: `badge badge-primary`
+- **轮廓徽章**: `badge badge-outline`
+- **状态徽章**: `badge badge-success`, `badge badge-warning` 等
+- **尺寸**: `badge-xs`, `badge-sm`, `badge-lg`
+
+### 布局组件
+
+#### 容器和栅格
+- **容器**: `container mx-auto px-6`
+- **响应式网格**: 使用 CSS Grid 和 Flexbox
+- **间距**: 基于 8px 网格系统
+
+#### 导航组件
+- **导航栏**: `navbar` + 自定义赛博朋克样式
+- **菜单**: `menu` 组件
+- **面包屑**: `breadcrumbs` 组件
+
+## 响应式设计约定
+
+### 断点系统
+```css
+sm: 640px   /* 小屏幕 */
+md: 768px   /* 平板 */
+lg: 1024px  /* 笔记本 */
+xl: 1280px  /* 桌面 */
+2xl: 1536px /* 大屏幕 */
+```
+
+### 移动端优化
+```tsx
+// 响应式文本
+className="text-2xl md:text-4xl lg:text-5xl"
+
+// 响应式间距
+className="px-4 md:px-6 lg:px-8"
+
+// 响应式网格
+className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+```
+
+### 移动端组件适配
+- **卡片**: 移动端使用全宽度
+- **按钮**: 增大触摸区域
+- **导航**: 折叠菜单
+- **搜索**: 全屏搜索界面
+
+## 特效与动画
+
+### 霓虹发光效果
+- **文本发光**: `cyber-neon-text` 类
+- **盒子发光**: `cyber-glow-box` 类
+- **悬浮发光**: `:hover` 状态自动添加
+
+### 动画类名
+- **脉冲效果**: `cyber-pulse`
+- **闪烁效果**: `cyber-flicker`
+- **跑马灯**: `animate-marquee`
+- **骨架屏**: `skeleton` 类
+
+### 过渡效果
+- **基础过渡**: `transition-all duration-300`
+- **缓动函数**: `cubic-bezier(0.4, 0, 0.2, 1)`
+- **变形**: `transform` 属性用于悬浮效果
+
+## 可访问性要求
+
+### WCAG 2.2 AA 标准
+- **文本对比度**: 普通文本 ≥ 4.5:1，大文本 ≥ 3:1
+- **焦点指示器**: `cyber-focus` 类提供统一焦点样式
+- **键盘导航**: 所有交互元素支持 Tab 键导航
+
+### 响应用户偏好
+```css
+/* 减少动画 */
+@media (prefers-reduced-motion: reduce) {
+  .cyber-pulse { animation: none; }
+}
+
+/* 高对比度 */
+@media (prefers-contrast: high) {
+  .cyber-text { @apply text-white; }
+}
+```
+
+### 语义化 HTML
+- 使用适当的 HTML 语义标签
+- `aria-*` 属性增强可访问性
+- `role` 属性指定组件角色
+
+## 性能优化
+
+### CSS 优化
+- **按需加载**: 只使用需要的 Tailwind 类
+- **CSS 变量**: 使用 CSS 自定义属性实现主题切换
+- **硬件加速**: `will-change` 属性优化动画
+
+### 图片优化
+- **响应式图片**: `srcSet` 和 `sizes` 属性
+- **懒加载**: Next.js Image 组件
+- **占位符**: 骨架屏或模糊占位符
+
+## 代码规范
+
+### 类名顺序约定
+```tsx
+// 推荐顺序：布局 → 尺寸 → 外观 → 交互 → 响应式
+className="flex items-center w-full h-16 bg-cyber-gray-800 border border-cyber-gray-600 hover:border-cyber-brand-500 transition-all duration-300 md:w-auto"
+```
+
+### 组件封装原则
+- **单一职责**: 每个组件只负责一个功能
+- **可复用性**: 通过 props 控制样式变体
+- **类型安全**: 使用 TypeScript 定义 props 类型
+
+### 样式分离
+- **全局样式**: globals.css 中定义
+- **组件样式**: 使用 Tailwind 类名
+- **动画效果**: CSS 类 + Tailwind 结合
+
+## 最佳实践
+
+### 开发流程
+1. **设计稿对照**: 确保实现符合赛博朋克设计规范
+2. **响应式测试**: 在不同设备尺寸下测试
+3. **可访问性检查**: 使用屏幕阅读器测试
+4. **性能测试**: 检查加载速度和动画流畅度
+
+### 常见问题解决
+- **颜色不生效**: 确保使用正确的 CSS 变量名
+- **动画卡顿**: 检查是否使用 `will-change` 属性
+- **响应式问题**: 确保断点使用正确
+- **可访问性问题**: 检查颜色对比度和焦点状态
+
+### 调试技巧
+- **Tailwind IntelliSense**: VSCode 插件提供自动补全
+- **浏览器开发工具**: 检查生成的 CSS
+- **响应式测试**: Chrome DevTools 设备模拟
+- **可访问性测试**: axe-core 浏览器插件
+
+## 参考文件
+- **全局样式**: [frontend/src/app/globals.css](mdc:frontend/src/app/globals.css)
+- **组件示例**: [frontend/src/components/custom/home/SearchFilter.tsx](mdc:frontend/src/components/custom/home/SearchFilter.tsx)
+- **设计系统规范**: [.cursor/rules/design-system.mdc](mdc:.cursor/rules/design-system.mdc)
+- **包配置**: [frontend/package.json](mdc:frontend/package.json)

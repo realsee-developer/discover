@@ -1,33 +1,29 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
-import { getStrapiURL } from "@/lib/utils";
 import { SiteHeader } from "../components/custom/SiteHeader";
 import { SiteFooter } from "../components/custom/SiteFooter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Primary font - Inter for excellent readability
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Monospace font - JetBrains Mono for code and technical content
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = getStrapiURL();
-  try {
-    const res = await fetch(`${baseUrl}/api/global`);
-    if (!res.ok) throw new Error("Failed to fetch metadata");
-    const json = await res.json();
-    const title = json?.data?.title ?? "Discover";
-    const description = json?.data?.description ?? "Discover App";
-    return { title, description } satisfies Metadata;
-  } catch {
-    return { title: "Discover", description: "Discover App" };
-  }
-}
+// Display font - Orbitron for cyberpunk headings
+const orbitron = Orbitron({
+  variable: "--font-orbitron",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "700", "900"],
+});
 
 export default async function RootLayout({
   children,
@@ -35,9 +31,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" data-theme="business">
+    <html lang="en" data-theme="cyberpunk">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased bg-base-100 text-base-content min-h-screen font-sans`}
       >
         <SiteHeader />
         {children}

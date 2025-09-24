@@ -2,35 +2,52 @@
 globs: frontend/**
 description: Next.js 前端开发约定与导航
 ---
-# Next.js 前端规则（Realsee Discover）
 
-- 运行脚本在 [frontend/package.json](mdc:frontend/package.json) 中：
-  - `dev` -> `next dev`
-  - `build` -> `next build`
-  - `start` -> `next start`
-  - `lint` -> `biome check`
+# Next.js 前端开发约定（Realsee Discover）
 
-## 目录与入口
-- App Router 根布局: [src/app/layout.tsx](mdc:frontend/src/app/layout.tsx)
-- 首页页面: [src/app/page.tsx](mdc:frontend/src/app/page.tsx)
-- 工具函数: [src/lib/utils.ts](mdc:frontend/src/lib/utils.ts)
-- UI 组件示例: [src/components/ui/button.tsx](mdc:frontend/src/components/ui/button.tsx)
+## 快速导航
 
-## 数据获取约定
-- 基础 URL 通过 `getStrapiURL()` 读取 `NEXT_PUBLIC_STRAPI_URL`（默认 `http://localhost:1337`）
-- 全局数据: `GET /api/global`（用于 `generateMetadata` 与布局）
-- 首页块数据: `GET /api/home-page?populate[blocks][populate]=*`
+- 脚本：`frontend/package.json` → `dev`、`build`、`start`、`lint`
+- 设计：遵循 [.cursor/rules/design-system.mdc](mdc:.cursor/rules/design-system.mdc) 与 [.cursor/rules/frontend-tailwind-daisyui.mdc](mdc:.cursor/rules/frontend-tailwind-daisyui.mdc)
+- 组件：`frontend/src/components`，优先复用 UI 与模块库
+- 数据：`frontend/src/data` 静态源，Strapi API 通过 `lib/strapi.ts`
 
-## TypeScript 与路径别名
-- 别名 `@/*` 指向 `src/*`，见 [tsconfig.json](mdc:frontend/tsconfig.json)
-- Next 插件配置位于 `compilerOptions.plugins.name = "next"`
+## 项目结构
 
-## 风格与 Lint
-- 使用 Biome 作为格式化与 Lint：见 [biome.json](mdc:frontend/biome.json)
-- 建议：组织 imports（Biome assist: organizeImports）
+- **App Router**：根布局 `src/app/layout.tsx`；入口路由位于 `src/app/**`
+- **共享布局**：页眉/页脚在 `src/components/custom` 中维护，保持跨页一致
+- **样式载入**：`src/app/globals.css` 负责 Tailwind v4 + daisyUI + 设计令牌
+- **环境变量**：默认通过 `getStrapiURL()` 读取 `NEXT_PUBLIC_STRAPI_URL`（默认 `http://localhost:1337`）
 
-## 组件渲染约定
-- `HeroSection` 与 `FeaturesSection` 根据 `__component` 字段动态渲染，见 [src/app/page.tsx](mdc:frontend/src/app/page.tsx)
+## 数据获取策略
 
-## 运行时注意
-- 使用 App Router 的异步服务器组件，需要在请求中处理失败回退（示例见 `generateMetadata` 与 `getStrapiData`）。
+- **全局数据**：`GET /api/global` 用于布局与 `generateMetadata`
+- **页面模块**：`GET /api/home-page?populate[blocks][populate]=*` 等 API，按 Strapi 模块字段渲染
+- **错误兜底**：所有请求封装在 `lib/strapi.ts`，需要实现错误捕获与空状态
+- **缓存策略**：服务端组件默认使用 Next.js `fetch` 缓存机制，增量更新时显式配置 `revalidate`
+
+## TypeScript 与构建
+
+- **路径别名**：`@/* → src/*`，定义于 `tsconfig.json`
+- **Biome 配置**：`biome.json` 控制格式化和 Lint；提交前执行 `npm run lint`
+- **组件类型**：保持显式 Props 类型，复用 `types.d.ts`/`@/types` 中的声明
+
+## 渲染与组件约定
+
+- **服务器组件优先**：除需浏览器交互的场景外保持 Server Components；客户端组件需使用 `"use client"`
+- **动态模块渲染**：内容模块根据 `__component` 动态映射，示例见 `src/app/page.tsx`
+- **UI 复用**：按钮使用 `components/ui/button.tsx`，卡片/徽章等遵循组件库，禁止页面内自定义 Tailwind class
+- **布局网格**：页面容器遵循 `max-w-7xl mx-auto px-8`（移动端 `px-4`），跨页面一致
+
+## 运行时与可访问性
+
+- **SEO**：在 `generateMetadata` 中合并 Strapi `global` 数据
+- **Loading/Error 状态**：提供 `loading.tsx`、`error.tsx`，并确保与设计系统一致
+- **可访问性**：交互组件统一使用 `cyber-focus` 焦点样式，文本对比遵守 WCAG 2.2 AA
+- **性能**：按需拆分模块，使用 Next Image/Lazy 组件，重用 `next/script` 做延迟加载
+
+## 关联规则
+
+- Tailwind 与 daisyUI 细节参考 [.cursor/rules/frontend-tailwind-daisyui.mdc](mdc:.cursor/rules/frontend-tailwind-daisyui.mdc)
+- 设计落地与审核流程参考 [.cursor/rules/design-system.mdc](mdc:.cursor/rules/design-system.mdc)
+- 不得硬编码品牌色，遵循 [.cursor/rules/no-hardcoded-brand-color.mdc](mdc:.cursor/rules/no-hardcoded-brand-color.mdc)

@@ -1,10 +1,3 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
-
 export function getStrapiURL() {
   // 1) 显式覆盖优先
   const explicit = process.env.NEXT_PUBLIC_STRAPI_URL

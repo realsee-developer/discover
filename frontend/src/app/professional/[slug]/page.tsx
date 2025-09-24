@@ -97,7 +97,13 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     )
     .filter((s): s is string => Boolean(s));
 
-  const proRecord = pro as Record<string, string | undefined>;
+  const socialHandles: Partial<Record<SocialKey, string>> = {
+    linkedin: pro.linkedin,
+    instagram: pro.instagram,
+    facebook: pro.facebook,
+    youtube: pro.youtube,
+    vimeo: pro.vimeo,
+  };
   const socialConfigs: Array<{
     key: SocialKey;
     icon: string;
@@ -157,7 +163,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
   }
 
   for (const config of socialConfigs) {
-    const value = proRecord[config.key];
+    const value = socialHandles[config.key];
     if (!value) continue;
     socialLinks.push({ ...config, value });
   }
@@ -165,7 +171,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
   const youtubeId = pro.behindScenesVideo
     ? extractYouTubeId(pro.behindScenesVideo)
     : null;
-  const blogArticle = proRecord.blogArticle;
+  const blogArticle = pro.blogArticle;
 
   const heroStats: Array<{ icon: string; label: string; value: string }> = [
     {

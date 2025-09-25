@@ -11,33 +11,37 @@ export function SearchFilter() {
     .filter((t) => t.type === "category")
     .sort((a, b) => a.label.localeCompare(b.label));
 
+  const normalizeLabel = (label: string) => label.trim().toLowerCase();
+
   const iconMap: Record<string, string> = {
-    Outdoor: "heroicons:map",
-    "Aerial 3D": "heroicons:paper-airplane",
-    Industrial: "heroicons:cog-6-tooth",
-    Exhibition: "heroicons:photo",
-    Exibition: "heroicons:photo",
-    Showroom: "heroicons:building-storefront",
-    Residential: "heroicons:home",
-    Outside: "heroicons:globe-alt",
-    Museum: "heroicons:building-library",
-    Office: "heroicons:building-office-2",
-    Restaurant: "heroicons:cake",
-    Studio: "heroicons:camera",
-    Church: "heroicons:star",
-    Gym: "heroicons:heart",
-    School: "heroicons:academic-cap",
+    "aerial 3d": "heroicons:paper-airplane",
+    campus: "heroicons:building-library",
+    car: "heroicons:truck",
+    church: "heroicons:star",
+    clinic: "heroicons:lifebuoy",
+    construction: "heroicons:wrench-screwdriver",
+    exhibition: "heroicons:photo",
+    exibition: "heroicons:photo",
+    gym: "heroicons:heart",
+    hotel: "heroicons:building-office",
+    industrial: "heroicons:cog-6-tooth",
+    museum: "heroicons:building-library",
+    office: "heroicons:building-office-2",
+    outdoor: "heroicons:map",
+    outside: "heroicons:globe-alt",
+    residential: "heroicons:home",
+    restaurant: "heroicons:cake",
+    retail: "heroicons:shopping-bag",
+    showroom: "heroicons:building-storefront",
+    school: "heroicons:academic-cap",
+    studio: "heroicons:camera",
+    tourism: "heroicons:map-pin",
     "village hall": "heroicons:users",
-    Tourism: "heroicons:map-pin",
-    Hotel: "heroicons:building-office",
-    Clinic: "heroicons:heart-pulse",
-    Retail: "heroicons:shopping-bag",
-    Construction: "heroicons:wrench-screwdriver",
-    Car: "heroicons:truck",
-    Campus: "heroicons:building-library",
+    healthcare: "heroicons:lifebuoy",
+    "medical clinic": "heroicons:lifebuoy",
   };
 
-  const getCategoryIcon = (label: string) => iconMap[label] || "heroicons:hashtag";
+  const getCategoryIcon = (label: string) => iconMap[normalizeLabel(label)] || "heroicons:hashtag";
 
   const featuredTags = tags.slice(0, 8);
   const secondaryTags = tags.slice(8, 16);

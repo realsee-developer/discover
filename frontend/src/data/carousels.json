@@ -2,31 +2,31 @@
   {
     "vrId": "Ae44XBBg",
     "order": 0,
-    "imagePath": "/carousel/Ae44XBBg.jpg",
-    "assetPath": "@carousel/Ae44XBBg.jpg"
+    "imagePath": "/carousel/Ae44XBBg.jpg"
   },
   {
     "vrId": "GjVV2lEO",
     "order": 1,
-    "imagePath": "/carousel/GjVV2lEO.jpg",
-    "assetPath": "@carousel/GjVV2lEO.jpg"
+    "imagePath": "/carousel/GjVV2lEO.jpg"
   },
   {
     "vrId": "v4OORaaL",
     "order": 2,
-    "imagePath": "/carousel/v4OORaaL.jpg",
-    "assetPath": "@carousel/v4OORaaL.jpg"
+    "imagePath": "/carousel/v4OORaaL.jpg"
+  },
+  {
+    "vrId": "8VRR9e8a",
+    "order": 3,
+    "imagePath": "/carousel/8VRR9e8a.jpg"
   },
   {
     "vrId": "v4OOR4qm",
-    "order": 3,
-    "imagePath": "/carousel/v4OOR4qm.jpg",
-    "assetPath": "@carousel/v4OOR4qm.jpg"
+    "order": 4,
+    "imagePath": "/carousel/v4OOR4qm.jpg"
   },
   {
     "vrId": "jmxxR7qV",
-    "order": 4,
-    "imagePath": "/carousel/jmxxR7qV.jpg",
-    "assetPath": "@carousel/jmxxR7qV.jpg"
+    "order": 5,
+    "imagePath": "/carousel/jmxxR7qV.jpg"
   }
 ]

@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     description:
       "Discover cutting-edge virtual tours and connect with Realsee creators worldwide.",
     images: ogImage ? [ogImage] : undefined,
+    site: "@REALSEE_Moment",
   },
 };
 

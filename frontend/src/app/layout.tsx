@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "../components/custom/SiteHeader";
@@ -7,9 +7,9 @@ import { SiteFooter } from "../components/custom/SiteFooter";
 import { absoluteUrl, getSiteURL } from "@/lib/utils";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID ?? process.env.GA_ID;
-const adsPublisherId =
-  process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_CLIENT ??
-  process.env.GOOGLE_ADSENSE_CLIENT;
+
+const gtmId = "GTM-N27VZHG2";
+const isVercelProduction = process.env.VERCEL_ENV === "production";
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteURL()),
@@ -132,10 +132,8 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        {isVercelProduction ? <GoogleTagManager gtmId={gtmId} /> : null}
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
-        {adsPublisherId ? (
-          <GoogleAdSense publisherId={adsPublisherId} />
-        ) : null}
       </body>
     </html>
   );

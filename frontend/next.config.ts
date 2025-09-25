@@ -2,11 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      "kind-love-9d69af7ecf.media.strapiapp.com",
-      "kind-love-9d69af7ecf.strapiapp.com",
-      "localhost",
-    ],
     remotePatterns: [
       {
         protocol: "http",

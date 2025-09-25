@@ -15,14 +15,14 @@ const sizeClass: Record<CategoryBadgeSize, string> = {
 
 const accentClass: Record<string, string> = {
   residential:
-    "border-cyber-brand-400/70 bg-cyber-brand-500/15 text-cyber-brand-100",
+    "border-cyber-brand-400/80 bg-cyber-brand-500/25 text-cyber-brand-50",
   office:
-    "border-cyber-neon-cyan/60 bg-cyber-neon-cyan/10 text-cyber-neon-cyan",
+    "border-cyber-neon-cyan/70 bg-cyber-neon-cyan/20 text-cyber-neon-cyan",
   retail:
-    "border-cyber-neon-magenta/50 bg-cyber-neon-magenta/10 text-cyber-neon-magenta",
-  industrial: "border-cyber-gray-500 bg-cyber-gray-900/90 text-cyber-gray-200",
+    "border-cyber-brand-400/80 bg-cyber-brand-500/22 text-cyber-brand-50",
+  industrial: "border-cyber-gray-500 bg-cyber-gray-900/85 text-cyber-gray-100",
   exhibition:
-    "border-cyber-brand-400/60 bg-cyber-brand-500/10 text-cyber-brand-200",
+    "border-cyber-brand-400/70 bg-cyber-brand-500/18 text-cyber-brand-100",
 };
 
 function cx(...values: Array<string | null | undefined | false>) {
@@ -59,7 +59,7 @@ function getAccentClass(category: string) {
     return accentClass.exhibition;
   }
 
-  return "border-cyber-brand-400/60 bg-cyber-brand-500/10 text-cyber-brand-100";
+  return "border-cyber-brand-400/70 bg-cyber-brand-500/18 text-cyber-brand-100";
 }
 
 export function CategoryBadge({

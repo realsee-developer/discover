@@ -198,6 +198,9 @@
 }
 
 @layer base {
+  body {
+    @apply bg-cyber-gray-900 text-cyber-gray-200 antialiased;
+  }
   /* Main content wrapper to accommodate fixed header */
   .main-content-wrapper {
     @apply pt-16; /* Header height */

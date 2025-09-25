@@ -31,9 +31,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="cyberpunk">
+    <html lang="en" className="dark" data-theme="cyberpunk">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased bg-base-100 text-base-content min-h-screen font-sans`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${orbitron.variable} antialiased bg-cyber-gray-900 text-cyber-gray-200 min-h-screen font-sans`}
       >
         <SiteHeader />
         {children}

@@ -70,12 +70,21 @@ export const metadata: Metadata = {
     siteName: "Realsee Discover",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: absoluteUrl("/realsee-logo.jpeg"),
+        width: 512,
+        height: 512,
+        alt: "Realsee Discover logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Realsee Discover | Immersive 3D Tours & Creators",
     description:
       "Explore immersive 3D experiences and connect with Realsee's global creator network.",
+    images: [absoluteUrl("/realsee-logo.jpeg")],
   },
   robots: {
     index: true,

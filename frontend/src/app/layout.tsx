@@ -85,6 +85,7 @@ export const metadata: Metadata = {
     description:
       "Explore immersive 3D experiences and connect with Realsee's global creator network.",
     images: [absoluteUrl("/realsee-logo.jpeg")],
+    site: "@REALSEE_Moment",
   },
   robots: {
     index: true,

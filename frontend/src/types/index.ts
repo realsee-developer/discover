@@ -197,6 +197,7 @@ export type TProfessional = {
   instagram?: string;
   facebook?: string;
   youtube?: string;
+  twitter?: string;
   vimeo?: string;
   blogArticle?: string;
   behindScenesVideo?: string;

@@ -34,6 +34,8 @@ export async function generateMetadata({
   const pro = getProfessionalBySlug(slug);
   const canonicalUrl = absoluteUrl(`/professional/${slug}`);
   const defaultImage = absoluteUrl("/realsee-logo.jpeg");
+  const twitterSite =
+    getTwitterHandle(pro?.twitter ?? null) ?? "@REALSEE_Moment";
 
   const title = pro
     ? `${pro.name} - Professional 3D Photographer | Realsee Creator`
@@ -58,7 +60,9 @@ export async function generateMetadata({
         "digital twins",
       ];
 
-  const portraitUrl = pro ? absoluteUrl(`/professional/${pro.id}.jpg`) : defaultImage;
+  const portraitUrl = pro
+    ? absoluteUrl(`/professional/${pro.id}.jpg`)
+    : defaultImage;
 
   return {
     title,
@@ -87,6 +91,7 @@ export async function generateMetadata({
       title,
       description,
       images: [portraitUrl],
+      site: twitterSite,
     },
   };
 }
@@ -140,15 +145,22 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     )
     .filter((s): s is string => Boolean(s));
 
-  const socialHandles: Partial<Record<SocialKey, string>> = {
+  const locationMapsUrl = pro.Location
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+        pro.Location
+      )}`
+    : null;
+
+  const socialHandles: Partial<Record<SocialKey | "twitter", string>> = {
     linkedin: pro.linkedin,
     instagram: pro.instagram,
     facebook: pro.facebook,
     youtube: pro.youtube,
     vimeo: pro.vimeo,
+    twitter: pro.twitter,
   };
   const socialConfigs: Array<{
-    key: SocialKey;
+    key: SocialKey | "twitter";
     icon: string;
     colorClass: string;
     bgClass: string;
@@ -182,6 +194,12 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
       icon: "mdi:vimeo",
       colorClass: "text-[#1AB7EA]",
       bgClass: "border-[#1AB7EA]/50 bg-[#1AB7EA]/35",
+    },
+    {
+      key: "twitter",
+      icon: "mdi:twitter",
+      colorClass: "text-[#1DA1F2]",
+      bgClass: "border-[#1DA1F2]/50 bg-[#1DA1F2]/35",
     },
   ];
 
@@ -281,15 +299,21 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                 </p>
               ) : null}
               <div className="mt-5 flex flex-col items-center gap-4 sm:flex-row sm:items-stretch sm:justify-center lg:justify-start">
-                {pro.Location ? (
-                  <div className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/30 bg-cyber-gray-900/60 px-4 py-1.5 text-xs font-medium text-cyber-gray-100 shadow-[0_0_18px_rgba(51,102,255,0.18)]">
+                {locationMapsUrl ? (
+                  <Link
+                    href={locationMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/30 bg-cyber-gray-900/60 px-4 py-1.5 text-xs font-medium text-cyber-gray-100 shadow-[0_0_18px_rgba(51,102,255,0.18)] transition-colors duration-300 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
+                    prefetch={false}
+                  >
                     <Icon
                       icon="heroicons:map-pin"
                       width={16}
                       className="text-cyber-brand-800"
                     />
-                    {pro.Location}
-                  </div>
+                    <span>{pro.Location}</span>
+                  </Link>
                 ) : null}
                 <KudosButton slug={slug} name={pro.name} />
               </div>
@@ -308,7 +332,9 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-3 rounded-xl text-cyber-gray-100 border border-cyber-gray-600/30 bg-cyber-gray-900/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan hover:shadow-md hover:shadow-cyber-brand-500/15 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
-                      aria-label={entry.key === "website" ? "Website" : entry.key}
+                      aria-label={
+                        entry.key === "website" ? "Website" : entry.key
+                      }
                     >
                       <Icon icon={entry.icon} width={20} />
                     </Link>
@@ -495,4 +521,24 @@ function extractYouTubeId(url: string): string | null {
     /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
   const match = url.match(regex);
   return match ? match[1] : null;
+}
+
+function getTwitterHandle(raw?: string | null): string | null {
+  if (!raw) return null;
+  const value = raw.trim();
+  if (!value) return null;
+  if (value.startsWith("@")) return value;
+  try {
+    const url = value.startsWith("http")
+      ? new URL(value)
+      : new URL(`https://x.com/${value}`);
+    const handle = url.pathname
+      .replace(/\/+$/, "")
+      .split("/")
+      .filter(Boolean)
+      .pop();
+    return handle ? `@${handle}` : null;
+  } catch {
+    return `@${value.replace(/^@/, "")}`;
+  }
 }

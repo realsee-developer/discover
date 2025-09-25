@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 const creatorHighlights = [
@@ -58,8 +59,10 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
   const highlights = isContact ? contactHighlights : creatorHighlights;
   const ctaLabel = isContact ? "Contact via Realsee" : "Join the Creator Center";
   const badgeLabel = isContact ? "Project Collaboration" : "Realsee Creator Program";
+  // 加入计划
   const baseHref = "https://home.realsee.ai/en/contact-us-join-realsee-creators-center";
-
+  // 联系合作
+  const contactHref = "https://forms.gle/8GpHCx34QM1FwkHu5";
   return (
     <section className="join-community-section relative overflow-hidden bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/95 to-cyber-gray-800 py-24">
       <div className="absolute inset-0 -z-10">
@@ -110,13 +113,15 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
           </div>
 
           <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <a
-              href={baseHref}
+            <Link
+              href={isContact ? contactHref : baseHref}
               className="cyber-btn-primary cyber-focus cyber-gentle-pulse inline-flex items-center gap-3 rounded-full px-12 py-4 text-lg font-semibold text-white shadow-cyber-brand-500/40 transition-transform duration-300 hover:scale-[1.05] hover:shadow-cyber-brand-500/50 active:scale-95"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <Icon icon="heroicons:rocket-launch" width={20} />
               <span>{ctaLabel}</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

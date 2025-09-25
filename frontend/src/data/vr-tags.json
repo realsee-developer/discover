@@ -1,28 +1,28 @@
 [
   {
-    "id": "category:outdoor",
-    "type": "category",
-    "label": "Outdoor"
-  },
-  {
-    "id": "device:galois",
-    "type": "device",
-    "label": "Galois"
-  },
-  {
     "id": "category:aerial",
     "type": "category",
     "label": "Aerial 3D"
   },
   {
-    "id": "device:pano-to-3d",
-    "type": "device",
-    "label": "Pano to 3D"
+    "id": "category:campus",
+    "type": "category",
+    "label": "Campus"
   },
   {
-    "id": "category:industrial",
+    "id": "category:church",
     "type": "category",
-    "label": "Industrial"
+    "label": "Church"
+  },
+  {
+    "id": "category:clinic",
+    "type": "category",
+    "label": "Clinic"
+  },
+  {
+    "id": "category:construction",
+    "type": "category",
+    "label": "Construction"
   },
   {
     "id": "category:exhibition",
@@ -30,19 +30,19 @@
     "label": "Exhibition"
   },
   {
-    "id": "category:showroom",
+    "id": "category:gym",
     "type": "category",
-    "label": "Showroom"
+    "label": "Gym"
   },
   {
-    "id": "category:residential",
+    "id": "category:hotel",
     "type": "category",
-    "label": "Residential"
+    "label": "Hotel"
   },
   {
-    "id": "category:outside",
+    "id": "category:industrial",
     "type": "category",
-    "label": "Outside"
+    "label": "Industrial"
   },
   {
     "id": "category:museum",
@@ -55,49 +55,19 @@
     "label": "Office"
   },
   {
+    "id": "category:outdoor",
+    "type": "category",
+    "label": "Outdoor"
+  },
+  {
+    "id": "category:residential",
+    "type": "category",
+    "label": "Residential"
+  },
+  {
     "id": "category:restaurant",
     "type": "category",
     "label": "Restaurant"
-  },
-  {
-    "id": "category:studio",
-    "type": "category",
-    "label": "Studio"
-  },
-  {
-    "id": "category:church",
-    "type": "category",
-    "label": "Church"
-  },
-  {
-    "id": "category:gym",
-    "type": "category",
-    "label": "Gym"
-  },
-  {
-    "id": "category:school",
-    "type": "category",
-    "label": "School"
-  },
-  {
-    "id": "category:village-hall",
-    "type": "category",
-    "label": "village hall"
-  },
-  {
-    "id": "category:tourism",
-    "type": "category",
-    "label": "Tourism"
-  },
-  {
-    "id": "category:hotel",
-    "type": "category",
-    "label": "Hotel"
-  },
-  {
-    "id": "category:clinic",
-    "type": "category",
-    "label": "Clinic"
   },
   {
     "id": "category:retail",
@@ -105,23 +75,33 @@
     "label": "Retail"
   },
   {
-    "id": "category:construction",
+    "id": "category:rv",
     "type": "category",
-    "label": "Construction"
+    "label": "RV"
   },
   {
-    "id": "category:exibition",
+    "id": "category:showroom",
     "type": "category",
-    "label": "Exibition"
+    "label": "Showroom"
   },
   {
-    "id": "category:car",
+    "id": "category:studio",
     "type": "category",
-    "label": "Car"
+    "label": "Studio"
   },
   {
-    "id": "category:campus",
+    "id": "category:tourism",
     "type": "category",
-    "label": "Campus"
+    "label": "Tourism"
+  },
+  {
+    "id": "device:galois",
+    "type": "device",
+    "label": "Galois"
+  },
+  {
+    "id": "device:pano-to-3d",
+    "type": "device",
+    "label": "Pano to 3D"
   }
 ]

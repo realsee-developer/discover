@@ -8,15 +8,11 @@
   "scripts": {
     "build:vr": "node ./build-vr-datasets.js",
     "parse:photographers": "node ./parse-photographers.js",
-    "convert": "node ./convert-data-to-json.js",
-    "extract:carousel": "node ./extract-carousel.js",
-    "tag:carousel": "node ./tag-carousel.js",
-    "sync:carousel": "node ./sync-carousel-images.js",
     "fetch:vr": "node ./fetch-vr-meta.js"
   },
   "dependencies": {
     "cheerio": "1.1.2",
-    "csv-parse": "6.1.0",
+    "csv-parse": "^6.1.0",
     "undici": "7.16.0",
     "xlsx": "0.18.5"
   },

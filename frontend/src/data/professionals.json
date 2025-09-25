@@ -18,10 +18,10 @@
       "gL99yxrL",
       "bbEExKYE"
     ],
-    "linkedin": "https://www.linkedin.com/in/33photo/",
-    "instagram": "https://www.instagram.com/33photo/",
     "blogArticle": "https://home.realsee.ai/en/article/33visual-3d-cam-pros-use-realsee-galois-to-streamline-3d-scanning",
-    "behindScenesVideo": "https://www.youtube.com/watch?v=blHOzgZvm_s"
+    "behindScenesVideo": "https://www.youtube.com/watch?v=blHOzgZvm_s",
+    "linkedin": "https://www.linkedin.com/in/33photo/",
+    "instagram": "https://www.instagram.com/33photo/"
   },
   {
     "id": 2,
@@ -34,39 +34,52 @@
     "email": "piotr@zoomnakwadrat.pl",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["LNwwV3GK", "lq22laKg", "gL99yqnz"],
+    "vrIds": [
+      "LNwwV3GK",
+      "lq22laKg",
+      "gL99yqnz"
+    ],
+    "blogArticle": "https://home.realsee.ai/en/article/zoom-na-kwadrat-bringing-out-the-wow-in-every-property",
     "linkedin": "https://www.linkedin.com/in/piotr-kuszneruk-b71667137/",
     "instagram": "https://www.instagram.com/zoomnakwadrat/",
     "facebook": "https://www.facebook.com/zoomnakwadrat",
-    "vimeo": "https://vimeo.com/user236619607",
-    "blogArticle": "https://home.realsee.ai/en/article/zoom-na-kwadrat-bringing-out-the-wow-in-every-property"
+    "vimeo": "https://vimeo.com/user236619607"
   },
   {
     "id": 3,
     "name": "Gabriel Alaka, AIA",
     "slug": "gabriel-alaka-aia",
     "shortBio": "California architect creating precise 3D virtual tours and as-built drawings for construction and design.",
-    "aboutTheCreator": "Gabriel Alaka has been happily married for 11 years and has a son. He is a licensed Architect in the state of California and specializes in the design and construction of Water Features around the world at a company called WET. He recently started a side business where he specializes in scanning spaces to generate 3D virtual tours and can also create as-built Architectural drawings to produce construction documents. You may view his portfolio and learn more about 3D Scans at www.GAlakaArchitects.com",
+    "aboutTheCreator": "Gabriel Alaka has been happily married for 11 years and has a son.  He is a licensed Architect in the state of California and specializes in the design and construction of Water Features around the world at a company called WET.  He recently started a side business where he specializes in scanning spaces to generate 3D virtual tours and can also create as-built Architectural drawings to produce construction documents. You may view his portfolio and learn more about 3D Scans at www.GAlakaArchitects.com",
     "Location": "Los Angeles, CA, United States",
-    "Website": "http://www.GAlakaArchitects.com",
+    "Website": "https://www.GAlakaArchitects.com",
     "email": "gabriel@galakaarchitects.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["98OORY4z", "exnnjzDk", "xGWWRdgr", "ReZZgMOD", "lq22laKJ"],
-    "instagram": "https://www.instagram.com/galakaarchitects/",
-    "blogArticle": "https://home.realsee.ai/en/article/gabriel-alaka-redefines-la-homes-with-realsee-s-digital-twins"
+    "vrIds": [
+      "98OORY4z",
+      "exnnjzDk",
+      "xGWWRdgr",
+      "ReZZgMOD",
+      "lq22laKJ"
+    ],
+    "blogArticle": "https://home.realsee.ai/en/article/gabriel-alaka-redefines-la-homes-with-realsee-s-digital-twins",
+    "instagram": "https://www.instagram.com/galakaarchitects/"
   },
   {
     "id": 4,
     "name": "Avi Gold",
     "slug": "avi-gold",
     "shortBio": "Immersive storyteller using 360° capture and 3D modeling to create interactive brand experiences.",
-    "aboutTheCreator": "As a 3rd generation photographer and artist I am on the cutting edge of immersive technology and tell stories in 360° and 3D that invite viewers to step inside a narrative—not just view a space.\n\nAs co-founder of 3D CAM Pros, an innovative tech partner with Realsee, I combine high-end 360 capture, advanced Gaussian Splatting techniques, and photorealistic 3D modeling to transform real-world locations into living, interactive experiences.\nI'm an early innovator on the Realsee platform, where I've pushed the technology to new heights—developing and refining features like Video Fusion, Guided Tours, dynamic hotspots, multi-stop routes, and supplemental media layers to create rich, guided stories for every project.\n\nBy blending augmented reality elements and fully realized 3D models, I give clients a powerful way to communicate their brand on the powerful Realsee platform in a way that captivates audiences and converts viewers into engaged customers.\nFrom luxury real estate, museums, cultural destinations and one-of-a-kind events, every project is built to draw audiences into a seamless, unforgettable journey. I have 360 scanned over 1,000,000 sq. ft. over the last 3 years and plan to scan another 2,000,000 this year.",
+    "aboutTheCreator": "As a 3rd generation photographer and artist I am on the cutting edge of immersive technology and tell stories in 360° and 3D that invite viewers to step inside a narrative-not just view a space.\n\nAs co-founder of 3D CAM Pros, an innovative tech partner with Realsee, I combine high-end 360 capture, advanced Gaussian Splatting techniques, and photorealistic 3D modeling to transform real-world locations into living, interactive experiences.\nI'm an early innovator on the Realsee platform, where I've pushed the technology to new heights-developing and refining features like Video Fusion, Guided Tours, dynamic hotspots, multi-stop routes, and supplemental media layers to create rich, guided stories for every project.\n\nBy blending augmented reality elements and fully realized 3D models, I give clients a powerful way to communicate their brand on the powerful Realsee platform in a way that captivates audiences and converts viewers into engaged customers.\nFrom luxury real estate, museums, cultural destinations and one-of-a-kind events, every project is built to draw audiences into a seamless, unforgettable journey. I have 360 scanned over 1,000,000 sq. ft. over the last 3 years and plan to scan another 2,000,000 this year.",
     "Location": "Delaware, DE, United States",
+    "Website": "",
     "email": "midas@midastouchmedia.net",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["WgwwABrp"],
+    "vrIds": [
+      "WgwwABrp"
+    ],
     "blogArticle": "https://home.realsee.ai/en/article/3d-cam-pros-redefining-digital-exploration-with-realsee-and-galois-m2-magic"
   },
   {
@@ -100,10 +113,10 @@
       "xGWWRrlr",
       "a9rrxlA9"
     ],
-    "linkedin": "https://www.linkedin.com/in/manni-pearce-216067120/",
-    "instagram": "https://www.instagram.com/manuelpearcephotography/",
+    "blogArticle": "https://home.realsee.ai/en/article/manuel-pearce-photography-thrives-with-galois-virtual-tours-in-the-uk",
     "behindScenesVideo": "https://youtu.be/9aTAeQpE_dA",
-    "blogArticle": "https://home.realsee.ai/en/article/manuel-pearce-photography-thrives-with-galois-virtual-tours-in-the-uk"
+    "linkedin": "https://www.linkedin.com/in/manni-pearce-216067120/",
+    "instagram": "https://www.instagram.com/manuelpearcephotography/"
   },
   {
     "id": 6,
@@ -112,7 +125,7 @@
     "shortBio": "Architect creating precise virtual tours, point cloud plans, and photorealistic renderings.",
     "aboutTheCreator": "An architect with extensive experience in developing innovative visual solutions for the real estate and architectural sectors. I create immersive virtual tours, work with point cloud data to generate accurate floor plans, and produce photorealistic renderings that showcase designs with the highest fidelity. My approach combines creativity, technology, and technical precision to enhance the presentation and marketing of architectural projects.",
     "Location": "Hollywood, FL, United States",
-
+    "Website": "",
     "email": "caballeroarq19@gmail.com",
     "CountryTag": "",
     "CityTag": "",
@@ -129,8 +142,8 @@
       "XN33xjNk",
       "p8EEZ68z"
     ],
-    "instagram": "https://www.instagram.com/golden_line_desing?igsh=and4NnUyb2Z6a3Ay&utm_source=qr",
-    "blogArticle": "https://home.realsee.ai/en/article/elevating-architectural-design-exploring-the-innovative-journey-with-realsee-galois"
+    "blogArticle": "https://home.realsee.ai/en/article/elevating-architectural-design-exploring-the-innovative-journey-with-realsee-galois",
+    "instagram": "https://www.instagram.com/golden_line_desing?igsh=and4NnUyb2Z6a3Ay&utm_source=qr"
   },
   {
     "id": 7,
@@ -143,13 +156,18 @@
     "email": "omegavisions.pro@gmail.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["ReZZgYeV", "xGWWRYGB", "6yDDWqyp", "a9rrxK9V"],
+    "vrIds": [
+      "ReZZgYeV",
+      "xGWWRYGB",
+      "6yDDWqyp",
+      "a9rrxK9V"
+    ],
+    "blogArticle": "https://home.realsee.ai/en/article/omega-visions-realsee-galois-power-virtual-adventures-in-tourism-retail",
+    "behindScenesVideo": "https://www.youtube.com/watch?v=2WY7rTO3miM",
     "linkedin": "https://www.linkedin.com/in/gr%C3%A9gory-manche-omega-visions/",
     "instagram": "https://www.instagram.com/0mega_visions/",
     "facebook": "https://www.facebook.com/OMEGAVisions/",
-    "youtube": "https://www.youtube.com/@OMEGAVisions",
-    "behindScenesVideo": "https://www.youtube.com/watch?v=2WY7rTO3miM",
-    "blogArticle": "https://home.realsee.ai/en/article/omega-visions-realsee-galois-power-virtual-adventures-in-tourism-retail"
+    "youtube": "https://www.youtube.com/@OMEGAVisions"
   },
   {
     "id": 8,
@@ -160,7 +178,6 @@
     "Location": "Byron Bay/Gold Coast, Australia",
     "Website": "https://www.aerial-perspectives.com.au",
     "email": "aerialperspectives.au@gmail.com",
-    "youtube": "@Aerial-Perspectives-Australia",
     "CountryTag": "",
     "CityTag": "",
     "vrIds": [
@@ -179,10 +196,11 @@
       "gL99yrL4",
       "p8EEaW6z"
     ],
+    "blogArticle": "https://home.realsee.ai/en/article/exploring-the-future-of-3d-scanning-with-louis-pont-and-aerial-perspectives-australia",
+    "behindScenesVideo": "https://youtu.be/--viFeHWLWw",
     "linkedin": "https://www.linkedin.com/company/aerial-perspectives-au",
     "instagram": "https://www.instagram.com/aerialperspectives.au/",
-    "behindScenesVideo": "https://youtu.be/--viFeHWLWw",
-    "blogArticle": "https://home.realsee.ai/en/article/exploring-the-future-of-3d-scanning-with-louis-pont-and-aerial-perspectives-australia"
+    "youtube": "https://www.youtube.com/@Aerial-Perspectives-Australia"
   },
   {
     "id": 9,
@@ -191,7 +209,7 @@
     "shortBio": "Bringing world-class virtual tour technology from Dubai to the Indonesian market.",
     "aboutTheCreator": "With a career in photography spanning more than 15 years, my passion for visual storytelling has taken me to the global stage. I spent 8 years in the highly competitive market of Dubai, where I specialized in virtual tour technology, working with international clients and standards.\n\nThis invaluable experience inspired me to return home and establish 3D Visual Pro. Our mission is to bring world-class immersive visualization technology to the Indonesian market, giving our clients a competitive edge through virtual tours that are precise, detailed, and of the highest quality",
     "Location": "Jakarta, Indonesia",
-    "Website": "http://www.3dvisualpro.com",
+    "Website": "https://www.3dvisualpro.com",
     "email": "trisno.saputra@gmail.com",
     "CountryTag": "",
     "CityTag": "",
@@ -212,26 +230,49 @@
   },
   {
     "id": 10,
-    "name": "Uğur aksu",
+    "name": "Ugur aksu",
     "slug": "ugur-aksu",
     "shortBio": "TrueScope is a premier 3D photography agency that creates highly realistic, immersive 360° virtual tours.",
     "aboutTheCreator": "TrueScope is a cutting-edge 3D photography and virtual tour agency that brings spaces into the digital world in their most realistic form. With highly detailed 360-degree virtual tours, we offer our clients not only visuals but also a complete experience of the space.\n\nWe provide services across a wide range of sectors, from real estate to hotels, from hospitals to corporate offices. The 3D virtual tours we create for premium real estate agencies allow potential buyers to explore homes and commercial spaces without having to visit them on-site. Our tours for hotels and resorts instill trust and transparency in guests before booking. The content we create for hospitals and healthcare institutions strengthens confidence, especially when accepting international patients. At TrueScope, our unique approach isn't just about taking 360° photos; we also offer interactive, high-resolution virtual tour solutions that accurately reflect the dimensions, atmosphere, and details of a space. Accessible from mobile devices, computers, or VR headsets, these experiences truly enhance brands' sales and marketing efforts",
-    "Location": "İstanbul Türkiye",
-    "Website": "www.truescope.com.tr",
+    "Location": "Istanbul Turkiye",
+    "Website": "https://www.truescope.com.tr",
     "email": "ugurumutaksu@gmail.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["lq22lmGe", "8VRR9AXY", "LNwwVade", "O3eeLxnk"],
+    "vrIds": [
+      "lq22lmGe",
+      "8VRR9AXY",
+      "LNwwVade",
+      "O3eeLxnk"
+    ],
     "instagram": "https://www.instagram.com/truescope_tr?igsh=MWo1MjNxMW1saW90OQ=="
   },
   {
     "id": 11,
-    "name": "Corné Snijders",
+    "name": "Chris miles",
+    "slug": "chris-miles",
+    "shortBio": "We create high-quality 360° models for marketing residential and commercial spaces, making it easier for buyers and clients to explore properties remotely.",
+    "aboutTheCreator": "We create high-quality 360° models for marketing residential and commercial spaces, making it easier for buyers and clients to explore properties remotely.",
+    "Location": "Halifax, United Kingdom",
+    "Website": "https://clearpath360.co.uk",
+    "email": "info@clearpath360.co.uk",
+    "CountryTag": "",
+    "CityTag": "",
+    "vrIds": [
+      "8VRR9bb4",
+      "ybkk6aap",
+      "VbOOJyyP"
+    ],
+    "instagram": "https://www.instagram.com/clearpath360_"
+  },
+  {
+    "id": 12,
+    "name": "Corne Snijders",
     "slug": "corne-snijders",
-    "shortBio": "",
-    "aboutTheCreator": "",
-    "Location": "",
-    "Website": "https://www.thuisbekijken.nu/",
+    "shortBio": "Specializes in helping businesses and creative industries stand out online through immersive 3D virtual tours, custom web design, and compelling visual content designed to transform visitors into clients.",
+    "aboutTheCreator": "Specialize in bringing ideas and spaces to life through immersive 3D virtual tours, custom web design, and high-impact visual communication. As founder of Thuisbekijken.nu and Vicisign, I provide a one-stop solution for businesses, museums, hotels, showrooms, and creative industries that want to stand out online.\nWith a background in graphic design, photography, and video, I combine creativity with technical precision - whether it's crafting responsive WordPress websites with Elementor Pro, developing automated marketing funnels in Systeme.io, or producing professional 3D modeling and visualizations in Blender. My goal is to create unforgettable first impressions that transform visitors into clients.\nFrom tailored branding and design projects to cutting-edge 3D experiences, I help organizations boost their online impact and communicate their stories in ways that are both visually stunning and strategically effective",
+    "Location": "Tilburg, The Netherlands",
+    "Website": "https://www.thuisbekijken.nu",
     "email": "corne@vicisign.nl",
     "CountryTag": "",
     "CityTag": "",
@@ -241,11 +282,17 @@
       "EOxxRjpD",
       "5jLLg5vk",
       "7kyyZWMk",
-      "qjMMPVbO"
-    ]
+      "qjMMPVbO",
+      "kzaaLd6g",
+      "98OOWJzK",
+      "P5vvlOxj"
+    ],
+    "blogArticle": "https://home.realsee.ai/en/article/from-click-to-client-boost-your-business-with-realsee-3d-tours",
+    "linkedin": "https://www.linkedin.com/in/corne-snijders/",
+    "facebook": "https://www.facebook.com/thuisbekijken"
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "Yuriy",
     "slug": "yuriy",
     "shortBio": "",
@@ -255,10 +302,16 @@
     "email": "info@threeninemedia.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["N4eeOlOz", "49kkWjWG", "ZyKKxYxM", "wKJJWnWN", "gL99yry2"]
+    "vrIds": [
+      "N4eeOlOz",
+      "49kkWjWG",
+      "ZyKKxYxM",
+      "wKJJWnWN",
+      "gL99yry2"
+    ]
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "Arthur",
     "slug": "arthur",
     "shortBio": "",
@@ -268,10 +321,15 @@
     "email": "arthur.lyu@vdcltd.co.uk",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["Ae44Rrdy", "8VRR9e8a", "ybkk6mbp", "6yDD4nGp"]
+    "vrIds": [
+      "Ae44Rrdy",
+      "8VRR9e8a",
+      "ybkk6mbp",
+      "6yDD4nGp"
+    ]
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "Allen CUI",
     "slug": "allen-cui",
     "shortBio": "",
@@ -281,6 +339,9 @@
     "email": "allencui11@gmail.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["ZyKKxryM", "49kkWE9G"]
+    "vrIds": [
+      "ZyKKxryM",
+      "49kkWE9G"
+    ]
   }
 ]

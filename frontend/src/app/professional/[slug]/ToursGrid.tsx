@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { CategoryBadge } from "@/components/custom/badges";
@@ -16,7 +17,7 @@ export type TourCardData = {
   categoryIcon?: string;
 };
 
-const INITIAL_VISIBLE = 8;
+const INITIAL_VISIBLE = 9;
 
 export function ToursGrid({ tours }: { tours: TourCardData[] }) {
   const [visibleCount, setVisibleCount] = useState(
@@ -44,7 +45,7 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
     <div className="space-y-10">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {visibleTours.map((tour, index) => (
-          <a
+          <Link
             key={tour.id}
             href={tour.url}
             target="_blank"
@@ -79,7 +80,7 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
                 {tour.title}
               </h3>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 
@@ -88,9 +89,10 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
           <button
             type="button"
             onClick={() => setVisibleCount(tours.length)}
-            className="btn cyber-btn-primary px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em]"
+            className="cyber-btn-primary group relative inline-flex items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] shadow-cyber-brand-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyber-brand-500/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
           >
-            <Icon icon="heroicons:arrow-down-tray" width={18} />
+            <span className="pointer-events-none absolute inset-0 rounded-full border border-cyber-brand-400/40 opacity-0 transition-opacity duration-300 group-hover:opacity-80" aria-hidden="true" />
+            <Icon icon="heroicons:rectangle-stack" width={18} />
             View More Tours
           </button>
         </div>

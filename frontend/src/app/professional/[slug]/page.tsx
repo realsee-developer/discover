@@ -19,6 +19,7 @@ import { HeroRotatingBg } from "./HeroRotatingBg";
 import { ToursGrid, type TourCardData } from "./ToursGrid";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
 import { KudosButton } from "./KudosButton";
+import { absoluteUrl } from "@/lib/utils";
 
 type SocialKey = "linkedin" | "instagram" | "facebook" | "youtube" | "vimeo";
 
@@ -31,24 +32,65 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const pro = getProfessionalBySlug(slug);
+  const canonicalUrl = absoluteUrl(`/professional/${slug}`);
+  const defaultImage = absoluteUrl("/realsee-logo.jpeg");
+
   const title = pro
     ? `${pro.name} - Professional 3D Photographer | Realsee Creator`
     : "Professional 3D Photographer | Realsee";
   const description =
     pro?.shortBio ||
     "Discover talented Realsee professionals and their stunning immersive 3D virtual tours and digital twins.";
+  const keywords = pro
+    ? [
+        pro.name,
+        "Realsee Creator",
+        "3D photography",
+        "virtual tours",
+        "digital twins",
+        pro.Location ?? "",
+      ].filter(Boolean)
+    : [
+        "Realsee",
+        "3D photography",
+        "virtual tours",
+        "immersive experiences",
+        "digital twins",
+      ];
+
+  const portraitUrl = pro ? absoluteUrl(`/professional/${pro.id}.jpg`) : defaultImage;
+
   return {
     title,
     description,
-    keywords: pro
-      ? `${pro.name}, 3D photography, virtual tours, Realsee, ${
-          pro.Location || ""
-        }, digital twins`
-      : "3D photography, virtual tours, Realsee professionals",
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title,
       description,
       type: "profile",
+      url: canonicalUrl,
+      images: [
+        {
+          url: portraitUrl,
+          width: 640,
+          height: 800,
+          alt: pro ? `${pro.name} portrait` : "Realsee Discover",
+        },
+      ],
+      profile: pro
+        ? {
+            username: pro.name,
+          }
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [portraitUrl],
     },
   };
 }

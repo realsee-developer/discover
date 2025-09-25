@@ -85,22 +85,22 @@ export function SiteFooter() {
                   {[
                     {
                       name: "Galois",
-                      desc: "AI-powered 3D reconstruction technology for professional real estate photography",
+                      desc: "Advanced 3D LiDAR camera for ultra-precise virtual tours and point cloud capture.",
                       link: "https://home.realsee.ai/en/galois",
                     },
                     {
                       name: "Realsee G1",
-                      desc: "Professional 3D camera system for high-quality virtual tour creation",
+                      desc: "Smartphone gimbal that turns your phone into an instant 3D tour scanner.",
                       link: "https://home.realsee.ai/en/realsee-g1",
                     },
                     {
                       name: "360 Camera",
-                      desc: "Panoramic capture device for immersive virtual reality experiences",
+                      desc: "3D virtual tour app that works with leading 360 cameras for rapid tour creation.",
                       link: "https://home.realsee.ai/en/vr-capture-with-360-camera",
                     },
                     {
                       name: "Mobile App",
-                      desc: "Capture and create 3D tours on-the-go with our mobile application",
+                      desc: "Create immersive 3D tours, models, and floorplans using only your smartphone.",
                       link: "https://home.realsee.ai/en/vr-capture-with-mobile",
                     },
                   ].map((item) => (
@@ -144,12 +144,12 @@ export function SiteFooter() {
                       link: "https://home.realsee.ai/en/solutions-real-estate",
                     },
                     {
-                      name: "Photography Services",
+                      name: "Photography",
                       desc: "Professional real estate photography and virtual staging services",
                       link: "https://home.realsee.ai/en/solutions-real-estate-photographer",
                     },
                     {
-                      name: "Brokerage Platform",
+                      name: "Brokerage",
                       desc: "Enterprise solutions for real estate brokerages and agencies",
                       link: "https://home.realsee.ai/en/real-estate-brokerage",
                     },
@@ -283,7 +283,7 @@ export function SiteFooter() {
                       {
                         icon: "mdi:whatsapp",
                         label: "WhatsApp",
-                        link: "#",
+                        link: "https://wa.me/message/CGR6XJOODRABC1",
                       },
                       {
                         icon: "mdi:facebook",

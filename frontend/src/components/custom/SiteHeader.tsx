@@ -60,21 +60,21 @@ export function SiteHeader() {
             <nav className="hidden lg:flex items-center space-x-8">
               <Link
                 href="/"
-                className="relative text-cyber-gray-100 hover:text-cyber-brand-400 font-medium transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
+                className="relative text-cyber-gray-100 hover:text-cyber-brand-800 font-medium transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
               >
                 Discover
                 <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center shadow-sm shadow-cyber-brand-500/50"></span>
               </Link>
               <Link
                 href="/search"
-                className="relative text-cyber-gray-100 hover:text-cyber-brand-400 font-medium transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
+                className="relative text-cyber-gray-100 hover:text-cyber-brand-800 font-medium transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
               >
                 Browse Tours
                 <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center shadow-cyber-brand-500/50"></span>
               </Link>
               <Link
                 href="https://home.realsee.ai/en/contact-us-join-realsee-creators-center"
-                className="relative text-cyber-gray-100 hover:text-cyber-brand-400 font-medium transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
+                className="relative text-cyber-gray-100 hover:text-cyber-brand-800 font-medium transition-colors duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
               >
                 Join Community
                 <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-cyber-brand-500 to-cyber-neon-cyan scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center shadow-sm shadow-cyber-brand-500/50"></span>

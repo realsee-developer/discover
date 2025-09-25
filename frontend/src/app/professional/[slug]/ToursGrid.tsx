@@ -26,7 +26,7 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
   if (!tours.length) {
     return (
       <div className="mt-16 text-center text-cyber-gray-300">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-cyber-brand-400/30 bg-cyber-gray-900/70 text-cyber-brand-100">
+        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-cyber-brand-400/30 bg-cyber-gray-900/70 text-cyber-brand-500">
           <Icon icon="heroicons:cube" width={32} />
         </div>
         <h3 className="mt-6 text-xl font-semibold text-white">No Projects Yet</h3>

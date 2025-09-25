@@ -6,7 +6,7 @@ import { getProfessionals } from "@/data/db";
 
 const DESKTOP_CARD_WIDTH = 260;
 const DESKTOP_GAP = 32;
-const DESKTOP_SPEED = 160;
+const DESKTOP_SPEED = 30;
 
 export function Professionals() {
   const availableIds = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -36,9 +36,14 @@ export function Professionals() {
 
       <div className="container mx-auto px-6">
         <div className="mb-16 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-white/25 bg-white/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-lg shadow-cyber-brand-500/30">
-            <span>Trusted Creators</span>
+        <div className="inline-flex items-center">
+          <div className="rounded-full bg-gradient-to-r from-cyber-brand-500 via-cyber-neon-cyan to-cyber-neon-magenta p-[1.5px] shadow-[0_0_28px_rgba(51,102,255,0.35)]">
+            <div className="flex items-center gap-2 rounded-full bg-cyber-gray-900/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.35em] text-cyber-gray-100">
+              <Icon icon="heroicons:sparkles" width={16} className="text-cyber-neon-cyan" />
+              Verified Creators
+            </div>
           </div>
+        </div>
           <h2 className="mt-6 text-3xl font-bold tracking-tight text-cyber-gray-100 md:text-5xl">
             Realsee Galois Professionals
           </h2>

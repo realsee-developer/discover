@@ -3,6 +3,7 @@ export {};
 import type { Metadata } from "next";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 
 import {
   getProfessionalBySlug,
@@ -11,7 +12,6 @@ import {
   resolvePublicAssetPath,
 } from "@/data/db";
 import { HeroRotatingBg } from "./HeroRotatingBg";
-import { ProfileAvatar } from "./ProfileAvatar";
 import { ToursGrid, type TourCardData } from "./ToursGrid";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
 
@@ -107,47 +107,47 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
   const socialConfigs: Array<{
     key: SocialKey;
     icon: string;
-    label: string;
-    iconClass: string;
+    colorClass: string;
+    bgClass: string;
   }> = [
     {
       key: "linkedin",
       icon: "mdi:linkedin",
-      label: "LinkedIn",
-      iconClass: "bg-cyber-brand-600/20 text-cyber-brand-100",
+      colorClass: "text-[#0A66C2]",
+      bgClass: "border-[#0A66C2]/50 bg-[#0A66C2]/35",
     },
     {
       key: "instagram",
       icon: "mdi:instagram",
-      label: "Instagram",
-      iconClass: "bg-cyber-plasma-purple/20 text-cyber-plasma-purple",
+      colorClass: "text-[#C13584]",
+      bgClass: "border-[#C13584]/50 bg-[#C13584]/35",
     },
     {
       key: "facebook",
       icon: "mdi:facebook",
-      label: "Facebook",
-      iconClass: "bg-cyber-electric-blue/20 text-cyber-electric-blue",
+      colorClass: "text-[#1877F2]",
+      bgClass: "border-[#1877F2]/50 bg-[#1877F2]/35",
     },
     {
       key: "youtube",
       icon: "mdi:youtube",
-      label: "YouTube",
-      iconClass: "bg-cyber-neon-magenta/20 text-cyber-neon-magenta",
+      colorClass: "text-[#FF0033]",
+      bgClass: "border-[#FF0033]/50 bg-[#FF0033]/35",
     },
     {
       key: "vimeo",
       icon: "mdi:vimeo",
-      label: "Vimeo",
-      iconClass: "bg-cyber-brand-600/20 text-cyber-brand-100",
+      colorClass: "text-[#1AB7EA]",
+      bgClass: "border-[#1AB7EA]/50 bg-[#1AB7EA]/35",
     },
   ];
 
   type SocialLink = {
     key: SocialKey | "website";
     icon: string;
-    label: string;
-    iconClass: string;
     value: string;
+    colorClass: string;
+    bgClass: string;
   };
 
   const socialLinks: SocialLink[] = [];
@@ -156,9 +156,11 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     socialLinks.push({
       key: "website",
       icon: "heroicons:globe-alt",
-      label: "Website",
-      iconClass: "bg-cyber-brand-600/20 text-cyber-brand-100",
-      value: pro.Website!.startsWith("http") ? pro.Website! : `https://${pro.Website}`,
+      colorClass: "text-cyber-brand-100",
+      bgClass: "border-cyber-brand-500/50 bg-cyber-brand-500/30",
+      value: pro.Website!.startsWith("http")
+        ? pro.Website!
+        : `https://${pro.Website}`,
     });
   }
 
@@ -172,14 +174,6 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     ? extractYouTubeId(pro.behindScenesVideo)
     : null;
   const blogArticle = pro.blogArticle;
-
-  const heroStats: Array<{ icon: string; label: string; value: string }> = [
-    {
-      icon: "heroicons:globe-alt",
-      label: "Location",
-      value: pro.Location ? pro.Location : "Worldwide",
-    },
-  ];
 
   const tourCards: TourCardData[] = tours.map((tour) => ({
     id: tour.id,
@@ -196,10 +190,6 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
       : undefined,
   }));
 
-  const contactHref =
-    "https://home.realsee.ai/en/contact-us-join-realsee-creators-center";
-  const contactLabel = `Contact ${pro.name} via Realsee`;
-
   return (
     <main className="main-content-wrapper flex-1 bg-cyber-gray-900 text-cyber-gray-200">
       <section className="relative isolate overflow-hidden">
@@ -213,34 +203,54 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
         )}
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-cyber-gray-900/80 via-cyber-gray-900/70 to-cyber-gray-900"
+          className="absolute inset-0 -z-10 bg-gradient-to-b from-cyber-gray-900/30 via-cyber-gray-900/15 to-cyber-gray-900/70"
         />
-        <div className="container relative z-10 mx-auto grid gap-12 px-6 py-24 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-center">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-cyber-gray-500">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/30 bg-cyber-gray-900/60 px-4 py-1 text-[0.75rem] font-semibold text-cyber-brand-200">
-                  <Icon icon="heroicons:sparkles" width={16} />
+        <div className="container relative z-10 mx-auto grid gap-12 px-6 py-24 sm:gap-14 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-center lg:gap-20">
+          <div className="order-1 flex flex-col gap-4 text-left lg:order-2 lg:items-start">
+            <div className="inline-flex items-center">
+              <div className="rounded-full bg-gradient-to-r from-cyber-brand-500 via-cyber-neon-cyan to-cyber-neon-magenta p-[1.5px] shadow-[0_0_32px_rgba(51,102,255,0.35)]">
+                <div className="flex items-center gap-3 rounded-full bg-cyber-gray-900/85 px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-cyber-gray-100">
+                  <Icon
+                    icon="heroicons:sparkles"
+                    width={16}
+                    className="text-cyber-neon-cyan"
+                  />
                   Realsee Creator
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-cyber-neon-cyan/30 bg-cyber-gray-900/50 px-4 py-1 text-[0.75rem] font-semibold text-cyber-neon-cyan">
-                  <Icon icon="heroicons:shield-check" width={16} />
-                  Verified Pro
-                </span>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-cyber-gray-800/80 px-2 py-[2px] text-[0.65rem] font-medium text-cyber-neon-cyan drop-shadow-[0_0_8px_rgba(0,255,255,0.65)]">
+                    <Icon
+                      icon="heroicons:shield-check"
+                      width={14}
+                      className="text-cyber-neon-cyan"
+                    />
+                    Verified
+                  </span>
+                </div>
               </div>
+            </div>
 
-            <div className="space-y-5">
-              <h1 className="font-display text-4xl tracking-tight text-white md:text-6xl xl:text-7xl">
-                  {pro.name}
-                </h1>
-                {pro.shortBio ? (
-                  <p className="max-w-3xl text-base leading-relaxed text-cyber-gray-200 md:text-lg">
-                    {pro.shortBio}
-                  </p>
-                ) : null}
-              </div>
+            <div className="space-y-4">
+              <h1 className="font-display text-4xl tracking-tight text-white drop-shadow-[0_8px_24px_rgba(7,24,46,0.6)] md:text-6xl xl:text-[4.5rem]">
+                {pro.name}
+              </h1>
+              {pro.shortBio ? (
+                <p className="max-w-3xl text-base leading-relaxed text-cyber-gray-100/90 md:text-lg">
+                  {pro.shortBio}
+                </p>
+              ) : null}
+              {pro.Location ? (
+                <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/30 bg-cyber-gray-900/60 px-4 py-1.5 text-xs font-medium text-cyber-gray-100">
+                  <Icon
+                    icon="heroicons:map-pin"
+                    width={16}
+                    className="text-cyber-brand-800"
+                  />
+                  {pro.Location}
+                </div>
+              ) : null}
+            </div>
 
             {socialLinks.length ? (
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap gap-2.5">
                 {socialLinks.map((entry) => (
                   <a
                     key={entry.key}
@@ -251,63 +261,26 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                     }
                     target="_blank"
                     rel="noopener"
-                    className={`group inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/20 bg-cyber-gray-900/60 px-4 py-2 text-sm font-medium text-cyber-gray-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-cyber-brand-300 hover:bg-cyber-brand-600/10 ${entry.iconClass}`}
+                    className="p-3 rounded-xl text-cyber-gray-100 border border-cyber-gray-600/30 bg-cyber-gray-900/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan hover:shadow-md hover:shadow-cyber-brand-500/15 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
+                    aria-label={entry.key === "website" ? "Website" : entry.key}
                   >
-                    <Icon icon={entry.icon} width={18} />
-                    <span>{entry.label}</span>
+                    <Icon icon={entry.icon} width={20} />
                   </a>
                 ))}
               </div>
             ) : null}
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href={contactHref}
-                className="btn cyber-btn-primary px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] md:text-base"
-              >
-                <Icon icon="heroicons:chat-bubble-left-right" width={20} />
-                {contactLabel}
-              </a>
-              </div>
-            </div>
+          </div>
 
-          <aside className="rounded-3xl border border-cyber-brand-400/25 bg-cyber-gray-900/70 p-8 shadow-lg shadow-cyber-brand-500/10 backdrop-blur-xl">
-            <div className="flex flex-col items-center gap-6 text-center">
-              <div className="relative w-full max-w-xs sm:max-w-sm">
-                <div
-                  aria-hidden="true"
-                  className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-cyber-brand-500/30 via-cyber-neon-cyan/25 to-cyber-plasma-purple/25 blur-2xl"
-                />
-                <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] border border-cyber-brand-300/40 bg-cyber-gray-900/80 shadow-[0_0_45px_rgba(51,102,255,0.25)]">
-                  <ProfileAvatar
-                    professionalId={pro.id}
-                    name={pro.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              </div>
-
-              <ul className="grid w-full gap-4 text-left sm:grid-cols-3 lg:grid-cols-1">
-                {heroStats.map((item) => (
-                  <li
-                    key={item.label}
-                    className="rounded-2xl border border-cyber-brand-400/20 bg-cyber-gray-900/60 px-4 py-4"
-                  >
-                    <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-cyber-gray-500">
-                      <Icon
-                        icon={item.icon}
-                        width={16}
-                        className="text-cyber-brand-200"
-                      />
-                      {item.label}
-                      </div>
-                    <div className="mt-2 text-lg font-semibold text-white">
-                      {item.value}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+          <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
+            <Image
+              src={`/professional/${pro.id}.jpg`}
+              alt={pro.name}
+              width={480}
+              height={640}
+              className="w-full max-w-[320px] rounded-[2rem] object-cover"
+              priority
+            />
+          </div>
         </div>
       </section>
 
@@ -319,7 +292,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
           />
           <div className="container relative z-10 mx-auto px-6">
             <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/30 bg-cyber-gray-900/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-brand-200">
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/45 bg-cyber-gray-900/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-gray-100 drop-shadow-[0_0_12px_rgba(51,102,255,0.35)]">
                 <Icon icon="heroicons:play-circle" width={18} />
                 Behind the Scenes
               </span>
@@ -332,16 +305,16 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
               </p>
             </div>
             <div className="mx-auto mt-12 max-w-5xl">
-              <div className="relative overflow-hidden rounded-3xl border border-cyber-brand-300/30 bg-cyber-gray-900/80 p-2 shadow-[0_45px_85px_-35px_rgba(15,23,42,0.9)]">
+              <div className="relative overflow-hidden rounded-3xl border border-cyber-brand-300/30 bg-cyber-gray-900/80 shadow-[0_45px_85px_-35px_rgba(15,23,42,0.9)]">
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 -translate-y-10 scale-110 bg-gradient-to-r from-cyber-brand-500/25 via-cyber-neon-cyan/15 to-cyber-plasma-purple/25 blur-3xl"
                 />
-                <div className="relative z-10 overflow-hidden rounded-[1.75rem] border border-cyber-brand-400/20 bg-black">
+                <div className="relative z-10 aspect-video overflow-hidden rounded-[1.75rem] border border-cyber-brand-400/20 bg-black">
                   <YouTubeEmbed
                     videoid={youtubeId}
-                    height={480}
                     params="modestbranding=1&rel=0&autoplay=0&controls=1"
+                    style="width:100%;height:100%;max-width:none;"
                   />
                 </div>
               </div>
@@ -357,7 +330,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
         />
         <div className="container relative z-10 mx-auto px-6">
           <div className="mx-auto max-w-5xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/30 bg-cyber-gray-900/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-brand-200">
+            <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/45 bg-cyber-gray-900/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-gray-100 drop-shadow-[0_0_12px_rgba(51,102,255,0.35)]">
               <Icon icon="heroicons:cube" width={18} />
               Portfolio
             </span>
@@ -372,7 +345,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
 
           <div className="mt-12">
             <ToursGrid tours={tourCards} />
-            </div>
+          </div>
         </div>
       </section>
 
@@ -384,7 +357,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
           />
           <div className="container relative z-10 mx-auto px-6">
             <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/30 bg-cyber-gray-900/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-brand-200">
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/45 bg-cyber-gray-900/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-gray-100 drop-shadow-[0_0_12px_rgba(51,102,255,0.35)]">
                 <Icon icon="heroicons:user" width={18} />
                 About the Creator
               </span>
@@ -398,15 +371,15 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
             </div>
             <div className="mx-auto mt-12 max-w-5xl rounded-3xl border border-cyber-brand-300/30 bg-cyber-gray-900/70 p-10 shadow-[0_45px_90px_-35px_rgba(15,23,42,0.8)] backdrop-blur-xl">
               <div className="text-left text-lg leading-relaxed text-cyber-gray-200 whitespace-pre-line">
-                  {pro.aboutTheCreator}
-                </div>
+                {pro.aboutTheCreator}
+              </div>
               {blogArticle ? (
                 <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-cyber-brand-400/20 bg-cyber-gray-900/60 px-6 py-5">
                   <div className="flex items-center gap-3 text-sm text-cyber-gray-300">
                     <Icon
-                      icon="heroicons:document-text"
+                      icon="ri:article-line"
                       width={20}
-                      className="text-cyber-brand-200"
+                      className="text-cyber-brand-500"
                     />
                     <span>Featured interview on Realsee Creator Stories</span>
                   </div>
@@ -414,9 +387,13 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                     href={blogArticle}
                     target="_blank"
                     rel="noopener"
-                    className="btn btn-sm cyber-btn-primary px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em]"
+                    className="btn btn-sm cyber-btn-primary px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
                   >
-                    <Icon icon="heroicons:book-open" width={16} />
+                    <Icon
+                      icon="heroicons:book-open"
+                      width={16}
+                      className="text-white"
+                    />
                     Read Full Article
                   </a>
                 </div>

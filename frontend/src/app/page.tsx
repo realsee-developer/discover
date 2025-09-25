@@ -6,7 +6,7 @@ import { Professionals } from "@/components/custom/home/Professionals";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
 import { absoluteUrl } from "@/lib/utils";
 
-const ogImage = absoluteUrl("/cover/og-main.jpg");
+const ogImage = absoluteUrl("/realsee-logo.jpeg")
 
 export const metadata: Metadata = {
   title: "Immersive Virtual Tours & Creator Network",

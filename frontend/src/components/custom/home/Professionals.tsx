@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import { getProfessionals } from "@/data/db";
@@ -9,12 +10,9 @@ const DESKTOP_GAP = 32;
 const DESKTOP_SPEED = 30;
 
 export function Professionals() {
-  const availableIds = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-  const list = getProfessionals()
-    .filter((p) => availableIds.has(p.id))
-    .sort((a, b) => (b.vrIds || []).length - (a.vrIds || []).length)
-    .slice(0, 10);
+  const list = getProfessionals().sort(
+    (a, b) => (b.vrIds || []).length - (a.vrIds || []).length
+  ).filter((p) => Boolean(p.Location));
 
   const desktopTotal = list.length * (DESKTOP_CARD_WIDTH + DESKTOP_GAP);
 
@@ -32,26 +30,31 @@ export function Professionals() {
 
       <div className="container mx-auto px-6">
         <div className="mb-16 flex flex-col items-center text-center">
-        <div className="inline-flex items-center">
-          <div className="rounded-full bg-gradient-to-r from-cyber-brand-500 via-cyber-neon-cyan to-cyber-neon-magenta p-[1.5px] shadow-[0_0_28px_rgba(51,102,255,0.35)]">
-            <div className="flex items-center gap-2 rounded-full bg-cyber-gray-900/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.35em] text-cyber-gray-100">
-              <Icon icon="heroicons:sparkles" width={16} className="text-cyber-neon-cyan" />
-              Verified Creators
+          <div className="inline-flex items-center">
+            <div className="rounded-full bg-gradient-to-r from-cyber-brand-500 via-cyber-neon-cyan to-cyber-neon-magenta p-[1.5px] shadow-[0_0_28px_rgba(51,102,255,0.35)]">
+              <div className="flex items-center gap-2 rounded-full bg-cyber-gray-900/85 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.35em] text-cyber-gray-100">
+                <Icon
+                  icon="heroicons:sparkles"
+                  width={16}
+                  className="text-cyber-neon-cyan"
+                />
+                Verified Creators
+              </div>
             </div>
           </div>
-        </div>
           <h2 className="mt-6 text-3xl font-bold tracking-tight text-cyber-gray-100 md:text-5xl">
             Realsee Galois Professionals
           </h2>
           <p className="mt-4 max-w-3xl text-base text-cyber-gray-300 md:text-lg">
-            Explore a global roster of certified creators delivering premium spatial capture, 3D storytelling, and immersive experiences.
+            Explore a global roster of certified creators delivering premium
+            spatial capture, 3D storytelling, and immersive experiences.
           </p>
         </div>
 
         {/* Mobile grid */}
         <div className="grid grid-cols-1 gap-6 md:hidden">
           {list.map((p) => (
-            <a
+            <Link
               key={`grid-${p.id}`}
               href={`/professional/${p.slug ?? p.id}`}
               className="group hover-shine relative flex flex-col items-center overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/20 transition-transform duration-500 hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25"
@@ -67,14 +70,20 @@ export function Professionals() {
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
-              <h3 className="text-base font-semibold text-cyber-gray-100">{p.name}</h3>
+              <h3 className="text-base font-semibold text-cyber-gray-100">
+                {p.name}
+              </h3>
               {p.Location ? (
                 <div className="mt-2 flex max-w-full items-center justify-center gap-1 text-sm text-cyber-gray-300">
-                  <Icon icon="heroicons:map-pin" width={16} className="text-cyber-brand-600" />
+                  <Icon
+                    icon="heroicons:map-pin"
+                    width={16}
+                    className="text-cyber-brand-600"
+                  />
                   <span>{p.Location}</span>
                 </div>
               ) : null}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -86,7 +95,7 @@ export function Professionals() {
             <div className="relative flex overflow-visible">
               <div className="professionals-track flex gap-6 animate-marquee-dynamic px-10">
                 {[...list, ...list].map((p, index) => (
-                  <a
+                  <Link
                     key={`${p.id}-${index}`}
                     href={`/professional/${p.slug ?? p.id}`}
                     className="group hover-shine relative flex w-[220px] flex-shrink-0 transform-gpu flex-col items-center overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/25 transition-transform duration-500 hover:scale-[1.06] hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/30 xl:w-[260px]"
@@ -104,14 +113,16 @@ export function Professionals() {
                     </div>
 
                     <div className="space-y-3">
-                      <h3 className="text-base font-semibold text-cyber-gray-100">{p.name}</h3>
+                      <h3 className="text-base font-semibold text-cyber-gray-100">
+                        {p.name}
+                      </h3>
                       {p.Location ? (
                         <p className="text-xs text-cyber-gray-400 md:text-sm">
                           {p.Location}
                         </p>
                       ) : null}
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

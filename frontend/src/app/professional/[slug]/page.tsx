@@ -1,9 +1,13 @@
 export {};
 
 import type { Metadata } from "next";
-import { YouTubeEmbed } from "@next/third-parties/google";
+// @next/third-parties 的 YouTubeEmbed 与 lite-youtube-embed 脚本存在兼容问题，
+// 在生产构建中会导致复合自定义元素未注册而无法播放。
+// 临时使用自定义 iframe 封装以确保交互可靠。
+import YouTubePlayer from "./YouTubePlayer";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
+import Link from "next/link";
 
 import {
   getProfessionalBySlug,
@@ -14,6 +18,7 @@ import {
 import { HeroRotatingBg } from "./HeroRotatingBg";
 import { ToursGrid, type TourCardData } from "./ToursGrid";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
+import { KudosButton } from "./KudosButton";
 
 type SocialKey = "linkedin" | "instagram" | "facebook" | "youtube" | "vimeo";
 
@@ -74,13 +79,13 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
             The professional profile you are looking for does not exist or may
             have been moved.
           </p>
-          <a
+          <Link
             href="/search"
             className="btn cyber-btn-primary px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em]"
           >
             <Icon icon="heroicons:magnifying-glass" width={18} />
             Browse All Professionals
-          </a>
+          </Link>
         </section>
       </main>
     );
@@ -205,9 +210,9 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
           aria-hidden="true"
           className="absolute inset-0 -z-10 bg-gradient-to-b from-cyber-gray-900/30 via-cyber-gray-900/15 to-cyber-gray-900/70"
         />
-        <div className="container relative z-10 mx-auto grid gap-12 px-6 py-24 sm:gap-14 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-center lg:gap-20">
-          <div className="order-1 flex flex-col gap-4 text-left lg:order-2 lg:items-start">
-            <div className="inline-flex items-center">
+        <div className="container relative z-10 mx-auto grid justify-items-center gap-12 px-6 py-24 text-center sm:gap-14 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-center lg:gap-16 lg:text-left">
+          <div className="order-1 flex flex-col items-center justify-center gap-4 text-center lg:order-2 lg:items-start lg:text-left lg:justify-self-start">
+            <div className="inline-flex items-center justify-center lg:justify-start">
               <div className="rounded-full bg-gradient-to-r from-cyber-brand-500 via-cyber-neon-cyan to-cyber-neon-magenta p-[1.5px] shadow-[0_0_32px_rgba(51,102,255,0.35)]">
                 <div className="flex items-center gap-3 rounded-full bg-cyber-gray-900/85 px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-cyber-gray-100">
                   <Icon
@@ -228,7 +233,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 lg:text-left">
               <h1 className="font-display text-4xl tracking-tight text-white drop-shadow-[0_8px_24px_rgba(7,24,46,0.6)] md:text-6xl xl:text-[4.5rem]">
                 {pro.name}
               </h1>
@@ -237,36 +242,40 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                   {pro.shortBio}
                 </p>
               ) : null}
-              {pro.Location ? (
-                <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/30 bg-cyber-gray-900/60 px-4 py-1.5 text-xs font-medium text-cyber-gray-100">
-                  <Icon
-                    icon="heroicons:map-pin"
-                    width={16}
-                    className="text-cyber-brand-800"
-                  />
-                  {pro.Location}
-                </div>
-              ) : null}
+              <div className="mt-5 flex flex-col items-center gap-4 sm:flex-row sm:items-stretch sm:justify-center lg:justify-start">
+                {pro.Location ? (
+                  <div className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/30 bg-cyber-gray-900/60 px-4 py-1.5 text-xs font-medium text-cyber-gray-100 shadow-[0_0_18px_rgba(51,102,255,0.18)]">
+                    <Icon
+                      icon="heroicons:map-pin"
+                      width={16}
+                      className="text-cyber-brand-800"
+                    />
+                    {pro.Location}
+                  </div>
+                ) : null}
+                <KudosButton slug={slug} name={pro.name} />
+              </div>
             </div>
 
             {socialLinks.length ? (
-              <div className="mt-4 flex flex-wrap gap-2.5">
-                {socialLinks.map((entry) => (
-                  <a
-                    key={entry.key}
-                    href={
-                      entry.value.startsWith("http")
-                        ? entry.value
-                        : `https://${entry.value}`
-                    }
-                    target="_blank"
-                    rel="noopener"
-                    className="p-3 rounded-xl text-cyber-gray-100 border border-cyber-gray-600/30 bg-cyber-gray-900/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan hover:shadow-md hover:shadow-cyber-brand-500/15 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
-                    aria-label={entry.key === "website" ? "Website" : entry.key}
-                  >
-                    <Icon icon={entry.icon} width={20} />
-                  </a>
-                ))}
+              <div className="mt-4 flex flex-wrap justify-center gap-2.5 lg:justify-start">
+                {socialLinks.map((entry) => {
+                  const href = entry.value.startsWith("http")
+                    ? entry.value
+                    : `https://${entry.value}`;
+                  return (
+                    <Link
+                      key={entry.key}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-xl text-cyber-gray-100 border border-cyber-gray-600/30 bg-cyber-gray-900/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan hover:shadow-md hover:shadow-cyber-brand-500/15 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
+                      aria-label={entry.key === "website" ? "Website" : entry.key}
+                    >
+                      <Icon icon={entry.icon} width={20} />
+                    </Link>
+                  );
+                })}
               </div>
             ) : null}
           </div>
@@ -311,10 +320,9 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                   className="pointer-events-none absolute inset-0 -translate-y-10 scale-110 bg-gradient-to-r from-cyber-brand-500/25 via-cyber-neon-cyan/15 to-cyber-plasma-purple/25 blur-3xl"
                 />
                 <div className="relative z-10 aspect-video overflow-hidden rounded-[1.75rem] border border-cyber-brand-400/20 bg-black">
-                  <YouTubeEmbed
-                    videoid={youtubeId}
-                    params="modestbranding=1&rel=0&autoplay=0&controls=1"
-                    style="width:100%;height:100%;max-width:none;"
+                  <YouTubePlayer
+                    videoId={youtubeId}
+                    title={`${pro.name} behind the scenes video`}
                   />
                 </div>
               </div>
@@ -383,10 +391,10 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                     />
                     <span>Featured interview on Realsee Creator Stories</span>
                   </div>
-                  <a
+                  <Link
                     href={blogArticle}
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                     className="btn btn-sm cyber-btn-primary px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
                   >
                     <Icon
@@ -395,7 +403,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
                       className="text-white"
                     />
                     Read Full Article
-                  </a>
+                  </Link>
                 </div>
               ) : null}
             </div>

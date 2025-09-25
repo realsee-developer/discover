@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 export function SiteFooter() {
@@ -6,22 +7,22 @@ export function SiteFooter() {
     <div data-section-id="common_footer" data-section-type="common_footer">
       <footer className="relative bg-gradient-to-br from-cyber-gray-900 via-cyber-gray-800 to-cyber-brand-50 border-t border-cyber-brand-300/30">
         {/* Cyberpunk background patterns */}
-        <div 
-          className="absolute inset-0" 
+        <div
+          className="absolute inset-0"
           style={{
-            background: `radial-gradient(circle at 30% 40%, rgb(from var(--cyber-brand-500) r g b / 0.08), transparent 70%), radial-gradient(circle at 80% 20%, rgb(from var(--cyber-neon-cyan) r g b / 0.03), transparent 60%)`
+            background: `radial-gradient(circle at 30% 40%, rgb(from var(--cyber-brand-500) r g b / 0.08), transparent 70%), radial-gradient(circle at 80% 20%, rgb(from var(--cyber-neon-cyan) r g b / 0.03), transparent 60%)`,
           }}
         ></div>
-        <div 
+        <div
           className="absolute inset-0 opacity-50"
           style={{
-            background: `linear-gradient(90deg, transparent 0%, rgb(from var(--cyber-brand-500) r g b / 0.02) 50%, transparent 100%)`
+            background: `linear-gradient(90deg, transparent 0%, rgb(from var(--cyber-brand-500) r g b / 0.02) 50%, transparent 100%)`,
           }}
         ></div>
-        <div 
+        <div
           className="absolute inset-0 opacity-30"
           style={{
-            background: `conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgb(from var(--cyber-brand-500) r g b / 0.03) 60deg, transparent 120deg)`
+            background: `conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgb(from var(--cyber-brand-500) r g b / 0.03) 60deg, transparent 120deg)`,
           }}
         ></div>
 
@@ -105,7 +106,7 @@ export function SiteFooter() {
                     },
                   ].map((item) => (
                     <li key={item.name}>
-                      <a
+                      <Link
                         className="group/link block p-4 -m-4 rounded-xl hover:bg-gradient-to-r hover:from-cyber-brand-500/5 hover:to-cyber-neon-cyan/5 border border-transparent hover:border-cyber-brand-500/20 transition-all duration-300 backdrop-blur-sm focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
                         href={item.link}
                         target="_blank"
@@ -124,7 +125,7 @@ export function SiteFooter() {
                         <p className="text-sm text-cyber-gray-300 leading-relaxed">
                           {item.desc}
                         </p>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -155,7 +156,7 @@ export function SiteFooter() {
                     },
                   ].map((item) => (
                     <li key={item.name}>
-                      <a
+                      <Link
                         className="group/link block p-4 -m-4 rounded-xl hover:bg-gradient-to-r hover:from-cyber-brand-500/5 hover:to-cyber-neon-cyan/5 border border-transparent hover:border-cyber-brand-500/20 transition-all duration-300 backdrop-blur-sm focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
                         href={item.link}
                         target="_blank"
@@ -174,7 +175,7 @@ export function SiteFooter() {
                         <p className="text-sm text-cyber-gray-300 leading-relaxed">
                           {item.desc}
                         </p>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -210,7 +211,7 @@ export function SiteFooter() {
                     },
                   ].map((item) => (
                     <li key={item.name}>
-                      <a
+                      <Link
                         className="group/link block p-4 -m-4 rounded-xl hover:bg-gradient-to-r hover:from-cyber-brand-500/5 hover:to-cyber-neon-cyan/5 border border-transparent hover:border-cyber-brand-500/20 transition-all duration-300 backdrop-blur-sm focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
                         href={item.link}
                         target="_blank"
@@ -229,7 +230,7 @@ export function SiteFooter() {
                         <p className="text-sm text-cyber-gray-300 leading-relaxed">
                           {item.desc}
                         </p>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -261,6 +262,16 @@ export function SiteFooter() {
                   <div className="flex items-center gap-3">
                     {[
                       {
+                        icon: "mdi:facebook",
+                        label: "Facebook",
+                        link: "https://www.facebook.com/RealseeVR/",
+                      },
+                      {
+                        icon: "mdi:instagram",
+                        label: "Instagram",
+                        link: "https://www.instagram.com/realsee_tech/",
+                      },
+                      {
                         icon: "mdi:linkedin",
                         label: "LinkedIn",
                         link: "https://www.linkedin.com/company/realsee/",
@@ -269,6 +280,11 @@ export function SiteFooter() {
                         icon: "mdi:youtube",
                         label: "YouTube",
                         link: "https://www.youtube.com/channel/UCARlm-6LYCRgjIu_R8LbD8Q",
+                      },
+                      {
+                        icon: "mdi:whatsapp",
+                        label: "WhatsApp",
+                        link: "https://wa.me/message/CGR6XJOODRABC1",
                       },
                       {
                         icon: "simple-icons:x",
@@ -280,18 +296,8 @@ export function SiteFooter() {
                         label: "Reddit",
                         link: "https://www.reddit.com/r/RealseeOfficial/",
                       },
-                      {
-                        icon: "mdi:whatsapp",
-                        label: "WhatsApp",
-                        link: "https://wa.me/message/CGR6XJOODRABC1",
-                      },
-                      {
-                        icon: "mdi:facebook",
-                        label: "Facebook",
-                        link: "https://www.facebook.com/RealseeVR/",
-                      },
                     ].map((social) => (
-                      <a
+                      <Link
                         key={social.label}
                         aria-label={social.label}
                         className="p-3 rounded-xl text-cyber-gray-100 border border-cyber-gray-600/40 bg-cyber-gray-800/70 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan hover:shadow-md hover:shadow-cyber-brand-500/20 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
@@ -300,7 +306,7 @@ export function SiteFooter() {
                         rel="noopener noreferrer"
                       >
                         <Icon icon={social.icon} width={20} />
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>

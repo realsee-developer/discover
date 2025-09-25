@@ -131,7 +131,12 @@ async function main() {
   const dataDir = path.join(root, 'data');
   const frontendDataDir = path.join(root, 'frontend', 'src', 'data');
 
-  const tours = readJSON(path.join(dataDir, 'tours.json'));
+  let vrSource = [];
+  const frontendVrPath = path.join(frontendDataDir, 'vr.json');
+  if (fs.existsSync(frontendVrPath)) {
+    vrSource = readJSON(frontendVrPath);
+  }
+
   const photographers = readJSON(path.join(dataDir, 'photographers.json'));
   // 轮播输入：优先旧文件，若缺失则用新 carousels.json
   let carousels = [];
@@ -201,7 +206,7 @@ async function main() {
       author: chosenAuthor,
     });
   };
-  for (const t of tours) push(t);
+  for (const t of vrSource) push(t);
   for (const p of photographers) for (const v of (p.VrLinks || [])) push(v, p.name);
   for (const c of carousels) push(c);
 
@@ -230,7 +235,7 @@ async function main() {
   // 1) 优先使用 tours.json 中 carousel=true 的顺序
   // 2) 若为空，回退旧的 carousel.json 的顺序
   // 3) 仅保留在 VR 表中存在的条目
-  const carouselIdsFromTours = tours.filter((t) => t.carousel === true).map((t) => t.id);
+  const carouselIdsFromTours = []; // tours.json 中 carousel=true 的 id 列表
   const imagePathById = new Map();
   for (const c of carousels) {
     if (c && c.id && c.imagePath) imagePathById.set(c.id, c.imagePath);

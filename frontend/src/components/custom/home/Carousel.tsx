@@ -1,6 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { getCarousels, getVrById, resolvePublicAssetPath } from "@/data/db";
 import { CategoryBadge, DeviceBadge } from "@/components/custom/badges";
@@ -175,7 +176,7 @@ export function Carousel() {
 
                         {/* 赛博朋克 CTA 按钮 */}
                         <div className="mt-8 pointer-events-auto">
-                          <a
+                          <Link
                             className="cyber-btn-primary btn-lg px-10 py-4 rounded-full text-lg font-semibold shadow-2xl shadow-primary/50 hover:shadow-cyber-neon-lg hover:scale-105 active:scale-95 transition-all duration-300 backdrop-blur-sm gap-3 cyber-gentle-pulse font-display"
                             href={s.url}
                             target="_blank"
@@ -184,7 +185,7 @@ export function Carousel() {
                           >
                             <Icon icon="solar:rocket-2-bold-duotone" width={24} />
                             <span>Launch Tour</span>
-                          </a>
+                          </Link>
                         </div>
 
                         {/* Additional description */}

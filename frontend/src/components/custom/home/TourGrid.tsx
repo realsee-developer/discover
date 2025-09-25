@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { getVrs, resolvePublicAssetPath } from "@/data/db";
 import { CategoryBadge } from "@/components/custom/badges";
@@ -29,18 +30,18 @@ export function TourGrid() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <a
+            <Link
               href="/search"
               className="cyber-btn-primary inline-flex items-center gap-2 px-8 py-3 text-sm font-semibold uppercase tracking-[0.25em]"
             >
               View All Tours
               <Icon icon="heroicons:arrow-right" width={16} />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {vrs.map((vr) => (
-            <a
+            <Link
               key={vr.id}
               href={vr.url}
               target="_blank"
@@ -77,7 +78,7 @@ export function TourGrid() {
                   {vr.title || vr.id}
                 </h3>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

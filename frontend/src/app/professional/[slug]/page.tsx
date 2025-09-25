@@ -204,7 +204,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
   ];
 
   type SocialLink = {
-    key: SocialKey | "website";
+    key: SocialKey | "website" | "twitter";
     icon: string;
     value: string;
     colorClass: string;

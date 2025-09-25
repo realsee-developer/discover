@@ -19,10 +19,6 @@ export function Professionals() {
   const desktopTotal = list.length * (DESKTOP_CARD_WIDTH + DESKTOP_GAP);
 
   const marqueeStyle: CSSProperties = {
-    maskImage:
-      "linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)",
-    WebkitMaskImage:
-      "linear-gradient(to right, transparent, black 5rem, black calc(100% - 5rem), transparent)",
     ["--marquee-duration" as string]: `${desktopTotal / DESKTOP_SPEED}s`,
   };
 
@@ -58,15 +54,15 @@ export function Professionals() {
             <a
               key={`grid-${p.id}`}
               href={`/professional/${p.slug ?? p.id}`}
-              className="group relative flex flex-col items-center rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/20 transition-transform duration-500 hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25"
+              className="group hover-shine relative flex flex-col items-center overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/20 transition-transform duration-500 hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25"
               aria-label={`Open ${p.name}`}
             >
-              <div className="relative mb-6 h-24 w-24 overflow-hidden rounded-2xl border border-white/40 bg-cyber-gray-800 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-[1.05]">
+              <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-2xl border border-white/40 bg-cyber-gray-800 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-[1.05]">
                 <Image
                   src={`/professional/${p.id}.jpg`}
                   alt={p.name}
-                  width={144}
-                  height={144}
+                  width={176}
+                  height={176}
                   className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -93,7 +89,7 @@ export function Professionals() {
                   <a
                     key={`${p.id}-${index}`}
                     href={`/professional/${p.slug ?? p.id}`}
-                    className="group relative flex w-[220px] flex-shrink-0 transform-gpu flex-col items-center rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/25 transition-transform duration-500 hover:scale-[1.06] hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/30 xl:w-[260px]"
+                    className="group hover-shine relative flex w-[220px] flex-shrink-0 transform-gpu flex-col items-center overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/70 px-6 pb-6 pt-10 text-center shadow-lg shadow-black/25 transition-transform duration-500 hover:scale-[1.06] hover:-translate-y-2 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/30 xl:w-[260px]"
                     aria-label={`Open ${p.name}`}
                   >
                     <div className="relative mb-6 h-24 w-24 overflow-hidden rounded-2xl border border-white/40 bg-cyber-gray-800 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-[1.05]">

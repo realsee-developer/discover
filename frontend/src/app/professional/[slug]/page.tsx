@@ -80,11 +80,7 @@ export async function generateMetadata({
           alt: pro ? `${pro.name} portrait` : "Realsee Discover",
         },
       ],
-      profile: pro
-        ? {
-            username: pro.name,
-          }
-        : undefined,
+      // OpenGraphMetadata 不支持 profile 字段，需移除以通过类型检查
     },
     twitter: {
       card: "summary_large_image",

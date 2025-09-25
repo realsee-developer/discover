@@ -291,6 +291,8 @@
 }
 
 /* Pause marquee on hover */
+.professionals-marquee { overflow: visible; }
+
 .professionals-marquee:hover .animate-marquee,
 .professionals-marquee:hover .animate-marquee-dynamic {
   animation-play-state: paused;
@@ -299,6 +301,30 @@
 /* Smooth transitions for marquee items */
 .professionals-track a {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-shine::after {
+  content: "";
+  position: absolute;
+  inset: -90%;
+  width: 180%;
+  background: linear-gradient(
+    120deg,
+    transparent 10%,
+    rgba(0, 255, 255, 0.15) 35%,
+    rgba(51, 102, 255, 0.4) 50%,
+    rgba(255, 0, 255, 0.15) 65%,
+    transparent 90%
+  );
+  filter: blur(0.5px) saturate(140%);
+  transform: rotate(18deg) translateX(-130%);
+  transition: transform 0.75s ease-out;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.hover-shine:hover::after {
+  transform: rotate(18deg) translateX(130%);
 }
 
 /* Enhanced hover effects for marquee items - updated for new design */

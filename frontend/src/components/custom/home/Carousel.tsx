@@ -182,14 +182,15 @@ export function Carousel() {
                             rel="noopener noreferrer"
                             aria-label={`Explore ${s.title} 3D Virtual Tour`}
                           >
-                            <Icon icon="heroicons:play-circle" width={24} />
-                            <span>Explore Now</span>
+                            <Icon icon="solar:rocket-2-bold-duotone" width={24} />
+                            <span>Launch Tour</span>
                           </a>
                         </div>
 
                         {/* Additional description */}
                         <p className="mt-6 text-white/80 text-base md:text-lg max-w-2xl mx-auto">
-                          Immersive 3D virtual experience - Explore every detail of real spaces
+                          Immersive 3D virtual experience - Explore every detail
+                          of real spaces
                         </p>
                       </div>
                     </div>
@@ -198,28 +199,6 @@ export function Carousel() {
               );
             })}
           </div>
-
-          {/* Enhanced Navigation Controls */}
-          {slides.length > 1 ? (
-            <>
-              <button
-                type="button"
-                aria-label="Previous slide"
-                onClick={prev}
-                className="btn btn-circle btn-lg btn-ghost absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white bg-base-300/20 border-primary/30 hover:bg-base-300/40 hover:border-primary/70 hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-md shadow-lg shadow-primary/20 cyber-glow-box"
-              >
-                <Icon icon="heroicons:chevron-left" width={24} />
-              </button>
-              <button
-                type="button"
-                aria-label="Next slide"
-                onClick={next}
-                className="btn btn-circle btn-lg btn-ghost absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white bg-base-300/20 border-primary/30 hover:bg-base-300/40 hover:border-primary/70 hover:scale-110 active:scale-95 transition-all duration-200 backdrop-blur-md shadow-lg shadow-primary/20 cyber-glow-box"
-              >
-                <Icon icon="heroicons:chevron-right" width={24} />
-              </button>
-            </>
-          ) : null}
 
           {/* Enhanced Scroll hint */}
           <div className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 text-white/70 z-20 pointer-events-none">
@@ -232,7 +211,8 @@ export function Carousel() {
           {/* Enhanced Indicators with modern design */}
           {slides.length > 1 ? (
             <div className="absolute bottom-28 md:bottom-32 left-1/2 -translate-x-1/2 z-20">
-              <div className="px-4 py-3 rounded-full bg-base-300/30 backdrop-blur-xl border border-primary/20 shadow-xl shadow-primary/20 flex items-center gap-2 md:gap-3">
+              <div className="relative flex items-center gap-2 md:gap-3 overflow-hidden rounded-full border border-cyber-brand-400/40 bg-cyber-gray-900/92 px-4 py-3 shadow-lg shadow-cyber-brand-500/15 backdrop-blur-xl">
+                <div className="pointer-events-none absolute inset-0 -z-10 bg-cyber-brand-500/15" />
                 {slides.map((_, i) => {
                   const isActive = i === current;
                   return (
@@ -241,10 +221,10 @@ export function Carousel() {
                       type="button"
                       onClick={() => goTo(i)}
                       aria-label={`Go to slide ${i + 1}`}
-                      className={`relative overflow-hidden rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
+                      className={`relative overflow-hidden rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-neon-cyan/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                         isActive
-                          ? "h-2 md:h-2.5 w-8 md:w-16 bg-primary shadow-lg shadow-primary/50 cyber-glow-box"
-                          : "h-2 md:h-2.5 w-2 md:w-2.5 bg-base-content/50 hover:bg-primary/60"
+                          ? "h-2 md:h-2.5 w-10 md:w-20 bg-white/90"
+                          : "h-2 md:h-2.5 w-2.5 md:w-3 bg-cyber-gray-400/40 hover:bg-cyber-brand-200/60"
                       }`}
                       style={{
                         ["--carousel-duration" as any]: `${DURATION_MS}ms`,
@@ -254,7 +234,7 @@ export function Carousel() {
                       {isActive ? (
                         <span
                           key={`progress-${current}`}
-                          className={`absolute left-0 top-0 bottom-0 bg-white/90 carousel-progress ${
+                          className={`absolute left-0 top-0 bottom-0 rounded-full bg-cyber-brand-400 carousel-progress ${
                             paused || prefersReducedMotion.current
                               ? "paused"
                               : ""

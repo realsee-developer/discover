@@ -82,7 +82,7 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
 
       <div className="container mx-auto px-6">
         <div className="mx-auto max-w-5xl rounded-3xl border border-cyber-gray-700 bg-cyber-gray-800/90 p-10 text-center shadow-none backdrop-blur-xl md:p-16">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/30 bg-cyber-brand-500/10 px-5 py-2 text-sm font-semibold text-cyber-brand-400">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/50 bg-gradient-to-r from-cyber-brand-500/25 via-cyber-neon-cyan/20 to-cyber-neon-magenta/25 px-6 py-2 text-sm font-semibold text-cyber-neon-cyan shadow-cyber-brand-500/40 backdrop-blur-md transition-shadow duration-300 hover:shadow-cyber-brand-500/60">
             <Icon icon="heroicons:sparkles" width={16} className="text-cyber-neon-cyan" />
             <span>{badgeLabel}</span>
           </div>
@@ -98,7 +98,7 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
             {highlights.map((item) => (
               <div
                 key={item.label}
-                className="cyber-card h-full border-cyber-gray-600/70 bg-cyber-gray-800/80 p-6 text-left transition-transform duration-300 hover:-translate-y-1 hover:border-cyber-brand-400 hover:bg-cyber-gray-800/90"
+                className="cyber-card flex h-full flex-col items-center border-cyber-gray-600/70 bg-cyber-gray-800/80 p-6 text-center transition-transform duration-300 hover:-translate-y-1 hover:border-cyber-brand-400 hover:bg-cyber-gray-800/90"
               >
                 <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-cyber-brand-500/15 p-3 text-cyber-neon-cyan">
                   <Icon icon={item.icon} width={20} />

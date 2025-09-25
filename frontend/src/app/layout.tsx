@@ -5,6 +5,7 @@ import "./globals.css";
 import { SiteHeader } from "../components/custom/SiteHeader";
 import { SiteFooter } from "../components/custom/SiteFooter";
 import { absoluteUrl, getSiteURL } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID ?? process.env.GA_ID;
 
@@ -134,6 +135,7 @@ export default function RootLayout({
         <SiteFooter />
         {isVercelProduction ? <GoogleTagManager gtmId={gtmId} /> : null}
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+        <Analytics />
       </body>
     </html>
   );

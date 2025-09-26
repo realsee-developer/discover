@@ -164,7 +164,7 @@ export function getDevices(): TVrDevice[] {
 
 export function getBlurPlaceholder(path: string | null | undefined): string | undefined {
   if (!path) return undefined;
-  return blurPlaceholders[path] ?? undefined;
+  return blurPlaceholders[path as keyof typeof blurPlaceholders] ?? undefined;
 }
 
 export function clearCache(): void {

@@ -151,7 +151,7 @@ export function Carousel() {
                   role="group"
                 >
                   <Image
-                    src={s.img}
+                    src={s.img!}
                     alt={s.title}
                     fill
                     priority={i === 0}

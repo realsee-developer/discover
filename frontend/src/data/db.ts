@@ -1,9 +1,17 @@
-import type { TCarouselEntry, TProfessional, TVr, TVrTag, TVrTagMap, TVrDevice } from "@/types";
+import type {
+  TCarouselEntry,
+  TProfessional,
+  TVr,
+  TVrTag,
+  TVrTagMap,
+  TVrDevice,
+} from "@/types";
 import vrJson from "@/data/vr.json";
 import professionalsJson from "@/data/professionals.json";
 import carouselsJson from "@/data/carousels.json";
 import vrTagsJson from "@/data/vr-tags.json";
 import vrDevicesJson from "@/data/vr-devices.json";
+import blurPlaceholders from "@/data/blur-placeholders.json";
 
 function slugify(input: string): string {
   return input
@@ -39,7 +47,12 @@ function loadProfessionals(): TProfessional[] {
 }
 
 function loadCarousels(): TCarouselEntry[] {
-  const arr = carouselsJson as unknown as { vrId: string; order?: number; imagePath?: string | null; assetPath?: string | null }[];
+  const arr = carouselsJson as unknown as {
+    vrId: string;
+    order?: number;
+    imagePath?: string | null;
+    assetPath?: string | null;
+  }[];
   return arr
     .slice()
     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
@@ -149,15 +162,11 @@ export function getDevices(): TVrDevice[] {
   return loadDevices();
 }
 
+export function getBlurPlaceholder(path: string | null | undefined): string | undefined {
+  if (!path) return undefined;
+  return blurPlaceholders[path as keyof typeof blurPlaceholders] ?? undefined;
+}
+
 export function clearCache(): void {
   cached = {};
 }
-
-export function resolvePublicAssetPath(input?: string | null): string | undefined {
-  if (!input) return undefined;
-  if (input.startsWith("@cover/")) return `/cover/${input.slice(7)}`;
-  if (input.startsWith("@carousel/")) return `/carousel/${input.slice(10)}`;
-  return input;
-}
-
-

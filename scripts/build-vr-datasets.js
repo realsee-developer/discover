@@ -269,7 +269,7 @@ async function main() {
           fs.writeFileSync(file, buf);
         }
         v.remoteCover = v.cover;
-        v.cover = `@cover/${v.id}${ext}`;
+        v.cover = `/cover/${v.id}${ext}`;
         v.assetCover = v.cover;
         okC++;
       } catch (_) {

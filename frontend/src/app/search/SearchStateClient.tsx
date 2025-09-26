@@ -5,12 +5,12 @@ import Image from "next/image";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import {
-  getDevices,
-  getVrTags,
-  getVrs,
-  resolvePublicAssetPath,
-} from "@/data/db";
+import { getBlurPlaceholder, getDevices, getVrTags, getVrs } from "@/data/db";
+
+const DEFAULT_BLUR =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%230a0f1a'/%3E%3C/svg%3E";
+const DEFAULT_BLUR_TALL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%230a0f1a'/%3E%3C/svg%3E";
+
 import { CategoryBadge, DeviceBadge } from "@/components/custom/badges";
 import { DeviceIcon } from "@/lib/badge-utils";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
@@ -113,7 +113,7 @@ export function SearchStateClient() {
     setIsLoading(true);
     const timer = setTimeout(() => setIsLoading(false), 180);
     return () => clearTimeout(timer);
-  }, [filters]);
+  }, [filters.category, filters.device, filters.query, filters.sort, filters.view]);
 
   const totalPages = Math.max(1, Math.ceil(filteredResults.length / pageSize));
   const paginatedResults = filteredResults.slice(
@@ -293,12 +293,10 @@ export function SearchStateClient() {
                 >
                   {paginatedResults.map((vr, index) => {
                     const imageSrc = (() => {
-                      const localSrc = resolvePublicAssetPath(
-                        vr.assetCover || vr.cover
-                      );
-                      const remoteSrc = vr.remoteCover;
-                      const fallback = "/placeholder.jpg";
-                      return localSrc || remoteSrc || fallback;
+                    const localSrc = vr.assetCover || vr.cover;
+                    const remoteSrc = vr.remoteCover;
+                    const fallback = "/cover/placeholder.jpg";
+                    return localSrc || remoteSrc || fallback;
                     })();
 
                     if (filters.view === "list") {
@@ -310,15 +308,19 @@ export function SearchStateClient() {
                           rel="noopener noreferrer"
                           className="tour-card group relative flex flex-col gap-6 rounded-3xl border border-cyber-gray-600 bg-cyber-gray-900/80 p-6 shadow-lg shadow-cyber-brand-500/15 transition-all duration-500 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900 sm:flex-row"
                         >
-                          <figure className="relative h-48 w-full overflow-hidden rounded-2xl border border-cyber-gray-700 bg-cyber-gray-800/70 shadow-cyber-brand-500/10 sm:w-72">
-                            <Image
-                              src={imageSrc}
-                              alt={vr.title || vr.id}
-                              width={640}
-                              height={384}
-                              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                              priority={index < 4}
-                            />
+                          <figure className="relative overflow-hidden rounded-2xl border border-cyber-gray-700 bg-cyber-gray-800/70 shadow-cyber-brand-500/10 sm:w-72 m-0">
+                            <div className="relative aspect-[18/10] overflow-hidden">
+                              <Image
+                                src={imageSrc}
+                                alt={vr.title || vr.id}
+                                fill
+                                sizes="(min-width: 1280px) 28vw, (min-width: 1024px) 320px, (min-width: 768px) 45vw, 100vw"
+                                placeholder="blur"
+                                blurDataURL={getBlurPlaceholder(vr.assetCover || vr.cover) ?? DEFAULT_BLUR}
+                                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                priority={index < 4}
+                              />
+                            </div>
 
                             {(vr.shortCategory || vr.category) && (
                               <div className="absolute left-4 top-4 flex max-w-[calc(100%-5rem)] items-center gap-2">
@@ -382,30 +384,17 @@ export function SearchStateClient() {
                         rel="noopener noreferrer"
                         className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
                       >
-                        <figure className="relative overflow-hidden">
+                        <figure className="relative m-0 overflow-hidden aspect-[16/9]">
                           <Image
                             src={imageSrc}
                             alt={vr.title || vr.id}
-                            width={640}
-                            height={384}
-                            className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            fill
+                            sizes="(min-width: 1280px) 24vw, (min-width: 1024px) 32vw, (min-width: 768px) 44vw, 100vw"
+                            placeholder="blur"
+                            blurDataURL={getBlurPlaceholder(vr.assetCover || vr.cover) ?? DEFAULT_BLUR}
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                             priority={index < 4}
                           />
-
-                          {(vr.shortCategory || vr.category) && (
-                            <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
-                              <CategoryBadge
-                                category={vr.shortCategory || vr.category}
-                                size="sm"
-                              />
-                            </div>
-                          )}
-
-                          {vr.device && (
-                            <div className="absolute top-3 right-3">
-                              <DeviceBadge device={vr.device} size="sm" />
-                            </div>
-                          )}
                         </figure>
 
                         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-cyber-gray-900 via-cyber-gray-900/70 to-transparent p-4">

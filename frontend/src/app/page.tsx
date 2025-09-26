@@ -6,7 +6,7 @@ import { Professionals } from "@/components/custom/home/Professionals";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
 import { absoluteUrl } from "@/lib/utils";
 
-const ogImage = absoluteUrl("/realsee-logo.jpeg")
+const ogImage = "/realsee-logo.jpeg";
 
 export const metadata: Metadata = {
   title: "Immersive Virtual Tours & Creator Network",
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     description:
       "Explore featured 3D experiences, advanced capture devices, and top creators in the Realsee ecosystem.",
     url: absoluteUrl("/"),
-    images: ogImage ? [{ url: ogImage }] : undefined,
+    images: [{ url: ogImage }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Immersive Virtual Tours & Creator Network",
     description:
       "Discover cutting-edge virtual tours and connect with Realsee creators worldwide.",
-    images: ogImage ? [ogImage] : undefined,
+    images: [ogImage],
     site: "@REALSEE_Moment",
   },
 };

@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { getCarousels, getVrById, resolvePublicAssetPath } from "@/data/db";
+import { getCarousels, getVrById } from "@/data/db";
 import { CategoryBadge, DeviceBadge } from "@/components/custom/badges";
 
 export function Carousel() {
@@ -21,10 +22,7 @@ export function Carousel() {
       const vr = getVrById(entry.vrId);
       if (!vr) return null;
       const title = vr.title || vr.category || vr.shortCategory;
-      const img =
-        resolvePublicAssetPath(entry.imagePath || vr.assetCover || vr.cover) ||
-        vr.remoteCover ||
-        undefined;
+      const img = entry.imagePath || vr.assetCover || vr.cover || "/cover/placeholder.jpg";
       const url = vr.url;
       const category = vr.category || vr.shortCategory || "";
       const device = vr.device || "";
@@ -152,11 +150,17 @@ export function Carousel() {
                   aria-label={s.title}
                   role="group"
                 >
-                  <div
-                    className={`absolute inset-0 bg-center bg-cover pointer-events-none ${
+                  <Image
+                    src={s.img!}
+                    alt={s.title}
+                    fill
+                    priority={i === 0}
+                    sizes="(min-width: 1280px) 100vw, 100vw"
+                    placeholder="blur"
+                    blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%230a0f1a'/%3E%3C/svg%3E"
+                    className={`absolute inset-0 object-cover pointer-events-none ${
                       !prefersReducedMotion.current ? "kenburns-soft" : ""
                     }`}
-                    style={{ backgroundImage: `url("${s.img}")` }}
                   />
                   {/* Immersive centered hero content with enhanced design */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

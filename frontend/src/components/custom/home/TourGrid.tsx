@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { getVrs, resolvePublicAssetPath } from "@/data/db";
+import { getBlurPlaceholder, getVrs } from "@/data/db";
+
+const DEFAULT_BLUR =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%230a0f1a'/%3E%3C/svg%3E";
 import { CategoryBadge } from "@/components/custom/badges";
 import { DeviceIcon } from "@/lib/badge-utils";
 
@@ -48,19 +51,25 @@ export function TourGrid() {
               rel="noreferrer"
               className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
             >
-              <figure className="relative overflow-hidden">
-                <Image
-                  src={(() => {
-                    const localSrc = resolvePublicAssetPath(vr.assetCover || vr.cover);
-                    const remoteSrc = vr.remoteCover;
-                    const fallback = "/placeholder.jpg";
-                    return localSrc || remoteSrc || fallback;
-                  })()}
-                  alt={vr.title || vr.id}
-                  width={640}
-                  height={384}
-                  className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
+              <figure className="relative aspect-[16/9] overflow-hidden m-0">
+                {(() => {
+                  const localSrc = vr.assetCover || vr.cover;
+                  const remoteSrc = vr.remoteCover;
+                  const fallback = "/cover/placeholder.jpg";
+                  const imageSrc = localSrc || remoteSrc || fallback;
+                  const blur = getBlurPlaceholder(localSrc) || getBlurPlaceholder(fallback) || DEFAULT_BLUR;
+                  return (
+                    <Image
+                      src={imageSrc}
+                      alt={vr.title || vr.id}
+                      fill
+                      sizes="(min-width: 1536px) 22vw, (min-width: 1280px) 24vw, (min-width: 1024px) 33vw, (min-width: 768px) 45vw, 95vw"
+                      placeholder="blur"
+                      blurDataURL={blur}
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  );
+                })()}
 
                 <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
                   <CategoryBadge category={vr.shortCategory || vr.category} size="sm" />
@@ -73,7 +82,7 @@ export function TourGrid() {
                 ) : null}
               </figure>
 
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-cyber-gray-900 via-cyber-gray-900/70 to-transparent p-4">
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-cyber-gray-900 via-cyber-gray-900/70 to-transparent p-4">
                 <h3 className="text-cyber-gray-100 text-lg font-semibold leading-snug line-clamp-2">
                   {vr.title || vr.id}
                 </h3>

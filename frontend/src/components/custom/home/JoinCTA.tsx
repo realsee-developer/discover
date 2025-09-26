@@ -70,6 +70,8 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
           src="/bg/creator-hero.jpeg"
           alt=""
           fill
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%230a0f1a'/%3E%3C/svg%3E"
           className="object-cover opacity-40"
           priority
           sizes="100vw"

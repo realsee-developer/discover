@@ -61,13 +61,15 @@ export function Professionals() {
               aria-label={`Open ${p.name}`}
             >
               <div className="relative mb-6 h-28 w-28 overflow-hidden rounded-2xl border border-white/40 bg-cyber-gray-800 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-[1.05]">
-                <Image
-                  src={`/professional/${p.id}.jpg`}
-                  alt={p.name}
-                  width={176}
-                  height={176}
-                  className="h-full w-full object-cover"
-                />
+                <div className="relative h-full w-full">
+                  <Image
+                    src={`/professional/${p.id}.jpg`}
+                    alt={p.name}
+                    fill
+                    sizes="112px"
+                    className="rounded-2xl object-cover"
+                  />
+                </div>
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>
               <h3 className="text-base font-semibold text-cyber-gray-100">
@@ -102,13 +104,15 @@ export function Professionals() {
                     aria-label={`Open ${p.name}`}
                   >
                     <div className="relative mb-6 h-24 w-24 overflow-hidden rounded-2xl border border-white/40 bg-cyber-gray-800 shadow-lg shadow-black/30 transition-transform duration-500 group-hover:scale-[1.05]">
-                      <Image
-                        src={`/professional/${p.id}.jpg`}
-                        alt={p.name}
-                        width={144}
-                        height={144}
-                        className="h-full w-full object-cover"
-                      />
+                      <div className="relative h-full w-full">
+                        <Image
+                          src={`/professional/${p.id}.jpg`}
+                          alt={p.name}
+                          fill
+                          sizes="96px"
+                          className="rounded-2xl object-cover"
+                        />
+                      </div>
                       <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                     </div>
 

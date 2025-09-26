@@ -9,12 +9,7 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  getProfessionalBySlug,
-  getProfessionals,
-  getVrById,
-  resolvePublicAssetPath,
-} from "@/data/db";
+import { getProfessionalBySlug, getProfessionals, getVrById } from "@/data/db";
 import { HeroRotatingBg } from "./HeroRotatingBg";
 import { ToursGrid, type TourCardData } from "./ToursGrid";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
@@ -33,7 +28,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const pro = getProfessionalBySlug(slug);
   const canonicalUrl = absoluteUrl(`/professional/${slug}`);
-  const defaultImage = absoluteUrl("/realsee-logo.jpeg");
+  const defaultImage = "/realsee-logo.jpeg";
   const twitterSite =
     getTwitterHandle(pro?.twitter ?? null) ?? "@REALSEE_Moment";
 
@@ -61,7 +56,7 @@ export async function generateMetadata({
       ];
 
   const portraitUrl = pro
-    ? absoluteUrl(`/professional/${pro.id}.jpg`)
+    ? `/professional/${pro.id}.jpg`
     : defaultImage;
 
   return {
@@ -140,10 +135,8 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
 
   const hasWebsite = Boolean(pro.Website && pro.Website !== "/");
   const heroImages = tours
-    .map(
-      (t) => resolvePublicAssetPath(t.assetCover || t.cover) || t.remoteCover
-    )
-    .filter((s): s is string => Boolean(s));
+    .map((t) => t.assetCover || t.cover)
+    .filter((src): src is string => Boolean(src));
 
   const locationMapsUrl = pro.Location
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -243,9 +236,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     shortCategory: tour.shortCategory || undefined,
     device: tour.device || undefined,
     cover:
-      resolvePublicAssetPath(tour.assetCover || tour.cover) ||
-      tour.remoteCover ||
-      "/cover/placeholder.jpg",
+      tour.assetCover || tour.cover || tour.remoteCover || "/cover/placeholder.jpg",
     categoryIcon: tour.shortCategory
       ? categoryIconMap(tour.shortCategory)
       : undefined,
@@ -345,14 +336,18 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
           </div>
 
           <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
-            <Image
-              src={`/professional/${pro.id}.jpg`}
-              alt={pro.name}
-              width={480}
-              height={640}
-              className="w-full max-w-[320px] rounded-[2rem] object-cover"
-              priority
-            />
+            <div className="relative aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-[2rem]">
+              <Image
+                src={`/professional/${pro.id}.jpg`}
+                alt={pro.name}
+                fill
+                sizes="(min-width: 1024px) 320px, 60vw"
+                placeholder="blur"
+                blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Crect width='3' height='4' fill='%230a0f1a'/%3E%3C/svg%3E"
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>

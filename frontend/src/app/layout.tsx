@@ -6,6 +6,7 @@ import { SiteHeader } from "../components/custom/SiteHeader";
 import { SiteFooter } from "../components/custom/SiteFooter";
 import { absoluteUrl, getSiteURL } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const gtmId = "GTM-N27VZHG2";
 const isVercelProduction = process.env.VERCEL_ENV === "production";
@@ -141,8 +142,13 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
-        {isVercelProduction ? <GoogleTagManager gtmId={gtmId} /> : null}
-        <Analytics />
+        {isVercelProduction ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+            <GoogleTagManager gtmId={gtmId} />
+          </>
+        ) : null}
       </body>
     </html>
   );

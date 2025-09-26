@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { CategoryBadge } from "@/components/custom/badges";
 import { DeviceIcon } from "@/lib/badge-utils";
+import { getBlurPlaceholder } from "@/data/db";
 
 export type TourCardData = {
   id: string;
@@ -18,6 +19,7 @@ export type TourCardData = {
 };
 
 const INITIAL_VISIBLE = 9;
+const PLACEHOLDER_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%230a0f1a'/%3E%3C/svg%3E";
 
 export function ToursGrid({ tours }: { tours: TourCardData[] }) {
   const [visibleCount, setVisibleCount] = useState(
@@ -53,14 +55,18 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
             style={{ animationDelay: `${index * 80}ms` }}
             className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
           >
-            <figure className="relative overflow-hidden">
-              <Image
-                src={tour.cover}
-                alt={tour.title}
-                width={640}
-                height={384}
-                className="h-48 w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
+            <figure className="relative overflow-hidden m-0">
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={tour.cover}
+                  alt={tour.title}
+                  fill
+                  sizes="(min-width: 1280px) 24vw, (min-width: 1024px) 32vw, (min-width: 768px) 45vw, 95vw"
+                  placeholder="blur"
+                  blurDataURL={getBlurPlaceholder(tour.cover) ?? PLACEHOLDER_FALLBACK}
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+              </div>
 
               <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
                 {tour.shortCategory ? (

@@ -2,24 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "1337",
-        pathname: "/uploads/**/*",
-      },
-      {
-        protocol: "https",
-        hostname: "kind-love-9d69af7ecf.strapiapp.com",
-        pathname: "/uploads/**/*",
-      },
-      {
-        protocol: "https",
-        hostname: "kind-love-9d69af7ecf.media.strapiapp.com",
-        pathname: "/**",
-      },
-    ],
+    loaderFile: "./src/lib/cloudflare-image-loader.ts",
   },
   experimental: {
     serverActions: {

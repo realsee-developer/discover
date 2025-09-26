@@ -446,7 +446,7 @@ function mergeVrCandidate(vrMap, candidate) {
     if (candidate.assetCover) merged.assetCover = candidate.assetCover;
     if (candidate.remoteCover) merged.remoteCover = candidate.remoteCover;
   }
-  if (candidate.cover && candidate.cover.startsWith('@cover/')) {
+  if (candidate.cover && candidate.cover.startsWith('/cover/')) {
     merged.assetCover = candidate.cover;
   }
   vrMap.set(candidate.id, merged);
@@ -705,7 +705,7 @@ async function fetchVrMetaWithCache(vrList, vrMap, cacheDir, coverOutputDir) {
         const ext = inferCoverExtension(coverUrl, contentType);
         const outputPath = path.join(coverOutputDir, `${vr.id}${ext}`);
         fs.writeFileSync(outputPath, buffer);
-        merged.cover = `@cover/${vr.id}${ext}`;
+        merged.cover = `/cover/${vr.id}${ext}`;
         merged.assetCover = merged.cover;
         summary.downloaded += 1;
       } catch (error) {

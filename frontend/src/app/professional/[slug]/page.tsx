@@ -336,15 +336,16 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
           </div>
 
           <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
-            <div className="relative aspect-[3/4] w-full max-w-[320px] overflow-hidden rounded-[2rem]">
+            <div className="relative aspect-[3/4] w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[440px] xl:max-w-[500px] 2xl:max-w-[560px]">
               <Image
                 src={`/professional/${pro.id}.jpg`}
                 alt={pro.name}
-                fill
-                sizes="(min-width: 1024px) 320px, 60vw"
+                width={960}
+                height={1280}
+                sizes="(min-width: 1920px) 520px, (min-width: 1536px) 480px, (min-width: 1280px) 440px, (min-width: 1024px) 380px, (min-width: 640px) 60vw, 85vw"
                 placeholder="blur"
                 blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Crect width='3' height='4' fill='%230a0f1a'/%3E%3C/svg%3E"
-                className="object-cover"
+                className="h-full w-full rounded-[1.25rem] object-cover shadow-[0_40px_120px_-45px_rgba(5,15,35,0.85)]"
                 priority
               />
             </div>

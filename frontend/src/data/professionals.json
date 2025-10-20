@@ -302,13 +302,7 @@
     "email": "info@threeninemedia.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": [
-      "N4eeOlOz",
-      "49kkWjWG",
-      "ZyKKxYxM",
-      "wKJJWnWN",
-      "gL99yry2"
-    ]
+    "vrIds": []
   },
   {
     "id": 14,
@@ -321,12 +315,7 @@
     "email": "arthur.lyu@vdcltd.co.uk",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": [
-      "Ae44Rrdy",
-      "8VRR9e8a",
-      "ybkk6mbp",
-      "6yDD4nGp"
-    ]
+    "vrIds": []
   },
   {
     "id": 15,
@@ -339,9 +328,6 @@
     "email": "allencui11@gmail.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": [
-      "ZyKKxryM",
-      "49kkWE9G"
-    ]
+    "vrIds": []
   }
 ]

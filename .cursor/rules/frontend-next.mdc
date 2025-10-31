@@ -10,21 +10,21 @@ description: Next.js 前端开发约定与导航
 - 脚本：`frontend/package.json` → `dev`、`build`、`start`、`lint`
 - 设计：遵循 [.cursor/rules/design-system.mdc](mdc:.cursor/rules/design-system.mdc) 与 [.cursor/rules/frontend-tailwind-daisyui.mdc](mdc:.cursor/rules/frontend-tailwind-daisyui.mdc)
 - 组件：`frontend/src/components`，优先复用 UI 与模块库
-- 数据：`frontend/src/data` 静态源，Strapi API 通过 `lib/strapi.ts`
+- 数据：`frontend/src/data` 静态 JSON 数据源
 
 ## 项目结构
 
 - **App Router**：根布局 `src/app/layout.tsx`；入口路由位于 `src/app/**`
 - **共享布局**：页眉/页脚在 `src/components/custom` 中维护，保持跨页一致
 - **样式载入**：`src/app/globals.css` 负责 Tailwind v4 + daisyUI + 设计令牌
-- **环境变量**：默认通过 `getStrapiURL()` 读取 `NEXT_PUBLIC_STRAPI_URL`（默认 `http://localhost:1337`）
+- **静态数据**：所有数据来自 `src/data/**` 中的 JSON 文件
 
 ## 数据获取策略
 
-- **全局数据**：`GET /api/global` 用于布局与 `generateMetadata`
-- **页面模块**：`GET /api/home-page?populate[blocks][populate]=*` 等 API，按 Strapi 模块字段渲染
-- **错误兜底**：所有请求封装在 `lib/strapi.ts`，需要实现错误捕获与空状态
-- **缓存策略**：服务端组件默认使用 Next.js `fetch` 缓存机制，增量更新时显式配置 `revalidate`
+- **静态数据**：从 `src/data/**` 导入 JSON 文件，包括 VR 作品、创作者、标签等
+- **数据库查询**：通过 `src/data/db.ts` 提供便捷的查询函数（如 `getVRById`、`getProfessionalBySlug` 等）
+- **图片资源**：封面图、轮播图等位于 `public/cover`、`public/carousel`，使用 Cloudflare Image Loader 优化
+- **缓存策略**：静态 JSON 数据在构建时加载，运行时直接使用
 
 ## TypeScript 与构建
 
@@ -35,16 +35,16 @@ description: Next.js 前端开发约定与导航
 ## 渲染与组件约定
 
 - **服务器组件优先**：除需浏览器交互的场景外保持 Server Components；客户端组件需使用 `"use client"`
-- **动态模块渲染**：内容模块根据 `__component` 动态映射，示例见 `src/app/page.tsx`
 - **UI 复用**：按钮使用 `components/ui/button.tsx`，卡片/徽章等遵循组件库，禁止页面内自定义 Tailwind class
 - **布局网格**：页面容器遵循 `max-w-7xl mx-auto px-8`（移动端 `px-4`），跨页面一致
+- **组件拆分**：复杂页面按功能拆分为独立组件（如首页的 `TourGrid`、`Professionals`、`SearchFilter` 等）
 
 ## 运行时与可访问性
 
-- **SEO**：在 `generateMetadata` 中合并 Strapi `global` 数据
+- **SEO**：在 `generateMetadata` 中生成适当的元数据（title、description、Open Graph 等）
 - **Loading/Error 状态**：提供 `loading.tsx`、`error.tsx`，并确保与设计系统一致
 - **可访问性**：交互组件统一使用 `cyber-focus` 焦点样式，文本对比遵守 WCAG 2.2 AA
-- **性能**：按需拆分模块，使用 Next Image/Lazy 组件，重用 `next/script` 做延迟加载
+- **性能**：使用 Next Image 与 Cloudflare Image Loader，提供 blur placeholder，重用 `next/script` 做延迟加载
 
 ## 关联规则
 

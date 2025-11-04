@@ -278,3 +278,36 @@ export function getProfessionalBreadcrumbs(
     },
   ]);
 }
+
+/**
+ * VideoObject Schema for YouTube videos
+ * @param videoData Video information
+ */
+export function getVideoObjectSchema(videoData: {
+  name: string;
+  description: string;
+  youtubeId: string;
+  uploadDate?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: videoData.name,
+    description: videoData.description,
+    thumbnailUrl: [
+      `https://img.youtube.com/vi/${videoData.youtubeId}/maxresdefault.jpg`,
+      `https://img.youtube.com/vi/${videoData.youtubeId}/hqdefault.jpg`,
+    ],
+    uploadDate: videoData.uploadDate || new Date().toISOString(),
+    contentUrl: `https://www.youtube.com/watch?v=${videoData.youtubeId}`,
+    embedUrl: `https://www.youtube.com/embed/${videoData.youtubeId}`,
+    publisher: {
+      "@type": "Organization",
+      name: "Realsee",
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/realsee-logo.jpeg"),
+      },
+    },
+  };
+}

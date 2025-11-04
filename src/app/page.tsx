@@ -9,6 +9,8 @@ import {
   getOrganizationSchema,
   getWebSiteSchema,
   getHomeBreadcrumbs,
+  getToursItemListSchema,
+  getProfessionalsItemListSchema,
 } from "@/lib/structured-data";
 import { generateGlobalAlternates } from "@/lib/seo-utils";
 import { getProfessionals, getVrs } from "@/data/db";
@@ -63,15 +65,42 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
+  // Fetch data for ItemList schemas
+  const vrs = getVrs();
+  const professionals = getProfessionals();
+
+  // Prepare tours data for ItemList schema
+  const tours = vrs.slice(0, 20).map((vr) => ({
+    id: vr.id,
+    title: vr.title || "Untitled Tour",
+    url: vr.url || "#",
+    cover: vr.assetCover || vr.cover || vr.remoteCover,
+    category: vr.shortCategory,
+  }));
+
+  // Prepare professionals data for ItemList schema
+  const professionalsData = professionals.slice(0, 12).map((pro) => ({
+    id: pro.id,
+    name: pro.name,
+    slug: pro.slug,
+    location: pro.Location,
+    portraitUrl: `/professional/${pro.id}.jpg`,
+  }));
+
   // Generate structured data for SEO
   const organizationSchema = getOrganizationSchema();
   const websiteSchema = getWebSiteSchema();
   const breadcrumbSchema = getHomeBreadcrumbs();
+  const toursItemListSchema = getToursItemListSchema(tours);
+  const professionalsItemListSchema =
+    getProfessionalsItemListSchema(professionalsData);
 
   const structuredData = [
     organizationSchema,
     websiteSchema,
     breadcrumbSchema,
+    toursItemListSchema,
+    professionalsItemListSchema,
   ];
 
   return (

@@ -44,7 +44,7 @@ export function TourGrid() {
             </Link>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 min-h-[320px]">
           {vrs.map((vr) => (
             <Link
               key={vr.id}
@@ -53,7 +53,7 @@ export function TourGrid() {
               rel="noreferrer"
               className="tour-card group relative block overflow-hidden rounded-2xl border border-cyber-gray-600 bg-cyber-gray-900/75 shadow-lg shadow-cyber-brand-500/10 transition-transform duration-500 hover:-translate-y-1 hover:border-cyber-brand-400 hover:shadow-cyber-brand-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
             >
-              <figure className="relative aspect-[16/9] overflow-hidden m-0">
+              <figure className="relative aspect-[16/9] overflow-hidden m-0 w-full h-auto">
                 {(() => {
                   const localSrc = vr.assetCover || vr.cover;
                   const remoteSrc = vr.remoteCover;
@@ -72,6 +72,7 @@ export function TourGrid() {
                       placeholder="blur"
                       blurDataURL={blur}
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      loading="lazy"
                     />
                   );
                 })()}

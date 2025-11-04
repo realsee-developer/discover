@@ -52,8 +52,8 @@ export function Professionals() {
         </div>
 
         {/* Mobile grid */}
-        <div className="grid grid-cols-1 gap-6 md:hidden">
-          {list.map((p) => (
+        <div className="grid grid-cols-1 gap-6 md:hidden min-h-[200px]">
+          {list.map((p, index) => (
             <Link
               key={`grid-${p.id}`}
               href={`/professional/${p.slug ?? p.id}`}
@@ -68,6 +68,7 @@ export function Professionals() {
                     fill
                     sizes="112px"
                     className="rounded-2xl object-cover"
+                    loading={index < 4 ? "eager" : "lazy"}
                   />
                 </div>
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -90,7 +91,7 @@ export function Professionals() {
         </div>
 
         {/* Desktop marquee */}
-        <div className="relative hidden pb-12 md:block">
+        <div className="relative hidden pb-12 md:block min-h-[280px]">
           <div className="professionals-marquee" style={marqueeStyle}>
             <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-cyber-gray-900 via-cyber-gray-900/40 to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-cyber-gray-900 via-cyber-gray-900/40 to-transparent" />
@@ -111,6 +112,7 @@ export function Professionals() {
                           fill
                           sizes="96px"
                           className="rounded-2xl object-cover"
+                          loading={index < 10 ? "eager" : "lazy"}
                         />
                       </div>
                       <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-cyber-brand-500/25 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

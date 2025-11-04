@@ -10,6 +10,7 @@ import { HeroRotatingBg } from "./HeroRotatingBg";
 import {
   getProfilePageSchema,
   getProfessionalBreadcrumbs,
+  getVideoObjectSchema,
 } from "@/lib/structured-data";
 import { generateGlobalAlternates } from "@/lib/seo-utils";
 import { KudosButton } from "./KudosButton";
@@ -267,7 +268,17 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
 
   const breadcrumbSchema = getProfessionalBreadcrumbs(pro.name, slug);
 
+  // Add VideoObject schema if behind-the-scenes video exists
   const structuredData = [profilePageSchema, breadcrumbSchema];
+  if (youtubeId) {
+    const videoSchema = getVideoObjectSchema({
+      name: `${pro.name} - Behind the Scenes`,
+      description: `Watch ${pro.name} in action. Discover how immersive 3D capture comes to life with exclusive production footage and commentary from this professional Realsee creator.`,
+      youtubeId: youtubeId,
+      uploadDate: "2024-01-01T00:00:00Z",
+    });
+    structuredData.push(videoSchema);
+  }
 
   return (
     <>

@@ -1,0 +1,97 @@
+{
+  "name": "Realsee Discover - Immersive 3D Tours & Creators",
+  "short_name": "Realsee Discover",
+  "description": "Explore immersive 3D virtual tours, meet certified Realsee creators worldwide, and experience the future of real estate storytelling with cutting-edge LiDAR and photogrammetry technology.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1a",
+  "theme_color": "#3366FF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "entertainment",
+    "photography",
+    "lifestyle",
+    "business",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-rounded-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/realsee-logo-with-brand.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/realsee-logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Browse Tours",
+      "short_name": "Tours",
+      "description": "Explore featured 3D virtual tours",
+      "url": "/#tours",
+      "icons": [
+        {
+          "src": "/favicon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Find Creators",
+      "short_name": "Creators",
+      "description": "Discover certified Realsee professionals",
+      "url": "/#professionals",
+      "icons": [
+        {
+          "src": "/favicon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "short_name": "Search",
+      "description": "Search tours and creators",
+      "url": "/search",
+      "icons": [
+        {
+          "src": "/favicon.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
+

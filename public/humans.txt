@@ -1,0 +1,70 @@
+/* TEAM */
+
+Project: Realsee Discover
+Description: Global platform for immersive 3D virtual tours and creators
+Organization: Realsee
+Website: https://realsee.ai
+Location: Global
+
+/* SITE */
+
+Last update: 2025/01/01
+Standards: HTML5, CSS3, ECMAScript 2024
+Components: React, Next.js, TypeScript
+Software: Visual Studio Code, Git
+Language: English
+Doctype: HTML5
+IDE: Visual Studio Code, Cursor
+
+/* TECHNOLOGY */
+
+Frontend Framework: Next.js 16 (App Router)
+React: 19.x
+TypeScript: 5.x
+UI Framework: Tailwind CSS 4, daisyUI 5.x
+Icons: Iconify React
+Fonts: Inter, JetBrains Mono, Orbitron (Google Fonts)
+Analytics: Vercel Analytics, Google Tag Manager
+Deployment: Vercel Edge Network
+Image Optimization: Cloudflare CDN
+Database: Static JSON data
+SEO: JSON-LD Structured Data, Open Graph, Twitter Cards
+GEO: Hreflang tags, Edge Middleware
+PWA: Service Worker ready, Manifest.json
+
+/* FEATURES */
+
+- Immersive 3D Virtual Tour Showcase
+- Professional Creator Profiles
+- Advanced Search and Filtering
+- Responsive Design (Mobile-first)
+- Dark Cyberpunk Theme
+- SEO Optimized (Structured Data, Sitemap, Robots.txt)
+- Performance Optimized (Edge Functions, ISR, Image Optimization)
+- Accessibility (WCAG 2.2 AA compliant)
+- Progressive Web App (PWA) Support
+- Multi-region Support (Hreflang)
+- Search Engine Integration (Google, Bing, IndexNow)
+
+/* THANKS */
+
+To all Realsee creators worldwide who make stunning 3D content.
+To the open-source community for amazing tools and libraries.
+To Vercel for excellent hosting and developer experience.
+
+/* CONTACT */
+
+Email: support@realsee.com
+Twitter: @REALSEE_Moment
+LinkedIn: https://www.linkedin.com/company/realsee
+YouTube: https://www.youtube.com/@realsee3d
+
+                                              _
+                                             | |
+  _ __ ___  __ _| |___  ___  ___
+ | '__/ _ \/ _` | / __|/ _ \/ _ \
+ | | |  __/ (_| | \__ \  __/  __/
+ |_|  \___|\__,_|_|___/\___|\___|
+
+Discover the future of immersive storytelling.
+

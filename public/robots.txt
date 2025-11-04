@@ -1,0 +1,46 @@
+# Realsee Discover - Robots.txt
+# This file is a static backup; the actual robots.txt is generated dynamically via src/app/robots.ts
+
+# Global rules - allow all crawlers
+User-agent: *
+Allow: /
+Crawl-delay: 0
+
+# Google crawlers - prioritize
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-News
+User-agent: Googlebot-Video
+Allow: /
+Crawl-delay: 0
+
+# Bing and Microsoft crawlers
+User-agent: Bingbot
+User-agent: msnbot
+User-agent: BingPreview
+Allow: /
+Crawl-delay: 0
+
+# DuckDuckGo crawler
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Baidu crawlers
+User-agent: Baiduspider
+User-agent: Baiduspider-image
+User-agent: Baiduspider-video
+Allow: /
+Crawl-delay: 1
+
+# Yandex crawler
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://discover.realsee.ai/sitemap.xml
+
+# Host
+Host: https://discover.realsee.ai
+

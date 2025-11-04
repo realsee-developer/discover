@@ -10,6 +10,7 @@ import {
   getWebSiteSchema,
   getHomeBreadcrumbs,
 } from "@/lib/structured-data";
+import { generateGlobalAlternates } from "@/lib/seo-utils";
 import { getProfessionals, getVrs } from "@/data/db";
 
 const ogImage = "/realsee-logo.jpeg";
@@ -42,6 +43,7 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: absoluteUrl("/"),
+    languages: generateGlobalAlternates("/"),
   },
   openGraph: {
     title: "Immersive Virtual Tours & Creator Network",

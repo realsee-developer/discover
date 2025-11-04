@@ -10,9 +10,9 @@ const DESKTOP_GAP = 32;
 const DESKTOP_SPEED = 30;
 
 export function Professionals() {
-  const list = getProfessionals().sort(
-    (a, b) => (b.vrIds || []).length - (a.vrIds || []).length
-  ).filter((p) => Boolean(p.Location));
+  const list = getProfessionals()
+    .sort((a, b) => (b.vrIds || []).length - (a.vrIds || []).length)
+    .filter((p) => Boolean(p.Location));
 
   const desktopTotal = list.length * (DESKTOP_CARD_WIDTH + DESKTOP_GAP);
 

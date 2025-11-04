@@ -1,12 +1,12 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { Icon } from "@iconify/react";
 import { CategoryBadge } from "@/components/custom/badges";
-import { DeviceIcon } from "@/lib/badge-utils";
 import { getBlurPlaceholder } from "@/data/db";
+import { DeviceIcon } from "@/lib/badge-utils";
 
 export type TourCardData = {
   id: string;
@@ -19,7 +19,8 @@ export type TourCardData = {
 };
 
 const INITIAL_VISIBLE = 9;
-const PLACEHOLDER_FALLBACK = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%230a0f1a'/%3E%3C/svg%3E";
+const PLACEHOLDER_FALLBACK =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%230a0f1a'/%3E%3C/svg%3E";
 
 export function ToursGrid({ tours }: { tours: TourCardData[] }) {
   const [visibleCount, setVisibleCount] = useState(
@@ -32,7 +33,9 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
         <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-cyber-brand-400/30 bg-cyber-gray-900/70 text-cyber-brand-500">
           <Icon icon="heroicons:cube" width={32} />
         </div>
-        <h3 className="mt-6 text-xl font-semibold text-white">No Projects Yet</h3>
+        <h3 className="mt-6 text-xl font-semibold text-white">
+          No Projects Yet
+        </h3>
         <p className="mt-2 text-cyber-gray-400">
           This creator has not shared any virtual tours at the moment.
         </p>
@@ -63,7 +66,9 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
                   fill
                   sizes="(min-width: 1280px) 24vw, (min-width: 1024px) 32vw, (min-width: 768px) 45vw, 95vw"
                   placeholder="blur"
-                  blurDataURL={getBlurPlaceholder(tour.cover) ?? PLACEHOLDER_FALLBACK}
+                  blurDataURL={
+                    getBlurPlaceholder(tour.cover) ?? PLACEHOLDER_FALLBACK
+                  }
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
               </div>
@@ -76,7 +81,11 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
 
               {tour.device ? (
                 <div className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-cyber-gray-900/80 shadow-lg shadow-black/30">
-                  <DeviceIcon device={tour.device} width={18} className="text-cyber-gray-100" />
+                  <DeviceIcon
+                    device={tour.device}
+                    width={18}
+                    className="text-cyber-gray-100"
+                  />
                 </div>
               ) : null}
             </figure>
@@ -97,7 +106,10 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
             onClick={() => setVisibleCount(tours.length)}
             className="cyber-btn-primary group relative inline-flex items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.2em] shadow-cyber-brand-500/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-cyber-brand-500/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
           >
-            <span className="pointer-events-none absolute inset-0 rounded-full border border-cyber-brand-400/40 opacity-0 transition-opacity duration-300 group-hover:opacity-80" aria-hidden="true" />
+            <span
+              className="pointer-events-none absolute inset-0 rounded-full border border-cyber-brand-400/40 opacity-0 transition-opacity duration-300 group-hover:opacity-80"
+              aria-hidden="true"
+            />
             <Icon icon="heroicons:rectangle-stack" width={18} />
             View More Tours
           </button>
@@ -106,5 +118,3 @@ export function ToursGrid({ tours }: { tours: TourCardData[] }) {
     </div>
   );
 }
-
-

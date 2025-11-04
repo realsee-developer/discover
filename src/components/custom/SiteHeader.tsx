@@ -1,9 +1,9 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Icon } from "@iconify/react";
 
 export function SiteHeader() {
   const [atTop, setAtTop] = useState(true);
@@ -92,10 +92,7 @@ export function SiteHeader() {
                   >
                     <Icon icon="heroicons:bars-3" width={20} />
                   </button>
-                  <ul
-                    tabIndex={0}
-                    className="menu dropdown-content mt-3 z-50 p-3 shadow-2xl bg-cyber-gray-800/95 backdrop-blur-md rounded-2xl w-72 border border-cyber-gray-600/60 shadow-cyber-brand-500/20"
-                  >
+                  <ul className="menu dropdown-content mt-3 z-50 p-3 shadow-2xl bg-cyber-gray-800/95 backdrop-blur-md rounded-2xl w-72 border border-cyber-gray-600/60 shadow-cyber-brand-500/20">
                     <li>
                       <Link
                         href="/"

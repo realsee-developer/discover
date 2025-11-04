@@ -1,17 +1,17 @@
+import blurPlaceholders from "@/data/blur-placeholders.json";
+import carouselsJson from "@/data/carousels.json";
+import professionalsJson from "@/data/professionals.json";
+import vrJson from "@/data/vr.json";
+import vrDevicesJson from "@/data/vr-devices.json";
+import vrTagsJson from "@/data/vr-tags.json";
 import type {
   TCarouselEntry,
   TProfessional,
   TVr,
+  TVrDevice,
   TVrTag,
   TVrTagMap,
-  TVrDevice,
 } from "@/types";
-import vrJson from "@/data/vr.json";
-import professionalsJson from "@/data/professionals.json";
-import carouselsJson from "@/data/carousels.json";
-import vrTagsJson from "@/data/vr-tags.json";
-import vrDevicesJson from "@/data/vr-devices.json";
-import blurPlaceholders from "@/data/blur-placeholders.json";
 
 function slugify(input: string): string {
   return input
@@ -162,7 +162,9 @@ export function getDevices(): TVrDevice[] {
   return loadDevices();
 }
 
-export function getBlurPlaceholder(path: string | null | undefined): string | undefined {
+export function getBlurPlaceholder(
+  path: string | null | undefined,
+): string | undefined {
   if (!path) return undefined;
   return blurPlaceholders[path as keyof typeof blurPlaceholders] ?? undefined;
 }

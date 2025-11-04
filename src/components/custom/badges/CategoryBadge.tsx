@@ -18,8 +18,7 @@ const accentClass: Record<string, string> = {
     "border-cyber-brand-400/80 bg-cyber-brand-500/25 text-cyber-brand-50",
   office:
     "border-cyber-neon-cyan/70 bg-cyber-neon-cyan/20 text-cyber-neon-cyan",
-  retail:
-    "border-cyber-brand-400/80 bg-cyber-brand-500/22 text-cyber-brand-50",
+  retail: "border-cyber-brand-400/80 bg-cyber-brand-500/22 text-cyber-brand-50",
   industrial: "border-cyber-gray-500 bg-cyber-gray-900/85 text-cyber-gray-100",
   exhibition:
     "border-cyber-brand-400/70 bg-cyber-brand-500/18 text-cyber-brand-100",
@@ -81,14 +80,17 @@ export function CategoryBadge({
         baseClass,
         sizeClass[size],
         getAccentClass(category),
-        "shadow-cyber-brand-500/10 shadow-sm hover:-translate-y-0.5 hover:shadow-cyber-brand-500/20"
+        "shadow-cyber-brand-500/10 shadow-sm hover:-translate-y-0.5 hover:shadow-cyber-brand-500/20",
       )}
     >
       {showIcon ? (
-        <Icon icon={getBadgeIcon(category)} width={iconSize} className="opacity-90" />
+        <Icon
+          icon={getBadgeIcon(category)}
+          width={iconSize}
+          className="opacity-90"
+        />
       ) : null}
       <span className="truncate max-w-[10rem]">{category}</span>
     </span>
   );
 }
-

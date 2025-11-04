@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { IHeroSectionProps } from "@/types";
-import Image from "next/image";
 
 export function HeroSection({ data }: { data: IHeroSectionProps }) {
   if (!data) return null;

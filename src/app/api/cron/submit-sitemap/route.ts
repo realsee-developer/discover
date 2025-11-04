@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 /**
  * Cron job to automatically submit sitemap to search engines
  * Runs daily at 2:00 AM UTC (configured in vercel.json)
- * 
+ *
  * Vercel Cron Jobs documentation: https://vercel.com/docs/cron-jobs
  */
 export async function GET(request: NextRequest) {
@@ -16,9 +16,10 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://discover.realsee.ai";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://discover.realsee.ai";
   const sitemapUrl = `${siteUrl}/sitemap.xml`;
-  
+
   const results = {
     google: { success: false, message: "" },
     bing: { success: false, message: "" },
@@ -33,7 +34,7 @@ export async function GET(request: NextRequest) {
     try {
       const googleResponse = await fetch(googlePingUrl, { method: "GET" });
       results.google.success = googleResponse.ok;
-      results.google.message = googleResponse.ok 
+      results.google.message = googleResponse.ok
         ? "Sitemap submitted successfully"
         : `Failed with status ${googleResponse.status}`;
     } catch (error) {
@@ -56,19 +57,23 @@ export async function GET(request: NextRequest) {
     const indexnowKey = process.env.INDEXNOW_KEY;
     if (indexnowKey) {
       try {
-        const indexnowResponse = await fetch("https://api.indexnow.org/indexnow", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const indexnowResponse = await fetch(
+          "https://api.indexnow.org/indexnow",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              host: siteUrl.replace(/^https?:\/\//, ""),
+              key: indexnowKey,
+              keyLocation: `${siteUrl}/api/indexnow`,
+              urlList: [sitemapUrl],
+            }),
           },
-          body: JSON.stringify({
-            host: siteUrl.replace(/^https?:\/\//, ""),
-            key: indexnowKey,
-            keyLocation: `${siteUrl}/api/indexnow`,
-            urlList: [sitemapUrl],
-          }),
-        });
-        results.indexnow.success = indexnowResponse.ok || indexnowResponse.status === 202;
+        );
+        results.indexnow.success =
+          indexnowResponse.ok || indexnowResponse.status === 202;
         results.indexnow.message = results.indexnow.success
           ? "Sitemap submitted via IndexNow"
           : `Failed with status ${indexnowResponse.status}`;
@@ -92,7 +97,7 @@ export async function GET(request: NextRequest) {
         error: error instanceof Error ? error.message : "Unknown error",
         timestamp: new Date().toISOString(),
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -101,4 +106,3 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   return GET(request);
 }
-

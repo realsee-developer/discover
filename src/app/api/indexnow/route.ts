@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 /**
  * IndexNow API endpoint
  * Allows quick notification to search engines (Bing, Yandex, etc.) about content updates
- * 
+ *
  * IndexNow Protocol: https://www.indexnow.org/documentation
- * 
+ *
  * Usage:
  * POST /api/indexnow
  * Body: { "urls": ["https://discover.realsee.ai/professional/new-creator"] }
@@ -16,7 +16,7 @@ const INDEXNOW_KEY = process.env.INDEXNOW_KEY || "";
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://discover.realsee.ai";
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   // Return the IndexNow key for verification
   // This endpoint should return the key as plain text
   if (!INDEXNOW_KEY) {
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
   if (!INDEXNOW_KEY) {
     return NextResponse.json(
       { error: "IndexNow key not configured" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     if (!Array.isArray(urls) || urls.length === 0) {
       return NextResponse.json(
         { error: "Invalid request: urls array is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     if (validUrls.length === 0) {
       return NextResponse.json(
         { error: "No valid URLs provided" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
         error: `IndexNow API returned status ${response.status}`,
         submitted: 0,
       },
-      { status: response.status }
+      { status: response.status },
     );
   } catch (error) {
     return NextResponse.json(
@@ -106,8 +106,7 @@ export async function POST(request: NextRequest) {
         success: false,
         error: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
-

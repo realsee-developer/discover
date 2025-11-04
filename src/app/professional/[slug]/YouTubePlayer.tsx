@@ -26,7 +26,10 @@ type YTPlayerOptions = {
 };
 
 type YTNamespace = {
-  Player: new (element: HTMLElement, options: YTPlayerOptions) => YTPlayerInstance;
+  Player: new (
+    element: HTMLElement,
+    options: YTPlayerOptions,
+  ) => YTPlayerInstance;
 };
 
 declare global {
@@ -42,10 +45,12 @@ let youtubeAPILoader: Promise<YTNamespace> | null = null;
 
 function loadYouTubeIframeAPI() {
   if (typeof window === "undefined") {
-    return Promise.reject(new Error("YouTube Player can only be loaded in the browser."));
+    return Promise.reject(
+      new Error("YouTube Player can only be loaded in the browser."),
+    );
   }
 
-  if (window.YT && window.YT.Player) {
+  if (window.YT?.Player) {
     return Promise.resolve(window.YT);
   }
 
@@ -75,7 +80,7 @@ function loadYouTubeIframeAPI() {
     }
 
     window.onYouTubeIframeAPIReady = () => {
-      if (window.YT && window.YT.Player) {
+      if (window.YT?.Player) {
         resolve(window.YT);
       } else {
         youtubeAPILoader = null;
@@ -164,7 +169,7 @@ export default function YouTubePlayer({ videoId, title }: YouTubePlayerProps) {
 
     try {
       playerRef.current.cueVideoById(videoId);
-    } catch (error) {
+    } catch (_error) {
       setHasError(true);
     }
   }, [videoId]);
@@ -188,5 +193,3 @@ export default function YouTubePlayer({ videoId, title }: YouTubePlayerProps) {
     </div>
   );
 }
-
-

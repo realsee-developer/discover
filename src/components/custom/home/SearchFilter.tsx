@@ -41,10 +41,11 @@ export function SearchFilter() {
     "medical clinic": "heroicons:lifebuoy",
   };
 
-  const getCategoryIcon = (label: string) => iconMap[normalizeLabel(label)] || "heroicons:hashtag";
+  const getCategoryIcon = (label: string) =>
+    iconMap[normalizeLabel(label)] || "heroicons:hashtag";
 
-  const featuredTags = tags.slice(0, 8);
-  const secondaryTags = tags.slice(8, 16);
+  const _featuredTags = tags.slice(0, 8);
+  const _secondaryTags = tags.slice(8, 16);
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-cyber-gray-900 via-cyber-gray-900/95 to-cyber-gray-800 py-24">
@@ -59,14 +60,19 @@ export function SearchFilter() {
         <div className="mx-auto max-w-4xl rounded-3xl border border-cyber-gray-600 bg-cyber-gray-800/90 p-8 shadow-cyber-brand-500/10 backdrop-blur-2xl md:p-10">
           <div className="text-center space-y-4">
             <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white shadow-lg shadow-cyber-brand-500/30">
-              <Icon icon="heroicons:sparkles" width={16} className="text-white" />
+              <Icon
+                icon="heroicons:sparkles"
+                width={16}
+                className="text-white"
+              />
               <span>Featured Categories</span>
             </div>
             <h2 className="text-3xl font-bold text-cyber-gray-100 md:text-4xl">
               Jump straight into immersive content
             </h2>
             <p className="text-sm text-cyber-gray-300 md:text-base">
-              Pick a category to browse curated spatial experiences that match your presentation or device needs.
+              Pick a category to browse curated spatial experiences that match
+              your presentation or device needs.
             </p>
           </div>
 
@@ -83,7 +89,11 @@ export function SearchFilter() {
                   }}
                   aria-label={`Browse ${tag.label} category`}
                 >
-                  <Icon icon={getCategoryIcon(tag.label)} width={16} className="text-cyber-brand-800 transition-colors duration-300 group-hover:text-white" />
+                  <Icon
+                    icon={getCategoryIcon(tag.label)}
+                    width={16}
+                    className="text-cyber-brand-800 transition-colors duration-300 group-hover:text-white"
+                  />
                   {tag.label}
                 </button>
               ))}
@@ -92,8 +102,14 @@ export function SearchFilter() {
 
           <div className="mt-8 flex flex-col items-center gap-3 text-xs text-cyber-gray-300 sm:flex-row sm:justify-center">
             <div className="inline-flex items-center gap-2">
-              <Icon icon="heroicons:cursor-arrow-rays" width={16} className="text-cyber-brand-800" />
-              <span>Select a category to jump directly into tailored search results.</span>
+              <Icon
+                icon="heroicons:cursor-arrow-rays"
+                width={16}
+                className="text-cyber-brand-800"
+              />
+              <span>
+                Select a category to jump directly into tailored search results.
+              </span>
             </div>
             <button
               type="button"

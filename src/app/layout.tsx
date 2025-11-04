@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { GoogleTagManager } from "@next/third-parties/google";
+import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Orbitron } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "../components/custom/SiteHeader";
-import { SiteFooter } from "../components/custom/SiteFooter";
-import { absoluteUrl, getSiteURL } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { absoluteUrl, getSiteURL } from "@/lib/utils";
+import { SiteFooter } from "../components/custom/SiteFooter";
+import { SiteHeader } from "../components/custom/SiteHeader";
+import { generateGlobalAlternates } from "@/lib/seo-utils";
 
 const gtmId = "GTM-N27VZHG2";
 const isVercelProduction = process.env.VERCEL_ENV === "production";
@@ -101,10 +102,26 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: absoluteUrl(),
+    languages: generateGlobalAlternates("/"),
   },
   other: {
-    "X-Robots-Tag": "index, follow",
+    // AI Search Engine optimization tags
+    "X-Robots-Tag":
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "ai-content-declaration": "human-created",
+    "content-language": "en",
+    "geo.region": "global",
+    "geo.position": "global",
+    // Indicate content type for AI understanding
+    "article:tag":
+      "3d-virtual-tours, creators, photography, real-estate, technology",
+    "article:content_tier": "free",
+    // Help AI understand this is a directory/discovery platform
+    "og:type": "website",
+    "website:type": "directory",
   },
+  // Google verification: Already completed via DNS for realsee.ai domain
+  // Bing verification: Already completed via Google Search Console import
 };
 
 // Primary font - Inter for excellent readability

@@ -1,20 +1,23 @@
-export {};
-
+import { Icon } from "@iconify/react";
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { JoinCTA } from "@/components/custom/home/JoinCTA";
+
+import { getProfessionalBySlug, getProfessionals, getVrById } from "@/data/db";
+import { absoluteUrl } from "@/lib/utils";
+import { HeroRotatingBg } from "./HeroRotatingBg";
+import {
+  getProfilePageSchema,
+  getProfessionalBreadcrumbs,
+} from "@/lib/structured-data";
+import { generateGlobalAlternates } from "@/lib/seo-utils";
+import { KudosButton } from "./KudosButton";
+import { type TourCardData, ToursGrid } from "./ToursGrid";
 // @next/third-parties 的 YouTubeEmbed 与 lite-youtube-embed 脚本存在兼容问题，
 // 在生产构建中会导致复合自定义元素未注册而无法播放。
 // 临时使用自定义 iframe 封装以确保交互可靠。
 import YouTubePlayer from "./YouTubePlayer";
-import { Icon } from "@iconify/react";
-import Image from "next/image";
-import Link from "next/link";
-
-import { getProfessionalBySlug, getProfessionals, getVrById } from "@/data/db";
-import { HeroRotatingBg } from "./HeroRotatingBg";
-import { ToursGrid, type TourCardData } from "./ToursGrid";
-import { JoinCTA } from "@/components/custom/home/JoinCTA";
-import { KudosButton } from "./KudosButton";
-import { absoluteUrl } from "@/lib/utils";
 
 type SocialKey = "linkedin" | "instagram" | "facebook" | "youtube" | "vimeo";
 
@@ -55,9 +58,7 @@ export async function generateMetadata({
         "digital twins",
       ];
 
-  const portraitUrl = pro
-    ? `/professional/${pro.id}.jpg`
-    : defaultImage;
+  const portraitUrl = pro ? `/professional/${pro.id}.jpg` : defaultImage;
 
   return {
     title,
@@ -65,6 +66,7 @@ export async function generateMetadata({
     keywords,
     alternates: {
       canonical: canonicalUrl,
+      languages: generateGlobalAlternates(`/professional/${slug}`),
     },
     openGraph: {
       title,
@@ -140,7 +142,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
 
   const locationMapsUrl = pro.Location
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        pro.Location
+        pro.Location,
       )}`
     : null;
 
@@ -212,7 +214,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
       icon: "heroicons:globe-alt",
       colorClass: "text-cyber-brand-100",
       bgClass: "border-cyber-brand-500/50 bg-cyber-brand-500/30",
-      value: pro.Website!.startsWith("http")
+      value: pro.Website?.startsWith("http")
         ? pro.Website!
         : `https://${pro.Website}`,
     });
@@ -236,14 +238,49 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     shortCategory: tour.shortCategory || undefined,
     device: tour.device || undefined,
     cover:
-      tour.assetCover || tour.cover || tour.remoteCover || "/cover/placeholder.jpg",
+      tour.assetCover ||
+      tour.cover ||
+      tour.remoteCover ||
+      "/cover/placeholder.jpg",
     categoryIcon: tour.shortCategory
       ? categoryIconMap(tour.shortCategory)
       : undefined,
   }));
 
+  // Generate structured data for SEO
+  const profilePageSchema = getProfilePageSchema({
+    name: pro.name,
+    slug: slug,
+    shortBio: pro.shortBio,
+    location: pro.Location,
+    website: pro.Website,
+    portraitUrl: `/professional/${pro.id}.jpg`,
+    tourCount: tours.length,
+    socialLinks: {
+      linkedin: pro.linkedin,
+      instagram: pro.instagram,
+      facebook: pro.facebook,
+      youtube: pro.youtube,
+      twitter: pro.twitter,
+    },
+  });
+
+  const breadcrumbSchema = getProfessionalBreadcrumbs(pro.name, slug);
+
+  const structuredData = [profilePageSchema, breadcrumbSchema];
+
   return (
-    <main className="main-content-wrapper flex-1 bg-cyber-gray-900 text-cyber-gray-200">
+    <>
+      {/* Structured Data for SEO and AI Crawlers */}
+      {structuredData.map((schema, index) => (
+        <script
+          key={`schema-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
+      <main className="main-content-wrapper flex-1 bg-cyber-gray-900 text-cyber-gray-200">
       <section className="relative isolate overflow-hidden">
         {heroImages.length ? (
           <HeroRotatingBg images={heroImages} />
@@ -484,6 +521,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
         </div>
       </section>
     </main>
+    </>
   );
 }
 
@@ -514,7 +552,7 @@ function categoryIconMap(category: string): string {
 function extractYouTubeId(url: string): string | null {
   if (!url) return null;
   const regex =
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/;
   const match = url.match(regex);
   return match ? match[1] : null;
 }

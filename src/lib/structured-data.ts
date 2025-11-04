@@ -1,9 +1,9 @@
 import type {
-  Organization,
-  WebSite,
-  ProfilePage,
   BreadcrumbList,
   ItemList,
+  Organization,
+  ProfilePage,
+  WebSite,
   WithContext,
 } from "schema-dts";
 import { absoluteUrl } from "./utils";
@@ -63,6 +63,7 @@ export function getWebSiteSchema(): WithContext<WebSite> {
         "@type": "EntryPoint",
         urlTemplate: `${absoluteUrl("/search")}?q={search_term_string}`,
       },
+      // @ts-expect-error - query-input is a valid schema.org property but not in schema-dts types
       "query-input": "required name=search_term_string",
     },
   };
@@ -163,7 +164,8 @@ export function getToursItemListSchema(
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Featured 3D Virtual Tours",
-    description: "Curated collection of immersive 3D virtual tours from Realsee creators",
+    description:
+      "Curated collection of immersive 3D virtual tours from Realsee creators",
     numberOfItems: tours.length,
     itemListElement: tours.map((tour, index) => ({
       "@type": "ListItem",
@@ -201,7 +203,8 @@ export function getProfessionalsItemListSchema(
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Certified Realsee Creators",
-    description: "Professional 3D photographers and creators in the Realsee network",
+    description:
+      "Professional 3D photographers and creators in the Realsee network",
     numberOfItems: professionals.length,
     itemListElement: professionals.map((pro, index) => ({
       "@type": "ListItem",
@@ -275,4 +278,3 @@ export function getProfessionalBreadcrumbs(
     },
   ]);
 }
-

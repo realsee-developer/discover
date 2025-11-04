@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
+import { useEffect, useState } from "react";
 
 type KudosButtonProps = {
   slug: string;
@@ -95,7 +95,10 @@ export function KudosButton({ slug, name }: KudosButtonProps) {
           <span className="text-[0.65rem] font-medium uppercase tracking-[0.5em] text-cyber-gray-400">
             {liked ? "Thanks" : "Send"}
           </span>
-          <span className="text-base font-semibold text-cyber-gray-100" aria-live="polite">
+          <span
+            className="text-base font-semibold text-cyber-gray-100"
+            aria-live="polite"
+          >
             {liked ? "Cheered" : "Kudos"}
           </span>
         </span>
@@ -103,4 +106,3 @@ export function KudosButton({ slug, name }: KudosButtonProps) {
     </button>
   );
 }
-

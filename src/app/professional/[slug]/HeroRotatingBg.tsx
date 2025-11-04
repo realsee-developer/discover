@@ -14,7 +14,10 @@ export function HeroRotatingBg({ images, interval = 8000 }: Props) {
 
   useEffect(() => {
     if (clean.length <= 1) return;
-    const timer = setInterval(() => setIndex((i) => (i + 1) % clean.length), interval);
+    const timer = setInterval(
+      () => setIndex((i) => (i + 1) % clean.length),
+      interval,
+    );
     return () => clearInterval(timer);
   }, [clean.length, interval]);
 
@@ -37,7 +40,10 @@ export function HeroRotatingBg({ images, interval = 8000 }: Props) {
             sizes="100vw"
             className="pointer-events-none select-none object-cover"
           />
-          <div aria-hidden="true" className="absolute inset-0 bg-cyber-gray-900/6" />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-cyber-gray-900/6"
+          />
           <div
             aria-hidden="true"
             className="absolute inset-0 bg-gradient-to-br from-cyber-brand-500/6 via-transparent to-cyber-neon-cyan/6"
@@ -47,4 +53,3 @@ export function HeroRotatingBg({ images, interval = 8000 }: Props) {
     </div>
   );
 }
-

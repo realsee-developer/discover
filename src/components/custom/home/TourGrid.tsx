@@ -1,10 +1,11 @@
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 import { getBlurPlaceholder, getVrs } from "@/data/db";
 
 const DEFAULT_BLUR =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%230a0f1a'/%3E%3C/svg%3E";
+
 import { CategoryBadge } from "@/components/custom/badges";
 import { DeviceIcon } from "@/lib/badge-utils";
 
@@ -29,7 +30,8 @@ export function TourGrid() {
               Explore More 3D Tours
             </h2>
             <p className="mt-3 max-w-2xl text-base text-cyber-gray-200">
-              Dive into a hand-picked collection of immersive spaces curated across industries, devices, and creators.
+              Dive into a hand-picked collection of immersive spaces curated
+              across industries, devices, and creators.
             </p>
           </div>
           <div className="flex items-center gap-3">
@@ -57,7 +59,10 @@ export function TourGrid() {
                   const remoteSrc = vr.remoteCover;
                   const fallback = "/cover/placeholder.jpg";
                   const imageSrc = localSrc || remoteSrc || fallback;
-                  const blur = getBlurPlaceholder(localSrc) || getBlurPlaceholder(fallback) || DEFAULT_BLUR;
+                  const blur =
+                    getBlurPlaceholder(localSrc) ||
+                    getBlurPlaceholder(fallback) ||
+                    DEFAULT_BLUR;
                   return (
                     <Image
                       src={imageSrc}
@@ -72,12 +77,19 @@ export function TourGrid() {
                 })()}
 
                 <div className="absolute top-3 left-3 flex flex-wrap items-center gap-2 max-w-[calc(100%-6rem)]">
-                  <CategoryBadge category={vr.shortCategory || vr.category} size="sm" />
+                  <CategoryBadge
+                    category={vr.shortCategory || vr.category}
+                    size="sm"
+                  />
                 </div>
 
                 {vr.device ? (
                   <div className="absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full bg-cyber-gray-900/80 shadow-lg shadow-black/30">
-                    <DeviceIcon device={vr.device} width={18} className="text-cyber-gray-100" />
+                    <DeviceIcon
+                      device={vr.device}
+                      width={18}
+                      className="text-cyber-gray-100"
+                    />
                   </div>
                 ) : null}
               </figure>
@@ -94,5 +106,3 @@ export function TourGrid() {
     </section>
   );
 }
-
-

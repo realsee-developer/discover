@@ -1,23 +1,26 @@
 "use client";
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
 
 const creatorHighlights = [
   {
     icon: "heroicons:users",
     label: "Global Creator Network",
-    description: "Co-create with spatial storytellers across 60+ countries in real time.",
+    description:
+      "Co-create with spatial storytellers across 60+ countries in real time.",
   },
   {
     icon: "heroicons:camera",
     label: "Professional Capture Stack",
-    description: "Ship immersive 3D stories with the Galois rig and panoramic toolkit.",
+    description:
+      "Ship immersive 3D stories with the Galois rig and panoramic toolkit.",
   },
   {
     icon: "heroicons:currency-dollar",
     label: "Diverse Revenue Streams",
-    description: "Unlock brand collaborations, tailored projects, and distribution royalties.",
+    description:
+      "Unlock brand collaborations, tailored projects, and distribution royalties.",
   },
 ];
 
@@ -25,17 +28,20 @@ const contactHighlights = [
   {
     icon: "heroicons:rocket-launch",
     label: "Strategic Project Scoping",
-    description: "Realsee partners capture requirements and align budgets before introductions.",
+    description:
+      "Realsee partners capture requirements and align budgets before introductions.",
   },
   {
     icon: "heroicons:shield-check",
     label: "Verified Professional Network",
-    description: "Only certified creators receive the brief to ensure quality and reliability.",
+    description:
+      "Only certified creators receive the brief to ensure quality and reliability.",
   },
   {
     icon: "heroicons:chat-bubble-left-right",
     label: "Hands-on Support",
-    description: "Our collaboration team coordinates timelines, assets, and delivery milestones.",
+    description:
+      "Our collaboration team coordinates timelines, assets, and delivery milestones.",
   },
 ];
 
@@ -46,7 +52,10 @@ interface JoinCTAProps {
   professionalName?: string;
 }
 
-export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps) {
+export function JoinCTA({
+  variant = "creator",
+  professionalName,
+}: JoinCTAProps) {
   const isContact = variant === "contact";
   const heading = isContact
     ? professionalName
@@ -57,10 +66,15 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
     ? "Submit a collaboration brief and our Realsee team will introduce you to the best-fit certified creators, manage project onboarding, and ensure delivery quality end to end."
     : "Connect with premium projects and forward-thinking brands while your spatial work gains visibility, revenue, and technical support. We provide the end-to-end toolchain, creator training, and business matchmaking to help you scale faster.";
   const highlights = isContact ? contactHighlights : creatorHighlights;
-  const ctaLabel = isContact ? "Contact via Realsee" : "Join the Creator Center";
-  const badgeLabel = isContact ? "Project Collaboration" : "Realsee Creator Program";
+  const ctaLabel = isContact
+    ? "Contact via Realsee"
+    : "Join the Creator Center";
+  const badgeLabel = isContact
+    ? "Project Collaboration"
+    : "Realsee Creator Program";
   // 加入计划
-  const baseHref = "https://home.realsee.ai/en/contact-us-join-realsee-creators-center";
+  const baseHref =
+    "https://home.realsee.ai/en/contact-us-join-realsee-creators-center";
   // 联系合作
   const contactHref = "https://forms.gle/8GpHCx34QM1FwkHu5";
   return (
@@ -88,7 +102,11 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
       <div className="container mx-auto px-6">
         <div className="mx-auto max-w-5xl rounded-3xl border border-cyber-gray-700 bg-cyber-gray-800/90 p-10 text-center shadow-none backdrop-blur-xl md:p-16">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-cyber-brand-400/50 bg-gradient-to-r from-cyber-brand-500/25 via-cyber-neon-cyan/20 to-cyber-neon-magenta/25 px-6 py-2 text-sm font-semibold text-cyber-neon-cyan shadow-cyber-brand-500/40 backdrop-blur-md transition-shadow duration-300 hover:shadow-cyber-brand-500/60">
-            <Icon icon="heroicons:sparkles" width={16} className="text-cyber-neon-cyan" />
+            <Icon
+              icon="heroicons:sparkles"
+              width={16}
+              className="text-cyber-neon-cyan"
+            />
             <span>{badgeLabel}</span>
           </div>
 
@@ -108,8 +126,12 @@ export function JoinCTA({ variant = "creator", professionalName }: JoinCTAProps)
                 <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-cyber-brand-500/15 p-3 text-cyber-neon-cyan">
                   <Icon icon={item.icon} width={20} />
                 </div>
-                <h3 className="text-lg font-semibold text-cyber-gray-100">{item.label}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cyber-gray-400">{item.description}</p>
+                <h3 className="text-lg font-semibold text-cyber-gray-100">
+                  {item.label}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-cyber-gray-400">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>

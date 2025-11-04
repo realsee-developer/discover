@@ -1,19 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { getBlurPlaceholder, getDevices, getVrTags, getVrs } from "@/data/db";
+import { useEffect, useMemo, useState } from "react";
+import { getBlurPlaceholder, getDevices, getVrs, getVrTags } from "@/data/db";
 
 const DEFAULT_BLUR =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%230a0f1a'/%3E%3C/svg%3E";
-const DEFAULT_BLUR_TALL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%230a0f1a'/%3E%3C/svg%3E";
+const _DEFAULT_BLUR_TALL =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%230a0f1a'/%3E%3C/svg%3E";
 
 import { CategoryBadge, DeviceBadge } from "@/components/custom/badges";
-import { DeviceIcon } from "@/lib/badge-utils";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
+import { DeviceIcon } from "@/lib/badge-utils";
 
 const ALL_VRS = getVrs();
 const CATEGORY_TAGS = getVrTags().filter((t) => t.type === "category");
@@ -53,7 +54,7 @@ export function SearchStateClient() {
 
   // Filter and sort logic
   const filteredResults = useMemo(() => {
-    let results = ALL_VRS.filter((vr) => {
+    const results = ALL_VRS.filter((vr) => {
       if (filters.category) {
         const category = vr.category || vr.shortCategory || "";
         if (!category.toLowerCase().includes(filters.category.toLowerCase())) {
@@ -94,12 +95,12 @@ export function SearchStateClient() {
         break;
       case "title":
         results.sort((a, b) =>
-          (a.title || a.id).localeCompare(b.title || b.id)
+          (a.title || a.id).localeCompare(b.title || b.id),
         );
         break;
       case "category":
         results.sort((a, b) =>
-          (a.category || "").localeCompare(b.category || "")
+          (a.category || "").localeCompare(b.category || ""),
         );
         break;
       default:
@@ -113,17 +114,17 @@ export function SearchStateClient() {
     setIsLoading(true);
     const timer = setTimeout(() => setIsLoading(false), 180);
     return () => clearTimeout(timer);
-  }, [filters.category, filters.device, filters.query, filters.sort, filters.view]);
+  }, []);
 
   const totalPages = Math.max(1, Math.ceil(filteredResults.length / pageSize));
   const paginatedResults = filteredResults.slice(
     (page - 1) * pageSize,
-    page * pageSize
+    page * pageSize,
   );
 
   const updateFilter = <K extends keyof SearchFilters>(
     key: K,
-    value: SearchFilters[K]
+    value: SearchFilters[K],
   ) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
     setPage(1);
@@ -140,7 +141,7 @@ export function SearchStateClient() {
     setPage(1);
   };
 
-  const getActiveFilterCount = () => {
+  const _getActiveFilterCount = () => {
     let count = 0;
     if (filters.query.trim()) count++;
     if (filters.category) count++;
@@ -189,7 +190,9 @@ export function SearchStateClient() {
                   <select
                     className="cyber-focus h-12 rounded-xl border border-cyber-gray-700 bg-cyber-gray-900/90 px-4 text-sm text-cyber-gray-100"
                     value={filters.category || ""}
-                    onChange={(e) => updateFilter("category", e.target.value || null)}
+                    onChange={(e) =>
+                      updateFilter("category", e.target.value || null)
+                    }
                   >
                     <option value="">All categories</option>
                     {CATEGORY_TAGS.map((tag) => (
@@ -206,7 +209,9 @@ export function SearchStateClient() {
                   <select
                     className="cyber-focus h-12 rounded-xl border border-cyber-gray-700 bg-cyber-gray-900/90 px-4 text-sm text-cyber-gray-100"
                     value={filters.device || ""}
-                    onChange={(e) => updateFilter("device", e.target.value || null)}
+                    onChange={(e) =>
+                      updateFilter("device", e.target.value || null)
+                    }
                   >
                     <option value="">All devices</option>
                     {DEVICES.map((device) => (
@@ -257,7 +262,7 @@ export function SearchStateClient() {
                         <div className="h-3 w-2/3 rounded-full bg-cyber-gray-800/80" />
                       </div>
                     </div>
-                  )
+                  ),
                 )}
               </div>
             ) : filteredResults.length === 0 ? (
@@ -293,10 +298,10 @@ export function SearchStateClient() {
                 >
                   {paginatedResults.map((vr, index) => {
                     const imageSrc = (() => {
-                    const localSrc = vr.assetCover || vr.cover;
-                    const remoteSrc = vr.remoteCover;
-                    const fallback = "/cover/placeholder.jpg";
-                    return localSrc || remoteSrc || fallback;
+                      const localSrc = vr.assetCover || vr.cover;
+                      const remoteSrc = vr.remoteCover;
+                      const fallback = "/cover/placeholder.jpg";
+                      return localSrc || remoteSrc || fallback;
                     })();
 
                     if (filters.view === "list") {
@@ -316,7 +321,11 @@ export function SearchStateClient() {
                                 fill
                                 sizes="(min-width: 1280px) 28vw, (min-width: 1024px) 320px, (min-width: 768px) 45vw, 100vw"
                                 placeholder="blur"
-                                blurDataURL={getBlurPlaceholder(vr.assetCover || vr.cover) ?? DEFAULT_BLUR}
+                                blurDataURL={
+                                  getBlurPlaceholder(
+                                    vr.assetCover || vr.cover,
+                                  ) ?? DEFAULT_BLUR
+                                }
                                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                 priority={index < 4}
                               />
@@ -359,7 +368,7 @@ export function SearchStateClient() {
                                   <Icon
                                     icon="heroicons:hashtag"
                                     width={14}
-                                  className="text-cyber-brand-400"
+                                    className="text-cyber-brand-400"
                                   />
                                   {vr.shortCategory}
                                 </span>
@@ -391,7 +400,10 @@ export function SearchStateClient() {
                             fill
                             sizes="(min-width: 1280px) 24vw, (min-width: 1024px) 32vw, (min-width: 768px) 44vw, 100vw"
                             placeholder="blur"
-                            blurDataURL={getBlurPlaceholder(vr.assetCover || vr.cover) ?? DEFAULT_BLUR}
+                            blurDataURL={
+                              getBlurPlaceholder(vr.assetCover || vr.cover) ??
+                              DEFAULT_BLUR
+                            }
                             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                             priority={index < 4}
                           />
@@ -453,13 +465,15 @@ export function SearchStateClient() {
                               {pageNum}
                             </button>
                           );
-                        }
+                        },
                       )}
                       <button
                         type="button"
                         className="cyber-focus inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-cyber-gray-300 transition-colors duration-300 hover:text-cyber-brand-400 focus-visible:text-cyber-brand-400 disabled:cursor-not-allowed disabled:text-cyber-gray-600"
                         onClick={() =>
-                          setPage((current) => Math.min(totalPages, current + 1))
+                          setPage((current) =>
+                            Math.min(totalPages, current + 1),
+                          )
                         }
                         disabled={page === totalPages}
                       >

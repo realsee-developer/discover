@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { getCarousels, getVrById } from "@/data/db";
 import { CategoryBadge, DeviceBadge } from "@/components/custom/badges";
+import { getCarousels, getVrById } from "@/data/db";
 
 export function Carousel() {
   const [current, setCurrent] = useState(0);
@@ -22,7 +22,11 @@ export function Carousel() {
       const vr = getVrById(entry.vrId);
       if (!vr) return null;
       const title = vr.title || vr.category || vr.shortCategory;
-      const img = entry.imagePath || vr.assetCover || vr.cover || "/cover/placeholder.jpg";
+      const img =
+        entry.imagePath ||
+        vr.assetCover ||
+        vr.cover ||
+        "/cover/placeholder.jpg";
       const url = vr.url;
       const category = vr.category || vr.shortCategory || "";
       const device = vr.device || "";
@@ -86,7 +90,6 @@ export function Carousel() {
       <div className="hero-content p-0 w-full max-w-none relative z-10">
         <div
           className="relative w-full overflow-hidden rounded-none shadow-none focus:outline-none focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-          tabIndex={0}
           role="region"
           aria-label="Featured 3D Tours Carousel"
           onKeyDown={(e) => {
@@ -103,7 +106,7 @@ export function Carousel() {
             if (!prefersReducedMotion.current && slides.length > 1) {
               timer.current = setInterval(
                 () => setCurrent((c) => (c + 1) % slides.length),
-                DURATION_MS
+                DURATION_MS,
               );
               setPaused(false);
             }
@@ -128,7 +131,7 @@ export function Carousel() {
             if (!prefersReducedMotion.current && slides.length > 1) {
               timer.current = setInterval(
                 () => setCurrent((c) => (c + 1) % slides.length),
-                DURATION_MS
+                DURATION_MS,
               );
               setPaused(false);
             }
@@ -187,7 +190,10 @@ export function Carousel() {
                             rel="noopener noreferrer"
                             aria-label={`Explore ${s.title} 3D Virtual Tour`}
                           >
-                            <Icon icon="solar:rocket-2-bold-duotone" width={24} />
+                            <Icon
+                              icon="solar:rocket-2-bold-duotone"
+                              width={24}
+                            />
                             <span>Launch Tour</span>
                           </Link>
                         </div>

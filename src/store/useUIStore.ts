@@ -32,3 +32,4 @@ export const useUIStore = create<UIState>((set) => ({
     set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
   setLoading: (loading) => set({ isLoading: loading }),
 }));
+

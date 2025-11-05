@@ -23,3 +23,4 @@ export const useDebugStore = create<DebugState>((set) => ({
     })),
   clearDebugInfo: () => set({ debugInfo: {} }),
 }));
+

@@ -52,7 +52,14 @@ export const metadata: Metadata = {
     description:
       "Explore featured 3D experiences, advanced capture devices, and top creators in the Realsee ecosystem.",
     url: absoluteUrl("/"),
-    images: [{ url: ogImage }],
+    images: [
+      {
+        url: absoluteUrl(ogImage),
+        width: 512,
+        height: 512,
+        alt: "Realsee Discover logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -70,13 +77,16 @@ export default async function Home() {
   const professionals = getProfessionals();
 
   // Prepare tours data for ItemList schema
-  const tours = vrs.slice(0, 20).map((vr) => ({
-    id: vr.id,
-    title: vr.title || "Untitled Tour",
-    url: vr.url || "#",
-    cover: vr.assetCover || vr.cover || vr.remoteCover,
-    category: vr.shortCategory,
-  }));
+  const tours = vrs.slice(0, 20).map((vr) => {
+    const cover = vr.assetCover || vr.cover || vr.remoteCover;
+    return {
+      id: vr.id,
+      title: vr.title || "Untitled Tour",
+      url: vr.url || "#",
+      ...(cover ? { cover } : {}),
+      ...(vr.shortCategory ? { category: vr.shortCategory } : {}),
+    };
+  });
 
   // Prepare professionals data for ItemList schema
   const professionalsData = professionals.slice(0, 12).map((pro) => ({

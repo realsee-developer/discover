@@ -35,12 +35,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // If we have tour count changes, that would update lastModified
     const professionalLastModified = now;
 
+    const professionalUrl = absoluteUrl(`/professional/${slug}`);
+    const portraitImage = absoluteUrl(`/professional/${professional.id}.jpg`);
+
     entries.push({
-      url: absoluteUrl(`/professional/${slug}`),
+      url: professionalUrl,
       lastModified: professionalLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
       // Professional pages are important but updated less frequently
+      // Include portrait image for better image indexing
+      // Note: Next.js sitemap images field accepts string array
+      images: [portraitImage],
     });
   }
 

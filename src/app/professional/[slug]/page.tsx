@@ -269,7 +269,10 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
   const breadcrumbSchema = getProfessionalBreadcrumbs(pro.name, slug);
 
   // Add VideoObject schema if behind-the-scenes video exists
-  const structuredData = [profilePageSchema, breadcrumbSchema];
+  const structuredData = [
+    profilePageSchema,
+    breadcrumbSchema,
+  ] as unknown as Array<Record<string, unknown>>;
   if (youtubeId) {
     const videoSchema = getVideoObjectSchema({
       name: `${pro.name} - Behind the Scenes`,
@@ -277,7 +280,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
       youtubeId: youtubeId,
       uploadDate: "2024-01-01T00:00:00Z",
     });
-    structuredData.push(videoSchema);
+    structuredData.push(videoSchema as Record<string, unknown>);
   }
 
   return (

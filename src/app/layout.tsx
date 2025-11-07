@@ -104,6 +104,8 @@ export const metadata: Metadata = {
     canonical: absoluteUrl(),
     languages: generateGlobalAlternates("/"),
   },
+  // Search engine verification: All completed via DNS (Google, Bing, Yandex, Baidu)
+  // No meta tag verification needed
   other: {
     // AI Search Engine optimization tags
     "X-Robots-Tag":
@@ -120,8 +122,8 @@ export const metadata: Metadata = {
     "og:type": "website",
     "website:type": "directory",
   },
-  // Google verification: Already completed via DNS for realsee.ai domain
-  // Bing verification: Already completed via Google Search Console import
+  // Note: Verification can also be done via DNS (already configured for realsee.ai domain)
+  // The above verification config provides additional meta tag verification option
 };
 
 // Primary font - Inter for excellent readability

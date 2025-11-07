@@ -52,6 +52,9 @@ export const metadata: Metadata = {
     description:
       "Explore featured 3D experiences, advanced capture devices, and top creators in the Realsee ecosystem.",
     url: absoluteUrl("/"),
+    siteName: "Realsee Discover",
+    locale: "en_US",
+    type: "website",
     images: [
       {
         url: absoluteUrl(ogImage),

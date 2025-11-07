@@ -74,9 +74,13 @@ export async function generateMetadata({
       description,
       type: "profile",
       url: canonicalUrl,
+      siteName: "Realsee Discover",
+      locale: "en_US",
       images: [
         {
-          url: portraitUrl,
+          url: portraitUrl.startsWith("http")
+            ? portraitUrl
+            : absoluteUrl(portraitUrl),
           width: 640,
           height: 800,
           alt: pro ? `${pro.name} portrait` : "Realsee Discover",

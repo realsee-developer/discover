@@ -36,6 +36,8 @@ export const metadata: Metadata = {
     description:
       "Explore and search through thousands of immersive 3D virtual tours and connect with professional creators worldwide.",
     url: absoluteUrl("/search"),
+    siteName: "Realsee Discover",
+    locale: "en_US",
     type: "website",
     images: [
       {

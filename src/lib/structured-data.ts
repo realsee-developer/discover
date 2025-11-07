@@ -102,7 +102,9 @@ export function getProfilePageSchema(data: {
       description:
         data.shortBio ||
         `Professional 3D photographer and Realsee creator specializing in immersive virtual tours.`,
-      image: data.portraitUrl,
+      image: data.portraitUrl.startsWith("http")
+        ? data.portraitUrl
+        : absoluteUrl(data.portraitUrl),
       jobTitle: "Professional 3D Photographer",
       worksFor: {
         "@type": "Organization",
@@ -175,7 +177,9 @@ export function getToursItemListSchema(
         name: tour.title,
         url: tour.url,
         ...(tour.cover && {
-          thumbnailUrl: tour.cover,
+          thumbnailUrl: tour.cover.startsWith("http")
+            ? tour.cover
+            : absoluteUrl(tour.cover),
         }),
         ...(tour.category && {
           genre: tour.category,
@@ -213,7 +217,9 @@ export function getProfessionalsItemListSchema(
         "@type": "Person",
         name: pro.name,
         url: absoluteUrl(`/professional/${pro.slug || pro.id}`),
-        image: pro.portraitUrl,
+        image: pro.portraitUrl.startsWith("http")
+          ? pro.portraitUrl
+          : absoluteUrl(pro.portraitUrl),
         jobTitle: "Professional 3D Photographer",
         ...(pro.location && {
           address: {

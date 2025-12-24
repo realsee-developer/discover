@@ -97,7 +97,7 @@ export default async function Home() {
     name: pro.name,
     slug: pro.slug,
     location: pro.Location,
-    portraitUrl: `/professional/${pro.id}.jpg`,
+    portraitUrl: `/professional/${pro.slug}.jpg`,
   }));
 
   // Generate structured data for SEO

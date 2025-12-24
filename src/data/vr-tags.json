@@ -1,98 +1,8 @@
 [
   {
-    "id": "category:aerial",
-    "type": "category",
-    "label": "Aerial 3D"
-  },
-  {
-    "id": "category:campus",
-    "type": "category",
-    "label": "Campus"
-  },
-  {
-    "id": "category:church",
-    "type": "category",
-    "label": "Church"
-  },
-  {
-    "id": "category:clinic",
-    "type": "category",
-    "label": "Clinic"
-  },
-  {
-    "id": "category:construction",
-    "type": "category",
-    "label": "Construction"
-  },
-  {
-    "id": "category:exhibition",
-    "type": "category",
-    "label": "Exhibition"
-  },
-  {
-    "id": "category:gym",
-    "type": "category",
-    "label": "Gym"
-  },
-  {
     "id": "category:hotel",
     "type": "category",
     "label": "Hotel"
-  },
-  {
-    "id": "category:industrial",
-    "type": "category",
-    "label": "Industrial"
-  },
-  {
-    "id": "category:museum",
-    "type": "category",
-    "label": "Museum"
-  },
-  {
-    "id": "category:office",
-    "type": "category",
-    "label": "Office"
-  },
-  {
-    "id": "category:outdoor",
-    "type": "category",
-    "label": "Outdoor"
-  },
-  {
-    "id": "category:residential",
-    "type": "category",
-    "label": "Residential"
-  },
-  {
-    "id": "category:restaurant",
-    "type": "category",
-    "label": "Restaurant"
-  },
-  {
-    "id": "category:retail",
-    "type": "category",
-    "label": "Retail"
-  },
-  {
-    "id": "category:rv",
-    "type": "category",
-    "label": "RV"
-  },
-  {
-    "id": "category:showroom",
-    "type": "category",
-    "label": "Showroom"
-  },
-  {
-    "id": "category:studio",
-    "type": "category",
-    "label": "Studio"
-  },
-  {
-    "id": "category:tourism",
-    "type": "category",
-    "label": "Tourism"
   },
   {
     "id": "device:galois",
@@ -100,8 +10,108 @@
     "label": "Galois"
   },
   {
+    "id": "category:retail",
+    "type": "category",
+    "label": "Retail"
+  },
+  {
+    "id": "category:residential",
+    "type": "category",
+    "label": "Residential"
+  },
+  {
+    "id": "category:tourism",
+    "type": "category",
+    "label": "Tourism"
+  },
+  {
+    "id": "category:exhibition",
+    "type": "category",
+    "label": "Exhibition"
+  },
+  {
+    "id": "category:studio",
+    "type": "category",
+    "label": "Studio"
+  },
+  {
+    "id": "category:office",
+    "type": "category",
+    "label": "Office"
+  },
+  {
+    "id": "category:restaurant",
+    "type": "category",
+    "label": "Restaurant"
+  },
+  {
+    "id": "category:rv",
+    "type": "category",
+    "label": "RV"
+  },
+  {
+    "id": "category:industrial",
+    "type": "category",
+    "label": "Industrial"
+  },
+  {
+    "id": "category:gym",
+    "type": "category",
+    "label": "Gym"
+  },
+  {
+    "id": "category:campus",
+    "type": "category",
+    "label": "Campus"
+  },
+  {
+    "id": "category:aerial",
+    "type": "category",
+    "label": "Aerial 3D"
+  },
+  {
     "id": "device:pano-to-3d",
     "type": "device",
     "label": "Pano to 3D"
+  },
+  {
+    "id": "category:construction",
+    "type": "category",
+    "label": "Construction"
+  },
+  {
+    "id": "category:church",
+    "type": "category",
+    "label": "Church"
+  },
+  {
+    "id": "category:showroom",
+    "type": "category",
+    "label": "Showroom"
+  },
+  {
+    "id": "category:outdoor",
+    "type": "category",
+    "label": "Outdoor"
+  },
+  {
+    "id": "category:clinic",
+    "type": "category",
+    "label": "Clinic"
+  },
+  {
+    "id": "category:museum",
+    "type": "category",
+    "label": "Museum"
+  },
+  {
+    "id": "category:others",
+    "type": "category",
+    "label": "Others"
+  },
+  {
+    "id": "category:aerial-3d",
+    "type": "category",
+    "label": "Aerial 3D"
   }
 ]

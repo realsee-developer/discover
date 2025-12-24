@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { JoinCTA } from "@/components/custom/home/JoinCTA";
+import { GlitchText, ScanLinesOverlay } from "@/components/cyber";
 
 import { getProfessionalBySlug, getProfessionals, getVrById } from "@/data/db";
 import { absoluteUrl } from "@/lib/utils";
@@ -15,9 +16,6 @@ import {
 import { generateGlobalAlternates } from "@/lib/seo-utils";
 import { KudosButton } from "./KudosButton";
 import { type TourCardData, ToursGrid } from "./ToursGrid";
-// @next/third-parties 的 YouTubeEmbed 与 lite-youtube-embed 脚本存在兼容问题，
-// 在生产构建中会导致复合自定义元素未注册而无法播放。
-// 临时使用自定义 iframe 封装以确保交互可靠。
 import YouTubePlayer from "./YouTubePlayer";
 
 type SocialKey = "linkedin" | "instagram" | "facebook" | "youtube" | "vimeo";
@@ -59,7 +57,7 @@ export async function generateMetadata({
         "digital twins",
       ];
 
-  const portraitUrl = pro ? `/professional/${pro.id}.jpg` : defaultImage;
+  const portraitUrl = pro ? `/professional/${pro.slug}.jpg` : defaultImage;
 
   return {
     title,
@@ -86,7 +84,6 @@ export async function generateMetadata({
           alt: pro ? `${pro.name} portrait` : "Realsee Discover",
         },
       ],
-      // OpenGraphMetadata 不支持 profile 字段，需移除以通过类型检查
     },
     twitter: {
       card: "summary_large_image",
@@ -110,7 +107,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     return (
       <main className="main-content-wrapper flex-1 bg-cyber-gray-900 text-cyber-gray-200">
         <section className="container mx-auto flex min-h-[60vh] flex-col items-center justify-center gap-6 px-6 py-24 text-center">
-          <div className="flex h-24 w-24 items-center justify-center rounded-full border border-cyber-brand-400/40 bg-cyber-gray-900">
+          <div className="flex h-24 w-24 items-center justify-center rounded-full border border-cyber-brand-400/40 bg-cyber-gray-900 neon-border">
             <Icon
               icon="heroicons:user"
               width={36}
@@ -147,7 +144,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
 
   const locationMapsUrl = pro.Location
     ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        pro.Location,
+        pro.Location
       )}`
     : null;
 
@@ -259,7 +256,7 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
     shortBio: pro.shortBio,
     location: pro.Location,
     website: pro.Website,
-    portraitUrl: `/professional/${pro.id}.jpg`,
+    portraitUrl: `/professional/${pro.slug}.jpg`,
     tourCount: tours.length,
     socialLinks: {
       linkedin: pro.linkedin,
@@ -272,7 +269,6 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
 
   const breadcrumbSchema = getProfessionalBreadcrumbs(pro.name, slug);
 
-  // Add VideoObject schema if behind-the-scenes video exists
   const structuredData = [
     profilePageSchema,
     breadcrumbSchema,
@@ -299,246 +295,388 @@ export default async function ProfessionalDetailPage({ params }: PageProps) {
       ))}
 
       <main className="main-content-wrapper flex-1 bg-cyber-gray-900 text-cyber-gray-200">
-      <section className="relative isolate overflow-hidden">
-        {heroImages.length ? (
-          <HeroRotatingBg images={heroImages} />
-        ) : (
+        {/* ============================================
+            HERO SECTION - Diagonal Split Design
+            ============================================ */}
+        <section className="relative isolate min-h-[100svh] overflow-hidden flex items-center">
+          {/* Background with rotating images */}
+          {heroImages.length ? (
+            <HeroRotatingBg images={heroImages} enhanced />
+          ) : (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -z-20 bg-gradient-to-br from-cyber-gray-900 via-cyber-brand-100 to-cyber-gray-900"
+            />
+          )}
+
+          {/* Subtle gradient overlay for text readability - no heavy mask */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-20 bg-cyber-gray-900"
+            className="absolute inset-0 -z-10 bg-gradient-to-r from-cyber-gray-900/70 via-transparent to-transparent lg:from-cyber-gray-900/60"
           />
-        )}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-b from-cyber-gray-900/30 via-cyber-gray-900/15 to-cyber-gray-900/70"
-        />
-        <div className="container relative z-10 mx-auto grid justify-items-center gap-12 px-6 py-24 text-center sm:gap-14 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-center lg:gap-16 lg:text-left">
-          <div className="order-1 flex flex-col items-center justify-center gap-4 text-center lg:order-2 lg:items-start lg:text-left lg:justify-self-start">
-            <div className="inline-flex items-center justify-center lg:justify-start">
-              <div className="rounded-full bg-gradient-to-r from-cyber-brand-500 via-cyber-neon-cyan to-cyber-neon-magenta p-[1.5px] shadow-[0_0_32px_rgba(51,102,255,0.35)]">
-                <div className="flex items-center gap-3 rounded-full bg-cyber-gray-900/85 px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-cyber-gray-100">
-                  <Icon
-                    icon="heroicons:sparkles"
-                    width={16}
-                    className="text-cyber-neon-cyan"
-                  />
-                  Realsee Creator
-                  <span className="inline-flex items-center gap-1 rounded-full bg-cyber-gray-800/80 px-2 py-[2px] text-[0.65rem] font-medium text-cyber-neon-cyan drop-shadow-[0_0_8px_rgba(0,255,255,0.65)]">
-                    <Icon
-                      icon="heroicons:shield-check"
-                      width={14}
-                      className="text-cyber-neon-cyan"
-                    />
-                    Verified
-                  </span>
+
+          {/* Global scanlines */}
+          <ScanLinesOverlay intensity="subtle" />
+
+          {/* Hero Content Grid */}
+          <div className="container relative z-10 mx-auto px-6 py-16 lg:py-24">
+            <div className="grid gap-12 lg:grid-cols-[1fr_420px] lg:gap-16 xl:grid-cols-[1fr_500px] items-center">
+              {/* Left Column - Info */}
+              <div className="flex flex-col gap-6 text-center lg:text-left order-2 lg:order-1">
+                {/* Verified Badge */}
+                <div className="flex justify-center lg:justify-start">
+                  <div className="relative group">
+                    <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyber-neon-cyan via-cyber-brand-500 to-cyber-neon-magenta opacity-50 blur-sm group-hover:opacity-75 transition-opacity" />
+                    <div className="relative flex items-center gap-3 rounded-full bg-cyber-gray-900/90 px-5 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-cyber-gray-100 border border-cyber-neon-cyan/30">
+                      <Icon
+                        icon="heroicons:sparkles"
+                        width={16}
+                        className="text-cyber-neon-cyan animate-pulse"
+                      />
+                      <span>Realsee Creator</span>
+                      <span className="inline-flex items-center gap-1 rounded-full bg-cyber-neon-cyan/20 px-2 py-[2px] text-[0.65rem] font-medium text-cyber-neon-cyan">
+                        <Icon
+                          icon="heroicons:shield-check"
+                          width={14}
+                          className="text-cyber-neon-cyan"
+                        />
+                        Verified
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="space-y-4 lg:text-left">
-              <h1 className="font-display text-4xl tracking-tight text-white drop-shadow-[0_8px_24px_rgba(7,24,46,0.6)] md:text-6xl xl:text-[4.5rem]">
-                {pro.name}
-              </h1>
-              {pro.shortBio ? (
-                <p className="max-w-3xl text-base leading-relaxed text-cyber-gray-100/90 md:text-lg">
-                  {pro.shortBio}
-                </p>
-              ) : null}
-              <div className="mt-5 flex flex-col items-center gap-4 sm:flex-row sm:items-stretch sm:justify-center lg:justify-start">
-                {locationMapsUrl ? (
-                  <Link
-                    href={locationMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/30 bg-cyber-gray-900/60 px-4 py-1.5 text-xs font-medium text-cyber-gray-100 shadow-[0_0_18px_rgba(51,102,255,0.18)] transition-colors duration-300 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyber-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-cyber-gray-900"
-                    prefetch={false}
-                  >
-                    <Icon
-                      icon="heroicons:map-pin"
-                      width={16}
-                      className="text-cyber-brand-800"
-                    />
-                    <span>{pro.Location}</span>
-                  </Link>
-                ) : null}
-                <KudosButton slug={slug} name={pro.name} />
-              </div>
-            </div>
+                {/* Name with Glitch Effect */}
+                <div className="space-y-5">
+                  <GlitchText
+                    as="h1"
+                    text={pro.name}
+                    className="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight text-white"
+                    style={{
+                      textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.7), 0 0 60px rgba(0,255,255,0.3)",
+                    }}
+                  />
 
-            {socialLinks.length ? (
-              <div className="mt-4 flex flex-wrap justify-center gap-2.5 lg:justify-start">
-                {socialLinks.map((entry) => {
-                  const href = entry.value.startsWith("http")
-                    ? entry.value
-                    : `https://${entry.value}`;
-                  return (
+                  {/* Short Bio */}
+                  {pro.shortBio && (
+                    <p 
+                      className="max-w-2xl text-lg leading-relaxed text-white lg:text-xl mx-auto lg:mx-0 font-medium"
+                      style={{
+                        textShadow: "0 2px 8px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5)",
+                      }}
+                    >
+                      {pro.shortBio}
+                    </p>
+                  )}
+                </div>
+
+                {/* Location & Kudos */}
+                <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mt-2">
+                  {locationMapsUrl && (
                     <Link
-                      key={entry.key}
-                      href={href}
+                      href={locationMapsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 rounded-xl text-cyber-gray-100 border border-cyber-gray-600/30 bg-cyber-gray-900/60 backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-cyber-brand-400 hover:text-cyber-neon-cyan hover:shadow-md hover:shadow-cyber-brand-500/15 focus-visible:outline-2 focus-visible:outline-cyber-brand-500 focus-visible:outline-offset-2"
-                      aria-label={
-                        entry.key === "website" ? "Website" : entry.key
-                      }
+                      className="group inline-flex items-center gap-2 rounded-full border border-cyber-neon-cyan/30 bg-cyber-gray-900/60 px-5 py-2 text-sm font-medium text-cyber-gray-100 backdrop-blur-md transition-all duration-300 hover:border-cyber-neon-cyan hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] hover:-translate-y-0.5"
+                      prefetch={false}
                     >
-                      <Icon icon={entry.icon} width={20} />
+                      <Icon
+                        icon="heroicons:map-pin"
+                        width={18}
+                        className="text-cyber-neon-cyan group-hover:animate-pulse"
+                      />
+                      <span>{pro.Location}</span>
                     </Link>
-                  );
-                })}
+                  )}
+                  <KudosButton slug={slug} name={pro.name} />
+                </div>
+
+                {/* Social Links */}
+                {socialLinks.length > 0 && (
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-4">
+                    {socialLinks.map((entry, idx) => {
+                      const href = entry.value.startsWith("http")
+                        ? entry.value
+                        : `https://${entry.value}`;
+                      return (
+                        <Link
+                          key={entry.key}
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group relative p-3 rounded-xl bg-cyber-gray-900/60 border border-cyber-gray-600/30 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyber-neon-cyan hover:shadow-[0_0_20px_rgba(0,255,255,0.25)]"
+                          style={{
+                            animationDelay: `${idx * 50}ms`,
+                          }}
+                          aria-label={
+                            entry.key === "website" ? "Website" : entry.key
+                          }
+                        >
+                          <Icon
+                            icon={entry.icon}
+                            width={22}
+                            className="text-cyber-gray-300 group-hover:text-cyber-neon-cyan transition-colors"
+                          />
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+
               </div>
-            ) : null}
-          </div>
 
-          <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
-            <div className="relative aspect-[3/4] w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[440px] xl:max-w-[500px] 2xl:max-w-[560px]">
-              <Image
-                src={`/professional/${pro.id}.jpg`}
-                alt={pro.name}
-                width={960}
-                height={1280}
-                sizes="(min-width: 1920px) 520px, (min-width: 1536px) 480px, (min-width: 1280px) 440px, (min-width: 1024px) 380px, (min-width: 640px) 60vw, 85vw"
-                placeholder="blur"
-                blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Crect width='3' height='4' fill='%230a0f1a'/%3E%3C/svg%3E"
-                className="h-full w-full rounded-[1.25rem] object-cover shadow-[0_40px_120px_-45px_rgba(5,15,35,0.85)]"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+              {/* Right Column - Portrait */}
+              <div className="flex justify-center lg:justify-end order-1 lg:order-2">
+                <div className="relative floating-avatar">
+                  {/* Soft ambient glow - large and diffused */}
+                  <div
+                    className="absolute -inset-8 rounded-[2rem] opacity-40 blur-2xl"
+                    style={{
+                      background:
+                        "radial-gradient(ellipse at center, var(--color-cyber-neon-cyan) 0%, var(--color-cyber-neon-magenta) 50%, transparent 70%)",
+                    }}
+                    aria-hidden="true"
+                  />
 
-      {youtubeId ? (
-        <section className="relative py-24">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-br from-cyber-brand-200/20 via-transparent to-cyber-plasma-purple/20"
-          />
-          <div className="container relative z-10 mx-auto px-6">
-            <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/45 bg-cyber-gray-900/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-gray-100 drop-shadow-[0_0_12px_rgba(51,102,255,0.35)]">
-                <Icon icon="heroicons:play-circle" width={18} />
-                Behind the Scenes
-              </span>
-              <h2 className="mt-6 font-display text-3xl text-white md:text-4xl">
-                Watch {pro.name} in Action
-              </h2>
-              <p className="mt-3 text-base text-cyber-gray-300 md:text-lg">
-                Discover how immersive 3D capture comes to life with exclusive
-                production footage and commentary.
-              </p>
-            </div>
-            <div className="mx-auto mt-12 max-w-5xl">
-              <div className="relative overflow-hidden rounded-3xl border border-cyber-brand-300/30 bg-cyber-gray-900/80 shadow-[0_45px_85px_-35px_rgba(15,23,42,0.9)]">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 -translate-y-10 scale-110 bg-gradient-to-r from-cyber-brand-500/25 via-cyber-neon-cyan/15 to-cyber-plasma-purple/25 blur-3xl"
-                />
-                <div className="relative z-10 aspect-video overflow-hidden rounded-[1.75rem] border border-cyber-brand-400/20 bg-black">
-                  <YouTubePlayer
-                    videoId={youtubeId}
-                    title={`${pro.name} behind the scenes video`}
+                  {/* Portrait frame with gradient border */}
+                  <div className="relative aspect-[3/4] w-[200px] sm:w-[240px] lg:w-[300px] xl:w-[340px] rounded-2xl p-[2px] bg-gradient-to-br from-cyber-neon-cyan via-cyber-neon-magenta to-cyber-brand-500 shadow-[0_0_20px_rgba(0,255,255,0.2),0_0_40px_rgba(255,0,255,0.15)]">
+                    <div className="relative h-full w-full overflow-hidden rounded-[13px] bg-cyber-gray-900">
+                      <Image
+                        src={`/professional/${pro.slug}.jpg`}
+                        alt={pro.name}
+                        width={680}
+                        height={907}
+                        sizes="(min-width: 1280px) 340px, (min-width: 1024px) 300px, (min-width: 640px) 240px, 200px"
+                        placeholder="blur"
+                        blurDataURL="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'%3E%3Crect width='3' height='4' fill='%230a0f1a'/%3E%3C/svg%3E"
+                        className="h-full w-full object-cover"
+                        priority
+                      />
+
+                      {/* Subtle scanlines */}
+                      <ScanLinesOverlay intensity="subtle" />
+
+                      {/* Subtle inner vignette */}
+                      <div
+                        className="absolute inset-0 rounded-[14px] pointer-events-none"
+                        style={{
+                          boxShadow: "inset 0 0 60px rgba(0,0,0,0.3)",
+                        }}
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Decorative accent lines */}
+                  <div
+                    className="absolute -right-4 top-1/4 h-16 w-0.5 rounded-full bg-gradient-to-b from-cyber-neon-cyan/60 via-cyber-neon-magenta/40 to-transparent"
+                    aria-hidden="true"
+                  />
+                  <div
+                    className="absolute -left-4 bottom-1/4 h-14 w-0.5 rounded-full bg-gradient-to-t from-cyber-neon-cyan/60 via-cyber-brand-500/40 to-transparent"
+                    aria-hidden="true"
                   />
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      ) : null}
 
-      <section id="tours" className="relative py-24">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-br from-cyber-gray-900 via-cyber-brand-200/15 to-cyber-gray-900"
-        />
-        <div className="container relative z-10 mx-auto px-6">
-          <div className="mx-auto max-w-5xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/45 bg-cyber-gray-900/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-gray-100 drop-shadow-[0_0_12px_rgba(51,102,255,0.35)]">
-              <Icon icon="heroicons:cube" width={18} />
-              Portfolio
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+            <div className="scroll-mouse opacity-60" />
+            <span className="text-xs uppercase tracking-widest text-cyber-gray-400">
+              Scroll
             </span>
-            <h2 className="mt-6 font-display text-3xl text-white md:text-4xl">
-              Selected 3D Tours
-            </h2>
-            <p className="mt-3 text-base text-cyber-gray-300 md:text-lg">
-              Explore signature captures, storytelling walkthroughs, and
-              photoreal virtual spaces crafted for clients worldwide.
-            </p>
           </div>
+        </section>
 
-          <div className="mt-12">
-            <ToursGrid tours={tourCards} />
-          </div>
-        </div>
-      </section>
+        {/* ============================================
+            VIDEO SECTION - Holographic Frame
+            ============================================ */}
+        {youtubeId && (
+          <section className="relative py-24 overflow-hidden">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-br from-cyber-brand-200/20 via-transparent to-cyber-plasma-purple/20"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 data-flow-bg opacity-20"
+            />
 
-      {pro.aboutTheCreator ? (
-        <section className="relative py-24">
+            <div className="container relative z-10 mx-auto px-6">
+              <div className="mx-auto max-w-4xl text-center">
+                <span className="inline-flex items-center gap-2 rounded-full border border-cyber-neon-cyan/40 bg-cyber-gray-900/70 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-neon-cyan backdrop-blur-md">
+                  <Icon icon="heroicons:play-circle" width={18} />
+                  Behind the Scenes
+                </span>
+                <h2 className="mt-6 font-display text-3xl text-white md:text-4xl lg:text-5xl">
+                  Watch{" "}
+                  <span className="text-glow-gradient">{pro.name}</span> in
+                  Action
+                </h2>
+                <p className="mt-4 text-base text-cyber-gray-300 md:text-lg max-w-2xl mx-auto">
+                  Discover how immersive 3D capture comes to life with exclusive
+                  production footage and commentary.
+                </p>
+              </div>
+
+              <div className="mx-auto mt-12 max-w-5xl">
+                <div className="relative holographic-frame rounded-2xl p-1 bg-cyber-gray-900/80">
+                  {/* Corner decorations */}
+                  <span className="cyber-corner-tl" aria-hidden="true" />
+                  <span className="cyber-corner-tr" aria-hidden="true" />
+                  <span className="cyber-corner-bl" aria-hidden="true" />
+                  <span className="cyber-corner-br" aria-hidden="true" />
+
+                  <div className="relative aspect-video overflow-hidden rounded-xl bg-black">
+                    <YouTubePlayer
+                      videoId={youtubeId}
+                      title={`${pro.name} behind the scenes video`}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ============================================
+            PORTFOLIO SECTION - Masonry Grid
+            ============================================ */}
+        <section id="tours" className="relative py-24 overflow-hidden">
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-br from-cyber-gray-900 via-cyber-brand-200/20 to-cyber-gray-900"
+            className="absolute inset-0 bg-gradient-to-br from-cyber-gray-900 via-cyber-brand-200/10 to-cyber-gray-900"
           />
+
           <div className="container relative z-10 mx-auto px-6">
             <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-brand-200/45 bg-cyber-gray-900/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-gray-100 drop-shadow-[0_0_12px_rgba(51,102,255,0.35)]">
-                <Icon icon="heroicons:user" width={18} />
-                About the Creator
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyber-neon-cyan/40 bg-cyber-gray-900/70 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-neon-cyan backdrop-blur-md">
+                <Icon icon="heroicons:cube" width={18} />
+                Portfolio
               </span>
-              <h2 className="mt-6 font-display text-3xl text-white md:text-4xl">
-                Inside {pro.name}'s Practice
+              <h2 className="mt-6 font-display text-3xl text-white md:text-4xl lg:text-5xl">
+                Selected{" "}
+                <span className="text-glow-gradient">3D Tours</span>
               </h2>
-              <p className="mt-3 text-base text-cyber-gray-300 md:text-lg">
-                Learn more about the craft, mission, and creative process behind
-                each immersive experience.
+              <p className="mt-4 text-base text-cyber-gray-300 md:text-lg max-w-2xl mx-auto">
+                Explore signature captures, storytelling walkthroughs, and
+                photoreal virtual spaces crafted for clients worldwide.
               </p>
             </div>
-            <div className="mx-auto mt-12 max-w-5xl rounded-3xl border border-cyber-brand-300/30 bg-cyber-gray-900/70 p-10 shadow-[0_45px_90px_-35px_rgba(15,23,42,0.8)] backdrop-blur-xl">
-              <div className="text-left text-lg leading-relaxed text-cyber-gray-200 whitespace-pre-line">
-                {pro.aboutTheCreator}
-              </div>
-              {blogArticle ? (
-                <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-cyber-brand-400/20 bg-cyber-gray-900/60 px-6 py-5">
-                  <div className="flex items-center gap-3 text-sm text-cyber-gray-300">
-                    <Icon
-                      icon="ri:article-line"
-                      width={20}
-                      className="text-cyber-brand-500"
-                    />
-                    <span>Featured interview on Realsee Creator Stories</span>
-                  </div>
-                  <Link
-                    href={blogArticle}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-sm cyber-btn-primary px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
-                  >
-                    <Icon
-                      icon="heroicons:book-open"
-                      width={16}
-                      className="text-white"
-                    />
-                    Read Full Article
-                  </Link>
-                </div>
-              ) : null}
+
+            <div className="mt-16">
+              <ToursGrid tours={tourCards} />
             </div>
           </div>
         </section>
-      ) : null}
 
-      <section className="relative py-24">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-br from-cyber-gray-900 via-cyber-brand-200/25 to-cyber-gray-900"
-        />
-        <div aria-hidden="true" className="absolute inset-0 opacity-40">
-          <div className="cyber-grid h-full w-full" />
-        </div>
-        <div className="container relative z-10 mx-auto px-6">
-          <JoinCTA variant="contact" professionalName={pro.name} />
-        </div>
-      </section>
-    </main>
+        {/* ============================================
+            ABOUT SECTION - Quote Card Style
+            ============================================ */}
+        {pro.aboutTheCreator && (
+          <section className="relative py-24 overflow-hidden">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-br from-cyber-gray-900 via-cyber-brand-200/15 to-cyber-gray-900"
+            />
+
+            <div className="container relative z-10 mx-auto px-6">
+              <div className="mx-auto max-w-4xl text-center mb-12">
+                <span className="inline-flex items-center gap-2 rounded-full border border-cyber-neon-cyan/40 bg-cyber-gray-900/70 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-cyber-neon-cyan backdrop-blur-md">
+                  <Icon icon="heroicons:user" width={18} />
+                  About the Creator
+                </span>
+                <h2 className="mt-6 font-display text-3xl text-white md:text-4xl lg:text-5xl">
+                  Inside{" "}
+                  <span className="text-glow-gradient">{pro.name}'s</span>{" "}
+                  Practice
+                </h2>
+              </div>
+
+              {/* Quote Card - Glassmorphism Style */}
+              <div className="mx-auto max-w-5xl relative">
+                {/* Gradient border wrapper */}
+                <div className="p-[2px] rounded-3xl bg-gradient-to-br from-cyber-neon-cyan/60 via-cyber-neon-magenta/40 to-cyber-brand-500/50 shadow-[0_0_40px_rgba(0,255,255,0.1),0_0_80px_rgba(255,0,255,0.05)]">
+                  <div className="relative rounded-[22px] bg-cyber-gray-900/90 backdrop-blur-md px-12 py-16 md:px-20 md:py-24 lg:px-28 lg:py-28 overflow-hidden">
+                    {/* Opening quote - top left */}
+                    <div className="absolute top-8 left-8 md:top-12 md:left-14 lg:top-14 lg:left-16">
+                      <Icon
+                        icon="ri:double-quotes-l"
+                        width={72}
+                        className="text-cyber-neon-cyan/25"
+                        aria-hidden="true"
+                      />
+                    </div>
+
+                    {/* Quote content */}
+                    <p className="text-lg md:text-xl lg:text-2xl leading-relaxed md:leading-loose text-cyber-gray-100 text-center px-6 md:px-16 lg:px-20 relative z-10">
+                      {pro.aboutTheCreator}
+                    </p>
+
+                    {/* Closing quote - bottom right */}
+                    <div className="absolute bottom-8 right-8 md:bottom-12 md:right-14 lg:bottom-14 lg:right-16">
+                      <Icon
+                        icon="ri:double-quotes-r"
+                        width={72}
+                        className="text-cyber-neon-magenta/25"
+                        aria-hidden="true"
+                      />
+                    </div>
+
+                    {/* Subtle scanlines overlay */}
+                    <ScanLinesOverlay intensity="subtle" />
+                  </div>
+                </div>
+
+                {/* Blog article link */}
+                {blogArticle && (
+                  <div className="mt-8 flex flex-wrap items-center justify-center gap-4 rounded-xl border border-cyber-neon-cyan/20 bg-cyber-gray-900/60 backdrop-blur-sm px-6 py-5">
+                    <div className="flex items-center gap-3 text-sm text-cyber-gray-300">
+                      <Icon
+                        icon="ri:article-line"
+                        width={20}
+                        className="text-cyber-neon-cyan"
+                      />
+                      <span>Featured interview on Realsee Creator Stories</span>
+                    </div>
+                    <Link
+                      href={blogArticle}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-sm cyber-btn-primary px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
+                    >
+                      <Icon
+                        icon="heroicons:book-open"
+                        width={16}
+                        className="text-white"
+                      />
+                      Read Full Article
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ============================================
+            CTA SECTION
+            ============================================ */}
+        <section className="relative py-24 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-br from-cyber-gray-900 via-cyber-brand-200/25 to-cyber-gray-900"
+          />
+          <div aria-hidden="true" className="absolute inset-0 opacity-40">
+            <div className="cyber-grid h-full w-full" />
+          </div>
+          <div className="container relative z-10 mx-auto px-6">
+            <JoinCTA variant="contact" professionalName={pro.name} />
+          </div>
+        </section>
+      </main>
     </>
   );
 }

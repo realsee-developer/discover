@@ -20,6 +20,12 @@ function slugify(input: string): string {
     .replace(/(^-|-$)+/g, "");
 }
 
+function cleanVrTitle(title: string | null | undefined): string | null | undefined {
+  if (!title) return title;
+  // Remove "-copy" suffix (case insensitive)
+  return title.replace(/-copy$/i, '').trim();
+}
+
 let cached: {
   vrs?: Map<string, TVr>;
   tags?: TVrTag[];
@@ -27,7 +33,12 @@ let cached: {
 } = {};
 
 function loadVrs(): TVr[] {
-  return vrJson as unknown as TVr[];
+  const vrs = vrJson as unknown as TVr[];
+  // Clean titles by removing "-copy" suffix
+  return vrs.map(vr => ({
+    ...vr,
+    title: cleanVrTitle(vr.title) as string | null | undefined,
+  }));
 }
 
 function buildVrIndex(): Map<string, TVr> {

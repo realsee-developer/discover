@@ -6,9 +6,15 @@ import { useEffect, useMemo, useState } from "react";
 type Props = {
   images: string[];
   interval?: number;
+  /** Enable enhanced cyberpunk effects */
+  enhanced?: boolean;
 };
 
-export function HeroRotatingBg({ images, interval = 8000 }: Props) {
+export function HeroRotatingBg({
+  images,
+  interval = 8000,
+  enhanced = true,
+}: Props) {
   const clean = useMemo(() => (images || []).filter(Boolean), [images]);
   const [index, setIndex] = useState(0);
 
@@ -16,7 +22,7 @@ export function HeroRotatingBg({ images, interval = 8000 }: Props) {
     if (clean.length <= 1) return;
     const timer = setInterval(
       () => setIndex((i) => (i + 1) % clean.length),
-      interval,
+      interval
     );
     return () => clearInterval(timer);
   }, [clean.length, interval]);
@@ -25,6 +31,7 @@ export function HeroRotatingBg({ images, interval = 8000 }: Props) {
 
   return (
     <div className="absolute inset-0 -z-20 overflow-hidden">
+      {/* Rotating background images */}
       {clean.map((src, i) => (
         <div
           key={`${src}-${i}`}
@@ -38,18 +45,36 @@ export function HeroRotatingBg({ images, interval = 8000 }: Props) {
             fill
             priority={i === 0}
             sizes="100vw"
-            className="pointer-events-none select-none object-cover"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-cyber-gray-900/6"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-br from-cyber-brand-500/6 via-transparent to-cyber-neon-cyan/6"
+            className="pointer-events-none select-none object-cover scale-105"
+            style={{
+              filter: enhanced ? "saturate(1.2) contrast(1.1)" : undefined,
+            }}
           />
         </div>
       ))}
+
+      {/* Minimal bottom gradient for text contrast - keeps image visible */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-cyber-gray-900/80 via-transparent to-transparent"
+      />
+
+      {/* Subtle scanlines for cyber feel - very light */}
+      {enhanced && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none opacity-30"
+          style={{
+            background: `repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 3px,
+              rgba(0, 255, 255, 0.015) 3px,
+              rgba(0, 255, 255, 0.015) 6px
+            )`,
+          }}
+        />
+      )}
     </div>
   );
 }

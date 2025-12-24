@@ -201,6 +201,7 @@ export type TProfessional = {
   vimeo?: string;
   blogArticle?: string;
   behindScenesVideo?: string;
+  hideFromList?: boolean;
 };
 
 export type TCarouselEntry = {

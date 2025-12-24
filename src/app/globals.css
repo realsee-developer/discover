@@ -270,7 +270,7 @@
   position: absolute;
   inset: 0;
   background:
-    url("https://spark-builder.s3.cn-north-1.amazonaws.com.cn/image/2025/9/13/76284e92-cb8b-439e-ba2f-3d55f4516880.png")
+    url("/bg/bg-texture.png")
     center / cover;
   opacity: 0.05;
   z-index: -1;

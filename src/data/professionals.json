@@ -4,7 +4,7 @@
     "name": "Martin Vargas",
     "slug": "martin-vargas",
     "shortBio": "33Visual Co-founder documenting global projects with cutting-edge visual tech.",
-    "aboutTheCreator": "Co-founder and Director of 33Visual, specializing in corporate storytelling and aerial intelligence. For over 20 years, I've helped companies transform complex ideas into compelling visual narratives, integrating 3D scanning, drone operations, and immersive VR to capture projects across industries and continents.",
+    "aboutTheCreator": "Co-founder and Director of 33Visual, specializing in corporate storytelling and aerial intelligence. For over 20 years, I’ve helped companies transform complex ideas into compelling visual narratives, integrating 3D scanning, drone operations, and immersive VR to capture projects across industries and continents.",
     "Location": "Houston, TX, United States",
     "Website": "https://33visual.com",
     "email": "mlv@33photo.com",
@@ -34,7 +34,11 @@
     "email": "piotr@zoomnakwadrat.pl",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["LNwwV3GK", "lq22laKg", "gL99yqnz"],
+    "vrIds": [
+      "LNwwV3GK",
+      "lq22laKg",
+      "gL99yqnz"
+    ],
     "blogArticle": "https://home.realsee.ai/en/article/zoom-na-kwadrat-bringing-out-the-wow-in-every-property",
     "linkedin": "https://www.linkedin.com/in/piotr-kuszneruk-b71667137/",
     "instagram": "https://www.instagram.com/zoomnakwadrat/",
@@ -52,7 +56,13 @@
     "email": "gabriel@galakaarchitects.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["98OORY4z", "exnnjzDk", "xGWWRdgr", "ReZZgMOD", "lq22laKJ"],
+    "vrIds": [
+      "98OORY4z",
+      "exnnjzDk",
+      "xGWWRdgr",
+      "ReZZgMOD",
+      "lq22laKJ"
+    ],
     "blogArticle": "https://home.realsee.ai/en/article/gabriel-alaka-redefines-la-homes-with-realsee-s-digital-twins",
     "instagram": "https://www.instagram.com/galakaarchitects/"
   },
@@ -61,13 +71,15 @@
     "name": "Avi Gold",
     "slug": "avi-gold",
     "shortBio": "Immersive storyteller using 360° capture and 3D modeling to create interactive brand experiences.",
-    "aboutTheCreator": "As a 3rd generation photographer and artist I am on the cutting edge of immersive technology and tell stories in 360° and 3D that invite viewers to step inside a narrative-not just view a space.\n\nAs co-founder of 3D CAM Pros, an innovative tech partner with Realsee, I combine high-end 360 capture, advanced Gaussian Splatting techniques, and photorealistic 3D modeling to transform real-world locations into living, interactive experiences.\nI'm an early innovator on the Realsee platform, where I've pushed the technology to new heights-developing and refining features like Video Fusion, Guided Tours, dynamic hotspots, multi-stop routes, and supplemental media layers to create rich, guided stories for every project.\n\nBy blending augmented reality elements and fully realized 3D models, I give clients a powerful way to communicate their brand on the powerful Realsee platform in a way that captivates audiences and converts viewers into engaged customers.\nFrom luxury real estate, museums, cultural destinations and one-of-a-kind events, every project is built to draw audiences into a seamless, unforgettable journey. I have 360 scanned over 1,000,000 sq. ft. over the last 3 years and plan to scan another 2,000,000 this year.",
+    "aboutTheCreator": "As a 3rd generation photographer and artist I am on the cutting edge of immersive technology and tell stories in 360° and 3D that invite viewers to step inside a narrative-not just view a space.\n\nAs co-founder of 3D CAM Pros, an innovative tech partner with Realsee, I combine high-end 360 capture, advanced Gaussian Splatting techniques, and photorealistic 3D modeling to transform real-world locations into living, interactive experiences.\nI’m an early innovator on the Realsee platform, where I’ve pushed the technology to new heights-developing and refining features like Video Fusion, Guided Tours, dynamic hotspots, multi-stop routes, and supplemental media layers to create rich, guided stories for every project.\n\nBy blending augmented reality elements and fully realized 3D models, I give clients a powerful way to communicate their brand on the powerful Realsee platform in a way that captivates audiences and converts viewers into engaged customers.\nFrom luxury real estate, museums, cultural destinations and one-of-a-kind events, every project is built to draw audiences into a seamless, unforgettable journey. I have 360 scanned over 1,000,000 sq. ft. over the last 3 years and plan to scan another 2,000,000 this year.",
     "Location": "Delaware, DE, United States",
     "Website": "",
     "email": "midas@midastouchmedia.net",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["WgwwABrp"],
+    "vrIds": [
+      "WgwwABrp"
+    ],
     "blogArticle": "https://home.realsee.ai/en/article/3d-cam-pros-redefining-digital-exploration-with-realsee-and-galois-m2-magic"
   },
   {
@@ -144,7 +156,12 @@
     "email": "omegavisions.pro@gmail.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["ReZZgYeV", "xGWWRYGB", "6yDDWqyp", "a9rrxK9V"],
+    "vrIds": [
+      "ReZZgYeV",
+      "xGWWRYGB",
+      "6yDDWqyp",
+      "a9rrxK9V"
+    ],
     "blogArticle": "https://home.realsee.ai/en/article/omega-visions-realsee-galois-power-virtual-adventures-in-tourism-retail",
     "behindScenesVideo": "https://www.youtube.com/watch?v=2WY7rTO3miM",
     "linkedin": "https://www.linkedin.com/in/gr%C3%A9gory-manche-omega-visions/",
@@ -222,7 +239,12 @@
     "email": "ugurumutaksu@gmail.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["lq22lmGe", "8VRR9AXY", "LNwwVade", "O3eeLxnk"],
+    "vrIds": [
+      "lq22lmGe",
+      "8VRR9AXY",
+      "LNwwVade",
+      "O3eeLxnk"
+    ],
     "instagram": "https://www.instagram.com/truescope_tr?igsh=MWo1MjNxMW1saW90OQ=="
   },
   {
@@ -236,7 +258,11 @@
     "email": "info@clearpath360.co.uk",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": ["8VRR9bb4", "ybkk6aap", "VbOOJyyP"],
+    "vrIds": [
+      "8VRR9bb4",
+      "ybkk6aap",
+      "VbOOJyyP"
+    ],
     "instagram": "https://www.instagram.com/clearpath360_"
   },
   {
@@ -244,7 +270,7 @@
     "name": "Corne Snijders",
     "slug": "corne-snijders",
     "shortBio": "Specializes in helping businesses and creative industries stand out online through immersive 3D virtual tours, custom web design, and compelling visual content designed to transform visitors into clients.",
-    "aboutTheCreator": "Specialize in bringing ideas and spaces to life through immersive 3D virtual tours, custom web design, and high-impact visual communication. As founder of Thuisbekijken.nu and Vicisign, I provide a one-stop solution for businesses, museums, hotels, showrooms, and creative industries that want to stand out online.\nWith a background in graphic design, photography, and video, I combine creativity with technical precision - whether it's crafting responsive WordPress websites with Elementor Pro, developing automated marketing funnels in Systeme.io, or producing professional 3D modeling and visualizations in Blender. My goal is to create unforgettable first impressions that transform visitors into clients.\nFrom tailored branding and design projects to cutting-edge 3D experiences, I help organizations boost their online impact and communicate their stories in ways that are both visually stunning and strategically effective",
+    "aboutTheCreator": "Specialize in bringing ideas and spaces to life through immersive 3D virtual tours, custom web design, and high-impact visual communication. As founder of Thuisbekijken.nu and Vicisign, I provide a one-stop solution for businesses, museums, hotels, showrooms, and creative industries that want to stand out online.\nWith a background in graphic design, photography, and video, I combine creativity with technical precision - whether it’s crafting responsive WordPress websites with Elementor Pro, developing automated marketing funnels in Systeme.io, or producing professional 3D modeling and visualizations in Blender. My goal is to create unforgettable first impressions that transform visitors into clients.\nFrom tailored branding and design projects to cutting-edge 3D experiences, I help organizations boost their online impact and communicate their stories in ways that are both visually stunning and strategically effective",
     "Location": "Tilburg, The Netherlands",
     "Website": "https://www.thuisbekijken.nu",
     "email": "corne@vicisign.nl",
@@ -269,24 +295,107 @@
     "id": 13,
     "name": "Yuriy",
     "slug": "yuriy",
+    "shortBio": "Three Nine Media is the highest-rated Real Estate Photographer in Chicago (200+ 5-Star reviews). We are the trusted media partner for top Realtors, Builders, Airbnb, Commercial and Luxury Real Estate.",
+    "aboutTheCreator": "We combine creative excellence with operational reliability and dedicated customer support. FAA Part 107 Certified & Insured.\n\nResidential: Tailored services from standard listing photos to luxury editorial productions. Services include Premium Photography, Cinematic Videos & Trendy Reels, Drone Media, Floor Plans, innovative 3D tours, and Branding Services.\n\nCommercial: Custom media solutions for Multi-Family, Construction & Development, Retail, Hospitality, and Local Businesses.",
+    "Location": "Chicago, IL USA",
+    "Website": "https://threenine.media/",
+    "email": "info@threeninemedia.com",
+    "CountryTag": "",
+    "CityTag": "",
+    "vrIds": [
+      "N4eeOlOz",
+      "49kkWjWG",
+      "ZyKKxYxM",
+      "wKJJWnWN",
+      "gL99yry2",
+      "kzaaLlR7"
+    ],
+    "instagram": "https://www.instagram.com/threeninemedia/",
+    "facebook": "https://www.facebook.com/threeninemedia"
+  },
+  {
+    "id": 14,
+    "name": "Allen CUI",
+    "slug": "allen-cui",
     "shortBio": "",
     "aboutTheCreator": "",
     "Location": "",
     "Website": "",
-    "email": "info@threeninemedia.com",
+    "email": "allencui11@gmail.com",
     "CountryTag": "",
     "CityTag": "",
-    "vrIds": []
+    "vrIds": [
+      "ZyKKxryM",
+      "49kkWE9G"
+    ]
   },
   {
-    "id": 14,
+    "id": 15,
+    "name": "Motoki Takeuchi & Emi Nakano",
+    "slug": "motoki-takeuchi-emi-nakano",
+    "shortBio": "Motoki Takeuchi and Emi Nakano are co-founders of SIROCCO, specializing in spatial imaging and digital creation. Motoki works with photography, drone, and LiDAR for architectural documentation, while Emi focuses on 3DCG, virtual production, and virtual-human creation. Together, they combine precise digital technology with immersive visual storytelling.",
+    "aboutTheCreator": "MOTOKI TAKEUCHI \n\nMotoki Takeuchi is a photographer and visual creator focused on spatial imaging and digital-twin production. Educated at the University of the Arts London (UAL), he works across photography, video, drone cinematography, and LiDAR-powered 3D space capture. Motoki documents architectural sites, cultural properties, and natural environments, merging high-precision scanning with atmospheric visual storytelling. As a co-founder of SIROCCO, he brings analogue, digital, and spatial media into harmonious creative practice.\n\n\nEMI NAKANO \n\nEmi Nakano began her career as a fashion photographer and expanded her practice into 3DCG and virtual-production environments. With a strong foundation in visual arts, she works across analogue photography, XR content, and virtual-human production, seamlessly blending cutting-edge digital technologies with a refined aesthetic sensibility. As a co-founder of SIROCCO, she continues to push creative boundaries in spatial imaging and immersive visual expression.",
+    "Location": "Tokyo, Kamakura, Mito, and Tomi, Japan",
+    "Website": "https://sirocco18.jp/",
+    "email": "motombv@gmail.com",
+    "CountryTag": "",
+    "CityTag": "",
+    "vrIds": [
+      "ybkk68b2",
+      "ReZZgV8w",
+      "xGWWRVrg"
+    ],
+    "instagram": "//www.instagram.com/861cy"
+  },
+  {
+    "id": 16,
+    "name": "Ben Tseng 曾國賓",
+    "slug": "ben-tseng",
+    "shortBio": "From photography to Digital Twin - I bridge spatial aesthetics and technology. With 17 years as a photographer, I now lead Dimension Imaging, using a creator’s eye to craft digital twins that are not only accurate, but full of life and quality.",
+    "aboutTheCreator": "From photography to Digital Twin - I bridge spatial aesthetics and technology. With 17 years as a photographer, I now lead Dimension Imaging, using a creator’s eye to craft digital twins that are not only accurate, but full of life and quality.\n\n從光影藝術到空間智能 -- 連結現實與數位的建構者\n我是維度影像 wedostudio的創辦人。在投身數位孿生 (Digital Twin) 領域之前,我已在傳統攝影產業深耕 17 年。這段經歷讓我對光影、構圖與空間美學有著近乎直覺的敏銳度。\n3 年前,我看見了空間技術的未來,毅然轉身投入數位孿生與 PropTech (房地產科技) 領域。對我而言,數位孿生不僅僅是冰冷的數據採集或 3D 建模;它是將物理空間的靈魂,完整無損地搬運至數位世界。\n市面上的技術人員或許能操作掃描設備,但我的優勢在於「攝影師的視角」。我知道如何在虛擬導覽中引導觀眾的視線,如何優化場景的光感,讓客戶的空間在數位雙生中不僅「精準」,更具「質感」。\n現在,我帶領維度影像,致力於為客戶提供最高品質的空間數位化服務,用 20 年的影像經驗,為空間賦予數位生命。",
+    "Location": "Taiwan, Taipei",
+    "Website": "https://wedotw.com/3d-training/",
+    "email": "wedostudiotw@gmail.com",
+    "CountryTag": "",
+    "CityTag": "",
+    "vrIds": [
+      "m9aab72y",
+      "XN33xgJv",
+      "d4XXx7wv",
+      "p8EEZKXD"
+    ],
+    "instagram": "//www.instagram.com/ben_83513?igsh=MTZzZXBlbTN5aDB6aw%3D%3D&utm_source=qr"
+  },
+  {
+    "id": 17,
+    "name": "Luona Wang",
+    "slug": "luona-wang",
+    "shortBio": "A passionate digital nomad between Beijing and Hong Kong who captures the essence of spaces in 3D.",
+    "aboutTheCreator": "Hi there! I'm based between the dynamic cities of Beijing and Hong Kong. In my free time, I'm passionate about creating immersive 3D virtual tours, capturing everything from residential spaces and hotels to restaurants and unique outdoor scenes. My tool of choice is the Realsee Galois 3D LiDAR Camera. I'm always happy to share my hands-on experience with it-feel free to ask me any questions about shooting with this device!",
+    "Location": "Beijing/Hong Kong",
+    "Website": "",
+    "email": "",
+    "CountryTag": "",
+    "CityTag": "",
+    "vrIds": [
+      "v4OOR4qm",
+      "d4XXReNv",
+      "Ae44p45P",
+      "JVLLJLb4",
+      "qjMMXL8g",
+      "Y9vvRv4x"
+    ],
+    "behindScenesVideo": "https://www.youtube.com/watch?v=t53bbNu3Okg"
+  },
+  {
+    "id": 18,
     "name": "Arthur Lyu",
     "slug": "arthur-lyu",
     "shortBio": "Founder & Director of Vision Digital Culture Limited",
-    "aboutTheCreator": "I'm the founder of Vision Digital Culture, a Bradford-based studio specialising in professional spatial capture and immersive digital content. We work with clients across a range of sectors—including cultural heritage, education, exhibitions, and commercial environments—to create high-quality 3D virtual tours and interactive storytelling experiences.\n\nOur goal is to help organisations bring their physical spaces to wider audiences in a way that is accessible, meaningful, and future-ready. Whether it's a museum, a school, a branded showroom, or a public venue, we focus on turning real environments into rich, navigable digital experiences that connect with people.\n\nAs a Realsee Certified Creator, I use the Galois system to deliver clean, accurate scans and engaging overlays that enhance visitor understanding and interaction. I'm especially interested in using digital tools to support inclusive access and long-term engagement.\n\nFocus Areas: 3D Spatial Capture / Virtual Tours / Interactive Experiences / Education & Exhibitions / B2B & Public Engagement / Cultural Exchange & Storytelling",
+    "aboutTheCreator": "I'm the founder of Vision Digital Culture, a Bradford-based studio specialising in professional \nspatial capture and immersive digital content. We work with clients across a range of sectors- \nincluding cultural heritage, education, exhibitions, and commercial environments-to create \nhigh-quality 3D virtual tours and interactive storytelling experiences. \nOur goal is to help organisations bring their physical spaces to wider audiences in a way that is \naccessible, meaningful, and future-ready. Whether it's a museum, a school, a branded \nshowroom, or a public venue, we focus on turning real environments into rich, navigable digital \nexperiences that connect with people. \nAs a Realsee Certified Creator, I use the Galois system to deliver clean, accurate scans and \nengaging overlays that enhance visitor understanding and interaction. I’m especially interested \nin using digital tools to support inclusive access and long-term engagement. \nFocus Areas: 3D Spatial Capture / Virtual Tours / Interactive Experiences / Education & \nExhibitions / B2B & Public Engagement / Cultural Exchange & Storytelling",
     "Location": "Bradford, United Kingdom",
     "Website": "https://www.vdcltd.co.uk",
-    "email": "arthur.lyu@vdcltd.co.uk",
+    "email": "",
     "CountryTag": "",
     "CityTag": "",
     "vrIds": [
@@ -300,64 +409,8 @@
       "Ae44X5my"
     ],
     "behindScenesVideo": "https://www.youtube.com/watch?v=-kdrnrYSpAI",
-    "linkedin": "https://www.linkedin.com/company/vision-digital-culture/",
-    "facebook": "https://www.facebook.com/vdcltd.co.uk/"
-  },
-  {
-    "id": 15,
-    "name": "Allen CUI",
-    "slug": "allen-cui",
-    "shortBio": "",
-    "aboutTheCreator": "",
-    "Location": "",
-    "Website": "",
-    "email": "allencui11@gmail.com",
-    "CountryTag": "",
-    "CityTag": "",
-    "vrIds": []
-  },
-  {
-    "id": 16,
-    "name": "Motoki Takeuchi & Emi Nakano",
-    "slug": "motoki-takeuchi-emi-nakano",
-    "shortBio": "Motoki Takeuchi and Emi Nakano are co-founders of SIROCCO, specializing in spatial imaging and digital creation.",
-    "aboutTheCreator": "MOTOKI TAKEUCHI\n\nMotoki Takeuchi is a photographer and visual creator focused on spatial imaging and digital-twin production. Educated at the University of the Arts London (UAL), he works across photography, video, drone cinematography, and LiDAR-powered 3D space capture. Motoki documents architectural sites, cultural properties, and natural environments, merging high-precision scanning with atmospheric visual storytelling. As a co-founder of SIROCCO, he brings analogue, digital, and spatial media into harmonious creative practice.\n\n\nEMI NAKANO\n\nEmi Nakano began her career as a fashion photographer and expanded her practice into 3DCG and virtual-production environments. With a strong foundation in visual arts, she works across analogue photography, XR content, and virtual-human production, seamlessly blending cutting-edge digital technologies with a refined aesthetic sensibility. As a co-founder of SIROCCO, she continues to push creative boundaries in spatial imaging and immersive visual expression.",
-    "Location": "Tokyo, Kamakura, Mito, and Tomi, Japan",
-    "Website": "https://sirocco18.jp/",
-    "email": "",
-    "CountryTag": "",
-    "CityTag": "",
-    "vrIds": ["ybkk68b2", "ReZZgV8w", "xGWWRVrg"],
-    "instagram": "https://www.instagram.com/861cy"
-  },
-  {
-    "id": 17,
-    "name": "Ben Tseng",
-    "slug": "ben-tseng",
-    "shortBio": "From photography to Digital Twin — I bridge spatial aesthetics and technology.",
-    "aboutTheCreator": "From photography to Digital Twin — I bridge spatial aesthetics and technology. With 17 years as a photographer, I now lead Dimension Imaging, using a creator's eye to craft digital twins that are not only accurate, but full of life and quality.\n\n從光影藝術到空間智能 —— 連結現實與數位的建構者\n我是維度影像 wedostudio的創辦人。在投身數位孿生 (Digital Twin) 領域之前，我已在傳統攝影產業深耕 17 年。這段經歷讓我對光影、構圖與空間美學有著近乎直覺的敏銳度。\n3 年前，我看見了空間技術的未來，毅然轉身投入數位孿生與 PropTech (房地產科技) 領域。對我而言，數位孿生不僅僅是冰冷的數據採集或 3D 建模；它是將物理空間的靈魂，完整無損地搬運至數位世界。\n市面上的技術人員或許能操作掃描設備，但我的優勢在於「攝影師的視角」。我知道如何在虛擬導覽中引導觀眾的視線，如何優化場景的光感，讓客戶的空間在數位雙生中不僅「精準」，更具「質感」。\n現在，我帶領維度影像，致力於為客戶提供最高品質的空間數位化服務，用 20 年的影像經驗，為空間賦予數位生命。",
-    "Location": "Taiwan, Taipei",
-    "Website": "https://wedotw.com/3d-training/",
-    "email": "",
-    "CountryTag": "",
-    "CityTag": "",
-    "vrIds": ["m9aab72y", "XN33xgJv", "d4XXx7wv", "p8EEZKXD"],
-    "instagram": "https://www.instagram.com/ben_83513?igsh=MTZzZXBlbTN5aDB6aw%3D%3D&utm_source=qr"
-  },
-  {
-    "id": 18,
-    "name": "Luona Wang",
-    "slug": "luona-wang",
-    "shortBio": "A passionate digital nomad between Beijing and Hong Kong who captures the essence of spaces in 3D.",
-    "aboutTheCreator": "Hi there! I'm based between the dynamic cities of Beijing and Hong Kong. In my free time, I'm passionate about creating immersive 3D virtual tours, capturing everything from residential spaces and hotels to restaurants and unique outdoor scenes. My tool of choice is the Realsee Galois 3D LiDAR Camera. I'm always happy to share my hands-on experience with it—feel free to ask me any questions about shooting with this device!",
-    "Location": "Beijing/Hong Kong",
-    "Website": "",
-    "email": "",
-    "CountryTag": "",
-    "CityTag": "",
-    "vrIds": ["v4OOR4qm", "d4XXReNv", "Ae44p45P", "JVLLJLb4", "qjMMXL8g", "Y9vvRv4x"],
-    "behindScenesVideo": "https://www.youtube.com/watch?v=t53bbNu3Okg",
-    "hideFromList": true
+    "linkedin": "//www.linkedin.com/company/vision-digital-culture/",
+    "facebook": "//www.facebook.com/vdcltd.co.uk/"
   },
   {
     "id": 19,
@@ -381,8 +434,52 @@
       "lq22lOWw",
       "gL99yjWB"
     ],
-    "facebook": "https://www.facebook.com/ActsugiMalaysia/",
-    "instagram": "https://www.instagram.com/actsugitech/",
-    "linkedin": "https://www.linkedin.com/company/actsugi/"
+    "linkedin": "//www.linkedin.com/company/actsugi/",
+    "instagram": "//www.instagram.com/actsugitech/",
+    "facebook": "//www.facebook.com/ActsugiMalaysia/"
+  },
+  {
+    "id": 20,
+    "name": "Amirsoleiman Esfandiari",
+    "slug": "amirsoleiman-esfandiari",
+    "shortBio": "The founder of Techcopter, established in 2021",
+    "aboutTheCreator": "Amirsoleiman Esfandiari is a Virtual Reality specialist with a strong focus on designing and delivering immersive VR solutions for a wide range of industries. His expertise includes high-fidelity virtual tours, spatial visualization, and digital experience creation for hospitality, real estate, cultural heritage, and industrial environments.\nThe founder of Techcopter, established in 2021, a company dedicated to advanced virtual reality technologies, ultra-high-definition 3D scanning, and interactive virtual tour development. Through Techcopter, Amirsoleiman works with international clients to transform physical spaces into engaging, data-rich digital experiences using professional VR and LiDAR-based workflows.",
+    "Location": "London, United Kingdom Kuala Lumpur, Malaysia Istanbul, Turkey",
+    "Website": "https://www.techcopter.co.uk",
+    "email": "",
+    "CountryTag": "",
+    "CityTag": "",
+    "vrIds": [
+      "a9rrxqV8",
+      "xGWWRv6x",
+      "2VPPWBMe",
+      "XN33xq74",
+      "lq22lmqD",
+      "jmxxO8wW",
+      "ByNN9brD"
+    ],
+    "linkedin": "https://www.linkedin.com/company/techcopter/",
+    "instagram": "https://www.instagram.com/techcopter/",
+    "youtube": "https://www.youtube.com/channel/UCM8UM72tPOBxlvXtMqg2pLw"
+  },
+  {
+    "id": 21,
+    "name": "Richard Piekny",
+    "slug": "richard-piekny",
+    "shortBio": "Immersive Media & 3D Scan Services",
+    "aboutTheCreator": "I am a motivated and detail-oriented Immersive Media & VR Specialist, eager to contribute my skills and be involved in creating high-quality, impactful immersive projects. I create 360° immersive, interactive experiences for businesses looking to showcase their premises and facilities across Germany and the EU.",
+    "Location": "Dortmund, Germany Oradea, Romania",
+    "Website": "https://immo-vr.com",
+    "email": "",
+    "CountryTag": "",
+    "CityTag": "",
+    "vrIds": [
+      "exnnjDR7",
+      "3kYYWMlL",
+      "v4OORv9P",
+      "Ae44XZRz",
+      "5jLLWEg6"
+    ],
+    "instagram": "https://www.instagram.com/immo_vr/"
   }
 ]

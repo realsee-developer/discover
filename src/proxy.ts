@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 import { geolocation } from "@vercel/functions";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 /**
  * Vercel Edge Proxy for SEO/GEO optimization (Next.js 16+)
@@ -23,14 +23,12 @@ export function proxy(request: NextRequest) {
   const geo = geolocation(request);
   const country = geo?.country || "US";
   const region = geo?.region || "";
-  const city = geo?.city || "";
   const latitude = geo?.latitude || "";
   const longitude = geo?.longitude || "";
 
   // Add custom headers for SEO and analytics
   response.headers.set("X-Geo-Country", country);
   response.headers.set("X-Geo-Region", region);
-  response.headers.set("X-Geo-City", city);
 
   // Security headers for SEO trust signals
   response.headers.set(
@@ -72,4 +70,3 @@ export const config = {
     "/((?!api|_next/static|_next/image|favicon.ico|.*\\.txt|.*\\.xml).*)",
   ],
 };
-
